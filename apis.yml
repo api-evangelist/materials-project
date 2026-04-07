@@ -10,11 +10,11 @@ image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: >-
   https://raw.githubusercontent.com/api-evangelist/materials-project/refs/heads/main/apis.yml
 tags:
+  - Chemistry
   - Materials Science
+  - Physics
   - Research
   - Scientific Computing
-  - Chemistry
-  - Physics
 created: '2025-02-06'
 modified: '2026-03-16'
 specificationVersion: '0.19'
@@ -31,7 +31,6 @@ apis:
     tags:
       - Materials Science
       - Research
-      - API
     properties:
       - type: Documentation
         url: https://next-gen.materialsproject.org/api
