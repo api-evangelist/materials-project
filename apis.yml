@@ -16,7 +16,7 @@ tags:
   - Research
   - Scientific Computing
 created: '2025-02-06'
-modified: '2026-03-16'
+modified: '2026-04-28'
 specificationVersion: '0.19'
 apis:
   - aid: materials-project:materials-project-api
@@ -36,6 +36,8 @@ apis:
         url: https://next-gen.materialsproject.org/api
       - type: Getting Started
         url: https://docs.materialsproject.org/downloading-data/using-the-api
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/materials-project/refs/heads/main/openapi/materials-project-openapi.yml
 common:
   - type: Portal
     url: https://materialsproject.org/
