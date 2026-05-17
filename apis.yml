@@ -34,7 +34,7 @@ apis:
     properties:
       - type: Documentation
         url: https://next-gen.materialsproject.org/api
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.materialsproject.org/downloading-data/using-the-api
       - type: OpenAPI
         url: https://raw.githubusercontent.com/api-evangelist/materials-project/refs/heads/main/openapi/materials-project-openapi.yml
@@ -43,9 +43,9 @@ common:
     url: https://materialsproject.org/
   - type: Documentation
     url: https://docs.materialsproject.org/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/materialsproject
-  - type: Sign Up
+  - type: SignUp
     url: https://materialsproject.org/login
 maintainers:
   - FN: Kin Lane
