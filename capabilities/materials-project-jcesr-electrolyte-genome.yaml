@@ -1,0 +1,196 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Materials Project API — JCESR Electrolyte Genome
+  description: 'Materials Project API — JCESR Electrolyte Genome. 1 operations. Lead operation: Get MoleculesDoc documents.
+    Self-contained Naftiko capability covering one Materials Project business surface.'
+  tags:
+  - Materials Project
+  - JCESR Electrolyte Genome
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MATERIALS_PROJECT_API_KEY: MATERIALS_PROJECT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: materials-project-jcesr-electrolyte-genome
+    baseUri: ''
+    description: Materials Project API — JCESR Electrolyte Genome business capability. Self-contained, no shared references.
+    resources:
+    - name: molecules-jcesr
+      path: /molecules/jcesr/
+      operations:
+      - name: searchmoleculesjcesrget
+        method: GET
+        description: Get MoleculesDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: nelements_max
+          in: query
+          type: string
+          description: Maximum value for the number of elements.
+        - name: nelements_min
+          in: query
+          type: string
+          description: Minimum value for the number of elements.
+        - name: EA_max
+          in: query
+          type: string
+          description: Maximum value for the electron affinity in eV.
+        - name: EA_min
+          in: query
+          type: string
+          description: Minimum value for the electron affinity in eV.
+        - name: IE_max
+          in: query
+          type: string
+          description: Maximum value for the ionization energy in eV.
+        - name: IE_min
+          in: query
+          type: string
+          description: Minimum value for the ionization energy in eV.
+        - name: charge_max
+          in: query
+          type: string
+          description: Maximum value for the charge in +e.
+        - name: charge_min
+          in: query
+          type: string
+          description: Minimum value for the charge in +e.
+        - name: pointgroup
+          in: query
+          type: string
+          description: Point of the molecule in Schoenflies notation.
+        - name: smiles
+          in: query
+          type: string
+          description: The simplified molecular input line-entry system (SMILES)             representation of the molecule.
+        - name: elements
+          in: query
+          type: string
+          description: Query by elements in the material composition as a comma-separated list
+        - name: formula
+          in: query
+          type: string
+          description: Chemical formula of the molecule. A comma-separated list of formulas is also accepted.
+        - name: task_ids
+          in: query
+          type: string
+          description: Comma-separated list of task_ids to query on
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _sort_fields
+          in: query
+          type: string
+          description: Comma delimited fields to sort with. Prefixing '-' to a field will force a sort in descending order.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from MoleculesDoc as a list of comma separated strings.                    Fields
+            include: `elements` `nelements` `EA` `IE` `charge` `pointgro'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.MATERIALS_PROJECT_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: materials-project-jcesr-electrolyte-genome-rest
+    port: 8080
+    description: REST adapter for Materials Project API — JCESR Electrolyte Genome. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/molecules/jcesr
+      name: molecules-jcesr
+      description: REST surface for molecules-jcesr.
+      operations:
+      - method: GET
+        name: searchmoleculesjcesrget
+        description: Get MoleculesDoc documents
+        call: materials-project-jcesr-electrolyte-genome.searchmoleculesjcesrget
+        with:
+          nelements_max: rest.nelements_max
+          nelements_min: rest.nelements_min
+          EA_max: rest.EA_max
+          EA_min: rest.EA_min
+          IE_max: rest.IE_max
+          IE_min: rest.IE_min
+          charge_max: rest.charge_max
+          charge_min: rest.charge_min
+          pointgroup: rest.pointgroup
+          smiles: rest.smiles
+          elements: rest.elements
+          formula: rest.formula
+          task_ids: rest.task_ids
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _sort_fields: rest._sort_fields
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: materials-project-jcesr-electrolyte-genome-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Materials Project API — JCESR Electrolyte Genome. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: get-moleculesdoc-documents
+      description: Get MoleculesDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-jcesr-electrolyte-genome.searchmoleculesjcesrget
+      with:
+        nelements_max: tools.nelements_max
+        nelements_min: tools.nelements_min
+        EA_max: tools.EA_max
+        EA_min: tools.EA_min
+        IE_max: tools.IE_max
+        IE_min: tools.IE_min
+        charge_max: tools.charge_max
+        charge_min: tools.charge_min
+        pointgroup: tools.pointgroup
+        smiles: tools.smiles
+        elements: tools.elements
+        formula: tools.formula
+        task_ids: tools.task_ids
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _sort_fields: tools._sort_fields
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+      outputParameters:
+      - type: object
+        mapping: $.

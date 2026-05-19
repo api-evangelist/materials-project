@@ -1,0 +1,228 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Materials Project API — Molecules Summary
+  description: 'Materials Project API — Molecules Summary. 1 operations. Lead operation: Get MoleculeSummaryDoc documents.
+    Self-contained Naftiko capability covering one Materials Project business surface.'
+  tags:
+  - Materials Project
+  - Molecules Summary
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MATERIALS_PROJECT_API_KEY: MATERIALS_PROJECT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: materials-project-molecules-summary
+    baseUri: ''
+    description: Materials Project API — Molecules Summary business capability. Self-contained, no shared references.
+    resources:
+    - name: molecules-summary
+      path: /molecules/summary/
+      operations:
+      - name: searchmoleculessummaryget
+        method: GET
+        description: Get MoleculeSummaryDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: molecule_ids
+          in: query
+          type: string
+          description: Comma-separated list of molecule_ids to query on
+        - name: formula
+          in: query
+          type: string
+          description: Query by alphabetical formula. A comma delimited string list of alphabetical formulas can also be provided.
+        - name: chemsys
+          in: query
+          type: string
+          description: A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for
+            single chemsys queries
+        - name: elements
+          in: query
+          type: string
+          description: Query by elements in the material composition as a comma-separated list
+        - name: exclude_elements
+          in: query
+          type: string
+          description: Query by excluded elements in the material composition as a comma-separated list
+        - name: has_props
+          in: query
+          type: string
+          description: Comma-delimited list of possible properties given by HasPropsEnum to search for.
+        - name: charge
+          in: query
+          type: string
+          description: Query by molecular charge
+        - name: spin_multiplicity
+          in: query
+          type: string
+          description: Query by molecular spin multiplicity.
+        - name: inchi
+          in: query
+          type: string
+          description: International chemical identifier (InChI) string for this molecule
+        - name: inchi_key
+          in: query
+          type: string
+          description: Hash of the InChI, also known as the InChI-key
+        - name: species_hash
+          in: query
+          type: string
+          description: Graph hash augmented with node species
+        - name: coord_hash
+          in: query
+          type: string
+          description: Graph hash augmented with node XYZ coordinates
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: nelements_max
+          in: query
+          type: string
+          description: Query for maximum value of nelements
+        - name: nelements_min
+          in: query
+          type: string
+          description: Query for minimum value of nelements
+        - name: nelements
+          in: query
+          type: string
+          description: Query for nelements being equal to an exact value
+        - name: nelements_not_eq
+          in: query
+          type: string
+          description: Query for nelements being not equal to an exact value
+        - name: nelements_eq_any
+          in: query
+          type: string
+          description: Query for nelements being any of these values. Provide a comma separated list.
+        - name: nelements_neq_any
+          in: query
+          type: string
+          description: Query for nelements being not any of these values.                             Provide a comma separated
+            list.
+        - name: _sort_fields
+          in: query
+          type: string
+          description: Comma delimited fields to sort with. Prefixing '-' to a field will force a sort in descending order.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from MoleculeSummaryDoc as a list of comma separated strings.                    Fields
+            include: `charge` `spin_multiplicity` `natoms` `elemen'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.MATERIALS_PROJECT_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: materials-project-molecules-summary-rest
+    port: 8080
+    description: REST adapter for Materials Project API — Molecules Summary. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/molecules/summary
+      name: molecules-summary
+      description: REST surface for molecules-summary.
+      operations:
+      - method: GET
+        name: searchmoleculessummaryget
+        description: Get MoleculeSummaryDoc documents
+        call: materials-project-molecules-summary.searchmoleculessummaryget
+        with:
+          molecule_ids: rest.molecule_ids
+          formula: rest.formula
+          chemsys: rest.chemsys
+          elements: rest.elements
+          exclude_elements: rest.exclude_elements
+          has_props: rest.has_props
+          charge: rest.charge
+          spin_multiplicity: rest.spin_multiplicity
+          inchi: rest.inchi
+          inchi_key: rest.inchi_key
+          species_hash: rest.species_hash
+          coord_hash: rest.coord_hash
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          nelements_max: rest.nelements_max
+          nelements_min: rest.nelements_min
+          nelements: rest.nelements
+          nelements_not_eq: rest.nelements_not_eq
+          nelements_eq_any: rest.nelements_eq_any
+          nelements_neq_any: rest.nelements_neq_any
+          _sort_fields: rest._sort_fields
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: materials-project-molecules-summary-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Materials Project API — Molecules Summary. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-moleculesummarydoc-documents
+      description: Get MoleculeSummaryDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-molecules-summary.searchmoleculessummaryget
+      with:
+        molecule_ids: tools.molecule_ids
+        formula: tools.formula
+        chemsys: tools.chemsys
+        elements: tools.elements
+        exclude_elements: tools.exclude_elements
+        has_props: tools.has_props
+        charge: tools.charge
+        spin_multiplicity: tools.spin_multiplicity
+        inchi: tools.inchi
+        inchi_key: tools.inchi_key
+        species_hash: tools.species_hash
+        coord_hash: tools.coord_hash
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        nelements_max: tools.nelements_max
+        nelements_min: tools.nelements_min
+        nelements: tools.nelements
+        nelements_not_eq: tools.nelements_not_eq
+        nelements_eq_any: tools.nelements_eq_any
+        nelements_neq_any: tools.nelements_neq_any
+        _sort_fields: tools._sort_fields
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+      outputParameters:
+      - type: object
+        mapping: $.

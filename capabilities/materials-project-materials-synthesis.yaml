@@ -1,0 +1,159 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Materials Project API — Materials Synthesis
+  description: 'Materials Project API — Materials Synthesis. 1 operations. Lead operation: Get SynthesisSearchResultModel
+    documents. Self-contained Naftiko capability covering one Materials Project business surface.'
+  tags:
+  - Materials Project
+  - Materials Synthesis
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MATERIALS_PROJECT_API_KEY: MATERIALS_PROJECT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: materials-project-materials-synthesis
+    baseUri: ''
+    description: Materials Project API — Materials Synthesis business capability. Self-contained, no shared references.
+    resources:
+    - name: materials-synthesis
+      path: /materials/synthesis/
+      operations:
+      - name: searchmaterialssynthesisget
+        method: GET
+        description: Get SynthesisSearchResultModel documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: keywords
+          in: query
+          type: string
+          description: Comma delimited string keywords to search synthesis paragraph text with.
+        - name: synthesis_type
+          in: query
+          type: string
+          description: Type of synthesis to include.
+        - name: target_formula
+          in: query
+          type: string
+          description: Chemical formula of the target material.
+        - name: precursor_formula
+          in: query
+          type: string
+          description: Chemical formula of the precursor material.
+        - name: operations
+          in: query
+          type: string
+          description: List of operations that syntheses must have.
+        - name: condition_heating_temperature_min
+          in: query
+          type: string
+          description: Minimal heating temperature.
+        - name: condition_heating_temperature_max
+          in: query
+          type: string
+          description: Maximal heating temperature.
+        - name: condition_heating_time_min
+          in: query
+          type: string
+          description: Minimal heating time.
+        - name: condition_heating_time_max
+          in: query
+          type: string
+          description: Maximal heating time.
+        - name: condition_heating_atmosphere
+          in: query
+          type: string
+          description: Required heating atmosphere, such as "air", "argon".
+        - name: condition_mixing_device
+          in: query
+          type: string
+          description: Required mixing device, such as "zirconia", "Al2O3".
+        - name: condition_mixing_media
+          in: query
+          type: string
+          description: Required mixing media, such as "alcohol", "water".
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 10.
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.MATERIALS_PROJECT_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: materials-project-materials-synthesis-rest
+    port: 8080
+    description: REST adapter for Materials Project API — Materials Synthesis. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/materials/synthesis
+      name: materials-synthesis
+      description: REST surface for materials-synthesis.
+      operations:
+      - method: GET
+        name: searchmaterialssynthesisget
+        description: Get SynthesisSearchResultModel documents
+        call: materials-project-materials-synthesis.searchmaterialssynthesisget
+        with:
+          keywords: rest.keywords
+          synthesis_type: rest.synthesis_type
+          target_formula: rest.target_formula
+          precursor_formula: rest.precursor_formula
+          operations: rest.operations
+          condition_heating_temperature_min: rest.condition_heating_temperature_min
+          condition_heating_temperature_max: rest.condition_heating_temperature_max
+          condition_heating_time_min: rest.condition_heating_time_min
+          condition_heating_time_max: rest.condition_heating_time_max
+          condition_heating_atmosphere: rest.condition_heating_atmosphere
+          condition_mixing_device: rest.condition_mixing_device
+          condition_mixing_media: rest.condition_mixing_media
+          _skip: rest._skip
+          _limit: rest._limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: materials-project-materials-synthesis-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Materials Project API — Materials Synthesis. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-synthesissearchresultmodel-documents
+      description: Get SynthesisSearchResultModel documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-synthesis.searchmaterialssynthesisget
+      with:
+        keywords: tools.keywords
+        synthesis_type: tools.synthesis_type
+        target_formula: tools.target_formula
+        precursor_formula: tools.precursor_formula
+        operations: tools.operations
+        condition_heating_temperature_min: tools.condition_heating_temperature_min
+        condition_heating_temperature_max: tools.condition_heating_temperature_max
+        condition_heating_time_min: tools.condition_heating_time_min
+        condition_heating_time_max: tools.condition_heating_time_max
+        condition_heating_atmosphere: tools.condition_heating_atmosphere
+        condition_mixing_device: tools.condition_mixing_device
+        condition_mixing_media: tools.condition_mixing_media
+        _skip: tools._skip
+        _limit: tools._limit
+      outputParameters:
+      - type: object
+        mapping: $.

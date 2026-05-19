@@ -1,0 +1,227 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Materials Project API — Materials Grain Boundaries
+  description: 'Materials Project API — Materials Grain Boundaries. 1 operations. Lead operation: Get GrainBoundaryDoc documents.
+    Self-contained Naftiko capability covering one Materials Project business surface.'
+  tags:
+  - Materials Project
+  - Materials Grain Boundaries
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MATERIALS_PROJECT_API_KEY: MATERIALS_PROJECT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: materials-project-materials-grain-boundaries
+    baseUri: ''
+    description: Materials Project API — Materials Grain Boundaries business capability. Self-contained, no shared references.
+    resources:
+    - name: materials-grain_boundaries
+      path: /materials/grain_boundaries/
+      operations:
+      - name: searchmaterialsgrainboundariesget
+        method: GET
+        description: Get GrainBoundaryDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: material_ids
+          in: query
+          type: string
+          description: Comma-separated list of material_id values to query on
+        - name: task_ids
+          in: query
+          type: string
+          description: Comma-separated list of Materials Project IDs to query on.
+        - name: sigma_max
+          in: query
+          type: string
+          description: Query for maximum value of sigma
+        - name: sigma_min
+          in: query
+          type: string
+          description: Query for minimum value of sigma
+        - name: sigma
+          in: query
+          type: string
+          description: Value of sigma.
+        - name: sigma_not_eq
+          in: query
+          type: string
+          description: Query for sigma being not equal to an exact value
+        - name: sigma_eq_any
+          in: query
+          type: string
+          description: Query for sigma being any of these values. Provide a comma separated list.
+        - name: sigma_neq_any
+          in: query
+          type: string
+          description: Query for sigma being not any of these values.                             Provide a comma separated
+            list.
+        - name: rotation_angle_max
+          in: query
+          type: string
+          description: Query for maximum value of rotation_angle
+        - name: rotation_angle_min
+          in: query
+          type: string
+          description: Query for minimum value of rotation_angle
+        - name: gb_energy_max
+          in: query
+          type: string
+          description: Query for maximum value of gb_energy
+        - name: gb_energy_min
+          in: query
+          type: string
+          description: Query for minimum value of gb_energy
+        - name: w_sep_max
+          in: query
+          type: string
+          description: Query for maximum value of w_sep
+        - name: w_sep_min
+          in: query
+          type: string
+          description: Query for minimum value of w_sep
+        - name: type
+          in: query
+          type: string
+          description: Grain boundary type.
+        - name: chemsys
+          in: query
+          type: string
+          description: Dash-delimited string of elements in the material.
+        - name: pretty_formula
+          in: query
+          type: string
+          description: Formula of the material.
+        - name: gb_plane
+          in: query
+          type: string
+          description: Miller index of the grain boundary plane as comma delimitd integers.
+        - name: rotation_axis
+          in: query
+          type: string
+          description: Miller index of the rotation axis as comma delimitd integers.
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from GrainBoundaryDoc as a list of comma separated strings.                    Fields
+            include: `material_id` `sigma` `type` `rotation_axis` `g'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.MATERIALS_PROJECT_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: materials-project-materials-grain-boundaries-rest
+    port: 8080
+    description: REST adapter for Materials Project API — Materials Grain Boundaries. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/materials/grain-boundaries
+      name: materials-grain-boundaries
+      description: REST surface for materials-grain_boundaries.
+      operations:
+      - method: GET
+        name: searchmaterialsgrainboundariesget
+        description: Get GrainBoundaryDoc documents
+        call: materials-project-materials-grain-boundaries.searchmaterialsgrainboundariesget
+        with:
+          material_ids: rest.material_ids
+          task_ids: rest.task_ids
+          sigma_max: rest.sigma_max
+          sigma_min: rest.sigma_min
+          sigma: rest.sigma
+          sigma_not_eq: rest.sigma_not_eq
+          sigma_eq_any: rest.sigma_eq_any
+          sigma_neq_any: rest.sigma_neq_any
+          rotation_angle_max: rest.rotation_angle_max
+          rotation_angle_min: rest.rotation_angle_min
+          gb_energy_max: rest.gb_energy_max
+          gb_energy_min: rest.gb_energy_min
+          w_sep_max: rest.w_sep_max
+          w_sep_min: rest.w_sep_min
+          type: rest.type
+          chemsys: rest.chemsys
+          pretty_formula: rest.pretty_formula
+          gb_plane: rest.gb_plane
+          rotation_axis: rest.rotation_axis
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: materials-project-materials-grain-boundaries-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Materials Project API — Materials Grain Boundaries. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: get-grainboundarydoc-documents
+      description: Get GrainBoundaryDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-grain-boundaries.searchmaterialsgrainboundariesget
+      with:
+        material_ids: tools.material_ids
+        task_ids: tools.task_ids
+        sigma_max: tools.sigma_max
+        sigma_min: tools.sigma_min
+        sigma: tools.sigma
+        sigma_not_eq: tools.sigma_not_eq
+        sigma_eq_any: tools.sigma_eq_any
+        sigma_neq_any: tools.sigma_neq_any
+        rotation_angle_max: tools.rotation_angle_max
+        rotation_angle_min: tools.rotation_angle_min
+        gb_energy_max: tools.gb_energy_max
+        gb_energy_min: tools.gb_energy_min
+        w_sep_max: tools.w_sep_max
+        w_sep_min: tools.w_sep_min
+        type: tools.type
+        chemsys: tools.chemsys
+        pretty_formula: tools.pretty_formula
+        gb_plane: tools.gb_plane
+        rotation_axis: tools.rotation_axis
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,179 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Materials Project API — Materials Similarity
+  description: 'Materials Project API — Materials Similarity. 2 operations. Lead operation: Get SimilarityDoc documents. Self-contained
+    Naftiko capability covering one Materials Project business surface.'
+  tags:
+  - Materials Project
+  - Materials Similarity
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MATERIALS_PROJECT_API_KEY: MATERIALS_PROJECT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: materials-project-materials-similarity
+    baseUri: ''
+    description: Materials Project API — Materials Similarity business capability. Self-contained, no shared references.
+    resources:
+    - name: materials-similarity
+      path: /materials/similarity/
+      operations:
+      - name: searchmaterialssimilarityget
+        method: GET
+        description: Get SimilarityDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: material_ids
+          in: query
+          type: string
+          description: Comma-separated list of material_id values to query on
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from SimilarityDoc as a list of comma separated strings.                    Fields
+            include: `builder_meta` `nsites` `elements` `nelements` `co'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+    - name: materials-similarity-match
+      path: /materials/similarity/match/
+      operations:
+      - name: searchmaterialssimilaritymatchget
+        method: GET
+        description: Get SimilarityDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: feature_vector_hex
+          in: query
+          type: string
+          description: A compressed, hex representation of a row unit vector of floats.
+          required: true
+        - name: feature_vector_norm
+          in: query
+          type: number
+          description: The norm of the feature vector
+          required: true
+        - name: method
+          in: query
+          type: string
+          description: The method used to embed a structure as a feature vector.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 10 by default
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.MATERIALS_PROJECT_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: materials-project-materials-similarity-rest
+    port: 8080
+    description: REST adapter for Materials Project API — Materials Similarity. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/materials/similarity
+      name: materials-similarity
+      description: REST surface for materials-similarity.
+      operations:
+      - method: GET
+        name: searchmaterialssimilarityget
+        description: Get SimilarityDoc documents
+        call: materials-project-materials-similarity.searchmaterialssimilarityget
+        with:
+          material_ids: rest.material_ids
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/materials/similarity/match
+      name: materials-similarity-match
+      description: REST surface for materials-similarity-match.
+      operations:
+      - method: GET
+        name: searchmaterialssimilaritymatchget
+        description: Get SimilarityDoc documents
+        call: materials-project-materials-similarity.searchmaterialssimilaritymatchget
+        with:
+          feature_vector_hex: rest.feature_vector_hex
+          feature_vector_norm: rest.feature_vector_norm
+          method: rest.method
+          _limit: rest._limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: materials-project-materials-similarity-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Materials Project API — Materials Similarity. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-similaritydoc-documents
+      description: Get SimilarityDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-similarity.searchmaterialssimilarityget
+      with:
+        material_ids: tools.material_ids
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-similaritydoc-documents-2
+      description: Get SimilarityDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-similarity.searchmaterialssimilaritymatchget
+      with:
+        feature_vector_hex: tools.feature_vector_hex
+        feature_vector_norm: tools.feature_vector_norm
+        method: tools.method
+        _limit: tools._limit
+      outputParameters:
+      - type: object
+        mapping: $.

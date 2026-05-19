@@ -1,0 +1,257 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Materials Project API — Materials Substrates
+  description: 'Materials Project API — Materials Substrates. 1 operations. Lead operation: Get SubstratesDoc documents. Self-contained
+    Naftiko capability covering one Materials Project business surface.'
+  tags:
+  - Materials Project
+  - Materials Substrates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MATERIALS_PROJECT_API_KEY: MATERIALS_PROJECT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: materials-project-materials-substrates
+    baseUri: ''
+    description: Materials Project API — Materials Substrates business capability. Self-contained, no shared references.
+    resources:
+    - name: materials-substrates
+      path: /materials/substrates/
+      operations:
+      - name: searchmaterialssubstratesget
+        method: GET
+        description: Get SubstratesDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: film_orientation
+          in: query
+          type: string
+          description: Comma separated integers defining the film surface orientation.
+        - name: substrate_orientation
+          in: query
+          type: string
+          description: Comma separated integers defining the substrate surface orientation.
+        - name: area_max
+          in: query
+          type: string
+          description: Query for maximum value of area
+        - name: area_min
+          in: query
+          type: string
+          description: Query for minimum value of area
+        - name: energy_max
+          in: query
+          type: string
+          description: Query for maximum value of energy
+        - name: energy_min
+          in: query
+          type: string
+          description: Query for minimum value of energy
+        - name: norients_max
+          in: query
+          type: string
+          description: Query for maximum value of norients
+        - name: norients_min
+          in: query
+          type: string
+          description: Query for minimum value of norients
+        - name: norients
+          in: query
+          type: string
+          description: Query for norients being equal to an exact value
+        - name: norients_not_eq
+          in: query
+          type: string
+          description: Query for norients being not equal to an exact value
+        - name: norients_eq_any
+          in: query
+          type: string
+          description: Query for norients being any of these values. Provide a comma separated list.
+        - name: norients_neq_any
+          in: query
+          type: string
+          description: Query for norients being not any of these values.                             Provide a comma separated
+            list.
+        - name: sub_form
+          in: query
+          type: string
+          description: Query for sub_form being equal to a value
+        - name: sub_form_not_eq
+          in: query
+          type: string
+          description: Query for sub_form being not equal to a value
+        - name: sub_form_eq_any
+          in: query
+          type: string
+          description: Query for sub_form being any of these values. Provide a comma separated list.
+        - name: sub_form_neq_any
+          in: query
+          type: string
+          description: Query for sub_form being not any of these values. Provide a comma separated list
+        - name: sub_id
+          in: query
+          type: string
+          description: Query for sub_id being equal to a value
+        - name: sub_id_not_eq
+          in: query
+          type: string
+          description: Query for sub_id being not equal to a value
+        - name: sub_id_eq_any
+          in: query
+          type: string
+          description: Query for sub_id being any of these values. Provide a comma separated list.
+        - name: sub_id_neq_any
+          in: query
+          type: string
+          description: Query for sub_id being not any of these values. Provide a comma separated list
+        - name: film_id
+          in: query
+          type: string
+          description: Query for film_id being equal to a value
+        - name: film_id_not_eq
+          in: query
+          type: string
+          description: Query for film_id being not equal to a value
+        - name: film_id_eq_any
+          in: query
+          type: string
+          description: Query for film_id being any of these values. Provide a comma separated list.
+        - name: film_id_neq_any
+          in: query
+          type: string
+          description: Query for film_id being not any of these values. Provide a comma separated list
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from SubstratesDoc as a list of comma separated strings.                    Fields
+            include: `sub_form` `sub_id` `film_orient` `area` `energy` '
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.MATERIALS_PROJECT_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: materials-project-materials-substrates-rest
+    port: 8080
+    description: REST adapter for Materials Project API — Materials Substrates. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/materials/substrates
+      name: materials-substrates
+      description: REST surface for materials-substrates.
+      operations:
+      - method: GET
+        name: searchmaterialssubstratesget
+        description: Get SubstratesDoc documents
+        call: materials-project-materials-substrates.searchmaterialssubstratesget
+        with:
+          film_orientation: rest.film_orientation
+          substrate_orientation: rest.substrate_orientation
+          area_max: rest.area_max
+          area_min: rest.area_min
+          energy_max: rest.energy_max
+          energy_min: rest.energy_min
+          norients_max: rest.norients_max
+          norients_min: rest.norients_min
+          norients: rest.norients
+          norients_not_eq: rest.norients_not_eq
+          norients_eq_any: rest.norients_eq_any
+          norients_neq_any: rest.norients_neq_any
+          sub_form: rest.sub_form
+          sub_form_not_eq: rest.sub_form_not_eq
+          sub_form_eq_any: rest.sub_form_eq_any
+          sub_form_neq_any: rest.sub_form_neq_any
+          sub_id: rest.sub_id
+          sub_id_not_eq: rest.sub_id_not_eq
+          sub_id_eq_any: rest.sub_id_eq_any
+          sub_id_neq_any: rest.sub_id_neq_any
+          film_id: rest.film_id
+          film_id_not_eq: rest.film_id_not_eq
+          film_id_eq_any: rest.film_id_eq_any
+          film_id_neq_any: rest.film_id_neq_any
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: materials-project-materials-substrates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Materials Project API — Materials Substrates. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-substratesdoc-documents
+      description: Get SubstratesDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-substrates.searchmaterialssubstratesget
+      with:
+        film_orientation: tools.film_orientation
+        substrate_orientation: tools.substrate_orientation
+        area_max: tools.area_max
+        area_min: tools.area_min
+        energy_max: tools.energy_max
+        energy_min: tools.energy_min
+        norients_max: tools.norients_max
+        norients_min: tools.norients_min
+        norients: tools.norients
+        norients_not_eq: tools.norients_not_eq
+        norients_eq_any: tools.norients_eq_any
+        norients_neq_any: tools.norients_neq_any
+        sub_form: tools.sub_form
+        sub_form_not_eq: tools.sub_form_not_eq
+        sub_form_eq_any: tools.sub_form_eq_any
+        sub_form_neq_any: tools.sub_form_neq_any
+        sub_id: tools.sub_id
+        sub_id_not_eq: tools.sub_id_not_eq
+        sub_id_eq_any: tools.sub_id_eq_any
+        sub_id_neq_any: tools.sub_id_neq_any
+        film_id: tools.film_id
+        film_id_not_eq: tools.film_id_not_eq
+        film_id_eq_any: tools.film_id_eq_any
+        film_id_neq_any: tools.film_id_neq_any
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,822 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Materials Project API — Materials Summary
+  description: 'Materials Project API — Materials Summary. 1 operations. Lead operation: Get SummaryDoc documents. Self-contained
+    Naftiko capability covering one Materials Project business surface.'
+  tags:
+  - Materials Project
+  - Materials Summary
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MATERIALS_PROJECT_API_KEY: MATERIALS_PROJECT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: materials-project-materials-summary
+    baseUri: ''
+    description: Materials Project API — Materials Summary business capability. Self-contained, no shared references.
+    resources:
+    - name: materials-summary
+      path: /materials/summary/
+      operations:
+      - name: searchmaterialssummaryget
+        method: GET
+        description: Get SummaryDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: material_ids
+          in: query
+          type: string
+          description: Comma-separated list of material_ids to query on
+        - name: formula
+          in: query
+          type: string
+          description: Query by formula including anonymized formula or by including wild cards. A comma delimited string
+            list of anonymous formulas or regular formulas can also be pr
+        - name: chemsys
+          in: query
+          type: string
+          description: A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for
+            single chemsys queries
+        - name: elements
+          in: query
+          type: string
+          description: Query by elements in the material composition as a comma-separated list
+        - name: exclude_elements
+          in: query
+          type: string
+          description: Query by excluded elements in the material composition as a comma-separated list
+        - name: possible_species
+          in: query
+          type: string
+          description: Comma delimited list of element symbols appended with oxidation states.                 (e.g. Cr2+,O2-)
+        - name: crystal_system
+          in: query
+          type: string
+          description: Crystal system of the material. If a comma-separated string, will query by multiple crystal systems.
+        - name: spacegroup_number
+          in: query
+          type: string
+          description: Space group number of the material. If a comma-separated string, will query by multiple space group
+            numbers.
+        - name: spacegroup_symbol
+          in: query
+          type: string
+          description: Space group symbol of the material. If a comma-separated string, will query by multiple space group
+            numbers.
+        - name: is_stable
+          in: query
+          type: string
+          description: Whether the material is stable.
+        - name: theoretical
+          in: query
+          type: string
+          description: Whether the material is theoretical.
+        - name: ordering
+          in: query
+          type: string
+          description: Magnetic ordering of the material.
+        - name: is_gap_direct
+          in: query
+          type: string
+          description: Whether a band gap is direct or not.
+        - name: is_metal
+          in: query
+          type: string
+          description: Whether the material is considered a metal.
+        - name: nsites_max
+          in: query
+          type: string
+          description: Query for maximum value of nsites
+        - name: nsites_min
+          in: query
+          type: string
+          description: Query for minimum value of nsites
+        - name: nsites
+          in: query
+          type: string
+          description: Query for nsites being equal to an exact value
+        - name: nsites_not_eq
+          in: query
+          type: string
+          description: Query for nsites being not equal to an exact value
+        - name: nsites_eq_any
+          in: query
+          type: string
+          description: Query for nsites being any of these values. Provide a comma separated list.
+        - name: nsites_neq_any
+          in: query
+          type: string
+          description: Query for nsites being not any of these values.                             Provide a comma separated
+            list.
+        - name: nelements_max
+          in: query
+          type: string
+          description: Query for maximum value of nelements
+        - name: nelements_min
+          in: query
+          type: string
+          description: Query for minimum value of nelements
+        - name: nelements
+          in: query
+          type: string
+          description: Query for nelements being equal to an exact value
+        - name: nelements_not_eq
+          in: query
+          type: string
+          description: Query for nelements being not equal to an exact value
+        - name: nelements_eq_any
+          in: query
+          type: string
+          description: Query for nelements being any of these values. Provide a comma separated list.
+        - name: nelements_neq_any
+          in: query
+          type: string
+          description: Query for nelements being not any of these values.                             Provide a comma separated
+            list.
+        - name: volume_max
+          in: query
+          type: string
+          description: Query for maximum value of volume
+        - name: volume_min
+          in: query
+          type: string
+          description: Query for minimum value of volume
+        - name: density_max
+          in: query
+          type: string
+          description: Query for maximum value of density
+        - name: density_min
+          in: query
+          type: string
+          description: Query for minimum value of density
+        - name: density_atomic_max
+          in: query
+          type: string
+          description: Query for maximum value of density_atomic
+        - name: density_atomic_min
+          in: query
+          type: string
+          description: Query for minimum value of density_atomic
+        - name: uncorrected_energy_per_atom_max
+          in: query
+          type: string
+          description: Query for maximum value of uncorrected_energy_per_atom
+        - name: uncorrected_energy_per_atom_min
+          in: query
+          type: string
+          description: Query for minimum value of uncorrected_energy_per_atom
+        - name: energy_per_atom_max
+          in: query
+          type: string
+          description: Query for maximum value of energy_per_atom
+        - name: energy_per_atom_min
+          in: query
+          type: string
+          description: Query for minimum value of energy_per_atom
+        - name: formation_energy_per_atom_max
+          in: query
+          type: string
+          description: Query for maximum value of formation_energy_per_atom
+        - name: formation_energy_per_atom_min
+          in: query
+          type: string
+          description: Query for minimum value of formation_energy_per_atom
+        - name: energy_above_hull_max
+          in: query
+          type: string
+          description: Query for maximum value of energy_above_hull
+        - name: energy_above_hull_min
+          in: query
+          type: string
+          description: Query for minimum value of energy_above_hull
+        - name: equilibrium_reaction_energy_per_atom_max
+          in: query
+          type: string
+          description: Query for maximum value of equilibrium_reaction_energy_per_atom
+        - name: equilibrium_reaction_energy_per_atom_min
+          in: query
+          type: string
+          description: Query for minimum value of equilibrium_reaction_energy_per_atom
+        - name: band_gap_max
+          in: query
+          type: string
+          description: Query for maximum value of band_gap
+        - name: band_gap_min
+          in: query
+          type: string
+          description: Query for minimum value of band_gap
+        - name: cbm_max
+          in: query
+          type: string
+          description: Query for maximum value of cbm
+        - name: cbm_min
+          in: query
+          type: string
+          description: Query for minimum value of cbm
+        - name: vbm_max
+          in: query
+          type: string
+          description: Query for maximum value of vbm
+        - name: vbm_min
+          in: query
+          type: string
+          description: Query for minimum value of vbm
+        - name: efermi_max
+          in: query
+          type: string
+          description: Query for maximum value of efermi
+        - name: efermi_min
+          in: query
+          type: string
+          description: Query for minimum value of efermi
+        - name: dos_energy_up_max
+          in: query
+          type: string
+          description: Query for maximum value of dos_energy_up
+        - name: dos_energy_up_min
+          in: query
+          type: string
+          description: Query for minimum value of dos_energy_up
+        - name: dos_energy_down_max
+          in: query
+          type: string
+          description: Query for maximum value of dos_energy_down
+        - name: dos_energy_down_min
+          in: query
+          type: string
+          description: Query for minimum value of dos_energy_down
+        - name: total_magnetization_max
+          in: query
+          type: string
+          description: Query for maximum value of total_magnetization
+        - name: total_magnetization_min
+          in: query
+          type: string
+          description: Query for minimum value of total_magnetization
+        - name: total_magnetization_normalized_vol_max
+          in: query
+          type: string
+          description: Query for maximum value of total_magnetization_normalized_vol
+        - name: total_magnetization_normalized_vol_min
+          in: query
+          type: string
+          description: Query for minimum value of total_magnetization_normalized_vol
+        - name: total_magnetization_normalized_formula_units_max
+          in: query
+          type: string
+          description: Query for maximum value of total_magnetization_normalized_formula_units
+        - name: total_magnetization_normalized_formula_units_min
+          in: query
+          type: string
+          description: Query for minimum value of total_magnetization_normalized_formula_units
+        - name: num_magnetic_sites_max
+          in: query
+          type: string
+          description: Query for maximum value of num_magnetic_sites
+        - name: num_magnetic_sites_min
+          in: query
+          type: string
+          description: Query for minimum value of num_magnetic_sites
+        - name: num_magnetic_sites
+          in: query
+          type: string
+          description: Query for num_magnetic_sites being equal to an exact value
+        - name: num_magnetic_sites_not_eq
+          in: query
+          type: string
+          description: Query for num_magnetic_sites being not equal to an exact value
+        - name: num_magnetic_sites_eq_any
+          in: query
+          type: string
+          description: Query for num_magnetic_sites being any of these values. Provide a comma separated list.
+        - name: num_magnetic_sites_neq_any
+          in: query
+          type: string
+          description: Query for num_magnetic_sites being not any of these values.                             Provide a comma
+            separated list.
+        - name: num_unique_magnetic_sites_max
+          in: query
+          type: string
+          description: Query for maximum value of num_unique_magnetic_sites
+        - name: num_unique_magnetic_sites_min
+          in: query
+          type: string
+          description: Query for minimum value of num_unique_magnetic_sites
+        - name: num_unique_magnetic_sites
+          in: query
+          type: string
+          description: Query for num_unique_magnetic_sites being equal to an exact value
+        - name: num_unique_magnetic_sites_not_eq
+          in: query
+          type: string
+          description: Query for num_unique_magnetic_sites being not equal to an exact value
+        - name: num_unique_magnetic_sites_eq_any
+          in: query
+          type: string
+          description: Query for num_unique_magnetic_sites being any of these values. Provide a comma separated list.
+        - name: num_unique_magnetic_sites_neq_any
+          in: query
+          type: string
+          description: Query for num_unique_magnetic_sites being not any of these values.                             Provide
+            a comma separated list.
+        - name: universal_anisotropy_max
+          in: query
+          type: string
+          description: Query for maximum value of universal_anisotropy
+        - name: universal_anisotropy_min
+          in: query
+          type: string
+          description: Query for minimum value of universal_anisotropy
+        - name: homogeneous_poisson_max
+          in: query
+          type: string
+          description: Query for maximum value of homogeneous_poisson
+        - name: homogeneous_poisson_min
+          in: query
+          type: string
+          description: Query for minimum value of homogeneous_poisson
+        - name: e_total_max
+          in: query
+          type: string
+          description: Query for maximum value of e_total
+        - name: e_total_min
+          in: query
+          type: string
+          description: Query for minimum value of e_total
+        - name: e_ionic_max
+          in: query
+          type: string
+          description: Query for maximum value of e_ionic
+        - name: e_ionic_min
+          in: query
+          type: string
+          description: Query for minimum value of e_ionic
+        - name: e_electronic_max
+          in: query
+          type: string
+          description: Query for maximum value of e_electronic
+        - name: e_electronic_min
+          in: query
+          type: string
+          description: Query for minimum value of e_electronic
+        - name: n_max
+          in: query
+          type: string
+          description: Query for maximum value of n
+        - name: n_min
+          in: query
+          type: string
+          description: Query for minimum value of n
+        - name: e_ij_max_max
+          in: query
+          type: string
+          description: Query for maximum value of e_ij_max
+        - name: e_ij_max_min
+          in: query
+          type: string
+          description: Query for minimum value of e_ij_max
+        - name: weighted_surface_energy_EV_PER_ANG2_max
+          in: query
+          type: string
+          description: Query for maximum value of weighted_surface_energy_EV_PER_ANG2
+        - name: weighted_surface_energy_EV_PER_ANG2_min
+          in: query
+          type: string
+          description: Query for minimum value of weighted_surface_energy_EV_PER_ANG2
+        - name: weighted_surface_energy_max
+          in: query
+          type: string
+          description: Query for maximum value of weighted_surface_energy
+        - name: weighted_surface_energy_min
+          in: query
+          type: string
+          description: Query for minimum value of weighted_surface_energy
+        - name: weighted_work_function_max
+          in: query
+          type: string
+          description: Query for maximum value of weighted_work_function
+        - name: weighted_work_function_min
+          in: query
+          type: string
+          description: Query for minimum value of weighted_work_function
+        - name: surface_anisotropy_max
+          in: query
+          type: string
+          description: Query for maximum value of surface_anisotropy
+        - name: surface_anisotropy_min
+          in: query
+          type: string
+          description: Query for minimum value of surface_anisotropy
+        - name: shape_factor_max
+          in: query
+          type: string
+          description: Query for maximum value of shape_factor
+        - name: shape_factor_min
+          in: query
+          type: string
+          description: Query for minimum value of shape_factor
+        - name: k_voigt_max
+          in: query
+          type: string
+          description: Maximum value for the Voigt average of the bulk modulus in GPa.
+        - name: k_voigt_min
+          in: query
+          type: string
+          description: Minimum value for the Voigt average of the bulk modulus in GPa.
+        - name: k_reuss_max
+          in: query
+          type: string
+          description: Maximum value for the Reuss average of the bulk modulus in GPa.
+        - name: k_reuss_min
+          in: query
+          type: string
+          description: Minimum value for the Reuss average of the bulk modulus in GPa.
+        - name: k_vrh_max
+          in: query
+          type: string
+          description: Maximum value for the Voigt-Reuss-Hill average of the bulk modulus in GPa.
+        - name: k_vrh_min
+          in: query
+          type: string
+          description: Minimum value for the Voigt-Reuss-Hill average of the bulk modulus in GPa.
+        - name: g_voigt_max
+          in: query
+          type: string
+          description: Maximum value for the Voigt average of the shear modulus in GPa.
+        - name: g_voigt_min
+          in: query
+          type: string
+          description: Minimum value for the Voigt average of the shear modulus in GPa.
+        - name: g_reuss_max
+          in: query
+          type: string
+          description: Maximum value for the Reuss average of the shear modulus in GPa.
+        - name: g_reuss_min
+          in: query
+          type: string
+          description: Minimum value for the Reuss average of the shear modulus in GPa.
+        - name: g_vrh_max
+          in: query
+          type: string
+          description: Maximum value for the Voigt-Reuss-Hill average of the shear modulus in GPa.
+        - name: g_vrh_min
+          in: query
+          type: string
+          description: Minimum value for the Voigt-Reuss-Hill average of the shear modulus in GPa.
+        - name: has_reconstructed
+          in: query
+          type: string
+          description: Whether the material has reconstructed surfaces.
+        - name: has_props
+          in: query
+          type: string
+          description: Comma-delimited list of possible properties given by HasPropsEnum to search for.
+        - name: deprecated
+          in: query
+          type: string
+          description: Whether the material is marked as deprecated
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from SummaryDoc as a list of comma separated strings.                    Fields
+            include: `builder_meta` `nsites` `elements` `nelements` `compo'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+        - name: license
+          in: query
+          type: string
+          description: Query by license. Can be commercial or non-commercial, or both
+        - name: _sort_fields
+          in: query
+          type: string
+          description: Comma delimited fields to sort with. Prefixing '-' to a field will force a sort in descending order.
+        - name: batch_id
+          in: query
+          type: string
+          description: Query by batch identifier
+        - name: batch_id_not_eq
+          in: query
+          type: string
+          description: Exclude batch identifier
+        - name: batch_id_eq_any
+          in: query
+          type: string
+          description: Query by a comma-separated list of batch identifiers
+        - name: batch_id_neq_any
+          in: query
+          type: string
+          description: Exclude a comma-separated list of batch identifiers
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.MATERIALS_PROJECT_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: materials-project-materials-summary-rest
+    port: 8080
+    description: REST adapter for Materials Project API — Materials Summary. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/materials/summary
+      name: materials-summary
+      description: REST surface for materials-summary.
+      operations:
+      - method: GET
+        name: searchmaterialssummaryget
+        description: Get SummaryDoc documents
+        call: materials-project-materials-summary.searchmaterialssummaryget
+        with:
+          material_ids: rest.material_ids
+          formula: rest.formula
+          chemsys: rest.chemsys
+          elements: rest.elements
+          exclude_elements: rest.exclude_elements
+          possible_species: rest.possible_species
+          crystal_system: rest.crystal_system
+          spacegroup_number: rest.spacegroup_number
+          spacegroup_symbol: rest.spacegroup_symbol
+          is_stable: rest.is_stable
+          theoretical: rest.theoretical
+          ordering: rest.ordering
+          is_gap_direct: rest.is_gap_direct
+          is_metal: rest.is_metal
+          nsites_max: rest.nsites_max
+          nsites_min: rest.nsites_min
+          nsites: rest.nsites
+          nsites_not_eq: rest.nsites_not_eq
+          nsites_eq_any: rest.nsites_eq_any
+          nsites_neq_any: rest.nsites_neq_any
+          nelements_max: rest.nelements_max
+          nelements_min: rest.nelements_min
+          nelements: rest.nelements
+          nelements_not_eq: rest.nelements_not_eq
+          nelements_eq_any: rest.nelements_eq_any
+          nelements_neq_any: rest.nelements_neq_any
+          volume_max: rest.volume_max
+          volume_min: rest.volume_min
+          density_max: rest.density_max
+          density_min: rest.density_min
+          density_atomic_max: rest.density_atomic_max
+          density_atomic_min: rest.density_atomic_min
+          uncorrected_energy_per_atom_max: rest.uncorrected_energy_per_atom_max
+          uncorrected_energy_per_atom_min: rest.uncorrected_energy_per_atom_min
+          energy_per_atom_max: rest.energy_per_atom_max
+          energy_per_atom_min: rest.energy_per_atom_min
+          formation_energy_per_atom_max: rest.formation_energy_per_atom_max
+          formation_energy_per_atom_min: rest.formation_energy_per_atom_min
+          energy_above_hull_max: rest.energy_above_hull_max
+          energy_above_hull_min: rest.energy_above_hull_min
+          equilibrium_reaction_energy_per_atom_max: rest.equilibrium_reaction_energy_per_atom_max
+          equilibrium_reaction_energy_per_atom_min: rest.equilibrium_reaction_energy_per_atom_min
+          band_gap_max: rest.band_gap_max
+          band_gap_min: rest.band_gap_min
+          cbm_max: rest.cbm_max
+          cbm_min: rest.cbm_min
+          vbm_max: rest.vbm_max
+          vbm_min: rest.vbm_min
+          efermi_max: rest.efermi_max
+          efermi_min: rest.efermi_min
+          dos_energy_up_max: rest.dos_energy_up_max
+          dos_energy_up_min: rest.dos_energy_up_min
+          dos_energy_down_max: rest.dos_energy_down_max
+          dos_energy_down_min: rest.dos_energy_down_min
+          total_magnetization_max: rest.total_magnetization_max
+          total_magnetization_min: rest.total_magnetization_min
+          total_magnetization_normalized_vol_max: rest.total_magnetization_normalized_vol_max
+          total_magnetization_normalized_vol_min: rest.total_magnetization_normalized_vol_min
+          total_magnetization_normalized_formula_units_max: rest.total_magnetization_normalized_formula_units_max
+          total_magnetization_normalized_formula_units_min: rest.total_magnetization_normalized_formula_units_min
+          num_magnetic_sites_max: rest.num_magnetic_sites_max
+          num_magnetic_sites_min: rest.num_magnetic_sites_min
+          num_magnetic_sites: rest.num_magnetic_sites
+          num_magnetic_sites_not_eq: rest.num_magnetic_sites_not_eq
+          num_magnetic_sites_eq_any: rest.num_magnetic_sites_eq_any
+          num_magnetic_sites_neq_any: rest.num_magnetic_sites_neq_any
+          num_unique_magnetic_sites_max: rest.num_unique_magnetic_sites_max
+          num_unique_magnetic_sites_min: rest.num_unique_magnetic_sites_min
+          num_unique_magnetic_sites: rest.num_unique_magnetic_sites
+          num_unique_magnetic_sites_not_eq: rest.num_unique_magnetic_sites_not_eq
+          num_unique_magnetic_sites_eq_any: rest.num_unique_magnetic_sites_eq_any
+          num_unique_magnetic_sites_neq_any: rest.num_unique_magnetic_sites_neq_any
+          universal_anisotropy_max: rest.universal_anisotropy_max
+          universal_anisotropy_min: rest.universal_anisotropy_min
+          homogeneous_poisson_max: rest.homogeneous_poisson_max
+          homogeneous_poisson_min: rest.homogeneous_poisson_min
+          e_total_max: rest.e_total_max
+          e_total_min: rest.e_total_min
+          e_ionic_max: rest.e_ionic_max
+          e_ionic_min: rest.e_ionic_min
+          e_electronic_max: rest.e_electronic_max
+          e_electronic_min: rest.e_electronic_min
+          n_max: rest.n_max
+          n_min: rest.n_min
+          e_ij_max_max: rest.e_ij_max_max
+          e_ij_max_min: rest.e_ij_max_min
+          weighted_surface_energy_EV_PER_ANG2_max: rest.weighted_surface_energy_EV_PER_ANG2_max
+          weighted_surface_energy_EV_PER_ANG2_min: rest.weighted_surface_energy_EV_PER_ANG2_min
+          weighted_surface_energy_max: rest.weighted_surface_energy_max
+          weighted_surface_energy_min: rest.weighted_surface_energy_min
+          weighted_work_function_max: rest.weighted_work_function_max
+          weighted_work_function_min: rest.weighted_work_function_min
+          surface_anisotropy_max: rest.surface_anisotropy_max
+          surface_anisotropy_min: rest.surface_anisotropy_min
+          shape_factor_max: rest.shape_factor_max
+          shape_factor_min: rest.shape_factor_min
+          k_voigt_max: rest.k_voigt_max
+          k_voigt_min: rest.k_voigt_min
+          k_reuss_max: rest.k_reuss_max
+          k_reuss_min: rest.k_reuss_min
+          k_vrh_max: rest.k_vrh_max
+          k_vrh_min: rest.k_vrh_min
+          g_voigt_max: rest.g_voigt_max
+          g_voigt_min: rest.g_voigt_min
+          g_reuss_max: rest.g_reuss_max
+          g_reuss_min: rest.g_reuss_min
+          g_vrh_max: rest.g_vrh_max
+          g_vrh_min: rest.g_vrh_min
+          has_reconstructed: rest.has_reconstructed
+          has_props: rest.has_props
+          deprecated: rest.deprecated
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+          license: rest.license
+          _sort_fields: rest._sort_fields
+          batch_id: rest.batch_id
+          batch_id_not_eq: rest.batch_id_not_eq
+          batch_id_eq_any: rest.batch_id_eq_any
+          batch_id_neq_any: rest.batch_id_neq_any
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: materials-project-materials-summary-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Materials Project API — Materials Summary. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-summarydoc-documents
+      description: Get SummaryDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-summary.searchmaterialssummaryget
+      with:
+        material_ids: tools.material_ids
+        formula: tools.formula
+        chemsys: tools.chemsys
+        elements: tools.elements
+        exclude_elements: tools.exclude_elements
+        possible_species: tools.possible_species
+        crystal_system: tools.crystal_system
+        spacegroup_number: tools.spacegroup_number
+        spacegroup_symbol: tools.spacegroup_symbol
+        is_stable: tools.is_stable
+        theoretical: tools.theoretical
+        ordering: tools.ordering
+        is_gap_direct: tools.is_gap_direct
+        is_metal: tools.is_metal
+        nsites_max: tools.nsites_max
+        nsites_min: tools.nsites_min
+        nsites: tools.nsites
+        nsites_not_eq: tools.nsites_not_eq
+        nsites_eq_any: tools.nsites_eq_any
+        nsites_neq_any: tools.nsites_neq_any
+        nelements_max: tools.nelements_max
+        nelements_min: tools.nelements_min
+        nelements: tools.nelements
+        nelements_not_eq: tools.nelements_not_eq
+        nelements_eq_any: tools.nelements_eq_any
+        nelements_neq_any: tools.nelements_neq_any
+        volume_max: tools.volume_max
+        volume_min: tools.volume_min
+        density_max: tools.density_max
+        density_min: tools.density_min
+        density_atomic_max: tools.density_atomic_max
+        density_atomic_min: tools.density_atomic_min
+        uncorrected_energy_per_atom_max: tools.uncorrected_energy_per_atom_max
+        uncorrected_energy_per_atom_min: tools.uncorrected_energy_per_atom_min
+        energy_per_atom_max: tools.energy_per_atom_max
+        energy_per_atom_min: tools.energy_per_atom_min
+        formation_energy_per_atom_max: tools.formation_energy_per_atom_max
+        formation_energy_per_atom_min: tools.formation_energy_per_atom_min
+        energy_above_hull_max: tools.energy_above_hull_max
+        energy_above_hull_min: tools.energy_above_hull_min
+        equilibrium_reaction_energy_per_atom_max: tools.equilibrium_reaction_energy_per_atom_max
+        equilibrium_reaction_energy_per_atom_min: tools.equilibrium_reaction_energy_per_atom_min
+        band_gap_max: tools.band_gap_max
+        band_gap_min: tools.band_gap_min
+        cbm_max: tools.cbm_max
+        cbm_min: tools.cbm_min
+        vbm_max: tools.vbm_max
+        vbm_min: tools.vbm_min
+        efermi_max: tools.efermi_max
+        efermi_min: tools.efermi_min
+        dos_energy_up_max: tools.dos_energy_up_max
+        dos_energy_up_min: tools.dos_energy_up_min
+        dos_energy_down_max: tools.dos_energy_down_max
+        dos_energy_down_min: tools.dos_energy_down_min
+        total_magnetization_max: tools.total_magnetization_max
+        total_magnetization_min: tools.total_magnetization_min
+        total_magnetization_normalized_vol_max: tools.total_magnetization_normalized_vol_max
+        total_magnetization_normalized_vol_min: tools.total_magnetization_normalized_vol_min
+        total_magnetization_normalized_formula_units_max: tools.total_magnetization_normalized_formula_units_max
+        total_magnetization_normalized_formula_units_min: tools.total_magnetization_normalized_formula_units_min
+        num_magnetic_sites_max: tools.num_magnetic_sites_max
+        num_magnetic_sites_min: tools.num_magnetic_sites_min
+        num_magnetic_sites: tools.num_magnetic_sites
+        num_magnetic_sites_not_eq: tools.num_magnetic_sites_not_eq
+        num_magnetic_sites_eq_any: tools.num_magnetic_sites_eq_any
+        num_magnetic_sites_neq_any: tools.num_magnetic_sites_neq_any
+        num_unique_magnetic_sites_max: tools.num_unique_magnetic_sites_max
+        num_unique_magnetic_sites_min: tools.num_unique_magnetic_sites_min
+        num_unique_magnetic_sites: tools.num_unique_magnetic_sites
+        num_unique_magnetic_sites_not_eq: tools.num_unique_magnetic_sites_not_eq
+        num_unique_magnetic_sites_eq_any: tools.num_unique_magnetic_sites_eq_any
+        num_unique_magnetic_sites_neq_any: tools.num_unique_magnetic_sites_neq_any
+        universal_anisotropy_max: tools.universal_anisotropy_max
+        universal_anisotropy_min: tools.universal_anisotropy_min
+        homogeneous_poisson_max: tools.homogeneous_poisson_max
+        homogeneous_poisson_min: tools.homogeneous_poisson_min
+        e_total_max: tools.e_total_max
+        e_total_min: tools.e_total_min
+        e_ionic_max: tools.e_ionic_max
+        e_ionic_min: tools.e_ionic_min
+        e_electronic_max: tools.e_electronic_max
+        e_electronic_min: tools.e_electronic_min
+        n_max: tools.n_max
+        n_min: tools.n_min
+        e_ij_max_max: tools.e_ij_max_max
+        e_ij_max_min: tools.e_ij_max_min
+        weighted_surface_energy_EV_PER_ANG2_max: tools.weighted_surface_energy_EV_PER_ANG2_max
+        weighted_surface_energy_EV_PER_ANG2_min: tools.weighted_surface_energy_EV_PER_ANG2_min
+        weighted_surface_energy_max: tools.weighted_surface_energy_max
+        weighted_surface_energy_min: tools.weighted_surface_energy_min
+        weighted_work_function_max: tools.weighted_work_function_max
+        weighted_work_function_min: tools.weighted_work_function_min
+        surface_anisotropy_max: tools.surface_anisotropy_max
+        surface_anisotropy_min: tools.surface_anisotropy_min
+        shape_factor_max: tools.shape_factor_max
+        shape_factor_min: tools.shape_factor_min
+        k_voigt_max: tools.k_voigt_max
+        k_voigt_min: tools.k_voigt_min
+        k_reuss_max: tools.k_reuss_max
+        k_reuss_min: tools.k_reuss_min
+        k_vrh_max: tools.k_vrh_max
+        k_vrh_min: tools.k_vrh_min
+        g_voigt_max: tools.g_voigt_max
+        g_voigt_min: tools.g_voigt_min
+        g_reuss_max: tools.g_reuss_max
+        g_reuss_min: tools.g_reuss_min
+        g_vrh_max: tools.g_vrh_max
+        g_vrh_min: tools.g_vrh_min
+        has_reconstructed: tools.has_reconstructed
+        has_props: tools.has_props
+        deprecated: tools.deprecated
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+        license: tools.license
+        _sort_fields: tools._sort_fields
+        batch_id: tools.batch_id
+        batch_id_not_eq: tools.batch_id_not_eq
+        batch_id_eq_any: tools.batch_id_eq_any
+        batch_id_neq_any: tools.batch_id_neq_any
+      outputParameters:
+      - type: object
+        mapping: $.

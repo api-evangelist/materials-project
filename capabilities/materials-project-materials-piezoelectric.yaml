@@ -1,0 +1,130 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Materials Project API — Materials Piezoelectric
+  description: 'Materials Project API — Materials Piezoelectric. 1 operations. Lead operation: Get PiezoelectricDoc documents.
+    Self-contained Naftiko capability covering one Materials Project business surface.'
+  tags:
+  - Materials Project
+  - Materials Piezoelectric
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MATERIALS_PROJECT_API_KEY: MATERIALS_PROJECT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: materials-project-materials-piezoelectric
+    baseUri: ''
+    description: Materials Project API — Materials Piezoelectric business capability. Self-contained, no shared references.
+    resources:
+    - name: materials-piezoelectric
+      path: /materials/piezoelectric/
+      operations:
+      - name: searchmaterialspiezoelectricget
+        method: GET
+        description: Get PiezoelectricDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: material_ids
+          in: query
+          type: string
+          description: Comma-separated list of material_id values to query on
+        - name: piezo_modulus_max
+          in: query
+          type: string
+          description: Maximum value for the piezoelectric modulus in C/m².
+        - name: piezo_modulus_min
+          in: query
+          type: string
+          description: Minimum value for the piezoelectric modulus in C/m².
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from PiezoelectricDoc as a list of comma separated strings.                    Fields
+            include: `builder_meta` `nsites` `elements` `nelements` '
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.MATERIALS_PROJECT_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: materials-project-materials-piezoelectric-rest
+    port: 8080
+    description: REST adapter for Materials Project API — Materials Piezoelectric. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/materials/piezoelectric
+      name: materials-piezoelectric
+      description: REST surface for materials-piezoelectric.
+      operations:
+      - method: GET
+        name: searchmaterialspiezoelectricget
+        description: Get PiezoelectricDoc documents
+        call: materials-project-materials-piezoelectric.searchmaterialspiezoelectricget
+        with:
+          material_ids: rest.material_ids
+          piezo_modulus_max: rest.piezo_modulus_max
+          piezo_modulus_min: rest.piezo_modulus_min
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: materials-project-materials-piezoelectric-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Materials Project API — Materials Piezoelectric. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: get-piezoelectricdoc-documents
+      description: Get PiezoelectricDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-piezoelectric.searchmaterialspiezoelectricget
+      with:
+        material_ids: tools.material_ids
+        piezo_modulus_max: tools.piezo_modulus_max
+        piezo_modulus_min: tools.piezo_modulus_min
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+      outputParameters:
+      - type: object
+        mapping: $.

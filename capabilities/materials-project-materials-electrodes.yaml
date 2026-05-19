@@ -1,0 +1,626 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Materials Project API — Materials Electrodes
+  description: 'Materials Project API — Materials Electrodes. 2 operations. Lead operation: Get ConversionElectrodeDoc documents.
+    Self-contained Naftiko capability covering one Materials Project business surface.'
+  tags:
+  - Materials Project
+  - Materials Electrodes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MATERIALS_PROJECT_API_KEY: MATERIALS_PROJECT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: materials-project-materials-electrodes
+    baseUri: ''
+    description: Materials Project API — Materials Electrodes business capability. Self-contained, no shared references.
+    resources:
+    - name: materials-conversion_electrodes
+      path: /materials/conversion_electrodes/
+      operations:
+      - name: searchmaterialsconversionelectrodesget
+        method: GET
+        description: Get ConversionElectrodeDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: battery_ids
+          in: query
+          type: string
+          description: Comma-separated list of battery_id values to query on
+        - name: working_ion
+          in: query
+          type: string
+        - name: num_steps_max
+          in: query
+          type: string
+          description: Query for maximum value of num_steps
+        - name: num_steps_min
+          in: query
+          type: string
+          description: Query for minimum value of num_steps
+        - name: num_steps
+          in: query
+          type: string
+          description: Query for num_steps being equal to an exact value
+        - name: num_steps_not_eq
+          in: query
+          type: string
+          description: Query for num_steps being not equal to an exact value
+        - name: num_steps_eq_any
+          in: query
+          type: string
+          description: Query for num_steps being any of these values. Provide a comma separated list.
+        - name: num_steps_neq_any
+          in: query
+          type: string
+          description: Query for num_steps being not any of these values.                             Provide a comma separated
+            list.
+        - name: max_voltage_step_max
+          in: query
+          type: string
+          description: Query for maximum value of max_voltage_step
+        - name: max_voltage_step_min
+          in: query
+          type: string
+          description: Query for minimum value of max_voltage_step
+        - name: nelements_max
+          in: query
+          type: string
+          description: Query for maximum value of nelements
+        - name: nelements_min
+          in: query
+          type: string
+          description: Query for minimum value of nelements
+        - name: nelements
+          in: query
+          type: string
+          description: Query for nelements being equal to an exact value
+        - name: nelements_not_eq
+          in: query
+          type: string
+          description: Query for nelements being not equal to an exact value
+        - name: nelements_eq_any
+          in: query
+          type: string
+          description: Query for nelements being any of these values. Provide a comma separated list.
+        - name: nelements_neq_any
+          in: query
+          type: string
+          description: Query for nelements being not any of these values.                             Provide a comma separated
+            list.
+        - name: max_delta_volume_max
+          in: query
+          type: string
+          description: Query for maximum value of max_delta_volume
+        - name: max_delta_volume_min
+          in: query
+          type: string
+          description: Query for minimum value of max_delta_volume
+        - name: average_voltage_max
+          in: query
+          type: string
+          description: Query for maximum value of average_voltage
+        - name: average_voltage_min
+          in: query
+          type: string
+          description: Query for minimum value of average_voltage
+        - name: capacity_grav_max
+          in: query
+          type: string
+          description: Query for maximum value of capacity_grav
+        - name: capacity_grav_min
+          in: query
+          type: string
+          description: Query for minimum value of capacity_grav
+        - name: capacity_vol_max
+          in: query
+          type: string
+          description: Query for maximum value of capacity_vol
+        - name: capacity_vol_min
+          in: query
+          type: string
+          description: Query for minimum value of capacity_vol
+        - name: energy_grav_max
+          in: query
+          type: string
+          description: Query for maximum value of energy_grav
+        - name: energy_grav_min
+          in: query
+          type: string
+          description: Query for minimum value of energy_grav
+        - name: energy_vol_max
+          in: query
+          type: string
+          description: Query for maximum value of energy_vol
+        - name: energy_vol_min
+          in: query
+          type: string
+          description: Query for minimum value of energy_vol
+        - name: fracA_charge_max
+          in: query
+          type: string
+          description: Query for maximum value of fracA_charge
+        - name: fracA_charge_min
+          in: query
+          type: string
+          description: Query for minimum value of fracA_charge
+        - name: fracA_discharge_max
+          in: query
+          type: string
+          description: Query for maximum value of fracA_discharge
+        - name: fracA_discharge_min
+          in: query
+          type: string
+          description: Query for minimum value of fracA_discharge
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from ConversionElectrodeDoc as a list of comma separated strings.                    Fields
+            include: `builder_meta` `battery_type` `battery_id'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+    - name: materials-insertion_electrodes
+      path: /materials/insertion_electrodes/
+      operations:
+      - name: searchmaterialsinsertionelectrodesget
+        method: GET
+        description: Get InsertionElectrodeDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: battery_ids
+          in: query
+          type: string
+          description: Comma-separated list of battery_id values to query on
+        - name: formula
+          in: query
+          type: string
+          description: Query by formula including anonymized formula or by including wild cards. A comma delimited string
+            list of anonymous formulas or regular formulas can also be pr
+        - name: chemsys
+          in: query
+          type: string
+          description: A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for
+            single chemsys queries
+        - name: working_ion
+          in: query
+          type: string
+        - name: elements
+          in: query
+          type: string
+          description: Query by elements in the material composition as a comma-separated list
+        - name: exclude_elements
+          in: query
+          type: string
+          description: Query by excluded elements in the material composition as a comma-separated list
+        - name: num_steps_max
+          in: query
+          type: string
+          description: Query for maximum value of num_steps
+        - name: num_steps_min
+          in: query
+          type: string
+          description: Query for minimum value of num_steps
+        - name: num_steps
+          in: query
+          type: string
+          description: Query for num_steps being equal to an exact value
+        - name: num_steps_not_eq
+          in: query
+          type: string
+          description: Query for num_steps being not equal to an exact value
+        - name: num_steps_eq_any
+          in: query
+          type: string
+          description: Query for num_steps being any of these values. Provide a comma separated list.
+        - name: num_steps_neq_any
+          in: query
+          type: string
+          description: Query for num_steps being not any of these values.                             Provide a comma separated
+            list.
+        - name: max_voltage_step_max
+          in: query
+          type: string
+          description: Query for maximum value of max_voltage_step
+        - name: max_voltage_step_min
+          in: query
+          type: string
+          description: Query for minimum value of max_voltage_step
+        - name: nelements_max
+          in: query
+          type: string
+          description: Query for maximum value of nelements
+        - name: nelements_min
+          in: query
+          type: string
+          description: Query for minimum value of nelements
+        - name: nelements
+          in: query
+          type: string
+          description: Query for nelements being equal to an exact value
+        - name: nelements_not_eq
+          in: query
+          type: string
+          description: Query for nelements being not equal to an exact value
+        - name: nelements_eq_any
+          in: query
+          type: string
+          description: Query for nelements being any of these values. Provide a comma separated list.
+        - name: nelements_neq_any
+          in: query
+          type: string
+          description: Query for nelements being not any of these values.                             Provide a comma separated
+            list.
+        - name: max_delta_volume_max
+          in: query
+          type: string
+          description: Query for maximum value of max_delta_volume
+        - name: max_delta_volume_min
+          in: query
+          type: string
+          description: Query for minimum value of max_delta_volume
+        - name: average_voltage_max
+          in: query
+          type: string
+          description: Query for maximum value of average_voltage
+        - name: average_voltage_min
+          in: query
+          type: string
+          description: Query for minimum value of average_voltage
+        - name: capacity_grav_max
+          in: query
+          type: string
+          description: Query for maximum value of capacity_grav
+        - name: capacity_grav_min
+          in: query
+          type: string
+          description: Query for minimum value of capacity_grav
+        - name: capacity_vol_max
+          in: query
+          type: string
+          description: Query for maximum value of capacity_vol
+        - name: capacity_vol_min
+          in: query
+          type: string
+          description: Query for minimum value of capacity_vol
+        - name: energy_grav_max
+          in: query
+          type: string
+          description: Query for maximum value of energy_grav
+        - name: energy_grav_min
+          in: query
+          type: string
+          description: Query for minimum value of energy_grav
+        - name: energy_vol_max
+          in: query
+          type: string
+          description: Query for maximum value of energy_vol
+        - name: energy_vol_min
+          in: query
+          type: string
+          description: Query for minimum value of energy_vol
+        - name: fracA_charge_max
+          in: query
+          type: string
+          description: Query for maximum value of fracA_charge
+        - name: fracA_charge_min
+          in: query
+          type: string
+          description: Query for minimum value of fracA_charge
+        - name: fracA_discharge_max
+          in: query
+          type: string
+          description: Query for maximum value of fracA_discharge
+        - name: fracA_discharge_min
+          in: query
+          type: string
+          description: Query for minimum value of fracA_discharge
+        - name: stability_charge_max
+          in: query
+          type: string
+          description: Query for maximum value of stability_charge
+        - name: stability_charge_min
+          in: query
+          type: string
+          description: Query for minimum value of stability_charge
+        - name: stability_discharge_max
+          in: query
+          type: string
+          description: Query for maximum value of stability_discharge
+        - name: stability_discharge_min
+          in: query
+          type: string
+          description: Query for minimum value of stability_discharge
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from InsertionElectrodeDoc as a list of comma separated strings.                    Fields
+            include: `builder_meta` `battery_type` `battery_id`'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+        - name: _sort_fields
+          in: query
+          type: string
+          description: Comma delimited fields to sort with. Prefixing '-' to a field will force a sort in descending order.
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.MATERIALS_PROJECT_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: materials-project-materials-electrodes-rest
+    port: 8080
+    description: REST adapter for Materials Project API — Materials Electrodes. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/materials/conversion-electrodes
+      name: materials-conversion-electrodes
+      description: REST surface for materials-conversion_electrodes.
+      operations:
+      - method: GET
+        name: searchmaterialsconversionelectrodesget
+        description: Get ConversionElectrodeDoc documents
+        call: materials-project-materials-electrodes.searchmaterialsconversionelectrodesget
+        with:
+          battery_ids: rest.battery_ids
+          working_ion: rest.working_ion
+          num_steps_max: rest.num_steps_max
+          num_steps_min: rest.num_steps_min
+          num_steps: rest.num_steps
+          num_steps_not_eq: rest.num_steps_not_eq
+          num_steps_eq_any: rest.num_steps_eq_any
+          num_steps_neq_any: rest.num_steps_neq_any
+          max_voltage_step_max: rest.max_voltage_step_max
+          max_voltage_step_min: rest.max_voltage_step_min
+          nelements_max: rest.nelements_max
+          nelements_min: rest.nelements_min
+          nelements: rest.nelements
+          nelements_not_eq: rest.nelements_not_eq
+          nelements_eq_any: rest.nelements_eq_any
+          nelements_neq_any: rest.nelements_neq_any
+          max_delta_volume_max: rest.max_delta_volume_max
+          max_delta_volume_min: rest.max_delta_volume_min
+          average_voltage_max: rest.average_voltage_max
+          average_voltage_min: rest.average_voltage_min
+          capacity_grav_max: rest.capacity_grav_max
+          capacity_grav_min: rest.capacity_grav_min
+          capacity_vol_max: rest.capacity_vol_max
+          capacity_vol_min: rest.capacity_vol_min
+          energy_grav_max: rest.energy_grav_max
+          energy_grav_min: rest.energy_grav_min
+          energy_vol_max: rest.energy_vol_max
+          energy_vol_min: rest.energy_vol_min
+          fracA_charge_max: rest.fracA_charge_max
+          fracA_charge_min: rest.fracA_charge_min
+          fracA_discharge_max: rest.fracA_discharge_max
+          fracA_discharge_min: rest.fracA_discharge_min
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/materials/insertion-electrodes
+      name: materials-insertion-electrodes
+      description: REST surface for materials-insertion_electrodes.
+      operations:
+      - method: GET
+        name: searchmaterialsinsertionelectrodesget
+        description: Get InsertionElectrodeDoc documents
+        call: materials-project-materials-electrodes.searchmaterialsinsertionelectrodesget
+        with:
+          battery_ids: rest.battery_ids
+          formula: rest.formula
+          chemsys: rest.chemsys
+          working_ion: rest.working_ion
+          elements: rest.elements
+          exclude_elements: rest.exclude_elements
+          num_steps_max: rest.num_steps_max
+          num_steps_min: rest.num_steps_min
+          num_steps: rest.num_steps
+          num_steps_not_eq: rest.num_steps_not_eq
+          num_steps_eq_any: rest.num_steps_eq_any
+          num_steps_neq_any: rest.num_steps_neq_any
+          max_voltage_step_max: rest.max_voltage_step_max
+          max_voltage_step_min: rest.max_voltage_step_min
+          nelements_max: rest.nelements_max
+          nelements_min: rest.nelements_min
+          nelements: rest.nelements
+          nelements_not_eq: rest.nelements_not_eq
+          nelements_eq_any: rest.nelements_eq_any
+          nelements_neq_any: rest.nelements_neq_any
+          max_delta_volume_max: rest.max_delta_volume_max
+          max_delta_volume_min: rest.max_delta_volume_min
+          average_voltage_max: rest.average_voltage_max
+          average_voltage_min: rest.average_voltage_min
+          capacity_grav_max: rest.capacity_grav_max
+          capacity_grav_min: rest.capacity_grav_min
+          capacity_vol_max: rest.capacity_vol_max
+          capacity_vol_min: rest.capacity_vol_min
+          energy_grav_max: rest.energy_grav_max
+          energy_grav_min: rest.energy_grav_min
+          energy_vol_max: rest.energy_vol_max
+          energy_vol_min: rest.energy_vol_min
+          fracA_charge_max: rest.fracA_charge_max
+          fracA_charge_min: rest.fracA_charge_min
+          fracA_discharge_max: rest.fracA_discharge_max
+          fracA_discharge_min: rest.fracA_discharge_min
+          stability_charge_max: rest.stability_charge_max
+          stability_charge_min: rest.stability_charge_min
+          stability_discharge_max: rest.stability_discharge_max
+          stability_discharge_min: rest.stability_discharge_min
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+          _sort_fields: rest._sort_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: materials-project-materials-electrodes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Materials Project API — Materials Electrodes. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-conversionelectrodedoc-documents
+      description: Get ConversionElectrodeDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-electrodes.searchmaterialsconversionelectrodesget
+      with:
+        battery_ids: tools.battery_ids
+        working_ion: tools.working_ion
+        num_steps_max: tools.num_steps_max
+        num_steps_min: tools.num_steps_min
+        num_steps: tools.num_steps
+        num_steps_not_eq: tools.num_steps_not_eq
+        num_steps_eq_any: tools.num_steps_eq_any
+        num_steps_neq_any: tools.num_steps_neq_any
+        max_voltage_step_max: tools.max_voltage_step_max
+        max_voltage_step_min: tools.max_voltage_step_min
+        nelements_max: tools.nelements_max
+        nelements_min: tools.nelements_min
+        nelements: tools.nelements
+        nelements_not_eq: tools.nelements_not_eq
+        nelements_eq_any: tools.nelements_eq_any
+        nelements_neq_any: tools.nelements_neq_any
+        max_delta_volume_max: tools.max_delta_volume_max
+        max_delta_volume_min: tools.max_delta_volume_min
+        average_voltage_max: tools.average_voltage_max
+        average_voltage_min: tools.average_voltage_min
+        capacity_grav_max: tools.capacity_grav_max
+        capacity_grav_min: tools.capacity_grav_min
+        capacity_vol_max: tools.capacity_vol_max
+        capacity_vol_min: tools.capacity_vol_min
+        energy_grav_max: tools.energy_grav_max
+        energy_grav_min: tools.energy_grav_min
+        energy_vol_max: tools.energy_vol_max
+        energy_vol_min: tools.energy_vol_min
+        fracA_charge_max: tools.fracA_charge_max
+        fracA_charge_min: tools.fracA_charge_min
+        fracA_discharge_max: tools.fracA_discharge_max
+        fracA_discharge_min: tools.fracA_discharge_min
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-insertionelectrodedoc-documents
+      description: Get InsertionElectrodeDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-electrodes.searchmaterialsinsertionelectrodesget
+      with:
+        battery_ids: tools.battery_ids
+        formula: tools.formula
+        chemsys: tools.chemsys
+        working_ion: tools.working_ion
+        elements: tools.elements
+        exclude_elements: tools.exclude_elements
+        num_steps_max: tools.num_steps_max
+        num_steps_min: tools.num_steps_min
+        num_steps: tools.num_steps
+        num_steps_not_eq: tools.num_steps_not_eq
+        num_steps_eq_any: tools.num_steps_eq_any
+        num_steps_neq_any: tools.num_steps_neq_any
+        max_voltage_step_max: tools.max_voltage_step_max
+        max_voltage_step_min: tools.max_voltage_step_min
+        nelements_max: tools.nelements_max
+        nelements_min: tools.nelements_min
+        nelements: tools.nelements
+        nelements_not_eq: tools.nelements_not_eq
+        nelements_eq_any: tools.nelements_eq_any
+        nelements_neq_any: tools.nelements_neq_any
+        max_delta_volume_max: tools.max_delta_volume_max
+        max_delta_volume_min: tools.max_delta_volume_min
+        average_voltage_max: tools.average_voltage_max
+        average_voltage_min: tools.average_voltage_min
+        capacity_grav_max: tools.capacity_grav_max
+        capacity_grav_min: tools.capacity_grav_min
+        capacity_vol_max: tools.capacity_vol_max
+        capacity_vol_min: tools.capacity_vol_min
+        energy_grav_max: tools.energy_grav_max
+        energy_grav_min: tools.energy_grav_min
+        energy_vol_max: tools.energy_vol_max
+        energy_vol_min: tools.energy_vol_min
+        fracA_charge_max: tools.fracA_charge_max
+        fracA_charge_min: tools.fracA_charge_min
+        fracA_discharge_max: tools.fracA_discharge_max
+        fracA_discharge_min: tools.fracA_discharge_min
+        stability_charge_max: tools.stability_charge_max
+        stability_charge_min: tools.stability_charge_min
+        stability_discharge_max: tools.stability_discharge_max
+        stability_discharge_min: tools.stability_discharge_min
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+        _sort_fields: tools._sort_fields
+      outputParameters:
+      - type: object
+        mapping: $.

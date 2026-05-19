@@ -1,0 +1,350 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Materials Project API — Materials Thermo
+  description: 'Materials Project API — Materials Thermo. 1 operations. Lead operation: Get ThermoDoc documents. Self-contained
+    Naftiko capability covering one Materials Project business surface.'
+  tags:
+  - Materials Project
+  - Materials Thermo
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MATERIALS_PROJECT_API_KEY: MATERIALS_PROJECT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: materials-project-materials-thermo
+    baseUri: ''
+    description: Materials Project API — Materials Thermo business capability. Self-contained, no shared references.
+    resources:
+    - name: materials-thermo
+      path: /materials/thermo/
+      operations:
+      - name: searchmaterialsthermoget
+        method: GET
+        description: Get ThermoDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: thermo_ids
+          in: query
+          type: string
+          description: Comma-separated list of thermo_id values to query on
+        - name: material_ids
+          in: query
+          type: string
+          description: Comma-separated list of material_id values to query on
+        - name: thermo_types
+          in: query
+          type: string
+          description: Comma-separated list of thermo_type values to query on
+        - name: formula
+          in: query
+          type: string
+          description: Query by formula including anonymized formula or by including wild cards. A comma delimited string
+            list of anonymous formulas or regular formulas can also be pr
+        - name: chemsys
+          in: query
+          type: string
+          description: A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for
+            single chemsys queries
+        - name: is_stable
+          in: query
+          type: string
+          description: Whether the material is stable.
+        - name: nsites_max
+          in: query
+          type: string
+          description: Query for maximum value of nsites
+        - name: nsites_min
+          in: query
+          type: string
+          description: Query for minimum value of nsites
+        - name: nsites
+          in: query
+          type: string
+          description: Query for nsites being equal to an exact value
+        - name: nsites_not_eq
+          in: query
+          type: string
+          description: Query for nsites being not equal to an exact value
+        - name: nsites_eq_any
+          in: query
+          type: string
+          description: Query for nsites being any of these values. Provide a comma separated list.
+        - name: nsites_neq_any
+          in: query
+          type: string
+          description: Query for nsites being not any of these values.                             Provide a comma separated
+            list.
+        - name: nelements_max
+          in: query
+          type: string
+          description: Query for maximum value of nelements
+        - name: nelements_min
+          in: query
+          type: string
+          description: Query for minimum value of nelements
+        - name: nelements
+          in: query
+          type: string
+          description: Query for nelements being equal to an exact value
+        - name: nelements_not_eq
+          in: query
+          type: string
+          description: Query for nelements being not equal to an exact value
+        - name: nelements_eq_any
+          in: query
+          type: string
+          description: Query for nelements being any of these values. Provide a comma separated list.
+        - name: nelements_neq_any
+          in: query
+          type: string
+          description: Query for nelements being not any of these values.                             Provide a comma separated
+            list.
+        - name: volume_max
+          in: query
+          type: string
+          description: Query for maximum value of volume
+        - name: volume_min
+          in: query
+          type: string
+          description: Query for minimum value of volume
+        - name: density_max
+          in: query
+          type: string
+          description: Query for maximum value of density
+        - name: density_min
+          in: query
+          type: string
+          description: Query for minimum value of density
+        - name: density_atomic_max
+          in: query
+          type: string
+          description: Query for maximum value of density_atomic
+        - name: density_atomic_min
+          in: query
+          type: string
+          description: Query for minimum value of density_atomic
+        - name: uncorrected_energy_per_atom_max
+          in: query
+          type: number
+          description: Query for maximum value of uncorrected_energy_per_atom
+        - name: uncorrected_energy_per_atom_min
+          in: query
+          type: number
+          description: Query for minimum value of uncorrected_energy_per_atom
+        - name: energy_per_atom_max
+          in: query
+          type: number
+          description: Query for maximum value of energy_per_atom
+        - name: energy_per_atom_min
+          in: query
+          type: number
+          description: Query for minimum value of energy_per_atom
+        - name: energy_uncertainy_per_atom_max
+          in: query
+          type: string
+          description: Query for maximum value of energy_uncertainy_per_atom
+        - name: energy_uncertainy_per_atom_min
+          in: query
+          type: string
+          description: Query for minimum value of energy_uncertainy_per_atom
+        - name: formation_energy_per_atom_max
+          in: query
+          type: string
+          description: Query for maximum value of formation_energy_per_atom
+        - name: formation_energy_per_atom_min
+          in: query
+          type: string
+          description: Query for minimum value of formation_energy_per_atom
+        - name: energy_above_hull_max
+          in: query
+          type: number
+          description: Query for maximum value of energy_above_hull
+        - name: energy_above_hull_min
+          in: query
+          type: number
+          description: Query for minimum value of energy_above_hull
+        - name: equilibrium_reaction_energy_per_atom_max
+          in: query
+          type: string
+          description: Query for maximum value of equilibrium_reaction_energy_per_atom
+        - name: equilibrium_reaction_energy_per_atom_min
+          in: query
+          type: string
+          description: Query for minimum value of equilibrium_reaction_energy_per_atom
+        - name: decomposition_enthalpy_max
+          in: query
+          type: string
+          description: Query for maximum value of decomposition_enthalpy
+        - name: decomposition_enthalpy_min
+          in: query
+          type: string
+          description: Query for minimum value of decomposition_enthalpy
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from ThermoDoc as a list of comma separated strings.                    Fields include:
+            `builder_meta` `nsites` `elements` `nelements` `compos'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+        - name: license
+          in: query
+          type: string
+          description: Query by license. Can be commercial or non-commercial, or both
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.MATERIALS_PROJECT_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: materials-project-materials-thermo-rest
+    port: 8080
+    description: REST adapter for Materials Project API — Materials Thermo. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/materials/thermo
+      name: materials-thermo
+      description: REST surface for materials-thermo.
+      operations:
+      - method: GET
+        name: searchmaterialsthermoget
+        description: Get ThermoDoc documents
+        call: materials-project-materials-thermo.searchmaterialsthermoget
+        with:
+          thermo_ids: rest.thermo_ids
+          material_ids: rest.material_ids
+          thermo_types: rest.thermo_types
+          formula: rest.formula
+          chemsys: rest.chemsys
+          is_stable: rest.is_stable
+          nsites_max: rest.nsites_max
+          nsites_min: rest.nsites_min
+          nsites: rest.nsites
+          nsites_not_eq: rest.nsites_not_eq
+          nsites_eq_any: rest.nsites_eq_any
+          nsites_neq_any: rest.nsites_neq_any
+          nelements_max: rest.nelements_max
+          nelements_min: rest.nelements_min
+          nelements: rest.nelements
+          nelements_not_eq: rest.nelements_not_eq
+          nelements_eq_any: rest.nelements_eq_any
+          nelements_neq_any: rest.nelements_neq_any
+          volume_max: rest.volume_max
+          volume_min: rest.volume_min
+          density_max: rest.density_max
+          density_min: rest.density_min
+          density_atomic_max: rest.density_atomic_max
+          density_atomic_min: rest.density_atomic_min
+          uncorrected_energy_per_atom_max: rest.uncorrected_energy_per_atom_max
+          uncorrected_energy_per_atom_min: rest.uncorrected_energy_per_atom_min
+          energy_per_atom_max: rest.energy_per_atom_max
+          energy_per_atom_min: rest.energy_per_atom_min
+          energy_uncertainy_per_atom_max: rest.energy_uncertainy_per_atom_max
+          energy_uncertainy_per_atom_min: rest.energy_uncertainy_per_atom_min
+          formation_energy_per_atom_max: rest.formation_energy_per_atom_max
+          formation_energy_per_atom_min: rest.formation_energy_per_atom_min
+          energy_above_hull_max: rest.energy_above_hull_max
+          energy_above_hull_min: rest.energy_above_hull_min
+          equilibrium_reaction_energy_per_atom_max: rest.equilibrium_reaction_energy_per_atom_max
+          equilibrium_reaction_energy_per_atom_min: rest.equilibrium_reaction_energy_per_atom_min
+          decomposition_enthalpy_max: rest.decomposition_enthalpy_max
+          decomposition_enthalpy_min: rest.decomposition_enthalpy_min
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+          license: rest.license
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: materials-project-materials-thermo-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Materials Project API — Materials Thermo. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-thermodoc-documents
+      description: Get ThermoDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-thermo.searchmaterialsthermoget
+      with:
+        thermo_ids: tools.thermo_ids
+        material_ids: tools.material_ids
+        thermo_types: tools.thermo_types
+        formula: tools.formula
+        chemsys: tools.chemsys
+        is_stable: tools.is_stable
+        nsites_max: tools.nsites_max
+        nsites_min: tools.nsites_min
+        nsites: tools.nsites
+        nsites_not_eq: tools.nsites_not_eq
+        nsites_eq_any: tools.nsites_eq_any
+        nsites_neq_any: tools.nsites_neq_any
+        nelements_max: tools.nelements_max
+        nelements_min: tools.nelements_min
+        nelements: tools.nelements
+        nelements_not_eq: tools.nelements_not_eq
+        nelements_eq_any: tools.nelements_eq_any
+        nelements_neq_any: tools.nelements_neq_any
+        volume_max: tools.volume_max
+        volume_min: tools.volume_min
+        density_max: tools.density_max
+        density_min: tools.density_min
+        density_atomic_max: tools.density_atomic_max
+        density_atomic_min: tools.density_atomic_min
+        uncorrected_energy_per_atom_max: tools.uncorrected_energy_per_atom_max
+        uncorrected_energy_per_atom_min: tools.uncorrected_energy_per_atom_min
+        energy_per_atom_max: tools.energy_per_atom_max
+        energy_per_atom_min: tools.energy_per_atom_min
+        energy_uncertainy_per_atom_max: tools.energy_uncertainy_per_atom_max
+        energy_uncertainy_per_atom_min: tools.energy_uncertainy_per_atom_min
+        formation_energy_per_atom_max: tools.formation_energy_per_atom_max
+        formation_energy_per_atom_min: tools.formation_energy_per_atom_min
+        energy_above_hull_max: tools.energy_above_hull_max
+        energy_above_hull_min: tools.energy_above_hull_min
+        equilibrium_reaction_energy_per_atom_max: tools.equilibrium_reaction_energy_per_atom_max
+        equilibrium_reaction_energy_per_atom_min: tools.equilibrium_reaction_energy_per_atom_min
+        decomposition_enthalpy_max: tools.decomposition_enthalpy_max
+        decomposition_enthalpy_min: tools.decomposition_enthalpy_min
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+        license: tools.license
+      outputParameters:
+      - type: object
+        mapping: $.

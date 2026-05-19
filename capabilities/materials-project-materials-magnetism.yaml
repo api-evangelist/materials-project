@@ -1,0 +1,184 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Materials Project API — Materials Magnetism
+  description: 'Materials Project API — Materials Magnetism. 1 operations. Lead operation: Get MagnetismDoc documents. Self-contained
+    Naftiko capability covering one Materials Project business surface.'
+  tags:
+  - Materials Project
+  - Materials Magnetism
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MATERIALS_PROJECT_API_KEY: MATERIALS_PROJECT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: materials-project-materials-magnetism
+    baseUri: ''
+    description: Materials Project API — Materials Magnetism business capability. Self-contained, no shared references.
+    resources:
+    - name: materials-magnetism
+      path: /materials/magnetism/
+      operations:
+      - name: searchmaterialsmagnetismget
+        method: GET
+        description: Get MagnetismDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: material_ids
+          in: query
+          type: string
+          description: Comma-separated list of material_id values to query on
+        - name: ordering
+          in: query
+          type: string
+          description: Magnetic ordering of the material.
+        - name: total_magnetization_max
+          in: query
+          type: string
+          description: Maximum value for the total magnetization.
+        - name: total_magnetization_min
+          in: query
+          type: string
+          description: Minimum value for the total magnetization.
+        - name: total_magnetization_normalized_vol_max
+          in: query
+          type: string
+          description: Maximum value for the total magnetization normalized with volume.
+        - name: total_magnetization_normalized_vol_min
+          in: query
+          type: string
+          description: Minimum value for the total magnetization normalized with volume.
+        - name: total_magnetization_normalized_formula_units_max
+          in: query
+          type: string
+          description: Maximum value for the total magnetization normalized with formula units.
+        - name: total_magnetization_normalized_formula_units_min
+          in: query
+          type: string
+          description: Minimum value for the total magnetization normalized with formula units.
+        - name: num_magnetic_sites_max
+          in: query
+          type: string
+          description: Maximum value for the total number of magnetic sites.
+        - name: num_magnetic_sites_min
+          in: query
+          type: string
+          description: Minimum value for the total number of magnetic sites.
+        - name: num_unique_magnetic_sites_max
+          in: query
+          type: string
+          description: Maximum value for the total number of unique magnetic sites.
+        - name: num_unique_magnetic_sites_min
+          in: query
+          type: string
+          description: Minimum value for the total number of unique magnetic sites.
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from MagnetismDoc as a list of comma separated strings.                    Fields
+            include: `builder_meta` `nsites` `elements` `nelements` `com'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.MATERIALS_PROJECT_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: materials-project-materials-magnetism-rest
+    port: 8080
+    description: REST adapter for Materials Project API — Materials Magnetism. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/materials/magnetism
+      name: materials-magnetism
+      description: REST surface for materials-magnetism.
+      operations:
+      - method: GET
+        name: searchmaterialsmagnetismget
+        description: Get MagnetismDoc documents
+        call: materials-project-materials-magnetism.searchmaterialsmagnetismget
+        with:
+          material_ids: rest.material_ids
+          ordering: rest.ordering
+          total_magnetization_max: rest.total_magnetization_max
+          total_magnetization_min: rest.total_magnetization_min
+          total_magnetization_normalized_vol_max: rest.total_magnetization_normalized_vol_max
+          total_magnetization_normalized_vol_min: rest.total_magnetization_normalized_vol_min
+          total_magnetization_normalized_formula_units_max: rest.total_magnetization_normalized_formula_units_max
+          total_magnetization_normalized_formula_units_min: rest.total_magnetization_normalized_formula_units_min
+          num_magnetic_sites_max: rest.num_magnetic_sites_max
+          num_magnetic_sites_min: rest.num_magnetic_sites_min
+          num_unique_magnetic_sites_max: rest.num_unique_magnetic_sites_max
+          num_unique_magnetic_sites_min: rest.num_unique_magnetic_sites_min
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: materials-project-materials-magnetism-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Materials Project API — Materials Magnetism. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-magnetismdoc-documents
+      description: Get MagnetismDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-magnetism.searchmaterialsmagnetismget
+      with:
+        material_ids: tools.material_ids
+        ordering: tools.ordering
+        total_magnetization_max: tools.total_magnetization_max
+        total_magnetization_min: tools.total_magnetization_min
+        total_magnetization_normalized_vol_max: tools.total_magnetization_normalized_vol_max
+        total_magnetization_normalized_vol_min: tools.total_magnetization_normalized_vol_min
+        total_magnetization_normalized_formula_units_max: tools.total_magnetization_normalized_formula_units_max
+        total_magnetization_normalized_formula_units_min: tools.total_magnetization_normalized_formula_units_min
+        num_magnetic_sites_max: tools.num_magnetic_sites_max
+        num_magnetic_sites_min: tools.num_magnetic_sites_min
+        num_unique_magnetic_sites_max: tools.num_unique_magnetic_sites_max
+        num_unique_magnetic_sites_min: tools.num_unique_magnetic_sites_min
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+      outputParameters:
+      - type: object
+        mapping: $.

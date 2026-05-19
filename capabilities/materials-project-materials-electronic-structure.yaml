@@ -1,0 +1,662 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Materials Project API — Materials Electronic Structure
+  description: 'Materials Project API — Materials Electronic Structure. 4 operations. Lead operation: Get ElectronicStructureDoc
+    documents. Self-contained Naftiko capability covering one Materials Project business surface.'
+  tags:
+  - Materials Project
+  - Materials Electronic Structure
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MATERIALS_PROJECT_API_KEY: MATERIALS_PROJECT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: materials-project-materials-electronic-structure
+    baseUri: ''
+    description: Materials Project API — Materials Electronic Structure business capability. Self-contained, no shared references.
+    resources:
+    - name: materials-electronic_structure
+      path: /materials/electronic_structure/
+      operations:
+      - name: searchmaterialselectronicstructureget
+        method: GET
+        description: Get ElectronicStructureDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: material_ids
+          in: query
+          type: string
+          description: Comma-separated list of material_id values to query on
+        - name: magnetic_ordering
+          in: query
+          type: string
+          description: Magnetic ordering associated with the data.
+        - name: is_gap_direct
+          in: query
+          type: string
+          description: Whether a band gap is direct or not.
+        - name: is_metal
+          in: query
+          type: string
+          description: Whether the material is considered a metal.
+        - name: formula
+          in: query
+          type: string
+          description: Query by formula including anonymized formula or by including wild cards. A comma delimited string
+            list of anonymous formulas or regular formulas can also be pr
+        - name: chemsys
+          in: query
+          type: string
+          description: A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for
+            single chemsys queries
+        - name: elements
+          in: query
+          type: string
+          description: Query by elements in the material composition as a comma-separated list
+        - name: exclude_elements
+          in: query
+          type: string
+          description: Query by excluded elements in the material composition as a comma-separated list
+        - name: band_gap_max
+          in: query
+          type: number
+          description: Query for maximum value of band_gap
+        - name: band_gap_min
+          in: query
+          type: number
+          description: Query for minimum value of band_gap
+        - name: cbm_max
+          in: query
+          type: string
+          description: Query for maximum value of cbm
+        - name: cbm_min
+          in: query
+          type: string
+          description: Query for minimum value of cbm
+        - name: vbm_max
+          in: query
+          type: string
+          description: Query for maximum value of vbm
+        - name: vbm_min
+          in: query
+          type: string
+          description: Query for minimum value of vbm
+        - name: efermi_max
+          in: query
+          type: string
+          description: Query for maximum value of efermi
+        - name: efermi_min
+          in: query
+          type: string
+          description: Query for minimum value of efermi
+        - name: nsites_max
+          in: query
+          type: string
+          description: Query for maximum value of nsites
+        - name: nsites_min
+          in: query
+          type: string
+          description: Query for minimum value of nsites
+        - name: nsites
+          in: query
+          type: string
+          description: Query for nsites being equal to an exact value
+        - name: nsites_not_eq
+          in: query
+          type: string
+          description: Query for nsites being not equal to an exact value
+        - name: nsites_eq_any
+          in: query
+          type: string
+          description: Query for nsites being any of these values. Provide a comma separated list.
+        - name: nsites_neq_any
+          in: query
+          type: string
+          description: Query for nsites being not any of these values.                             Provide a comma separated
+            list.
+        - name: nelements_max
+          in: query
+          type: string
+          description: Query for maximum value of nelements
+        - name: nelements_min
+          in: query
+          type: string
+          description: Query for minimum value of nelements
+        - name: nelements
+          in: query
+          type: string
+          description: Query for nelements being equal to an exact value
+        - name: nelements_not_eq
+          in: query
+          type: string
+          description: Query for nelements being not equal to an exact value
+        - name: nelements_eq_any
+          in: query
+          type: string
+          description: Query for nelements being any of these values. Provide a comma separated list.
+        - name: nelements_neq_any
+          in: query
+          type: string
+          description: Query for nelements being not any of these values.                             Provide a comma separated
+            list.
+        - name: volume_max
+          in: query
+          type: string
+          description: Query for maximum value of volume
+        - name: volume_min
+          in: query
+          type: string
+          description: Query for minimum value of volume
+        - name: density_max
+          in: query
+          type: string
+          description: Query for maximum value of density
+        - name: density_min
+          in: query
+          type: string
+          description: Query for minimum value of density
+        - name: density_atomic_max
+          in: query
+          type: string
+          description: Query for maximum value of density_atomic
+        - name: density_atomic_min
+          in: query
+          type: string
+          description: Query for minimum value of density_atomic
+        - name: deprecated
+          in: query
+          type: string
+          description: Whether the material is marked as deprecated
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from ElectronicStructureDoc as a list of comma separated strings.                    Fields
+            include: `task_id` `band_gap` `cbm` `vbm` `efermi`'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+    - name: materials-electronic_structure-bandstructure
+      path: /materials/electronic_structure/bandstructure/
+      operations:
+      - name: searchmaterialselectronicstructurebandstructureget
+        method: GET
+        description: Get ElectronicStructureDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path_type
+          in: query
+          type: string
+          description: k-path selection convention for the band structure.
+        - name: band_gap_max
+          in: query
+          type: string
+          description: Maximum value for the band gap energy in eV.
+        - name: band_gap_min
+          in: query
+          type: string
+          description: Minimum value for the band gap energy in eV.
+        - name: efermi_max
+          in: query
+          type: string
+          description: Maximum value for the fermi energy in eV.
+        - name: efermi_min
+          in: query
+          type: string
+          description: Minimum value for the fermi energy in eV.
+        - name: magnetic_ordering
+          in: query
+          type: string
+          description: Magnetic ordering associated with the data.
+        - name: is_gap_direct
+          in: query
+          type: string
+          description: Whether a band gap is direct or not.
+        - name: is_metal
+          in: query
+          type: string
+          description: Whether the material is considered a metal.
+        - name: deprecated
+          in: query
+          type: string
+          description: Whether the material is marked as deprecated
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from ElectronicStructureDoc as a list of comma separated strings.                    Fields
+            include: `task_id` `band_gap` `cbm` `vbm` `efermi`'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+    - name: materials-electronic_structure-dos
+      path: /materials/electronic_structure/dos/
+      operations:
+      - name: searchmaterialselectronicstructuredosget
+        method: GET
+        description: Get ElectronicStructureDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projection_type
+          in: query
+          type: string
+          description: Projection type for the density of states data.
+        - name: spin
+          in: query
+          type: string
+          description: Spin channel for density of states data. '1' corresponds to spin up.
+        - name: element
+          in: query
+          type: string
+          description: Element type for projected density of states data.
+        - name: orbital
+          in: query
+          type: string
+          description: Orbital type for projected density of states data.
+        - name: band_gap_max
+          in: query
+          type: string
+          description: Maximum value for the band gap energy in eV.
+        - name: band_gap_min
+          in: query
+          type: string
+          description: Minimum value for the band gap energy in eV.
+        - name: efermi_max
+          in: query
+          type: string
+          description: Maximum value for the fermi energy in eV.
+        - name: efermi_min
+          in: query
+          type: string
+          description: Minimum value for the fermi energy in eV.
+        - name: magnetic_ordering
+          in: query
+          type: string
+          description: Magnetic ordering associated with the data.
+        - name: deprecated
+          in: query
+          type: string
+          description: Whether the material is marked as deprecated
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from ElectronicStructureDoc as a list of comma separated strings.                    Fields
+            include: `task_id` `band_gap` `cbm` `vbm` `efermi`'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+    - name: materials-fermi
+      path: /materials/fermi/
+      operations:
+      - name: searchmaterialsfermiget
+        method: GET
+        description: Get FermiDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: material_ids
+          in: query
+          type: string
+          description: Comma-separated list of material_id values to query on
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from FermiDoc as a list of comma separated strings.                    Fields include:
+            `fermi_surfaces` `surface_types` `material_id` `last_up'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.MATERIALS_PROJECT_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: materials-project-materials-electronic-structure-rest
+    port: 8080
+    description: REST adapter for Materials Project API — Materials Electronic Structure. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/materials/electronic-structure
+      name: materials-electronic-structure
+      description: REST surface for materials-electronic_structure.
+      operations:
+      - method: GET
+        name: searchmaterialselectronicstructureget
+        description: Get ElectronicStructureDoc documents
+        call: materials-project-materials-electronic-structure.searchmaterialselectronicstructureget
+        with:
+          material_ids: rest.material_ids
+          magnetic_ordering: rest.magnetic_ordering
+          is_gap_direct: rest.is_gap_direct
+          is_metal: rest.is_metal
+          formula: rest.formula
+          chemsys: rest.chemsys
+          elements: rest.elements
+          exclude_elements: rest.exclude_elements
+          band_gap_max: rest.band_gap_max
+          band_gap_min: rest.band_gap_min
+          cbm_max: rest.cbm_max
+          cbm_min: rest.cbm_min
+          vbm_max: rest.vbm_max
+          vbm_min: rest.vbm_min
+          efermi_max: rest.efermi_max
+          efermi_min: rest.efermi_min
+          nsites_max: rest.nsites_max
+          nsites_min: rest.nsites_min
+          nsites: rest.nsites
+          nsites_not_eq: rest.nsites_not_eq
+          nsites_eq_any: rest.nsites_eq_any
+          nsites_neq_any: rest.nsites_neq_any
+          nelements_max: rest.nelements_max
+          nelements_min: rest.nelements_min
+          nelements: rest.nelements
+          nelements_not_eq: rest.nelements_not_eq
+          nelements_eq_any: rest.nelements_eq_any
+          nelements_neq_any: rest.nelements_neq_any
+          volume_max: rest.volume_max
+          volume_min: rest.volume_min
+          density_max: rest.density_max
+          density_min: rest.density_min
+          density_atomic_max: rest.density_atomic_max
+          density_atomic_min: rest.density_atomic_min
+          deprecated: rest.deprecated
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/materials/electronic-structure/bandstructure
+      name: materials-electronic-structure-bandstructure
+      description: REST surface for materials-electronic_structure-bandstructure.
+      operations:
+      - method: GET
+        name: searchmaterialselectronicstructurebandstructureget
+        description: Get ElectronicStructureDoc documents
+        call: materials-project-materials-electronic-structure.searchmaterialselectronicstructurebandstructureget
+        with:
+          path_type: rest.path_type
+          band_gap_max: rest.band_gap_max
+          band_gap_min: rest.band_gap_min
+          efermi_max: rest.efermi_max
+          efermi_min: rest.efermi_min
+          magnetic_ordering: rest.magnetic_ordering
+          is_gap_direct: rest.is_gap_direct
+          is_metal: rest.is_metal
+          deprecated: rest.deprecated
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/materials/electronic-structure/dos
+      name: materials-electronic-structure-dos
+      description: REST surface for materials-electronic_structure-dos.
+      operations:
+      - method: GET
+        name: searchmaterialselectronicstructuredosget
+        description: Get ElectronicStructureDoc documents
+        call: materials-project-materials-electronic-structure.searchmaterialselectronicstructuredosget
+        with:
+          projection_type: rest.projection_type
+          spin: rest.spin
+          element: rest.element
+          orbital: rest.orbital
+          band_gap_max: rest.band_gap_max
+          band_gap_min: rest.band_gap_min
+          efermi_max: rest.efermi_max
+          efermi_min: rest.efermi_min
+          magnetic_ordering: rest.magnetic_ordering
+          deprecated: rest.deprecated
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/materials/fermi
+      name: materials-fermi
+      description: REST surface for materials-fermi.
+      operations:
+      - method: GET
+        name: searchmaterialsfermiget
+        description: Get FermiDoc documents
+        call: materials-project-materials-electronic-structure.searchmaterialsfermiget
+        with:
+          material_ids: rest.material_ids
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: materials-project-materials-electronic-structure-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Materials Project API — Materials Electronic Structure. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: get-electronicstructuredoc-documents
+      description: Get ElectronicStructureDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-electronic-structure.searchmaterialselectronicstructureget
+      with:
+        material_ids: tools.material_ids
+        magnetic_ordering: tools.magnetic_ordering
+        is_gap_direct: tools.is_gap_direct
+        is_metal: tools.is_metal
+        formula: tools.formula
+        chemsys: tools.chemsys
+        elements: tools.elements
+        exclude_elements: tools.exclude_elements
+        band_gap_max: tools.band_gap_max
+        band_gap_min: tools.band_gap_min
+        cbm_max: tools.cbm_max
+        cbm_min: tools.cbm_min
+        vbm_max: tools.vbm_max
+        vbm_min: tools.vbm_min
+        efermi_max: tools.efermi_max
+        efermi_min: tools.efermi_min
+        nsites_max: tools.nsites_max
+        nsites_min: tools.nsites_min
+        nsites: tools.nsites
+        nsites_not_eq: tools.nsites_not_eq
+        nsites_eq_any: tools.nsites_eq_any
+        nsites_neq_any: tools.nsites_neq_any
+        nelements_max: tools.nelements_max
+        nelements_min: tools.nelements_min
+        nelements: tools.nelements
+        nelements_not_eq: tools.nelements_not_eq
+        nelements_eq_any: tools.nelements_eq_any
+        nelements_neq_any: tools.nelements_neq_any
+        volume_max: tools.volume_max
+        volume_min: tools.volume_min
+        density_max: tools.density_max
+        density_min: tools.density_min
+        density_atomic_max: tools.density_atomic_max
+        density_atomic_min: tools.density_atomic_min
+        deprecated: tools.deprecated
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-electronicstructuredoc-documents-2
+      description: Get ElectronicStructureDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-electronic-structure.searchmaterialselectronicstructurebandstructureget
+      with:
+        path_type: tools.path_type
+        band_gap_max: tools.band_gap_max
+        band_gap_min: tools.band_gap_min
+        efermi_max: tools.efermi_max
+        efermi_min: tools.efermi_min
+        magnetic_ordering: tools.magnetic_ordering
+        is_gap_direct: tools.is_gap_direct
+        is_metal: tools.is_metal
+        deprecated: tools.deprecated
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-electronicstructuredoc-documents-3
+      description: Get ElectronicStructureDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-electronic-structure.searchmaterialselectronicstructuredosget
+      with:
+        projection_type: tools.projection_type
+        spin: tools.spin
+        element: tools.element
+        orbital: tools.orbital
+        band_gap_max: tools.band_gap_max
+        band_gap_min: tools.band_gap_min
+        efermi_max: tools.efermi_max
+        efermi_min: tools.efermi_min
+        magnetic_ordering: tools.magnetic_ordering
+        deprecated: tools.deprecated
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-fermidoc-documents
+      description: Get FermiDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-electronic-structure.searchmaterialsfermiget
+      with:
+        material_ids: tools.material_ids
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+      outputParameters:
+      - type: object
+        mapping: $.

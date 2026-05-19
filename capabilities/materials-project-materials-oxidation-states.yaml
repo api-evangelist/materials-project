@@ -1,0 +1,144 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Materials Project API — Materials Oxidation States
+  description: 'Materials Project API — Materials Oxidation States. 1 operations. Lead operation: Get OxidationStateDoc documents.
+    Self-contained Naftiko capability covering one Materials Project business surface.'
+  tags:
+  - Materials Project
+  - Materials Oxidation States
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MATERIALS_PROJECT_API_KEY: MATERIALS_PROJECT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: materials-project-materials-oxidation-states
+    baseUri: ''
+    description: Materials Project API — Materials Oxidation States business capability. Self-contained, no shared references.
+    resources:
+    - name: materials-oxidation_states
+      path: /materials/oxidation_states/
+      operations:
+      - name: searchmaterialsoxidationstatesget
+        method: GET
+        description: Get OxidationStateDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: material_ids
+          in: query
+          type: string
+          description: Comma-separated list of material_id values to query on
+        - name: formula
+          in: query
+          type: string
+          description: Query by formula including anonymized formula or by including wild cards. A comma delimited string
+            list of anonymous formulas or regular formulas can also be pr
+        - name: chemsys
+          in: query
+          type: string
+          description: A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for
+            single chemsys queries
+        - name: possible_species
+          in: query
+          type: string
+          description: Comma delimited list of element symbols appended with oxidation states.                 (e.g. Cr2+,O2-)
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from OxidationStateDoc as a list of comma separated strings.                    Fields
+            include: `builder_meta` `nsites` `elements` `nelements`'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+        - name: license
+          in: query
+          type: string
+          description: Query by license. Can be commercial or non-commercial, or both
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.MATERIALS_PROJECT_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: materials-project-materials-oxidation-states-rest
+    port: 8080
+    description: REST adapter for Materials Project API — Materials Oxidation States. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/materials/oxidation-states
+      name: materials-oxidation-states
+      description: REST surface for materials-oxidation_states.
+      operations:
+      - method: GET
+        name: searchmaterialsoxidationstatesget
+        description: Get OxidationStateDoc documents
+        call: materials-project-materials-oxidation-states.searchmaterialsoxidationstatesget
+        with:
+          material_ids: rest.material_ids
+          formula: rest.formula
+          chemsys: rest.chemsys
+          possible_species: rest.possible_species
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+          license: rest.license
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: materials-project-materials-oxidation-states-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Materials Project API — Materials Oxidation States. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: get-oxidationstatedoc-documents
+      description: Get OxidationStateDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-oxidation-states.searchmaterialsoxidationstatesget
+      with:
+        material_ids: tools.material_ids
+        formula: tools.formula
+        chemsys: tools.chemsys
+        possible_species: tools.possible_species
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+        license: tools.license
+      outputParameters:
+      - type: object
+        mapping: $.

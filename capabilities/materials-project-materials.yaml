@@ -1,0 +1,682 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Materials Project API — Materials
+  description: 'Materials Project API — Materials. 4 operations. Lead operation: Get MaterialsDoc documents. Self-contained
+    Naftiko capability covering one Materials Project business surface.'
+  tags:
+  - Materials Project
+  - Materials
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MATERIALS_PROJECT_API_KEY: MATERIALS_PROJECT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: materials-project-materials
+    baseUri: ''
+    description: Materials Project API — Materials business capability. Self-contained, no shared references.
+    resources:
+    - name: materials-core
+      path: /materials/core/
+      operations:
+      - name: searchmaterialscoreget
+        method: GET
+        description: Get MaterialsDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: material_ids
+          in: query
+          type: string
+          description: Comma-separated list of material_id values to query on
+        - name: formula
+          in: query
+          type: string
+          description: Query by formula including anonymized formula or by including wild cards. A comma delimited string
+            list of anonymous formulas or regular formulas can also be pr
+        - name: chemsys
+          in: query
+          type: string
+          description: A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for
+            single chemsys queries
+        - name: elements
+          in: query
+          type: string
+          description: Query by elements in the material composition as a comma-separated list
+        - name: exclude_elements
+          in: query
+          type: string
+          description: Query by excluded elements in the material composition as a comma-separated list
+        - name: task_ids
+          in: query
+          type: string
+          description: Comma-separated list of task_ids to query on
+        - name: crystal_system
+          in: query
+          type: string
+          description: Crystal system of the material. If a comma-separated string, will query by multiple crystal systems.
+        - name: spacegroup_number
+          in: query
+          type: string
+          description: Space group number of the material. If a comma-separated string, will query by multiple space group
+            numbers.
+        - name: spacegroup_symbol
+          in: query
+          type: string
+          description: Space group symbol of the material. If a comma-separated string, will query by multiple space group
+            numbers.
+        - name: deprecated
+          in: query
+          type: string
+          description: Whether the material is marked as deprecated
+        - name: nsites_max
+          in: query
+          type: string
+          description: Query for maximum value of nsites
+        - name: nsites_min
+          in: query
+          type: string
+          description: Query for minimum value of nsites
+        - name: nsites
+          in: query
+          type: string
+          description: Query for nsites being equal to an exact value
+        - name: nsites_not_eq
+          in: query
+          type: string
+          description: Query for nsites being not equal to an exact value
+        - name: nsites_eq_any
+          in: query
+          type: string
+          description: Query for nsites being any of these values. Provide a comma separated list.
+        - name: nsites_neq_any
+          in: query
+          type: string
+          description: Query for nsites being not any of these values.                             Provide a comma separated
+            list.
+        - name: nelements_max
+          in: query
+          type: string
+          description: Query for maximum value of nelements
+        - name: nelements_min
+          in: query
+          type: string
+          description: Query for minimum value of nelements
+        - name: nelements
+          in: query
+          type: string
+          description: Query for nelements being equal to an exact value
+        - name: nelements_not_eq
+          in: query
+          type: string
+          description: Query for nelements being not equal to an exact value
+        - name: nelements_eq_any
+          in: query
+          type: string
+          description: Query for nelements being any of these values. Provide a comma separated list.
+        - name: nelements_neq_any
+          in: query
+          type: string
+          description: Query for nelements being not any of these values.                             Provide a comma separated
+            list.
+        - name: volume_max
+          in: query
+          type: string
+          description: Query for maximum value of volume
+        - name: volume_min
+          in: query
+          type: string
+          description: Query for minimum value of volume
+        - name: density_max
+          in: query
+          type: string
+          description: Query for maximum value of density
+        - name: density_min
+          in: query
+          type: string
+          description: Query for minimum value of density
+        - name: density_atomic_max
+          in: query
+          type: string
+          description: Query for maximum value of density_atomic
+        - name: density_atomic_min
+          in: query
+          type: string
+          description: Query for minimum value of density_atomic
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from MaterialsDoc as a list of comma separated strings.                    Fields
+            include: `builder_meta` `nsites` `elements` `nelements` `com'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+        - name: license
+          in: query
+          type: string
+          description: Query by license. Can be commercial or non-commercial, or both
+        - name: batch_id
+          in: query
+          type: string
+          description: Query by batch identifier
+        - name: batch_id_not_eq
+          in: query
+          type: string
+          description: Exclude batch identifier
+        - name: batch_id_eq_any
+          in: query
+          type: string
+          description: Query by a comma-separated list of batch identifiers
+        - name: batch_id_neq_any
+          in: query
+          type: string
+          description: Exclude a comma-separated list of batch identifiers
+    - name: materials-core-blessed_tasks
+      path: /materials/core/blessed_tasks/
+      operations:
+      - name: searchmaterialscoreblessedtasksget
+        method: GET
+        description: Get MaterialsDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: run_type
+          in: query
+          type: string
+          description: Calculation run type of blessed task data
+          required: true
+        - name: energy_min
+          in: query
+          type: string
+          description: Minimum total uncorrected DFT energy in eV/atom
+        - name: energy_max
+          in: query
+          type: string
+          description: Maximum total uncorrected DFT energy in eV/atom
+        - name: material_ids
+          in: query
+          type: string
+          description: Comma-separated list of material_id values to query on
+        - name: formula
+          in: query
+          type: string
+          description: Query by formula including anonymized formula or by including wild cards. A comma delimited string
+            list of anonymous formulas or regular formulas can also be pr
+        - name: chemsys
+          in: query
+          type: string
+          description: A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for
+            single chemsys queries
+        - name: elements
+          in: query
+          type: string
+          description: Query by elements in the material composition as a comma-separated list
+        - name: exclude_elements
+          in: query
+          type: string
+          description: Query by excluded elements in the material composition as a comma-separated list
+        - name: task_ids
+          in: query
+          type: string
+          description: Comma-separated list of task_ids to query on
+        - name: deprecated
+          in: query
+          type: string
+          description: Whether the material is marked as deprecated
+        - name: nsites_max
+          in: query
+          type: string
+          description: Query for maximum value of nsites
+        - name: nsites_min
+          in: query
+          type: string
+          description: Query for minimum value of nsites
+        - name: nsites
+          in: query
+          type: string
+          description: Query for nsites being equal to an exact value
+        - name: nsites_not_eq
+          in: query
+          type: string
+          description: Query for nsites being not equal to an exact value
+        - name: nsites_eq_any
+          in: query
+          type: string
+          description: Query for nsites being any of these values. Provide a comma separated list.
+        - name: nsites_neq_any
+          in: query
+          type: string
+          description: Query for nsites being not any of these values.                             Provide a comma separated
+            list.
+        - name: nelements_max
+          in: query
+          type: string
+          description: Query for maximum value of nelements
+        - name: nelements_min
+          in: query
+          type: string
+          description: Query for minimum value of nelements
+        - name: nelements
+          in: query
+          type: string
+          description: Query for nelements being equal to an exact value
+        - name: nelements_not_eq
+          in: query
+          type: string
+          description: Query for nelements being not equal to an exact value
+        - name: nelements_eq_any
+          in: query
+          type: string
+          description: Query for nelements being any of these values. Provide a comma separated list.
+        - name: nelements_neq_any
+          in: query
+          type: string
+          description: Query for nelements being not any of these values.                             Provide a comma separated
+            list.
+        - name: volume_max
+          in: query
+          type: string
+          description: Query for maximum value of volume
+        - name: volume_min
+          in: query
+          type: string
+          description: Query for minimum value of volume
+        - name: density_max
+          in: query
+          type: string
+          description: Query for maximum value of density
+        - name: density_min
+          in: query
+          type: string
+          description: Query for minimum value of density
+        - name: density_atomic_max
+          in: query
+          type: string
+          description: Query for maximum value of density_atomic
+        - name: density_atomic_min
+          in: query
+          type: string
+          description: Query for minimum value of density_atomic
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: license
+          in: query
+          type: string
+          description: Query by license. Can be commercial or non-commercial, or both
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from MaterialsDoc as a list of comma separated strings.                    Fields
+            include: `builder_meta` `nsites` `elements` `nelements` `com'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+    - name: materials-core-find_structure
+      path: /materials/core/find_structure/
+      operations:
+      - name: searchmaterialscorefindstructurepost
+        method: POST
+        description: Post FindStructure documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ltol
+          in: query
+          type: number
+          description: Fractional length tolerance. Default is 0.2.
+        - name: stol
+          in: query
+          type: number
+          description: Site tolerance. Defined as the fraction of the average free                     length per atom :=
+            ( V / Nsites ) ** (1/3). Default is 0.3.
+        - name: angle_tol
+          in: query
+          type: number
+          description: Angle tolerance in degrees. Default is 5 degrees.
+        - name: _limit
+          in: query
+          type: integer
+          description: Maximum number of matches to show. Defaults to 1, only showing the best match.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: materials-core-formula_autocomplete
+      path: /materials/core/formula_autocomplete/
+      operations:
+      - name: searchmaterialscoreformulaautocompleteget
+        method: GET
+        description: Get FormulaAutocomplete documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: formula
+          in: query
+          type: string
+          description: Human readable chemical formula.
+          required: true
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of matches to show. Defaults to 10.
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.MATERIALS_PROJECT_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: materials-project-materials-rest
+    port: 8080
+    description: REST adapter for Materials Project API — Materials. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/materials/core
+      name: materials-core
+      description: REST surface for materials-core.
+      operations:
+      - method: GET
+        name: searchmaterialscoreget
+        description: Get MaterialsDoc documents
+        call: materials-project-materials.searchmaterialscoreget
+        with:
+          material_ids: rest.material_ids
+          formula: rest.formula
+          chemsys: rest.chemsys
+          elements: rest.elements
+          exclude_elements: rest.exclude_elements
+          task_ids: rest.task_ids
+          crystal_system: rest.crystal_system
+          spacegroup_number: rest.spacegroup_number
+          spacegroup_symbol: rest.spacegroup_symbol
+          deprecated: rest.deprecated
+          nsites_max: rest.nsites_max
+          nsites_min: rest.nsites_min
+          nsites: rest.nsites
+          nsites_not_eq: rest.nsites_not_eq
+          nsites_eq_any: rest.nsites_eq_any
+          nsites_neq_any: rest.nsites_neq_any
+          nelements_max: rest.nelements_max
+          nelements_min: rest.nelements_min
+          nelements: rest.nelements
+          nelements_not_eq: rest.nelements_not_eq
+          nelements_eq_any: rest.nelements_eq_any
+          nelements_neq_any: rest.nelements_neq_any
+          volume_max: rest.volume_max
+          volume_min: rest.volume_min
+          density_max: rest.density_max
+          density_min: rest.density_min
+          density_atomic_max: rest.density_atomic_max
+          density_atomic_min: rest.density_atomic_min
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+          license: rest.license
+          batch_id: rest.batch_id
+          batch_id_not_eq: rest.batch_id_not_eq
+          batch_id_eq_any: rest.batch_id_eq_any
+          batch_id_neq_any: rest.batch_id_neq_any
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/materials/core/blessed-tasks
+      name: materials-core-blessed-tasks
+      description: REST surface for materials-core-blessed_tasks.
+      operations:
+      - method: GET
+        name: searchmaterialscoreblessedtasksget
+        description: Get MaterialsDoc documents
+        call: materials-project-materials.searchmaterialscoreblessedtasksget
+        with:
+          run_type: rest.run_type
+          energy_min: rest.energy_min
+          energy_max: rest.energy_max
+          material_ids: rest.material_ids
+          formula: rest.formula
+          chemsys: rest.chemsys
+          elements: rest.elements
+          exclude_elements: rest.exclude_elements
+          task_ids: rest.task_ids
+          deprecated: rest.deprecated
+          nsites_max: rest.nsites_max
+          nsites_min: rest.nsites_min
+          nsites: rest.nsites
+          nsites_not_eq: rest.nsites_not_eq
+          nsites_eq_any: rest.nsites_eq_any
+          nsites_neq_any: rest.nsites_neq_any
+          nelements_max: rest.nelements_max
+          nelements_min: rest.nelements_min
+          nelements: rest.nelements
+          nelements_not_eq: rest.nelements_not_eq
+          nelements_eq_any: rest.nelements_eq_any
+          nelements_neq_any: rest.nelements_neq_any
+          volume_max: rest.volume_max
+          volume_min: rest.volume_min
+          density_max: rest.density_max
+          density_min: rest.density_min
+          density_atomic_max: rest.density_atomic_max
+          density_atomic_min: rest.density_atomic_min
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          license: rest.license
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/materials/core/find-structure
+      name: materials-core-find-structure
+      description: REST surface for materials-core-find_structure.
+      operations:
+      - method: POST
+        name: searchmaterialscorefindstructurepost
+        description: Post FindStructure documents
+        call: materials-project-materials.searchmaterialscorefindstructurepost
+        with:
+          ltol: rest.ltol
+          stol: rest.stol
+          angle_tol: rest.angle_tol
+          _limit: rest._limit
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/materials/core/formula-autocomplete
+      name: materials-core-formula-autocomplete
+      description: REST surface for materials-core-formula_autocomplete.
+      operations:
+      - method: GET
+        name: searchmaterialscoreformulaautocompleteget
+        description: Get FormulaAutocomplete documents
+        call: materials-project-materials.searchmaterialscoreformulaautocompleteget
+        with:
+          formula: rest.formula
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: materials-project-materials-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Materials Project API — Materials. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-materialsdoc-documents
+      description: Get MaterialsDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials.searchmaterialscoreget
+      with:
+        material_ids: tools.material_ids
+        formula: tools.formula
+        chemsys: tools.chemsys
+        elements: tools.elements
+        exclude_elements: tools.exclude_elements
+        task_ids: tools.task_ids
+        crystal_system: tools.crystal_system
+        spacegroup_number: tools.spacegroup_number
+        spacegroup_symbol: tools.spacegroup_symbol
+        deprecated: tools.deprecated
+        nsites_max: tools.nsites_max
+        nsites_min: tools.nsites_min
+        nsites: tools.nsites
+        nsites_not_eq: tools.nsites_not_eq
+        nsites_eq_any: tools.nsites_eq_any
+        nsites_neq_any: tools.nsites_neq_any
+        nelements_max: tools.nelements_max
+        nelements_min: tools.nelements_min
+        nelements: tools.nelements
+        nelements_not_eq: tools.nelements_not_eq
+        nelements_eq_any: tools.nelements_eq_any
+        nelements_neq_any: tools.nelements_neq_any
+        volume_max: tools.volume_max
+        volume_min: tools.volume_min
+        density_max: tools.density_max
+        density_min: tools.density_min
+        density_atomic_max: tools.density_atomic_max
+        density_atomic_min: tools.density_atomic_min
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+        license: tools.license
+        batch_id: tools.batch_id
+        batch_id_not_eq: tools.batch_id_not_eq
+        batch_id_eq_any: tools.batch_id_eq_any
+        batch_id_neq_any: tools.batch_id_neq_any
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-materialsdoc-documents-2
+      description: Get MaterialsDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials.searchmaterialscoreblessedtasksget
+      with:
+        run_type: tools.run_type
+        energy_min: tools.energy_min
+        energy_max: tools.energy_max
+        material_ids: tools.material_ids
+        formula: tools.formula
+        chemsys: tools.chemsys
+        elements: tools.elements
+        exclude_elements: tools.exclude_elements
+        task_ids: tools.task_ids
+        deprecated: tools.deprecated
+        nsites_max: tools.nsites_max
+        nsites_min: tools.nsites_min
+        nsites: tools.nsites
+        nsites_not_eq: tools.nsites_not_eq
+        nsites_eq_any: tools.nsites_eq_any
+        nsites_neq_any: tools.nsites_neq_any
+        nelements_max: tools.nelements_max
+        nelements_min: tools.nelements_min
+        nelements: tools.nelements
+        nelements_not_eq: tools.nelements_not_eq
+        nelements_eq_any: tools.nelements_eq_any
+        nelements_neq_any: tools.nelements_neq_any
+        volume_max: tools.volume_max
+        volume_min: tools.volume_min
+        density_max: tools.density_max
+        density_min: tools.density_min
+        density_atomic_max: tools.density_atomic_max
+        density_atomic_min: tools.density_atomic_min
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        license: tools.license
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-findstructure-documents
+      description: Post FindStructure documents
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: materials-project-materials.searchmaterialscorefindstructurepost
+      with:
+        ltol: tools.ltol
+        stol: tools.stol
+        angle_tol: tools.angle_tol
+        _limit: tools._limit
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-formulaautocomplete-documents
+      description: Get FormulaAutocomplete documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials.searchmaterialscoreformulaautocompleteget
+      with:
+        formula: tools.formula
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

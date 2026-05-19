@@ -1,0 +1,171 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Materials Project API — Materials XAS
+  description: 'Materials Project API — Materials XAS. 1 operations. Lead operation: Get XASDoc documents. Self-contained
+    Naftiko capability covering one Materials Project business surface.'
+  tags:
+  - Materials Project
+  - Materials XAS
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MATERIALS_PROJECT_API_KEY: MATERIALS_PROJECT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: materials-project-materials-xas
+    baseUri: ''
+    description: Materials Project API — Materials XAS business capability. Self-contained, no shared references.
+    resources:
+    - name: materials-xas
+      path: /materials/xas/
+      operations:
+      - name: searchmaterialsxasget
+        method: GET
+        description: Get XASDoc documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: material_ids
+          in: query
+          type: string
+          description: Comma-separated list of material_id values to query on
+        - name: formula
+          in: query
+          type: string
+          description: Query by formula including anonymized formula or by including wild cards. A comma delimited string
+            list of anonymous formulas or regular formulas can also be pr
+        - name: chemsys
+          in: query
+          type: string
+          description: A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for
+            single chemsys queries
+        - name: elements
+          in: query
+          type: string
+          description: Query by elements in the material composition as a comma-separated list
+        - name: exclude_elements
+          in: query
+          type: string
+          description: Query by excluded elements in the material composition as a comma-separated list
+        - name: edge
+          in: query
+          type: string
+        - name: spectrum_type
+          in: query
+          type: string
+        - name: absorbing_element
+          in: query
+          type: string
+        - name: spectrum_ids
+          in: query
+          type: string
+          description: Comma-separated list of spectrum_id to query on
+        - name: _page
+          in: query
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+        - name: _per_page
+          in: query
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+        - name: _skip
+          in: query
+          type: integer
+          description: Number of entries to skip in the search.
+        - name: _limit
+          in: query
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+        - name: _fields
+          in: query
+          type: string
+          description: 'Fields to project from XASDoc as a list of comma separated strings.                    Fields include:
+            `builder_meta` `nsites` `elements` `nelements` `compositi'
+        - name: _all_fields
+          in: query
+          type: boolean
+          description: Include all fields.
+        - name: _sort_fields
+          in: query
+          type: string
+          description: Comma delimited fields to sort with. Prefixing '-' to a field will force a sort in descending order.
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.MATERIALS_PROJECT_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: materials-project-materials-xas-rest
+    port: 8080
+    description: REST adapter for Materials Project API — Materials XAS. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/materials/xas
+      name: materials-xas
+      description: REST surface for materials-xas.
+      operations:
+      - method: GET
+        name: searchmaterialsxasget
+        description: Get XASDoc documents
+        call: materials-project-materials-xas.searchmaterialsxasget
+        with:
+          material_ids: rest.material_ids
+          formula: rest.formula
+          chemsys: rest.chemsys
+          elements: rest.elements
+          exclude_elements: rest.exclude_elements
+          edge: rest.edge
+          spectrum_type: rest.spectrum_type
+          absorbing_element: rest.absorbing_element
+          spectrum_ids: rest.spectrum_ids
+          _page: rest._page
+          _per_page: rest._per_page
+          _skip: rest._skip
+          _limit: rest._limit
+          _fields: rest._fields
+          _all_fields: rest._all_fields
+          _sort_fields: rest._sort_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: materials-project-materials-xas-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Materials Project API — Materials XAS. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-xasdoc-documents
+      description: Get XASDoc documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: materials-project-materials-xas.searchmaterialsxasget
+      with:
+        material_ids: tools.material_ids
+        formula: tools.formula
+        chemsys: tools.chemsys
+        elements: tools.elements
+        exclude_elements: tools.exclude_elements
+        edge: tools.edge
+        spectrum_type: tools.spectrum_type
+        absorbing_element: tools.absorbing_element
+        spectrum_ids: tools.spectrum_ids
+        _page: tools._page
+        _per_page: tools._per_page
+        _skip: tools._skip
+        _limit: tools._limit
+        _fields: tools._fields
+        _all_fields: tools._all_fields
+        _sort_fields: tools._sort_fields
+      outputParameters:
+      - type: object
+        mapping: $.

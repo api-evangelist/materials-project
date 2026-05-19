@@ -1,52 +1,104 @@
 aid: materials-project
 name: Materials Project
-description: >-
-  The Materials Project API provides direct access to the Materials Project
-  database, a large-scale computational materials science database with data on
-  tens of thousands of materials. The API is offered free of charge and supports
-  machine learning, automated analysis, and bulk data downloads.
+description: The Materials Project API provides direct access to the Materials Project database, a large-scale computational
+  materials science database with data on tens of thousands of materials. The API is offered free of charge and supports machine
+  learning, automated analysis, and bulk data downloads.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/materials-project/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/materials-project/refs/heads/main/apis.yml
 tags:
-  - Chemistry
-  - Materials Science
-  - Physics
-  - Research
-  - Scientific Computing
+- Chemistry
+- Materials Science
+- Physics
+- Research
+- Scientific Computing
 created: '2025-02-06'
-modified: '2026-04-28'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: materials-project:materials-project-api
-    name: Materials Project API
-    description: >-
-      The Materials Project API allows anyone to have direct access to current,
-      up-to-date information from the Materials Project database in a structured
-      way, enabling analysis, machine learning, and bulk downloads of materials
-      science data.
-    humanURL: https://next-gen.materialsproject.org/api
-    baseURL: https://api.materialsproject.org
-    tags:
-      - Materials Science
-      - Research
-    properties:
-      - type: Documentation
-        url: https://next-gen.materialsproject.org/api
-      - type: GettingStarted
-        url: https://docs.materialsproject.org/downloading-data/using-the-api
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/materials-project/refs/heads/main/openapi/materials-project-openapi.yml
-common:
-  - type: Portal
-    url: https://materialsproject.org/
+- aid: materials-project:materials-project-api
+  name: Materials Project API
+  description: The Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials
+    Project database in a structured way, enabling analysis, machine learning, and bulk downloads of materials science data.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Science
+  - Research
+  properties:
   - type: Documentation
-    url: https://docs.materialsproject.org/
-  - type: GitHubOrganization
-    url: https://github.com/materialsproject
-  - type: SignUp
-    url: https://materialsproject.org/login
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+  - type: OpenAPI
+    url: https://raw.githubusercontent.com/api-evangelist/materials-project/refs/heads/main/openapi/materials-project-openapi.yml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-dois.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-defect-tasks.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-jcesr-electrolyte-genome.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-absorption.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-alloys.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-bonds.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-chemical-environment.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-dielectric.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-eos.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-elasticity.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-electrodes.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-electronic-structure.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-grain-boundaries.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-magnetism.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-oxidation-states.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-phonon.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-piezoelectric.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-provenance.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-robocrystallographer.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-similarity.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-substrates.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-summary.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-surface-properties.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-synthesis.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-tasks.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-thermo.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-materials-xas.yaml
+  - type: NaftikoCapability
+    url: capabilities/materials-project-molecules-summary.yaml
+common:
+- type: Portal
+  url: https://materialsproject.org/
+- type: Documentation
+  url: https://docs.materialsproject.org/
+- type: GitHubOrganization
+  url: https://github.com/materialsproject
+- type: SignUp
+  url: https://materialsproject.org/login
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
