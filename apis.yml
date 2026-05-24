@@ -99,6 +99,8 @@ common:
   url: https://github.com/materialsproject
 - type: SignUp
   url: https://materialsproject.org/login
+- type: LLMsTxt
+  url: https://docs.materialsproject.org/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
