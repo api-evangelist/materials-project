@@ -43,9 +43,9 @@ common:
     url: https://docs.materialsproject.org/
   - type: GitHubOrganization
     url: https://github.com/materialsproject
-  - type: SignUp
+  - type: Signup
     url: https://materialsproject.org/login
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.materialsproject.org/llms.txt
 maintainers:
   - FN: Kin Lane
