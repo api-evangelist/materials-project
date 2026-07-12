@@ -37,6 +37,10 @@ apis:
         url: >-
           https://raw.githubusercontent.com/api-evangelist/materials-project/refs/heads/main/openapi/materials-project-openapi.yml
 common:
+  - type: DomainSecurity
+    url: security/materials-project-domain-security.yml
+  - type: Authentication
+    url: authentication/materials-project-authentication.yml
   - type: Portal
     url: https://materialsproject.org/
   - type: Documentation
