@@ -37,6 +37,8 @@ apis:
         url: >-
           https://raw.githubusercontent.com/api-evangelist/materials-project/refs/heads/main/openapi/materials-project-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/materials-project-agentic-access.yml
   - type: DomainSecurity
     url: security/materials-project-domain-security.yml
   - type: Authentication

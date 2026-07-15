@@ -1,0 +1,432 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/materials-project-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 41
+  by_action_class:
+    connected: 40
+    acting: 1
+  by_consequence:
+    read: 40
+    write: 1
+  human_in_the_loop_required: 0
+operations:
+- path: /doi/
+  method: get
+  operationId: search_doi__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/core/blessed_tasks/
+  method: get
+  operationId: search_materials_core_blessed_tasks__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/core/find_structure/
+  method: post
+  operationId: search_materials_core_find_structure__post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /materials/core/formula_autocomplete/
+  method: get
+  operationId: search_materials_core_formula_autocomplete__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/core/
+  method: get
+  operationId: search_materials_core__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/absorption/
+  method: get
+  operationId: search_materials_absorption__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/bonds/
+  method: get
+  operationId: search_materials_bonds__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/chemenv/
+  method: get
+  operationId: search_materials_chemenv__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/tasks/trajectory/
+  method: get
+  operationId: search_materials_tasks_trajectory__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/tasks/entries/
+  method: get
+  operationId: search_materials_tasks_entries__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/tasks/deprecation/
+  method: get
+  operationId: search_materials_tasks_deprecation__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/tasks/
+  method: get
+  operationId: search_materials_tasks__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/thermo/
+  method: get
+  operationId: search_materials_thermo__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/dielectric/
+  method: get
+  operationId: search_materials_dielectric__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/piezoelectric/
+  method: get
+  operationId: search_materials_piezoelectric__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/magnetism/
+  method: get
+  operationId: search_materials_magnetism__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/phonon/
+  method: get
+  operationId: search_materials_phonon__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/eos/
+  method: get
+  operationId: search_materials_eos__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/similarity/
+  method: get
+  operationId: search_materials_similarity__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/similarity/match/
+  method: get
+  operationId: search_materials_similarity_match__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/xas/
+  method: get
+  operationId: search_materials_xas__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/grain_boundaries/
+  method: get
+  operationId: search_materials_grain_boundaries__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/fermi/
+  method: get
+  operationId: search_materials_fermi__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/elasticity/
+  method: get
+  operationId: search_materials_elasticity__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/substrates/
+  method: get
+  operationId: search_materials_substrates__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/surface_properties/
+  method: get
+  operationId: search_materials_surface_properties__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/robocrys/text_search/
+  method: get
+  operationId: search_materials_robocrys_text_search__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/robocrys/
+  method: get
+  operationId: search_materials_robocrys__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/synthesis/
+  method: get
+  operationId: search_materials_synthesis__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/insertion_electrodes/
+  method: get
+  operationId: search_materials_insertion_electrodes__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/conversion_electrodes/
+  method: get
+  operationId: search_materials_conversion_electrodes__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/oxidation_states/
+  method: get
+  operationId: search_materials_oxidation_states__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/alloys/
+  method: get
+  operationId: search_materials_alloys__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/provenance/
+  method: get
+  operationId: search_materials_provenance__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/summary/
+  method: get
+  operationId: search_materials_summary__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/electronic_structure/bandstructure/
+  method: get
+  operationId: search_materials_electronic_structure_bandstructure__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/electronic_structure/dos/
+  method: get
+  operationId: search_materials_electronic_structure_dos__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /materials/electronic_structure/
+  method: get
+  operationId: search_materials_electronic_structure__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /molecules/summary/
+  method: get
+  operationId: search_molecules_summary__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /molecules/jcesr/
+  method: get
+  operationId: search_molecules_jcesr__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /defects/tasks/
+  method: get
+  operationId: search_defects_tasks__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
