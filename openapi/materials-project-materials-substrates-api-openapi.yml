@@ -1,0 +1,476 @@
+openapi: 3.1.0
+info:
+  title: Materials Project Defect Tasks Materials Substrates API
+  description: "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n"
+  version: 0.86.4rc5.dev1+g77c2c1315
+  x-logo:
+    url: https://raw.githubusercontent.com/materialsproject/emmet/master/emmet-api/emmet/api/core/assets/mp_logo_small.png
+security:
+- ApiKeyAuth: []
+tags:
+- name: Materials Substrates
+  description: Route providing computed suggested substrate data for a material following the             methodology discussed by [Ding *et al.*](https://doi.org/10.1021/acsami.6b01630)             Note that substrate data has not been calculated for all materials in the Materials             Project database. See the `SubstratesDoc` schema for a full list of fields returned by this route.
+paths:
+  /materials/substrates/:
+    get:
+      tags:
+      - Materials Substrates
+      summary: Get SubstratesDoc documents
+      operationId: search_materials_substrates__get
+      parameters:
+      - name: film_orientation
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Comma separated integers defining the film surface orientation.
+          title: Film Orientation
+        description: Comma separated integers defining the film surface orientation.
+      - name: substrate_orientation
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Comma separated integers defining the substrate surface orientation.
+          title: Substrate Orientation
+        description: Comma separated integers defining the substrate surface orientation.
+      - name: area_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of area
+          title: Area Max
+        description: Query for maximum value of area
+      - name: area_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of area
+          title: Area Min
+        description: Query for minimum value of area
+      - name: energy_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of energy
+          title: Energy Max
+        description: Query for maximum value of energy
+      - name: energy_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of energy
+          title: Energy Min
+        description: Query for minimum value of energy
+      - name: norients_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for maximum value of norients
+          title: Norients Max
+        description: Query for maximum value of norients
+      - name: norients_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for minimum value of norients
+          title: Norients Min
+        description: Query for minimum value of norients
+      - name: norients
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for norients being equal to an exact value
+          title: Norients
+        description: Query for norients being equal to an exact value
+      - name: norients_not_eq
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for norients being not equal to an exact value
+          title: Norients Not Eq
+        description: Query for norients being not equal to an exact value
+      - name: norients_eq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for norients being any of these values. Provide a comma separated list.
+          title: Norients Eq Any
+        description: Query for norients being any of these values. Provide a comma separated list.
+      - name: norients_neq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for norients being not any of these values.                             Provide a comma separated list.
+          title: Norients Neq Any
+        description: Query for norients being not any of these values.                             Provide a comma separated list.
+      - name: sub_form
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Query for sub_form being equal to a value
+          title: Sub Form
+        description: Query for sub_form being equal to a value
+      - name: sub_form_not_eq
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Query for sub_form being not equal to a value
+          title: Sub Form Not Eq
+        description: Query for sub_form being not equal to a value
+      - name: sub_form_eq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for sub_form being any of these values. Provide a comma separated list.
+          title: Sub Form Eq Any
+        description: Query for sub_form being any of these values. Provide a comma separated list.
+      - name: sub_form_neq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for sub_form being not any of these values. Provide a comma separated list
+          title: Sub Form Neq Any
+        description: Query for sub_form being not any of these values. Provide a comma separated list
+      - name: sub_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Query for sub_id being equal to a value
+          title: Sub Id
+        description: Query for sub_id being equal to a value
+      - name: sub_id_not_eq
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Query for sub_id being not equal to a value
+          title: Sub Id Not Eq
+        description: Query for sub_id being not equal to a value
+      - name: sub_id_eq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for sub_id being any of these values. Provide a comma separated list.
+          title: Sub Id Eq Any
+        description: Query for sub_id being any of these values. Provide a comma separated list.
+      - name: sub_id_neq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for sub_id being not any of these values. Provide a comma separated list
+          title: Sub Id Neq Any
+        description: Query for sub_id being not any of these values. Provide a comma separated list
+      - name: film_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Query for film_id being equal to a value
+          title: Film Id
+        description: Query for film_id being equal to a value
+      - name: film_id_not_eq
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Query for film_id being not equal to a value
+          title: Film Id Not Eq
+        description: Query for film_id being not equal to a value
+      - name: film_id_eq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for film_id being any of these values. Provide a comma separated list.
+          title: Film Id Eq Any
+        description: Query for film_id being any of these values. Provide a comma separated list.
+      - name: film_id_neq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for film_id being not any of these values. Provide a comma separated list
+          title: Film Id Neq Any
+        description: Query for film_id being not any of these values. Provide a comma separated list
+      - name: _page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+          title: ' Page'
+        description: Page number to request (takes precedent over _limit and _skip).
+      - name: _per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+          default: 100
+          title: ' Per Page'
+        description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+      - name: _skip
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of entries to skip in the search.
+          default: 0
+          title: ' Skip'
+        description: Number of entries to skip in the search.
+      - name: _limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+          default: 100
+          title: ' Limit'
+        description: Max number of entries to return in a single query. Limited to 1000.
+      - name: _fields
+        in: query
+        required: false
+        schema:
+          type: string
+          description: 'Fields to project from SubstratesDoc as a list of comma separated strings.                    Fields include: `sub_form` `sub_id` `film_orient` `area` `energy` `film_id` `norients` `orient`'
+          title: ' Fields'
+        description: 'Fields to project from SubstratesDoc as a list of comma separated strings.                    Fields include: `sub_form` `sub_id` `film_orient` `area` `energy` `film_id` `norients` `orient`'
+      - name: _all_fields
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: Include all fields.
+          default: false
+          title: ' All Fields'
+        description: Include all fields.
+      responses:
+        '200':
+          description: Search for a SubstratesDoc
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response_SubstratesDoc_'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    Response_SubstratesDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SubstratesDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[SubstratesDoc]
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    SubstratesDoc:
+      properties:
+        sub_form:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Form
+          description: Reduced formula of the substrate.
+        sub_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Id
+          description: 'Materials Project ID of the substrate material. This comes in the form: mp-******.'
+        film_orient:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Film Orient
+          description: Surface orientation of the film material.
+        area:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Area
+          description: Minimum coincident interface area in Å².
+        energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Energy
+          description: Elastic energy in meV.
+        film_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Film Id
+          description: 'The Materials Project ID of the film material. This comes in the form: mp-******.'
+        _norients:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Norients
+          description: Number of possible surface orientations for the substrate.
+        orient:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Orient
+          description: Surface orientation of the substrate material.
+      type: object
+      title: SubstratesDoc
+      description: Possible growth substrates for a given material.
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    ApiKeyAuth:
+      descriptions: MP API key to authorize requests
+      name: X-API-KEY
+      in: header
+      type: apiKey

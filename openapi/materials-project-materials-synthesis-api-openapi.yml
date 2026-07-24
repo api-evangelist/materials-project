@@ -1,0 +1,670 @@
+openapi: 3.1.0
+info:
+  title: Materials Project Defect Tasks Materials Synthesis API
+  description: "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n"
+  version: 0.86.4rc5.dev1+g77c2c1315
+  x-logo:
+    url: https://raw.githubusercontent.com/materialsproject/emmet/master/emmet-api/emmet/api/core/assets/mp_logo_small.png
+security:
+- ApiKeyAuth: []
+tags:
+- name: Materials Synthesis
+  description: Route providing a synthesis recipes for materials extracted from literature             following the methodology discussed by [Kononova *et al.*](https://doi.org/10.1038/s41597-019-0224-1)             Note that synthesis recipes may not be available for all materials in the Materials             Project database. See the `SynthesisSearchResultModel` schema for a full list of fields returned by this route.
+paths:
+  /materials/synthesis/:
+    get:
+      tags:
+      - Materials Synthesis
+      summary: Get SynthesisSearchResultModel documents
+      operationId: search_materials_synthesis__get
+      parameters:
+      - name: keywords
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Comma delimited string keywords to search synthesis paragraph text with.
+          title: Keywords
+        description: Comma delimited string keywords to search synthesis paragraph text with.
+      - name: synthesis_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Type of synthesis to include.
+          title: Synthesis Type
+        description: Type of synthesis to include.
+      - name: target_formula
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Chemical formula of the target material.
+          title: Target Formula
+        description: Chemical formula of the target material.
+      - name: precursor_formula
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Chemical formula of the precursor material.
+          title: Precursor Formula
+        description: Chemical formula of the precursor material.
+      - name: operations
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: List of operations that syntheses must have.
+          title: Operations
+        description: List of operations that syntheses must have.
+      - name: condition_heating_temperature_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Minimal heating temperature.
+          title: Condition Heating Temperature Min
+        description: Minimal heating temperature.
+      - name: condition_heating_temperature_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Maximal heating temperature.
+          title: Condition Heating Temperature Max
+        description: Maximal heating temperature.
+      - name: condition_heating_time_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Minimal heating time.
+          title: Condition Heating Time Min
+        description: Minimal heating time.
+      - name: condition_heating_time_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Maximal heating time.
+          title: Condition Heating Time Max
+        description: Maximal heating time.
+      - name: condition_heating_atmosphere
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Required heating atmosphere, such as "air", "argon".
+          title: Condition Heating Atmosphere
+        description: Required heating atmosphere, such as "air", "argon".
+      - name: condition_mixing_device
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Required mixing device, such as "zirconia", "Al2O3".
+          title: Condition Mixing Device
+        description: Required mixing device, such as "zirconia", "Al2O3".
+      - name: condition_mixing_media
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Required mixing media, such as "alcohol", "water".
+          title: Condition Mixing Media
+        description: Required mixing media, such as "alcohol", "water".
+      - name: _skip
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of entries to skip in the search
+          default: 0
+          title: ' Skip'
+        description: Number of entries to skip in the search
+      - name: _limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 10.
+          default: 10
+          title: ' Limit'
+        description: Max number of entries to return in a single query. Limited to 10.
+      responses:
+        '200':
+          description: Get SynthesisSearchResultModel data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response_SynthesisSearchResultModel_'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    AtlasSearchHighlight:
+      properties:
+        score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Score
+        path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Path
+        texts:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/AtlasSearchText'
+            type: array
+          - type: 'null'
+          title: Texts
+      type: object
+      title: AtlasSearchHighlight
+      description: Schematize MongoDB Atlas search highlight match.
+    AtlasSearchText:
+      properties:
+        value:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Value
+        type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Type
+      type: object
+      title: AtlasSearchText
+      description: Schematize MongoDB Atlas search text match.
+    ExtractedMaterial:
+      properties:
+        material_string:
+          type: string
+          title: Material String
+          description: String of the material as written in paper.
+        material_formula:
+          type: string
+          title: Material Formula
+          description: Normalized formula of the material.
+        material_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Material Name
+          description: English name of the material.
+        phase:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Phase
+          description: Phase description of material, such as anatase.
+        is_acronym:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Acronym
+          description: Whether the material is an acronym, such as LMO for LiMn2O4.
+        composition:
+          items:
+            $ref: '#/components/schemas/Component'
+          type: array
+          title: Composition
+          description: List of components in this material.
+        amounts_vars:
+          additionalProperties:
+            $ref: '#/components/schemas/Values'
+          type: object
+          title: Amounts Vars
+          description: Amount variables (formula subscripts).
+          default: {}
+        elements_vars:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          title: Elements Vars
+          description: Chemical element variables
+          default: {}
+        additives:
+          items:
+            type: string
+          type: array
+          title: Additives
+          description: list of additives, dopants, etc.
+          default: []
+        oxygen_deficiency:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Oxygen Deficiency
+          description: Symbol indicating whether the materials is oxygen deficient.
+      type: object
+      required:
+      - material_string
+      - material_formula
+      - composition
+      title: ExtractedMaterial
+      description: Model for a material extracted from the literature
+    Value:
+      properties:
+        min_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min Value
+          description: Minimal value.
+        max_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max Value
+          description: Maximal value.
+        values:
+          items:
+            type: number
+          type: array
+          title: Values
+          description: Enumerated values in the literature.
+          default: []
+        units:
+          type: string
+          title: Units
+          description: Unit of this value.
+      type: object
+      required:
+      - units
+      title: Value
+    Values:
+      properties:
+        values:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Values
+          description: list of values.
+        min_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min Value
+          description: Minimal value.
+        max_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max Value
+          description: Maximal value.
+      type: object
+      title: Values
+    ReactionFormula:
+      properties:
+        left_side:
+          items:
+            $ref: '#/components/schemas/FormulaPart'
+          type: array
+          title: Left Side
+          description: List of materials and their amounts at the left side.
+        right_side:
+          items:
+            $ref: '#/components/schemas/FormulaPart'
+          type: array
+          title: Right Side
+          description: List of materials and their amounts at the right side.
+        element_substitution:
+          additionalProperties:
+            type: string
+          type: object
+          title: Element Substitution
+          description: Dictionary that contains elemental substitutions
+          default: {}
+      type: object
+      required:
+      - left_side
+      - right_side
+      title: ReactionFormula
+      description: Model for a balanced reaction
+    Operation:
+      properties:
+        type:
+          type: string
+          title: Type
+          description: Type of the operation as classified by the pipeline.
+        token:
+          type: string
+          title: Token
+          description: Token (word) of the operation as written in paper.
+        conditions:
+          $ref: '#/components/schemas/Conditions'
+          description: The conditions linked to this operation.
+      type: object
+      required:
+      - type
+      - token
+      - conditions
+      title: Operation
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    FormulaPart:
+      properties:
+        amount:
+          type: string
+          title: Amount
+          description: Amount of the compound in a formula.
+          default: '1'
+        material:
+          type: string
+          title: Material
+          description: The compound that participates in a reaction.
+      type: object
+      required:
+      - material
+      title: FormulaPart
+    Conditions:
+      properties:
+        heating_temperature:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Value'
+            type: array
+          - type: 'null'
+          title: Heating Temperature
+          description: Heating temperatures.
+        heating_time:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Value'
+            type: array
+          - type: 'null'
+          title: Heating Time
+          description: Heating times.
+        heating_atmosphere:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Heating Atmosphere
+          description: List of heating atmospheres.
+        mixing_device:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mixing Device
+          description: Mixing device, if this operation is MIXING.
+        mixing_media:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mixing Media
+          description: Mixing media, if this operation is MIXING.
+      type: object
+      title: Conditions
+    Response_SynthesisSearchResultModel_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SynthesisSearchResultModel'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[SynthesisSearchResultModel]
+    Component:
+      properties:
+        formula:
+          type: string
+          title: Formula
+          description: Formula of this component.
+        amount:
+          type: string
+          title: Amount
+          description: Amount of this component.
+        elements:
+          additionalProperties:
+            type: string
+          type: object
+          title: Elements
+          description: Amount of each chemical elements in this component.
+      type: object
+      required:
+      - formula
+      - amount
+      - elements
+      title: Component
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    SynthesisSearchResultModel:
+      properties:
+        doi:
+          type: string
+          title: Doi
+          description: DOI of the journal article.
+        paragraph_string:
+          type: string
+          title: Paragraph String
+          description: The paragraph from which this recipe is extracted.
+          default: ''
+        synthesis_type:
+          type: string
+          title: Synthesis Type
+          description: Type of the synthesis recipe.
+        reaction_string:
+          type: string
+          title: Reaction String
+          description: String representation of this recipe.
+        reaction:
+          $ref: '#/components/schemas/ReactionFormula'
+          description: The balanced reaction formula.
+        target:
+          $ref: '#/components/schemas/ExtractedMaterial'
+          description: The target material.
+        targets_formula:
+          items:
+            type: string
+          type: array
+          title: Targets Formula
+          description: List of synthesized target material compositions.
+        precursors_formula:
+          items:
+            type: string
+          type: array
+          title: Precursors Formula
+          description: List of precursor material compositions.
+        targets_formula_s:
+          items:
+            type: string
+          type: array
+          title: Targets Formula S
+          description: List of synthesized target material compositions, as strings.
+        precursors_formula_s:
+          items:
+            type: string
+          type: array
+          title: Precursors Formula S
+          description: List of precursor material compositions, as strings.
+        precursors:
+          items:
+            $ref: '#/components/schemas/ExtractedMaterial'
+          type: array
+          title: Precursors
+          description: List of precursor materials.
+        operations:
+          items:
+            $ref: '#/components/schemas/Operation'
+          type: array
+          title: Operations
+          description: List of operations used to synthesize this recipe.
+        search_score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Search Score
+          description: Search score.
+        highlights:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/AtlasSearchHighlight'
+            type: array
+          - type: 'null'
+          title: Highlights
+          description: Search highlights.
+      type: object
+      required:
+      - doi
+      - synthesis_type
+      - reaction_string
+      - reaction
+      - target
+      - targets_formula
+      - precursors_formula
+      - targets_formula_s
+      - precursors_formula_s
+      - precursors
+      - operations
+      title: SynthesisSearchResultModel
+      description: 'Model for a document containing synthesis recipes
+
+        data and additional keyword search results'
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    ApiKeyAuth:
+      descriptions: MP API key to authorize requests
+      name: X-API-KEY
+      in: header
+      type: apiKey

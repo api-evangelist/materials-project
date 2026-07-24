@@ -1,0 +1,232 @@
+openapi: 3.1.0
+info:
+  title: Materials Project Defect Tasks DOIs API
+  description: "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n"
+  version: 0.86.4rc5.dev1+g77c2c1315
+  x-logo:
+    url: https://raw.githubusercontent.com/materialsproject/emmet/master/emmet-api/emmet/api/core/assets/mp_logo_small.png
+security:
+- ApiKeyAuth: []
+tags:
+- name: DOIs
+  description: Route providing DOI and bibtex reference information for a material.             Note that this data may not be available for all materials in the Materials             Project database. See the `DOIDoc` schema for a full list of fields returned by this route.
+paths:
+  /doi/:
+    get:
+      tags:
+      - DOIs
+      summary: Get DOIDoc documents
+      operationId: search_doi__get
+      parameters:
+      - name: material_ids
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Comma-separated list of material_id values to query on
+          title: Material Ids
+        description: Comma-separated list of material_id values to query on
+      - name: _page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+          title: ' Page'
+        description: Page number to request (takes precedent over _limit and _skip).
+      - name: _per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+          default: 100
+          title: ' Per Page'
+        description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+      - name: _skip
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of entries to skip in the search.
+          default: 0
+          title: ' Skip'
+        description: Number of entries to skip in the search.
+      - name: _limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+          default: 100
+          title: ' Limit'
+        description: Max number of entries to return in a single query. Limited to 1000.
+      - name: _fields
+        in: query
+        required: false
+        schema:
+          type: string
+          description: 'Fields to project from DOIDoc as a list of comma separated strings.                    Fields include: `doi` `bibtex` `material_id`'
+          title: ' Fields'
+        description: 'Fields to project from DOIDoc as a list of comma separated strings.                    Fields include: `doi` `bibtex` `material_id`'
+      - name: _all_fields
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: Include all fields.
+          default: false
+          title: ' All Fields'
+        description: Include all fields.
+      responses:
+        '200':
+          description: Search for a DOIDoc
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response_DOIDoc_'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    DOIDoc:
+      properties:
+        doi:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Doi
+          description: DOI of the material.
+        bibtex:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bibtex
+          description: Bibtex reference of the material.
+        material_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Material Id
+          description: 'The Materials Project ID of the material. This comes in the form: mp-******.'
+      type: object
+      title: DOIDoc
+      description: DOIs to reference specific materials on Materials Project.
+    Response_DOIDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DOIDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[DOIDoc]
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    ApiKeyAuth:
+      descriptions: MP API key to authorize requests
+      name: X-API-KEY
+      in: header
+      type: apiKey

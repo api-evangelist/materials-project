@@ -1,0 +1,1625 @@
+openapi: 3.1.0
+info:
+  title: Materials Project Defect Tasks Materials Phonon API
+  description: "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n"
+  version: 0.86.4rc5.dev1+g77c2c1315
+  x-logo:
+    url: https://raw.githubusercontent.com/materialsproject/emmet/master/emmet-api/emmet/api/core/assets/mp_logo_small.png
+security:
+- ApiKeyAuth: []
+tags:
+- name: Materials Phonon
+  description: '**Under construction** Route providing computed phonon data for a material following the             methodology discussed by [Petretto *et al.*](https://doi.org/10.1038/sdata.2018.65)             Note that phonon data has not been calculated for all materials in the Materials             Project database. See the `PhononBSDOSDoc` schema for a full list of fields returned by this route.'
+  externalDocs:
+    description: For a more detailed description
+    url: https://docs.materialsproject.org/methodology/phonons
+paths:
+  /materials/phonon/:
+    get:
+      tags:
+      - Materials Phonon
+      summary: Get PhononBSDOSDoc documents
+      operationId: search_materials_phonon__get
+      parameters:
+      - name: material_ids
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Comma-separated list of material_id values to query on
+          title: Material Ids
+        description: Comma-separated list of material_id values to query on
+      - name: formula
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided.
+          title: Formula
+        description: Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided.
+      - name: chemsys
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries
+          title: Chemsys
+        description: A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries
+      - name: elements
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            maxLength: 60
+          - type: 'null'
+          description: Query by elements in the material composition as a comma-separated list
+          title: Elements
+        description: Query by elements in the material composition as a comma-separated list
+      - name: exclude_elements
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            maxLength: 60
+          - type: 'null'
+          description: Query by excluded elements in the material composition as a comma-separated list
+          title: Exclude Elements
+        description: Query by excluded elements in the material composition as a comma-separated list
+      - name: crystal_system
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Crystal system of the material. If a comma-separated string, will query by multiple crystal systems.
+          title: Crystal System
+        description: Crystal system of the material. If a comma-separated string, will query by multiple crystal systems.
+      - name: spacegroup_number
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          description: Space group number of the material. If a comma-separated string, will query by multiple space group numbers.
+          title: Spacegroup Number
+        description: Space group number of the material. If a comma-separated string, will query by multiple space group numbers.
+      - name: spacegroup_symbol
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Space group symbol of the material. If a comma-separated string, will query by multiple space group numbers.
+          title: Spacegroup Symbol
+        description: Space group symbol of the material. If a comma-separated string, will query by multiple space group numbers.
+      - name: phonon_method
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Phonon Method to search for
+          title: Phonon Method
+        description: Phonon Method to search for
+      - name: nsites_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for maximum value of nsites
+          title: Nsites Max
+        description: Query for maximum value of nsites
+      - name: nsites_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for minimum value of nsites
+          title: Nsites Min
+        description: Query for minimum value of nsites
+      - name: nsites
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for nsites being equal to an exact value
+          title: Nsites
+        description: Query for nsites being equal to an exact value
+      - name: nsites_not_eq
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for nsites being not equal to an exact value
+          title: Nsites Not Eq
+        description: Query for nsites being not equal to an exact value
+      - name: nsites_eq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for nsites being any of these values. Provide a comma separated list.
+          title: Nsites Eq Any
+        description: Query for nsites being any of these values. Provide a comma separated list.
+      - name: nsites_neq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for nsites being not any of these values.                             Provide a comma separated list.
+          title: Nsites Neq Any
+        description: Query for nsites being not any of these values.                             Provide a comma separated list.
+      - name: nelements_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for maximum value of nelements
+          title: Nelements Max
+        description: Query for maximum value of nelements
+      - name: nelements_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for minimum value of nelements
+          title: Nelements Min
+        description: Query for minimum value of nelements
+      - name: nelements
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for nelements being equal to an exact value
+          title: Nelements
+        description: Query for nelements being equal to an exact value
+      - name: nelements_not_eq
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for nelements being not equal to an exact value
+          title: Nelements Not Eq
+        description: Query for nelements being not equal to an exact value
+      - name: nelements_eq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for nelements being any of these values. Provide a comma separated list.
+          title: Nelements Eq Any
+        description: Query for nelements being any of these values. Provide a comma separated list.
+      - name: nelements_neq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for nelements being not any of these values.                             Provide a comma separated list.
+          title: Nelements Neq Any
+        description: Query for nelements being not any of these values.                             Provide a comma separated list.
+      - name: volume_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of volume
+          title: Volume Max
+        description: Query for maximum value of volume
+      - name: volume_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of volume
+          title: Volume Min
+        description: Query for minimum value of volume
+      - name: density_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of density
+          title: Density Max
+        description: Query for maximum value of density
+      - name: density_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of density
+          title: Density Min
+        description: Query for minimum value of density
+      - name: density_atomic_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of density_atomic
+          title: Density Atomic Max
+        description: Query for maximum value of density_atomic
+      - name: density_atomic_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of density_atomic
+          title: Density Atomic Min
+        description: Query for minimum value of density_atomic
+      - name: total_dft_energy_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of total_dft_energy
+          title: Total Dft Energy Max
+        description: Query for maximum value of total_dft_energy
+      - name: total_dft_energy_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of total_dft_energy
+          title: Total Dft Energy Min
+        description: Query for minimum value of total_dft_energy
+      - name: volume_per_formula_unit_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of volume_per_formula_unit
+          title: Volume Per Formula Unit Max
+        description: Query for maximum value of volume_per_formula_unit
+      - name: volume_per_formula_unit_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of volume_per_formula_unit
+          title: Volume Per Formula Unit Min
+        description: Query for minimum value of volume_per_formula_unit
+      - name: formula_units_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for maximum value of formula_units
+          title: Formula Units Max
+        description: Query for maximum value of formula_units
+      - name: formula_units_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for minimum value of formula_units
+          title: Formula Units Min
+        description: Query for minimum value of formula_units
+      - name: formula_units
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for formula_units being equal to an exact value
+          title: Formula Units
+        description: Query for formula_units being equal to an exact value
+      - name: formula_units_not_eq
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for formula_units being not equal to an exact value
+          title: Formula Units Not Eq
+        description: Query for formula_units being not equal to an exact value
+      - name: formula_units_eq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for formula_units being any of these values. Provide a comma separated list.
+          title: Formula Units Eq Any
+        description: Query for formula_units being any of these values. Provide a comma separated list.
+      - name: formula_units_neq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for formula_units being not any of these values.                             Provide a comma separated list.
+          title: Formula Units Neq Any
+        description: Query for formula_units being not any of these values.                             Provide a comma separated list.
+      - name: _page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+          title: ' Page'
+        description: Page number to request (takes precedent over _limit and _skip).
+      - name: _per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+          default: 100
+          title: ' Per Page'
+        description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+      - name: _skip
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of entries to skip in the search.
+          default: 0
+          title: ' Skip'
+        description: Number of entries to skip in the search.
+      - name: _limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+          default: 100
+          title: ' Limit'
+        description: Max number of entries to return in a single query. Limited to 1000.
+      - name: _fields
+        in: query
+        required: false
+        schema:
+          type: string
+          description: 'Fields to project from PhononBSDOSDoc as a list of comma separated strings.                    Fields include: `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `identifier` `phonon_method` `phonon_bandstructure` `phonon_dos` `epsilon_static` `epsilon_electronic` `born` `force_constants` `last_updated` `sum_rules_breaking` `structure` `total_dft_energy` `volume_per_formula_unit` `formula_units` `supercell_matrix` `primitive_matrix` `code` `post_process_settings` `thermal_displacement_data` `calc_meta` `material_id` `task_ids`'
+          title: ' Fields'
+        description: 'Fields to project from PhononBSDOSDoc as a list of comma separated strings.                    Fields include: `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `identifier` `phonon_method` `phonon_bandstructure` `phonon_dos` `epsilon_static` `epsilon_electronic` `born` `force_constants` `last_updated` `sum_rules_breaking` `structure` `total_dft_energy` `volume_per_formula_unit` `formula_units` `supercell_matrix` `primitive_matrix` `code` `post_process_settings` `thermal_displacement_data` `calc_meta` `material_id` `task_ids`'
+      - name: _all_fields
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: Include all fields.
+          default: false
+          title: ' All Fields'
+        description: Include all fields.
+      responses:
+        '200':
+          description: Search for a PhononBSDOSDoc
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response_PhononBSDOSDoc_'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    PhononComputationalSettings:
+      properties:
+        npoints_band:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Npoints Band
+          description: number of points for band structure computation
+        kpath_scheme:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Kpath Scheme
+          description: indicates the kpath scheme
+        kpoint_density_dos:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Kpoint Density Dos
+          description: number of points for computation of free energies and densities of states
+      type: object
+      title: PhononComputationalSettings
+      description: Collection to store computational settings for the phonon computation.
+    Response_PhononBSDOSDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/PhononBSDOSDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[PhononBSDOSDoc]
+    TypedAggregateProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Selective Dynamics
+      type: object
+      title: TypedAggregateProperitesDict
+    PhononBS:
+      properties:
+        identifier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Identifier
+          description: The identifier of this object.
+        structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Structure
+          description: The structure associated with this calculation.
+        path_convention:
+          type: string
+          title: Path Convention
+          description: High symmetry path convention of the band structure
+          default: unknown
+        kpath:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Kpath
+        labels_dict:
+          additionalProperties:
+            prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          type: object
+          title: Labels Dict
+          description: The high-symmetry labels of specific q-points.
+          default: {}
+        qpoints:
+          items:
+            prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          type: array
+          title: Qpoints
+          description: The wave vectors (q-points) at which the band structure was sampled, in direct coordinates.
+        reciprocal_lattice:
+          prefixItems:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          type: array
+          maxItems: 3
+          minItems: 3
+          title: Reciprocal Lattice
+          description: The reciprocal lattice.
+        has_nac:
+          type: boolean
+          title: Has Nac
+          description: Whether the calculation includes non-analytical corrections at Gamma.
+          default: false
+        frequencies:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Frequencies
+          description: The eigen-frequencies, with the first index representing the band, and the second the k-point.
+        eigendisplacements:
+          additionalProperties:
+            items:
+              items:
+                items:
+                  prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                type: array
+              type: array
+            type: array
+          type: object
+          title: Eigendisplacements
+          description: Phonon eigendisplacements in Cartesian coordinates.
+          default:
+            imag: 0
+      type: object
+      required:
+      - qpoints
+      - reciprocal_lattice
+      - frequencies
+      title: PhononBS
+      description: Define schema of pymatgen phonon band structure.
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    ThermalDisplacementData:
+      properties:
+        freq_min_thermal_displacements:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Freq Min Thermal Displacements
+          description: cutoff frequency in THz to avoid numerical issues in the computation of the thermal displacement parameters
+        thermal_displacement_matrix_cif:
+          anyOf:
+          - items:
+              items:
+                prefixItems:
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                type: array
+                maxItems: 3
+                minItems: 3
+              type: array
+            type: array
+          - type: 'null'
+          title: Thermal Displacement Matrix Cif
+          description: field including thermal displacement matrices in CIF format
+        thermal_displacement_matrix:
+          anyOf:
+          - items:
+              items:
+                prefixItems:
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                type: array
+                maxItems: 3
+                minItems: 3
+              type: array
+            type: array
+          - type: 'null'
+          title: Thermal Displacement Matrix
+          description: field including thermal displacement matrices in Cartesian coordinate system
+        temperatures_thermal_displacements:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Temperatures Thermal Displacements
+          description: temperatures at which the thermal displacement matriceshave been computed
+      type: object
+      title: ThermalDisplacementData
+      description: Collection to store information on the thermal displacement matrices.
+    TypedSpeciesDict:
+      properties:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation State
+        spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin
+        occu:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    TypedSiteDict:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
+      type: object
+      title: TypedSiteDict
+    PhononBSDOSDoc:
+      properties:
+        nsites:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Nsites
+          description: Total number of sites in the structure.
+        elements:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Elements
+          description: List of elements in the material.
+        nelements:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Nelements
+          description: Number of elements.
+        composition:
+          anyOf:
+          - additionalProperties:
+              type: number
+            type: object
+          - type: 'null'
+          title: Composition
+          description: Full composition for the material.
+        composition_reduced:
+          anyOf:
+          - additionalProperties:
+              type: number
+            type: object
+          - type: 'null'
+          title: Reduced Composition
+          description: Simplified representation of the composition.
+        formula_pretty:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pretty Formula
+          description: Cleaned representation of the formula.
+        formula_anonymous:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Anonymous Formula
+          description: Anonymized representation of the formula.
+        chemsys:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Chemical System
+          description: Dash-separated string of elements in the material.
+        volume:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Volume
+          description: Total volume for this structure in Å³.
+        density:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Density
+          description: Density in g/cm³.
+        density_atomic:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Packing Density
+          description: The atomic packing density in Å³/atom.
+        symmetry:
+          anyOf:
+          - $ref: '#/components/schemas/SymmetryData'
+          - type: 'null'
+          description: Symmetry data for this material.
+        identifier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Identifier
+          description: The identifier of this phonon analysis task.
+        phonon_method:
+          anyOf:
+          - $ref: '#/components/schemas/PhononMethod'
+          - type: 'null'
+          description: The method used to calculate phonon properties.
+        phonon_bandstructure:
+          anyOf:
+          - $ref: '#/components/schemas/PhononBS'
+          - type: 'null'
+          description: Phonon band structure object.
+        phonon_dos:
+          anyOf:
+          - $ref: '#/components/schemas/PhononDOS'
+          - type: 'null'
+          description: Phonon density of states object.
+        epsilon_static:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Epsilon Static
+          description: The high-frequency dielectric constant.
+        epsilon_electronic:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Epsilon Electronic
+          description: The electronic contribution to the high-frequency dielectric constant.
+        born:
+          anyOf:
+          - items:
+              prefixItems:
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Born
+          description: Born charges, only for symmetrically inequivalent atoms
+        force_constants:
+          anyOf:
+          - items:
+              items:
+                prefixItems:
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                type: array
+                maxItems: 3
+                minItems: 3
+              type: array
+            type: array
+          - type: 'null'
+          title: Force Constants
+          description: Force constants between every pair of atoms in the structure
+        last_updated:
+          type: string
+          format: date-time
+          title: Last Updated
+          description: Timestamp for the most recent calculation for this Material document.
+        sum_rules_breaking:
+          anyOf:
+          - $ref: '#/components/schemas/SumRuleChecks'
+          - type: 'null'
+          description: Deviations from sum rules.
+        structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Structure
+          description: Structure used in the calculation.
+        total_dft_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Total Dft Energy
+          description: total DFT energy in eV/atom.
+        volume_per_formula_unit:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Volume Per Formula Unit
+          description: volume per formula unit in Angstrom**3.
+        formula_units:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Formula Units
+          description: Formula units per cell.
+        supercell_matrix:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Supercell Matrix
+          description: matrix describing the supercell.
+        primitive_matrix:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Primitive Matrix
+          description: matrix describing relationship to primitive cell.
+        code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Code
+          description: String describing the code for the computation.
+        post_process_settings:
+          anyOf:
+          - $ref: '#/components/schemas/PhononComputationalSettings'
+          - type: 'null'
+          description: Field including settings for the post processing code, e.g., phonopy.
+        thermal_displacement_data:
+          anyOf:
+          - $ref: '#/components/schemas/ThermalDisplacementData'
+          - type: 'null'
+          description: Includes all data of the computation of the thermal displacements
+        calc_meta:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CalcMeta'
+            type: array
+          - type: 'null'
+          title: Calc Meta
+          description: Metadata for individual calculations used to build this document.
+        material_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          - type: 'null'
+          title: Material Id
+          description: The Materials Project ID of the material, of the form mp-******.
+        task_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Task Ids
+          description: A list of identifiers that were used to build this document.
+        has_imaginary_modes:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Has Imaginary Modes
+          readOnly: true
+        charge_neutral_sum_rule:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Charge Neutral Sum Rule
+          description: Sum of Born effective charges over sites should be zero.
+          readOnly: true
+        acoustic_sum_rule:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Acoustic Sum Rule
+          description: Sum of q=0 atomic force constants should be zero.
+          readOnly: true
+        check_sum_rule_deviations:
+          $ref: '#/components/schemas/SumRuleChecks'
+          description: Report deviations from sum rules.
+          readOnly: true
+      type: object
+      required:
+      - has_imaginary_modes
+      - charge_neutral_sum_rule
+      - acoustic_sum_rule
+      - check_sum_rule_deviations
+      title: PhononBSDOSDoc
+      description: Built data version of PhononBSDOSTask.
+    TypedStructureDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        lattice:
+          $ref: '#/components/schemas/TypedLatticeDict'
+        sites:
+          items:
+            $ref: '#/components/schemas/TypedSiteDict'
+          type: array
+          title: Sites
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
+          - type: 'null'
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      - lattice
+      - sites
+      title: TypedStructureDict
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    TypedSiteProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Selective Dynamics
+        coordination_no:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Coordination No
+        forces:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Forces
+      type: object
+      title: TypedSiteProperitesDict
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    PhononMethod:
+      type: string
+      enum:
+      - dfpt
+      - phonopy
+      - pheasy
+      title: PhononMethod
+      description: Define common methods for computed phonon properties.
+    SymmetryData:
+      properties:
+        crystal_system:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Crystal System
+          description: The crystal system for this lattice.
+        symbol:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Space Group Symbol
+          description: The spacegroup symbol for the lattice.
+        hall:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hall Symbol
+          description: Hall symbol for the lattice
+        number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Space Group Number
+          description: The spacegroup number for the lattice.
+        point_group:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Point Group Symbol
+          description: The point group for the lattice.
+        symprec:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Symmetry Finding Precision
+          description: The precision provided to spglib to determine the symmetry of this structure.
+        angle_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Angle Tolerance
+          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: spglib version
+      type: object
+      title: SymmetryData
+      description: Defines a symmetry data set for materials documents
+    CalcMeta:
+      properties:
+        identifier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Identifier
+          description: The identifier (UUID, ULID, etc.) of the calculation.
+        dir_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Dir Name
+          description: The file-systm-like path where a job was run.
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+          description: The job name or a convenient label for it.
+        parents:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Parents
+          description: A list of all UUIDs which fed into this job.
+      type: object
+      title: CalcMeta
+      description: Lightweight representation for storing jobflow-style job info.
+    TypedLatticeDict:
+      properties:
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - matrix
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: TypedLatticeDict
+    PhononDOS:
+      properties:
+        identifier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Identifier
+          description: The identifier of this object.
+        structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Structure
+          description: The structure associated with this calculation.
+        frequencies:
+          items:
+            type: number
+          type: array
+          title: Frequencies
+          description: The phonon frequencies in THz.
+        densities:
+          items:
+            type: number
+          type: array
+          title: Densities
+          description: The phonon density of states.
+        projected_densities:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Projected Densities
+          description: The projected phonon density of states.
+      type: object
+      required:
+      - frequencies
+      - densities
+      title: PhononDOS
+      description: Define schema of pymatgen phonon density of states.
+    SumRuleChecks:
+      properties:
+        asr:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Asr
+          description: The violation of the acoustic sum rule.
+        cnsr:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Cnsr
+          description: The violation of the charge neutral sum rule.
+      type: object
+      title: SumRuleChecks
+      description: Container class for defining sum rule checks.
+  securitySchemes:
+    ApiKeyAuth:
+      descriptions: MP API key to authorize requests
+      name: X-API-KEY
+      in: header
+      type: apiKey

@@ -1,0 +1,2329 @@
+openapi: 3.1.0
+info:
+  title: Materials Project Defect Tasks API
+  description: "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n"
+  version: 0.86.4rc5.dev1+g77c2c1315
+  x-logo:
+    url: https://raw.githubusercontent.com/materialsproject/emmet/master/emmet-api/emmet/api/core/assets/mp_logo_small.png
+security:
+- ApiKeyAuth: []
+tags:
+- name: Defect Tasks
+paths:
+  /defects/tasks/:
+    get:
+      tags:
+      - Defect Tasks
+      summary: Get DefectTaskDoc documents
+      operationId: search_defects_tasks__get
+      parameters:
+      - name: formula
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided.
+          title: Formula
+        description: Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided.
+      - name: chemsys
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries
+          title: Chemsys
+        description: A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries
+      - name: elements
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            maxLength: 60
+          - type: 'null'
+          description: Query by elements in the material composition as a comma-separated list
+          title: Elements
+        description: Query by elements in the material composition as a comma-separated list
+      - name: exclude_elements
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            maxLength: 60
+          - type: 'null'
+          description: Query by excluded elements in the material composition as a comma-separated list
+          title: Exclude Elements
+        description: Query by excluded elements in the material composition as a comma-separated list
+      - name: task_ids
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Comma-separated list of task_ids to query on
+          title: Task Ids
+        description: Comma-separated list of task_ids to query on
+      - name: last_updated_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          description: Minimum last updated UTC datetime
+          title: Last Updated Min
+        description: Minimum last updated UTC datetime
+      - name: last_updated_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          description: Maximum last updated UTC datetime
+          title: Last Updated Max
+        description: Maximum last updated UTC datetime
+      - name: _page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+          title: ' Page'
+        description: Page number to request (takes precedent over _limit and _skip).
+      - name: _per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+          default: 100
+          title: ' Per Page'
+        description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+      - name: _skip
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of entries to skip in the search.
+          default: 0
+          title: ' Skip'
+        description: Number of entries to skip in the search.
+      - name: _limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+          default: 100
+          title: ' Limit'
+        description: Max number of entries to return in a single query. Limited to 1000.
+      - name: _fields
+        in: query
+        required: false
+        schema:
+          type: string
+          description: 'Fields to project from DefectTaskDoc as a list of comma separated strings.                    Fields include: `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `batch_id` `calc_type` `completed_at` `dir_name` `icsd_id` `input` `last_updated` `orig_inputs` `output` `run_type` `structure` `tags` `task_id` `task_type` `transformations` `vasp_objects` `vasp_version` `additional_json` `analysis` `author` `calcs_reversed` `custodian` `entry` `included_objects` `run_stats` `state` `task_label` `defect_name` `bulk_formula` `defect` `charge_state` `supercell_matrix`'
+          title: ' Fields'
+        description: 'Fields to project from DefectTaskDoc as a list of comma separated strings.                    Fields include: `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `batch_id` `calc_type` `completed_at` `dir_name` `icsd_id` `input` `last_updated` `orig_inputs` `output` `run_type` `structure` `tags` `task_id` `task_type` `transformations` `vasp_objects` `vasp_version` `additional_json` `analysis` `author` `calcs_reversed` `custodian` `entry` `included_objects` `run_stats` `state` `task_label` `defect_name` `bulk_formula` `defect` `charge_state` `supercell_matrix`'
+      - name: _all_fields
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: Include all fields.
+          default: false
+          title: ' All Fields'
+        description: Include all fields.
+      responses:
+        '200':
+          description: Search for a DefectTaskDoc
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response_DefectTaskDoc_'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    TypedPerIonProps:
+      properties:
+        s:
+          type: number
+          title: S
+        p:
+          type: number
+          title: P
+        d:
+          type: number
+          title: D
+        tot:
+          type: number
+          title: Tot
+      type: object
+      required:
+      - s
+      - p
+      - d
+      - tot
+      title: TypedPerIonProps
+    TypedPotcarStatsDict:
+      properties:
+        header:
+          $ref: '#/components/schemas/TypedStatisticsDict'
+        data:
+          $ref: '#/components/schemas/TypedStatisticsDict'
+      type: object
+      required:
+      - header
+      - data
+      title: TypedPotcarStatsDict
+    TypedAggregateProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Selective Dynamics
+      type: object
+      title: TypedAggregateProperitesDict
+    CustodianDoc:
+      properties:
+        corrections:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Custodian Corrections
+          description: List of custodian correction data for calculation.
+        job:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Custodian Job Data
+          description: Job data logged by custodian.
+      type: object
+      title: CustodianDoc
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    TypedSpeciesDict:
+      properties:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation State
+        spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin
+        occu:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    PotcarSpec:
+      properties:
+        titel:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Titel
+          description: TITEL field from POTCAR header
+        hash:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hash
+          description: md5 hash of POTCAR file
+        summary_stats:
+          anyOf:
+          - $ref: '#/components/schemas/TypedPotcarSummaryStatsDict'
+          - type: 'null'
+          description: summary statistics used to ID POTCARs without hashing
+      type: object
+      title: PotcarSpec
+      description: Document defining a VASP POTCAR specification.
+    TypedSiteDict:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
+      type: object
+      title: TypedSiteDict
+    BaderAnalysis:
+      properties:
+        min_dist:
+          items:
+            type: number
+          type: array
+          title: Min Dist
+        charge:
+          items:
+            type: number
+          type: array
+          title: Charge
+        atomic_volume:
+          items:
+            type: number
+          type: array
+          title: Atomic Volume
+        vacuum_charge:
+          type: number
+          title: Vacuum Charge
+        vacuum_volume:
+          type: number
+          title: Vacuum Volume
+        reference_used:
+          type: boolean
+          title: Reference Used
+        bader_version:
+          type: number
+          title: Bader Version
+        charge_transfer:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Charge Transfer
+        magmom:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Magmom
+      type: object
+      required:
+      - min_dist
+      - charge
+      - atomic_volume
+      - vacuum_charge
+      - vacuum_volume
+      - reference_used
+      - bader_version
+      title: BaderAnalysis
+      description: 'Output of pymatgen.command_line.bader_caller.bader_analysis_from_objects
+
+
+        We omit the `charge_densities` field, since these are too large
+
+        to justify storing in the document model.
+
+
+        Charge densities can already be stored in TaskDoc.vasp_objects'
+    DefectTaskDoc:
+      properties:
+        nsites:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Nsites
+          description: Total number of sites in the structure.
+        elements:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Elements
+          description: List of elements in the material.
+        nelements:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Nelements
+          description: Number of elements.
+        composition:
+          anyOf:
+          - additionalProperties:
+              type: number
+            type: object
+          - type: 'null'
+          title: Composition
+          description: Full composition for the material.
+        composition_reduced:
+          anyOf:
+          - additionalProperties:
+              type: number
+            type: object
+          - type: 'null'
+          title: Reduced Composition
+          description: Simplified representation of the composition.
+        formula_pretty:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pretty Formula
+          description: Cleaned representation of the formula.
+        formula_anonymous:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Anonymous Formula
+          description: Anonymized representation of the formula.
+        chemsys:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Chemical System
+          description: Dash-separated string of elements in the material.
+        volume:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Volume
+          description: Total volume for this structure in Å³.
+        density:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Density
+          description: Density in g/cm³.
+        density_atomic:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Packing Density
+          description: The atomic packing density in Å³/atom.
+        symmetry:
+          anyOf:
+          - $ref: '#/components/schemas/SymmetryData'
+          - type: 'null'
+          description: Symmetry data for this material.
+        batch_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Batch Id
+          description: Identifier for this calculation; should provide rough information about the calculation origin and purpose.
+        calc_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Calc Type
+          description: The functional and task type used in the calculation.
+        completed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Completed At
+          description: Timestamp for when this task was completed
+        dir_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Dir Name
+          description: The directory for this VASP task
+        icsd_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Icsd Id
+          description: Inorganic Crystal Structure Database id of the structure
+        input:
+          anyOf:
+          - $ref: '#/components/schemas/CalculationInput'
+          - type: 'null'
+          description: VASP calculation inputs
+        last_updated:
+          type: string
+          format: date-time
+          title: Last Updated
+          description: Timestamp for the most recent calculation for this task document
+        orig_inputs:
+          anyOf:
+          - $ref: '#/components/schemas/CalculationInput'
+          - type: 'null'
+          description: The exact set of input parameters used to generate the current task document.
+        output:
+          anyOf:
+          - $ref: '#/components/schemas/OutputDoc'
+          - type: 'null'
+          description: The exact set of output parameters used to generate the current task document.
+        run_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Run Type
+          description: The functional used in the calculation.
+        structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Structure
+          description: Final output structure from the task
+        tags:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: tag
+          description: Metadata tagged to a given task.
+        task_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          - type: 'null'
+          title: Task Id
+          description: 'The (task) ID of this calculation, used as a universal reference across property documents.This comes in the form: mp-******.'
+        task_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Type
+          description: The type of calculation.
+        transformations:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Transformations
+          description: Information on the structural transformations, parsed from a transformations.json file
+        vasp_objects:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Vasp Objects
+          description: Vasp objects associated with this task
+        vasp_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Vasp Version
+          description: The version of VASP used for this task.
+        additional_json:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Additional Json
+          description: Additional json loaded from the calculation directory
+        analysis:
+          anyOf:
+          - $ref: '#/components/schemas/AnalysisDoc'
+          - type: 'null'
+          title: Calculation Analysis
+          description: Some analysis of calculation data after collection.
+        author:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Author
+          description: Author extracted from transformations
+        calcs_reversed:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Calculation'
+            type: array
+          - type: 'null'
+          title: Calcs reversed data
+          description: Detailed data for each VASP calculation contributing to the task document.
+        custodian:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/CustodianDoc'
+            type: array
+          - type: 'null'
+          title: Calcs reversed data
+          description: Detailed custodian data for each VASP calculation contributing to the task document.
+        entry:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Entry
+          description: The ComputedEntry from the task doc
+        included_objects:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Included Objects
+          description: List of VASP objects included with this task document
+        run_stats:
+          anyOf:
+          - additionalProperties:
+              $ref: '#/components/schemas/RunStatistics'
+            type: object
+          - type: 'null'
+          title: Run Stats
+          description: Summary of runtime statistics for each calculation in this task
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+          description: State of this calculation
+        task_label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Label
+          description: A description of the task
+        defect_name:
+          type: string
+          title: The name of the defect
+        bulk_formula:
+          type: string
+          title: Bulk Formula
+          description: Formula of the bulk structure.
+        defect:
+          $ref: '#/components/schemas/TypedDefectDict'
+          title: Defect Object
+          description: Unit cell representation of the defect object.
+        charge_state:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Charge State
+          description: Charge state of the defect.
+        supercell_matrix:
+          anyOf:
+          - items:
+              items:
+                type: integer
+              type: array
+            type: array
+          - type: 'null'
+          title: Supercell Matrix
+          description: Supercell matrix used to construct the defect supercell.
+      additionalProperties: true
+      type: object
+      required:
+      - defect_name
+      - bulk_formula
+      - defect
+      title: DefectTaskDoc
+      description: 'Defect Task Document.
+
+
+        Contains all the task-level information for a defect supercell calculation.'
+    FrequencyDependentDielectric:
+      properties:
+        real:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Real
+          description: Real part of the frequency dependent dielectric constant, given at each energy as 6 components according to XX, YY, ZZ, XY, YZ, ZX
+        imaginary:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Imaginary
+          description: Imaginary part of the frequency dependent dielectric constant, given at each energy as 6 components according to XX, YY, ZZ, XY, YZ, ZX
+        energy:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Energy
+          description: Energies at which the real and imaginary parts of the dielectricconstant are given
+      type: object
+      title: FrequencyDependentDielectric
+      description: Frequency-dependent dielectric data.
+    TypedStructureDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        lattice:
+          $ref: '#/components/schemas/TypedLatticeDict'
+        sites:
+          items:
+            $ref: '#/components/schemas/TypedSiteDict'
+          type: array
+          title: Sites
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
+          - type: 'null'
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      - lattice
+      - sites
+      title: TypedStructureDict
+    MSONableTypedSiteDict:
+      properties:
+        '@class':
+          type: string
+          title: '@Class'
+        '@module':
+          type: string
+          title: '@Module'
+        label:
+          type: string
+          title: Label
+        name:
+          type: string
+          title: Name
+        properties:
+          $ref: '#/components/schemas/TypedSiteProperitesDict'
+        species:
+          items:
+            $ref: '#/components/schemas/TypedSpeciesDict'
+          type: array
+          title: Species
+        abc:
+          items:
+            type: number
+          type: array
+          title: Abc
+        xyz:
+          items:
+            type: number
+          type: array
+          title: Xyz
+      additionalProperties: true
+      type: object
+      required:
+      - '@class'
+      - '@module'
+      - label
+      - name
+      - properties
+      - species
+      - abc
+      - xyz
+      title: MSONableTypedSiteDict
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    ElectronicStep:
+      properties:
+        alphaZ:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Alphaz
+          description: The alpha Z term.
+        ewald:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Ewald
+          description: The ewald energy.
+        hartreedc:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Hartreedc
+          description: Negative Hartree energy.
+        XCdc:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Xcdc
+          description: Negative exchange energy.
+        pawpsdc:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Pawpsdc
+          description: Negative potential energy with exchange-correlation energy.
+        pawaedc:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Pawaedc
+          description: The PAW double counting term.
+        eentropy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Eentropy
+          description: The entropy (T * S).
+        bandstr:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Bandstr
+          description: The band energy (from eigenvalues).
+        atom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Atom
+          description: The atomic energy.
+        e_fr_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: E Fr Energy
+          description: The free energy.
+        e_wo_entrp:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: E Wo Entrp
+          description: The energy without entropy.
+        e_0_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: E 0 Energy
+          description: The internal energy.
+      type: object
+      title: ElectronicStep
+      description: 'Document defining the information at each electronic step.
+
+
+        Note, not all the information will be available at every step.'
+    TypedSiteProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Selective Dynamics
+        coordination_no:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Coordination No
+        forces:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Forces
+      type: object
+      title: TypedSiteProperitesDict
+    TypedOutcarDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        efermi:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Efermi
+        magnetization:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedPerIonProps'
+            type: array
+          - type: 'null'
+          title: Magnetization
+        charge:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedPerIonProps'
+            type: array
+          - type: 'null'
+          title: Charge
+        total_magnetization:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Total Magnetization
+        nelect:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Nelect
+        is_stopped:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Stopped
+        drift:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Drift
+        ngf:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Ngf
+        sampling_radii:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Sampling Radii
+        electrostatic_potential:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Electrostatic Potential
+        zval_dict:
+          anyOf:
+          - additionalProperties:
+              type: number
+            type: object
+          - type: 'null'
+          title: Zval Dict
+        p_elec:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: P Elec
+        born:
+          anyOf:
+          - items:
+              prefixItems:
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Born
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      title: TypedOutcarDict
+    DielectricProperties:
+      properties:
+        born_charges:
+          anyOf:
+          - items:
+              prefixItems:
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Born Charges
+          description: Born effective charges for each site in the structure (units of elementary charge e).
+        dielectric_ionic_tensor:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Dielectric Ionic Tensor
+          description: Ionic contribution to the dielectric tensor (dimensionless).
+        dielectric_tensor:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Dielectric Tensor
+          description: Overall dielectric tensor (dimensionless).
+        internal_strain_tensor:
+          anyOf:
+          - items:
+              prefixItems:
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 6
+                minItems: 6
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 6
+                minItems: 6
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 6
+                minItems: 6
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Internal Strain Tensor
+          description: The internal strain tensor (eV/Å).
+        piezo_ionic_tensor:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Piezo Ionic Tensor
+          description: Ionic contribution to the piezoelectric tensor (C/m^2).
+        piezo_tensor:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Piezo Tensor
+          description: Overall piezoelectric tensor (C/m^2).
+      type: object
+      title: DielectricProperties
+      description: 'Store electronic response properties.
+
+
+        Note the units and tensor ranks:
+
+        - Dielectric tensors are dimensionless (no units apply), and are 3x3
+
+        - Piezoelectric tensors are in C(oulomb)/m^2, and are 3x6
+
+        - Strain tensors, for each atom, are in eV/Å, and are 3x6
+
+        - Born charges, for each atom, are in units of the elementary charge, and are 3x3
+
+
+        For both Born charges and strain, the tensors are listed for each site in the
+
+        structure. Thus one expects a list of 3x3 and 3x6 tensors, respectively.'
+    TypedStatisticsDict:
+      properties:
+        MEAN:
+          type: number
+          title: Mean
+        ABSMEAN:
+          type: number
+          title: Absmean
+        VAR:
+          type: number
+          title: Var
+        MIN:
+          type: number
+          title: Min
+        MAX:
+          type: number
+          title: Max
+      type: object
+      required:
+      - MEAN
+      - ABSMEAN
+      - VAR
+      - MIN
+      - MAX
+      title: TypedStatisticsDict
+    RunStatistics:
+      properties:
+        average_memory:
+          type: number
+          title: Average Memory
+          description: The average memory used in kb
+          default: 0
+        max_memory:
+          type: number
+          title: Max Memory
+          description: The maximum memory used in kb
+          default: 0
+        elapsed_time:
+          type: number
+          title: Elapsed Time
+          description: The real time elapsed in seconds
+          default: 0
+        system_time:
+          type: number
+          title: System Time
+          description: The system CPU time in seconds
+          default: 0
+        user_time:
+          type: number
+          title: User Time
+          description: The user CPU time spent by VASP in seconds
+          default: 0
+        total_time:
+          type: number
+          title: Total Time
+          description: The total CPU time for this calculation
+          default: 0
+        cores:
+          type: integer
+          title: Cores
+          description: The number of cores used by VASP
+          default: 0
+      type: object
+      title: RunStatistics
+      description: Summary of the run statistics for a VASP calculation.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TypedPotcarSummaryStatsDict:
+      properties:
+        keywords:
+          anyOf:
+          - $ref: '#/components/schemas/TypedPotcarKeywordsDict'
+          - type: 'null'
+        stats:
+          anyOf:
+          - $ref: '#/components/schemas/TypedPotcarStatsDict'
+          - type: 'null'
+      type: object
+      title: TypedPotcarSummaryStatsDict
+    SymmetryData:
+      properties:
+        crystal_system:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Crystal System
+          description: The crystal system for this lattice.
+        symbol:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Space Group Symbol
+          description: The spacegroup symbol for the lattice.
+        hall:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hall Symbol
+          description: Hall symbol for the lattice
+        number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Space Group Number
+          description: The spacegroup number for the lattice.
+        point_group:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Point Group Symbol
+          description: The point group for the lattice.
+        symprec:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Symmetry Finding Precision
+          description: The precision provided to spglib to determine the symmetry of this structure.
+        angle_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Angle Tolerance
+          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: spglib version
+      type: object
+      title: SymmetryData
+      description: Defines a symmetry data set for materials documents
+    AnalysisDoc:
+      properties:
+        delta_volume:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Volume Change
+          description: Volume change for the calculation.
+        delta_volume_percent:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Volume Change Percent
+          description: Percent volume change for the calculation.
+        max_force:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max Force
+          description: Maximum force on any atom at the end of the calculation.
+        warnings:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Calculation Warnings
+          description: Warnings issued after analysis.
+        errors:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Calculation Errors
+          description: Errors issued after analysis.
+      type: object
+      title: AnalysisDoc
+    CalculationOutput:
+      properties:
+        bandgap:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Bandgap
+          description: The band gap from the calculation in eV
+        cbm:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Cbm
+          description: The conduction band minimum in eV (if system is not metallic)
+        density:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Density
+          description: Density of final structure in units of g/cc.
+        dielectric_properties:
+          anyOf:
+          - $ref: '#/components/schemas/DielectricProperties'
+          - type: 'null'
+          description: Dielectric, piezoelectric, and other electromechanical properties.
+        direct_gap:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Direct Gap
+          description: Direct band gap in eV (if system is not metallic)
+        dos_properties:
+          anyOf:
+          - additionalProperties:
+              additionalProperties:
+                additionalProperties:
+                  type: number
+                type: object
+              type: object
+            type: object
+          - type: 'null'
+          title: Dos Properties
+          description: Element- and orbital-projected band properties (in eV) for the DOS. All properties are with respect to the Fermi level.
+        efermi:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Efermi
+          description: The Fermi level from the calculation in eV
+        energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Energy
+          description: The final total DFT energy for the calculation
+        energy_per_atom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Energy Per Atom
+          description: The final DFT energy per atom for the calculation
+        epsilon_ionic:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Epsilon Ionic
+          description: The ionic part of the dielectric constant
+        epsilon_static:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Epsilon Static
+          description: The high-frequency dielectric constant
+        epsilon_static_wolfe:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Epsilon Static Wolfe
+          description: The high-frequency dielectric constant w/o local field effects
+        frequency_dependent_dielectric:
+          anyOf:
+          - $ref: '#/components/schemas/FrequencyDependentDielectric'
+          - type: 'null'
+          description: Frequency-dependent dielectric information from an LOPTICS calculation
+        is_gap_direct:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Gap Direct
+          description: Whether the band gap is direct
+        is_metal:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Metal
+          description: Whether the system is metallic
+        locpot:
+          anyOf:
+          - additionalProperties:
+              items:
+                type: number
+              type: array
+            type: object
+          - type: 'null'
+          title: Locpot
+          description: Average of the local potential along the crystal axes
+        mag_density:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mag Density
+          description: The magnetization density, defined as total_mag/volume (units of A^-3)
+        optical_absorption_coeff:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Optical Absorption Coeff
+          description: Optical absorption coefficient in cm^-1
+        outcar:
+          anyOf:
+          - $ref: '#/components/schemas/TypedOutcarDict'
+          - type: 'null'
+          description: Information extracted from the OUTCAR file
+        structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Structure
+          description: The final structure from the calculation
+        transition:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Transition
+          description: Band gap transition given by CBM and VBM k-points
+        vbm:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Vbm
+          description: The valence band maximum in eV (if system is not metallic)
+        elph_displaced_structures:
+          anyOf:
+          - $ref: '#/components/schemas/ElectronPhononDisplacedStructures'
+          - type: 'null'
+          description: Electron-phonon displaced structures, generated by setting PHON_LMC = True.
+        force_constants:
+          anyOf:
+          - items:
+              items:
+                prefixItems:
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                type: array
+                maxItems: 3
+                minItems: 3
+              type: array
+            type: array
+          - type: 'null'
+          title: Force Constants
+          description: Force constants between every pair of atoms in the structure
+        ionic_steps:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IonicStep'
+            type: array
+          - type: 'null'
+          title: Ionic Steps
+          description: Energy, forces, structure, etc. for each ionic step
+        normalmode_eigenvals:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Normalmode Eigenvals
+          description: Normal mode eigenvalues of phonon modes at Gamma. Note the unit changed between VASP 5 and 6.
+        normalmode_eigenvecs:
+          anyOf:
+          - items:
+              items:
+                prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              type: array
+            type: array
+          - type: 'null'
+          title: Normalmode Eigenvecs
+          description: Normal mode eigenvectors of phonon modes at Gamma
+        normalmode_frequencies:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Normalmode Frequencies
+          description: Frequencies in THz of the normal modes at Gamma
+        num_electronic_steps:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Num Electronic Steps
+          description: The number of electronic steps in each ionic step.
+        run_stats:
+          anyOf:
+          - $ref: '#/components/schemas/RunStatistics'
+          - type: 'null'
+          description: Summary of runtime statistics for this calculation
+      type: object
+      title: CalculationOutput
+      description: Wrapper for CoreCalculationOutput for parsing and storing larger fields.
+    Response_DefectTaskDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DefectTaskDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[DefectTaskDoc]
+    TypedDefectDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        '@version':
+          type: string
+          title: '@Version'
+        structure:
+          $ref: '#/components/schemas/TypedStructureDict'
+        site:
+          $ref: '#/components/schemas/MSONableTypedSiteDict'
+        multiplicity:
+          type: integer
+          title: Multiplicity
+        oxi_state:
+          type: number
+          title: Oxi State
+        equivalent_sites:
+          items:
+            $ref: '#/components/schemas/MSONableTypedSiteDict'
+          type: array
+          title: Equivalent Sites
+        symprec:
+          type: number
+          title: Symprec
+        angle_tolerance:
+          type: number
+          title: Angle Tolerance
+        user_changes:
+          items:
+            type: integer
+          type: array
+          title: User Changes
+      additionalProperties: true
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      - '@version'
+      - structure
+      - site
+      - multiplicity
+      - oxi_state
+      - equivalent_sites
+      - symprec
+      - angle_tolerance
+      - user_changes
+      title: TypedDefectDict
+    TypedLatticeDict:
+      properties:
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - matrix
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: TypedLatticeDict
+    CalculationInput:
+      properties:
+        incar:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Incar
+          description: INCAR parameters for the calculation
+        kpoints:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Kpoints
+          description: KPOINTS for the calculation
+        nkpoints:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Nkpoints
+          description: Total number of k-points
+        potcar_spec:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/PotcarSpec'
+            type: array
+          - type: 'null'
+          title: Potcar Spec
+          description: Title and hash of POTCAR files used in the calculation
+        potcar:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Potcar
+          description: The symbols of the POTCARs used in the calculation.
+        potcar_type:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Potcar Type
+          description: List of POTCAR functional types.
+        parameters:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Parameters
+          description: Parameters from vasprun
+        lattice_rec:
+          anyOf:
+          - $ref: '#/components/schemas/MSONableTypedLatticeDict'
+          - type: 'null'
+          title: Lattice Rec
+          description: Reciprocal lattice of the structure
+        structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Structure
+          description: Input structure for the calculation
+        is_hubbard:
+          type: boolean
+          title: Is Hubbard
+          description: Is this a Hubbard +U calculation
+          default: false
+        hubbards:
+          anyOf:
+          - additionalProperties:
+              type: number
+            type: object
+          - type: 'null'
+          title: Hubbards
+          description: The hubbard parameters used
+      type: object
+      title: CalculationInput
+      description: "Document defining VASP calculation inputs.\n\nNote that the following fields were formerly top-level fields on InputDoc,\nbut are now properties of `CalculationInput`:\n    pseudo_potentials (Potcar) : summary of the POTCARs used in the calculation\n    xc_override (str) : the exchange-correlation functional used if not\n        the one specified by POTCAR\n    is_lasph (bool) : how the calculation set LASPH (aspherical corrections)\n    magnetic_moments (list of floats) : on-site magnetic moments"
+    Calculation:
+      properties:
+        dir_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Dir Name
+          description: The directory for this VASP calculation
+        vasp_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Vasp Version
+          description: VASP version used to perform the calculation
+        has_vasp_completed:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Has Vasp Completed
+          description: Whether VASP completed the calculation successfully
+        input:
+          anyOf:
+          - $ref: '#/components/schemas/CalculationInput'
+          - type: 'null'
+          description: VASP input settings for the calculation
+        output:
+          anyOf:
+          - $ref: '#/components/schemas/CalculationOutput'
+          - type: 'null'
+          description: The VASP calculation output
+        completed_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Completed At
+          description: Timestamp for when the calculation was completed
+        task_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Name
+          description: Name of task given by custodian (e.g., relax1, relax2)
+        output_file_paths:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Output File Paths
+          description: Paths of the VASP output files associated with this calculation
+        bader:
+          anyOf:
+          - $ref: '#/components/schemas/BaderAnalysis'
+          - type: 'null'
+          description: Output from bader charge analysis
+        ddec6:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Ddec6
+          description: Output from DDEC6 charge analysis
+        run_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Run Type
+          description: Calculation run type (e.g., HF, HSE06, PBE)
+        task_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Type
+          description: Calculation task type (e.g., Structure Optimization).
+        calc_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Calc Type
+          description: Return calculation type (run type + task_type).
+      type: object
+      title: Calculation
+      description: Full VASP calculation inputs and outputs.
+    OutputDoc:
+      properties:
+        structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Output Structure
+          description: Output Structure from the VASP calculation.
+        density:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Density
+          description: Density of in units of g/cc.
+        energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Energy
+          description: Total Energy in units of eV.
+        forces:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Forces
+          description: The force on each atom in units of eV/A.
+        stress:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Stress
+          description: The stress on the cell in units of kB.
+        energy_per_atom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Energy Per Atom
+          description: The final DFT energy per atom for the last calculation
+        bandgap:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Bandgap
+          description: The DFT bandgap for the last calculation
+      type: object
+      title: OutputDoc
+    TypedPotcarKeywordsDict:
+      properties:
+        header:
+          items:
+            type: string
+          type: array
+          title: Header
+        data:
+          items:
+            type: string
+          type: array
+          title: Data
+      type: object
+      required:
+      - header
+      - data
+      title: TypedPotcarKeywordsDict
+    IonicStep:
+      properties:
+        e_fr_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: E Fr Energy
+          description: The free energy.
+        e_wo_entrp:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: E Wo Entrp
+          description: The energy without entropy.
+        e_0_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: E 0 Energy
+          description: The internal energy.
+        forces:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Forces
+          description: The forces on each atom.
+        stress:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Stress
+          description: The stress on the lattice.
+        electronic_steps:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ElectronicStep'
+            type: array
+          - type: 'null'
+          title: Electronic Steps
+          description: The electronic convergence steps.
+        num_electronic_steps:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Electronic Steps
+          description: The number of electronic steps needed to reach convergence.
+        structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Structure
+          description: The structure at this step.
+      additionalProperties: true
+      type: object
+      title: IonicStep
+      description: Document defining the information at each ionic step.
+    MSONableTypedLatticeDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          prefixItems:
+          - type: boolean
+          - type: boolean
+          - type: boolean
+          type: array
+          maxItems: 3
+          minItems: 3
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      - matrix
+      - pbc
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: MSONableTypedLatticeDict
+    ElectronPhononDisplacedStructures:
+      properties:
+        temperatures:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Temperatures
+          description: The temperatures at which the electron phonon displacements were generated.
+        structures:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedStructureDict'
+            type: array
+          - type: 'null'
+          title: Structures
+          description: The displaced structures corresponding to each temperature.
+      type: object
+      title: ElectronPhononDisplacedStructures
+      description: Document defining electron phonon displaced structures.
+  securitySchemes:
+    ApiKeyAuth:
+      descriptions: MP API key to authorize requests
+      name: X-API-KEY
+      in: header
+      type: apiKey

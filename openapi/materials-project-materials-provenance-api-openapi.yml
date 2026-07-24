@@ -1,0 +1,1125 @@
+openapi: 3.1.0
+info:
+  title: Materials Project Defect Tasks Materials Provenance API
+  description: "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n"
+  version: 0.86.4rc5.dev1+g77c2c1315
+  x-logo:
+    url: https://raw.githubusercontent.com/materialsproject/emmet/master/emmet-api/emmet/api/core/assets/mp_logo_small.png
+security:
+- ApiKeyAuth: []
+tags:
+- name: Materials Provenance
+  description: Route providing provenance data for a material such as whether it is theoretical,             its associated ICSD entries, and relevant references in literature. Note that provenance data             may not be available for all materials in the Materials Project database. See the `ProvenanceDoc`             schema for a full list of fields returned by this route.
+paths:
+  /materials/provenance/:
+    get:
+      tags:
+      - Materials Provenance
+      summary: Get ProvenanceDoc documents
+      operationId: search_materials_provenance__get
+      parameters:
+      - name: material_ids
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Comma-separated list of material_id values to query on
+          title: Material Ids
+        description: Comma-separated list of material_id values to query on
+      - name: deprecated
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether the material is marked as deprecated
+          default: false
+          title: Deprecated
+        description: Whether the material is marked as deprecated
+      - name: _page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+          title: ' Page'
+        description: Page number to request (takes precedent over _limit and _skip).
+      - name: _per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+          default: 100
+          title: ' Per Page'
+        description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+      - name: _skip
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of entries to skip in the search.
+          default: 0
+          title: ' Skip'
+        description: Number of entries to skip in the search.
+      - name: _limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+          default: 100
+          title: ' Limit'
+        description: Max number of entries to return in a single query. Limited to 1000.
+      - name: _fields
+        in: query
+        required: false
+        schema:
+          type: string
+          description: 'Fields to project from ProvenanceDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `created_at` `references` `authors` `remarks` `tags` `theoretical` `database_IDs` `history`'
+          title: ' Fields'
+        description: 'Fields to project from ProvenanceDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `created_at` `references` `authors` `remarks` `tags` `theoretical` `database_IDs` `history`'
+      - name: _all_fields
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: Include all fields.
+          default: false
+          title: ' All Fields'
+        description: Include all fields.
+      responses:
+        '200':
+          description: Search for a ProvenanceDoc
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response_ProvenanceDoc_'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    EmmetMeta:
+      properties:
+        emmet_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Emmet Version
+          description: The version of emmet this document was built with.
+          default: 0.86.4rc4
+        pymatgen_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pymatgen Version
+          description: The version of pymatgen this document was built with.
+          default: 2026.4.16
+        run_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Run Id
+          description: The run id associated with this data build.
+        batch_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Batch Id
+          description: Identifier corresponding to the origin of this document's blessed task.
+        database_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Database Version
+          description: The database version for the built data.
+        build_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Build Date
+          description: The build date for this document.
+        license:
+          anyOf:
+          - type: string
+            enum:
+            - BY-C
+            - BY-NC
+          - type: 'null'
+          title: License
+          description: License for the data entry.
+      type: object
+      title: EmmetMeta
+      description: Default emmet metadata.
+    TypedAggregateProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Selective Dynamics
+      type: object
+      title: TypedAggregateProperitesDict
+    History:
+      properties:
+        name:
+          type: string
+          title: Name
+        url:
+          type: string
+          title: Url
+        description:
+          anyOf:
+          - $ref: '#/components/schemas/ProvenanceDescription'
+          - type: 'null'
+          description: Dictionary of extra data for this history node.
+      type: object
+      required:
+      - name
+      - url
+      title: History
+      description: History of the material provenance
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    TransformationMeta:
+      properties:
+        transformation_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Transformation Name
+        formula:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Formula
+        structureid:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Structureid
+      type: object
+      title: TransformationMeta
+      description: Schema for transformation fields in history.description.
+    TypedSpeciesDict:
+      properties:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation State
+        spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin
+        occu:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    TypedSiteDict:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
+      type: object
+      title: TypedSiteDict
+    ProvenanceDoc:
+      properties:
+        builder_meta:
+          anyOf:
+          - $ref: '#/components/schemas/EmmetMeta'
+          - type: 'null'
+          description: Builder metadata.
+        nsites:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Nsites
+          description: Total number of sites in the structure.
+        elements:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Elements
+          description: List of elements in the material.
+        nelements:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Nelements
+          description: Number of elements.
+        composition:
+          anyOf:
+          - additionalProperties:
+              type: number
+            type: object
+          - type: 'null'
+          title: Composition
+          description: Full composition for the material.
+        composition_reduced:
+          anyOf:
+          - additionalProperties:
+              type: number
+            type: object
+          - type: 'null'
+          title: Reduced Composition
+          description: Simplified representation of the composition.
+        formula_pretty:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pretty Formula
+          description: Cleaned representation of the formula.
+        formula_anonymous:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Anonymous Formula
+          description: Anonymized representation of the formula.
+        chemsys:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Chemical System
+          description: Dash-separated string of elements in the material.
+        volume:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Volume
+          description: Total volume for this structure in Å³.
+        density:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Density
+          description: Density in g/cm³.
+        density_atomic:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Packing Density
+          description: The atomic packing density in Å³/atom.
+        symmetry:
+          anyOf:
+          - $ref: '#/components/schemas/SymmetryData'
+          - type: 'null'
+          description: Symmetry data for this material.
+        material_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          - type: 'null'
+          title: Material Id
+          description: 'The Materials Project ID of the material, used as a universal reference across property documents.This comes in the form: mp-******.'
+        deprecated:
+          type: boolean
+          title: Deprecated
+          description: Whether this property document is deprecated.
+          default: true
+        deprecation_reasons:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Deprecation Reasons
+          description: List of deprecation tags detailing why this document isn't valid.
+        last_updated:
+          type: string
+          format: date-time
+          title: Last Updated
+          description: Timestamp for the most recent calculation update for this property.
+        origins:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/PropertyOrigin'
+            type: array
+          - type: 'null'
+          title: Origins
+          description: Dictionary for tracking the provenance of properties.
+        warnings:
+          items:
+            type: string
+          type: array
+          title: Warnings
+          description: Any warnings related to this property.
+          default: []
+        property_name:
+          type: string
+          title: Property Name
+          default: provenance
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+          description: creation date for the first structure corresponding to this material
+        references:
+          items:
+            type: string
+          type: array
+          title: References
+          description: Bibtex reference strings for this material
+        authors:
+          items:
+            $ref: '#/components/schemas/Author'
+          type: array
+          title: Authors
+          description: list of authors for this material
+        remarks:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Remarks
+          description: list of remarks for the provenance of this material
+        tags:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Tags
+        theoretical:
+          type: boolean
+          title: Theoretical
+          description: If this material has any experimental provenance or not
+          default: true
+        database_IDs:
+          anyOf:
+          - additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+          - type: 'null'
+          title: Database Ids
+          description: Database IDs corresponding to this material
+        history:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/History'
+            type: array
+          - type: 'null'
+          title: History
+          description: list of history nodes specifying the transformations or orignation of this material for the entry closest matching the material input
+      type: object
+      title: ProvenanceDoc
+      description: A provenance property block
+    TypedStructureDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        lattice:
+          $ref: '#/components/schemas/TypedLatticeDict'
+        sites:
+          items:
+            $ref: '#/components/schemas/TypedSiteDict'
+          type: array
+          title: Sites
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
+          - type: 'null'
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      - lattice
+      - sites
+      title: TypedStructureDict
+    Author:
+      properties:
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Email
+      type: object
+      title: Author
+      description: Author information
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    TypedSiteProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Selective Dynamics
+        coordination_no:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Coordination No
+        forces:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Forces
+      type: object
+      title: TypedSiteProperitesDict
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    SymmetryData:
+      properties:
+        crystal_system:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Crystal System
+          description: The crystal system for this lattice.
+        symbol:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Space Group Symbol
+          description: The spacegroup symbol for the lattice.
+        hall:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hall Symbol
+          description: Hall symbol for the lattice
+        number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Space Group Number
+          description: The spacegroup number for the lattice.
+        point_group:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Point Group Symbol
+          description: The point group for the lattice.
+        symprec:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Symmetry Finding Precision
+          description: The precision provided to spglib to determine the symmetry of this structure.
+        angle_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Angle Tolerance
+          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: spglib version
+      type: object
+      title: SymmetryData
+      description: Defines a symmetry data set for materials documents
+    PropertyOrigin:
+      properties:
+        name:
+          type: string
+          title: Name
+          description: The property name
+        task_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          title: Task Id
+          description: The calculation ID this property comes from.
+        last_updated:
+          type: string
+          format: date-time
+          title: Last Updated
+          description: The timestamp when this calculation was last updated
+      type: object
+      required:
+      - name
+      - task_id
+      title: PropertyOrigin
+      description: Provenance document for the origin of properties in a material document
+    TypedLatticeDict:
+      properties:
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - matrix
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: TypedLatticeDict
+    ProvenanceDescription:
+      properties:
+        monty_class:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Monty Class
+        monty_module:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Monty Module
+        IZA_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Iza Code
+        algo:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Algo
+        cif_data:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cif Data
+        crystal_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Crystal Id
+        datetime:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Datetime
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        disordered_crystal_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Disordered Crystal Id
+        experimental:
+          type: boolean
+          title: Experimental
+          default: false
+        fraction_to_remove:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Fraction To Remove
+        fw_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Fw Id
+        icsd_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Icsd Id
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Id
+        input_structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Input Structure
+        lattice:
+          anyOf:
+          - $ref: '#/components/schemas/MSONableTypedLatticeDict'
+          - type: 'null'
+          title: Lattice
+        materialsid:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          - type: 'null'
+          title: Materialsid
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        original_file:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Original File
+        oxidation_states:
+          anyOf:
+          - additionalProperties:
+              type: integer
+            type: object
+          - type: 'null'
+          title: Oxidation States
+        query:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Query
+        remark:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Remark
+        scaling_matrix:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Scaling Matrix
+        sites:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Sites
+        source:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Source
+        spacegroup:
+          anyOf:
+          - $ref: '#/components/schemas/SymmetryData'
+          - type: 'null'
+        specie_to_remove:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Specie To Remove
+        species_map:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Species Map
+        species_to_remove:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Species To Remove
+        string:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: String
+        structureid:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Structureid
+        task_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Id
+        task_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Type
+        transformation_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Transformation Name
+        transformations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TransformationMeta'
+            type: array
+          - type: 'null'
+          title: Transformations
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Version
+      type: object
+      title: ProvenanceDescription
+      description: Schema for heterogeneous provenance description data.
+    Response_ProvenanceDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ProvenanceDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[ProvenanceDoc]
+    MSONableTypedLatticeDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          prefixItems:
+          - type: boolean
+          - type: boolean
+          - type: boolean
+          type: array
+          maxItems: 3
+          minItems: 3
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      - matrix
+      - pbc
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: MSONableTypedLatticeDict
+  securitySchemes:
+    ApiKeyAuth:
+      descriptions: MP API key to authorize requests
+      name: X-API-KEY
+      in: header
+      type: apiKey

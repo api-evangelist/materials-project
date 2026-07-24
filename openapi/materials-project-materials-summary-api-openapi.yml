@@ -1,0 +1,2626 @@
+openapi: 3.1.0
+info:
+  title: Materials Project Defect Tasks Materials Summary API
+  description: "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n"
+  version: 0.86.4rc5.dev1+g77c2c1315
+  x-logo:
+    url: https://raw.githubusercontent.com/materialsproject/emmet/master/emmet-api/emmet/api/core/assets/mp_logo_small.png
+security:
+- ApiKeyAuth: []
+tags:
+- name: Materials Summary
+  description: Route providing a large amount of amalgamated data for a material. This is constructed by             combining subsets of data from many of the other API endpoints. The summary endpoint is very useful for             performing queries for materials over a large property space. Note that every unique material within             the Materials Project should have a set of summary data. See the `SummaryDoc` schema for a full list of             fields returned by this route.
+paths:
+  /materials/summary/:
+    get:
+      tags:
+      - Materials Summary
+      summary: Get SummaryDoc documents
+      operationId: search_materials_summary__get
+      parameters:
+      - name: material_ids
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Comma-separated list of material_ids to query on
+          title: Material Ids
+        description: Comma-separated list of material_ids to query on
+      - name: formula
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided.
+          title: Formula
+        description: Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided.
+      - name: chemsys
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries
+          title: Chemsys
+        description: A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries
+      - name: elements
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            maxLength: 60
+          - type: 'null'
+          description: Query by elements in the material composition as a comma-separated list
+          title: Elements
+        description: Query by elements in the material composition as a comma-separated list
+      - name: exclude_elements
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            maxLength: 60
+          - type: 'null'
+          description: Query by excluded elements in the material composition as a comma-separated list
+          title: Exclude Elements
+        description: Query by excluded elements in the material composition as a comma-separated list
+      - name: possible_species
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Comma delimited list of element symbols appended with oxidation states.                 (e.g. Cr2+,O2-)
+          title: Possible Species
+        description: Comma delimited list of element symbols appended with oxidation states.                 (e.g. Cr2+,O2-)
+      - name: crystal_system
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Crystal system of the material. If a comma-separated string, will query by multiple crystal systems.
+          title: Crystal System
+        description: Crystal system of the material. If a comma-separated string, will query by multiple crystal systems.
+      - name: spacegroup_number
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          description: Space group number of the material. If a comma-separated string, will query by multiple space group numbers.
+          title: Spacegroup Number
+        description: Space group number of the material. If a comma-separated string, will query by multiple space group numbers.
+      - name: spacegroup_symbol
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Space group symbol of the material. If a comma-separated string, will query by multiple space group numbers.
+          title: Spacegroup Symbol
+        description: Space group symbol of the material. If a comma-separated string, will query by multiple space group numbers.
+      - name: is_stable
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether the material is stable.
+          title: Is Stable
+        description: Whether the material is stable.
+      - name: theoretical
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether the material is theoretical.
+          title: Theoretical
+        description: Whether the material is theoretical.
+      - name: ordering
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Ordering'
+          - type: 'null'
+          description: Magnetic ordering of the material.
+          title: Ordering
+        description: Magnetic ordering of the material.
+      - name: is_gap_direct
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether a band gap is direct or not.
+          title: Is Gap Direct
+        description: Whether a band gap is direct or not.
+      - name: is_metal
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether the material is considered a metal.
+          title: Is Metal
+        description: Whether the material is considered a metal.
+      - name: nsites_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for maximum value of nsites
+          title: Nsites Max
+        description: Query for maximum value of nsites
+      - name: nsites_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for minimum value of nsites
+          title: Nsites Min
+        description: Query for minimum value of nsites
+      - name: nsites
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for nsites being equal to an exact value
+          title: Nsites
+        description: Query for nsites being equal to an exact value
+      - name: nsites_not_eq
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for nsites being not equal to an exact value
+          title: Nsites Not Eq
+        description: Query for nsites being not equal to an exact value
+      - name: nsites_eq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for nsites being any of these values. Provide a comma separated list.
+          title: Nsites Eq Any
+        description: Query for nsites being any of these values. Provide a comma separated list.
+      - name: nsites_neq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for nsites being not any of these values.                             Provide a comma separated list.
+          title: Nsites Neq Any
+        description: Query for nsites being not any of these values.                             Provide a comma separated list.
+      - name: nelements_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for maximum value of nelements
+          title: Nelements Max
+        description: Query for maximum value of nelements
+      - name: nelements_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for minimum value of nelements
+          title: Nelements Min
+        description: Query for minimum value of nelements
+      - name: nelements
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for nelements being equal to an exact value
+          title: Nelements
+        description: Query for nelements being equal to an exact value
+      - name: nelements_not_eq
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for nelements being not equal to an exact value
+          title: Nelements Not Eq
+        description: Query for nelements being not equal to an exact value
+      - name: nelements_eq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for nelements being any of these values. Provide a comma separated list.
+          title: Nelements Eq Any
+        description: Query for nelements being any of these values. Provide a comma separated list.
+      - name: nelements_neq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for nelements being not any of these values.                             Provide a comma separated list.
+          title: Nelements Neq Any
+        description: Query for nelements being not any of these values.                             Provide a comma separated list.
+      - name: volume_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of volume
+          title: Volume Max
+        description: Query for maximum value of volume
+      - name: volume_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of volume
+          title: Volume Min
+        description: Query for minimum value of volume
+      - name: density_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of density
+          title: Density Max
+        description: Query for maximum value of density
+      - name: density_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of density
+          title: Density Min
+        description: Query for minimum value of density
+      - name: density_atomic_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of density_atomic
+          title: Density Atomic Max
+        description: Query for maximum value of density_atomic
+      - name: density_atomic_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of density_atomic
+          title: Density Atomic Min
+        description: Query for minimum value of density_atomic
+      - name: uncorrected_energy_per_atom_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of uncorrected_energy_per_atom
+          title: Uncorrected Energy Per Atom Max
+        description: Query for maximum value of uncorrected_energy_per_atom
+      - name: uncorrected_energy_per_atom_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of uncorrected_energy_per_atom
+          title: Uncorrected Energy Per Atom Min
+        description: Query for minimum value of uncorrected_energy_per_atom
+      - name: energy_per_atom_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of energy_per_atom
+          title: Energy Per Atom Max
+        description: Query for maximum value of energy_per_atom
+      - name: energy_per_atom_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of energy_per_atom
+          title: Energy Per Atom Min
+        description: Query for minimum value of energy_per_atom
+      - name: formation_energy_per_atom_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of formation_energy_per_atom
+          title: Formation Energy Per Atom Max
+        description: Query for maximum value of formation_energy_per_atom
+      - name: formation_energy_per_atom_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of formation_energy_per_atom
+          title: Formation Energy Per Atom Min
+        description: Query for minimum value of formation_energy_per_atom
+      - name: energy_above_hull_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of energy_above_hull
+          title: Energy Above Hull Max
+        description: Query for maximum value of energy_above_hull
+      - name: energy_above_hull_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of energy_above_hull
+          title: Energy Above Hull Min
+        description: Query for minimum value of energy_above_hull
+      - name: equilibrium_reaction_energy_per_atom_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of equilibrium_reaction_energy_per_atom
+          title: Equilibrium Reaction Energy Per Atom Max
+        description: Query for maximum value of equilibrium_reaction_energy_per_atom
+      - name: equilibrium_reaction_energy_per_atom_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of equilibrium_reaction_energy_per_atom
+          title: Equilibrium Reaction Energy Per Atom Min
+        description: Query for minimum value of equilibrium_reaction_energy_per_atom
+      - name: band_gap_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of band_gap
+          title: Band Gap Max
+        description: Query for maximum value of band_gap
+      - name: band_gap_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of band_gap
+          title: Band Gap Min
+        description: Query for minimum value of band_gap
+      - name: cbm_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of cbm
+          title: Cbm Max
+        description: Query for maximum value of cbm
+      - name: cbm_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of cbm
+          title: Cbm Min
+        description: Query for minimum value of cbm
+      - name: vbm_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of vbm
+          title: Vbm Max
+        description: Query for maximum value of vbm
+      - name: vbm_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of vbm
+          title: Vbm Min
+        description: Query for minimum value of vbm
+      - name: efermi_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of efermi
+          title: Efermi Max
+        description: Query for maximum value of efermi
+      - name: efermi_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of efermi
+          title: Efermi Min
+        description: Query for minimum value of efermi
+      - name: dos_energy_up_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of dos_energy_up
+          title: Dos Energy Up Max
+        description: Query for maximum value of dos_energy_up
+      - name: dos_energy_up_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of dos_energy_up
+          title: Dos Energy Up Min
+        description: Query for minimum value of dos_energy_up
+      - name: dos_energy_down_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of dos_energy_down
+          title: Dos Energy Down Max
+        description: Query for maximum value of dos_energy_down
+      - name: dos_energy_down_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of dos_energy_down
+          title: Dos Energy Down Min
+        description: Query for minimum value of dos_energy_down
+      - name: total_magnetization_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of total_magnetization
+          title: Total Magnetization Max
+        description: Query for maximum value of total_magnetization
+      - name: total_magnetization_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of total_magnetization
+          title: Total Magnetization Min
+        description: Query for minimum value of total_magnetization
+      - name: total_magnetization_normalized_vol_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of total_magnetization_normalized_vol
+          title: Total Magnetization Normalized Vol Max
+        description: Query for maximum value of total_magnetization_normalized_vol
+      - name: total_magnetization_normalized_vol_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of total_magnetization_normalized_vol
+          title: Total Magnetization Normalized Vol Min
+        description: Query for minimum value of total_magnetization_normalized_vol
+      - name: total_magnetization_normalized_formula_units_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of total_magnetization_normalized_formula_units
+          title: Total Magnetization Normalized Formula Units Max
+        description: Query for maximum value of total_magnetization_normalized_formula_units
+      - name: total_magnetization_normalized_formula_units_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of total_magnetization_normalized_formula_units
+          title: Total Magnetization Normalized Formula Units Min
+        description: Query for minimum value of total_magnetization_normalized_formula_units
+      - name: num_magnetic_sites_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for maximum value of num_magnetic_sites
+          title: Num Magnetic Sites Max
+        description: Query for maximum value of num_magnetic_sites
+      - name: num_magnetic_sites_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for minimum value of num_magnetic_sites
+          title: Num Magnetic Sites Min
+        description: Query for minimum value of num_magnetic_sites
+      - name: num_magnetic_sites
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for num_magnetic_sites being equal to an exact value
+          title: Num Magnetic Sites
+        description: Query for num_magnetic_sites being equal to an exact value
+      - name: num_magnetic_sites_not_eq
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for num_magnetic_sites being not equal to an exact value
+          title: Num Magnetic Sites Not Eq
+        description: Query for num_magnetic_sites being not equal to an exact value
+      - name: num_magnetic_sites_eq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for num_magnetic_sites being any of these values. Provide a comma separated list.
+          title: Num Magnetic Sites Eq Any
+        description: Query for num_magnetic_sites being any of these values. Provide a comma separated list.
+      - name: num_magnetic_sites_neq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for num_magnetic_sites being not any of these values.                             Provide a comma separated list.
+          title: Num Magnetic Sites Neq Any
+        description: Query for num_magnetic_sites being not any of these values.                             Provide a comma separated list.
+      - name: num_unique_magnetic_sites_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for maximum value of num_unique_magnetic_sites
+          title: Num Unique Magnetic Sites Max
+        description: Query for maximum value of num_unique_magnetic_sites
+      - name: num_unique_magnetic_sites_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for minimum value of num_unique_magnetic_sites
+          title: Num Unique Magnetic Sites Min
+        description: Query for minimum value of num_unique_magnetic_sites
+      - name: num_unique_magnetic_sites
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for num_unique_magnetic_sites being equal to an exact value
+          title: Num Unique Magnetic Sites
+        description: Query for num_unique_magnetic_sites being equal to an exact value
+      - name: num_unique_magnetic_sites_not_eq
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Query for num_unique_magnetic_sites being not equal to an exact value
+          title: Num Unique Magnetic Sites Not Eq
+        description: Query for num_unique_magnetic_sites being not equal to an exact value
+      - name: num_unique_magnetic_sites_eq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for num_unique_magnetic_sites being any of these values. Provide a comma separated list.
+          title: Num Unique Magnetic Sites Eq Any
+        description: Query for num_unique_magnetic_sites being any of these values. Provide a comma separated list.
+      - name: num_unique_magnetic_sites_neq_any
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Query for num_unique_magnetic_sites being not any of these values.                             Provide a comma separated list.
+          title: Num Unique Magnetic Sites Neq Any
+        description: Query for num_unique_magnetic_sites being not any of these values.                             Provide a comma separated list.
+      - name: universal_anisotropy_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of universal_anisotropy
+          title: Universal Anisotropy Max
+        description: Query for maximum value of universal_anisotropy
+      - name: universal_anisotropy_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of universal_anisotropy
+          title: Universal Anisotropy Min
+        description: Query for minimum value of universal_anisotropy
+      - name: homogeneous_poisson_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of homogeneous_poisson
+          title: Homogeneous Poisson Max
+        description: Query for maximum value of homogeneous_poisson
+      - name: homogeneous_poisson_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of homogeneous_poisson
+          title: Homogeneous Poisson Min
+        description: Query for minimum value of homogeneous_poisson
+      - name: e_total_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of e_total
+          title: E Total Max
+        description: Query for maximum value of e_total
+      - name: e_total_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of e_total
+          title: E Total Min
+        description: Query for minimum value of e_total
+      - name: e_ionic_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of e_ionic
+          title: E Ionic Max
+        description: Query for maximum value of e_ionic
+      - name: e_ionic_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of e_ionic
+          title: E Ionic Min
+        description: Query for minimum value of e_ionic
+      - name: e_electronic_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of e_electronic
+          title: E Electronic Max
+        description: Query for maximum value of e_electronic
+      - name: e_electronic_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of e_electronic
+          title: E Electronic Min
+        description: Query for minimum value of e_electronic
+      - name: n_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of n
+          title: N Max
+        description: Query for maximum value of n
+      - name: n_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of n
+          title: N Min
+        description: Query for minimum value of n
+      - name: e_ij_max_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of e_ij_max
+          title: E Ij Max Max
+        description: Query for maximum value of e_ij_max
+      - name: e_ij_max_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of e_ij_max
+          title: E Ij Max Min
+        description: Query for minimum value of e_ij_max
+      - name: weighted_surface_energy_EV_PER_ANG2_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of weighted_surface_energy_EV_PER_ANG2
+          title: Weighted Surface Energy Ev Per Ang2 Max
+        description: Query for maximum value of weighted_surface_energy_EV_PER_ANG2
+      - name: weighted_surface_energy_EV_PER_ANG2_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of weighted_surface_energy_EV_PER_ANG2
+          title: Weighted Surface Energy Ev Per Ang2 Min
+        description: Query for minimum value of weighted_surface_energy_EV_PER_ANG2
+      - name: weighted_surface_energy_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of weighted_surface_energy
+          title: Weighted Surface Energy Max
+        description: Query for maximum value of weighted_surface_energy
+      - name: weighted_surface_energy_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of weighted_surface_energy
+          title: Weighted Surface Energy Min
+        description: Query for minimum value of weighted_surface_energy
+      - name: weighted_work_function_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of weighted_work_function
+          title: Weighted Work Function Max
+        description: Query for maximum value of weighted_work_function
+      - name: weighted_work_function_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of weighted_work_function
+          title: Weighted Work Function Min
+        description: Query for minimum value of weighted_work_function
+      - name: surface_anisotropy_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of surface_anisotropy
+          title: Surface Anisotropy Max
+        description: Query for maximum value of surface_anisotropy
+      - name: surface_anisotropy_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of surface_anisotropy
+          title: Surface Anisotropy Min
+        description: Query for minimum value of surface_anisotropy
+      - name: shape_factor_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for maximum value of shape_factor
+          title: Shape Factor Max
+        description: Query for maximum value of shape_factor
+      - name: shape_factor_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Query for minimum value of shape_factor
+          title: Shape Factor Min
+        description: Query for minimum value of shape_factor
+      - name: k_voigt_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Maximum value for the Voigt average of the bulk modulus in GPa.
+          title: K Voigt Max
+        description: Maximum value for the Voigt average of the bulk modulus in GPa.
+      - name: k_voigt_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Minimum value for the Voigt average of the bulk modulus in GPa.
+          title: K Voigt Min
+        description: Minimum value for the Voigt average of the bulk modulus in GPa.
+      - name: k_reuss_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Maximum value for the Reuss average of the bulk modulus in GPa.
+          title: K Reuss Max
+        description: Maximum value for the Reuss average of the bulk modulus in GPa.
+      - name: k_reuss_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Minimum value for the Reuss average of the bulk modulus in GPa.
+          title: K Reuss Min
+        description: Minimum value for the Reuss average of the bulk modulus in GPa.
+      - name: k_vrh_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Maximum value for the Voigt-Reuss-Hill average of the bulk modulus in GPa.
+          title: K Vrh Max
+        description: Maximum value for the Voigt-Reuss-Hill average of the bulk modulus in GPa.
+      - name: k_vrh_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Minimum value for the Voigt-Reuss-Hill average of the bulk modulus in GPa.
+          title: K Vrh Min
+        description: Minimum value for the Voigt-Reuss-Hill average of the bulk modulus in GPa.
+      - name: g_voigt_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Maximum value for the Voigt average of the shear modulus in GPa.
+          title: G Voigt Max
+        description: Maximum value for the Voigt average of the shear modulus in GPa.
+      - name: g_voigt_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Minimum value for the Voigt average of the shear modulus in GPa.
+          title: G Voigt Min
+        description: Minimum value for the Voigt average of the shear modulus in GPa.
+      - name: g_reuss_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Maximum value for the Reuss average of the shear modulus in GPa.
+          title: G Reuss Max
+        description: Maximum value for the Reuss average of the shear modulus in GPa.
+      - name: g_reuss_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Minimum value for the Reuss average of the shear modulus in GPa.
+          title: G Reuss Min
+        description: Minimum value for the Reuss average of the shear modulus in GPa.
+      - name: g_vrh_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Maximum value for the Voigt-Reuss-Hill average of the shear modulus in GPa.
+          title: G Vrh Max
+        description: Maximum value for the Voigt-Reuss-Hill average of the shear modulus in GPa.
+      - name: g_vrh_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Minimum value for the Voigt-Reuss-Hill average of the shear modulus in GPa.
+          title: G Vrh Min
+        description: Minimum value for the Voigt-Reuss-Hill average of the shear modulus in GPa.
+      - name: has_reconstructed
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether the material has reconstructed surfaces.
+          title: Has Reconstructed
+        description: Whether the material has reconstructed surfaces.
+      - name: has_props
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Comma-delimited list of possible properties given by HasPropsEnum to search for.
+          title: Has Props
+        description: Comma-delimited list of possible properties given by HasPropsEnum to search for.
+      - name: deprecated
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether the material is marked as deprecated
+          default: false
+          title: Deprecated
+        description: Whether the material is marked as deprecated
+      - name: _page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+          title: ' Page'
+        description: Page number to request (takes precedent over _limit and _skip).
+      - name: _per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+          default: 100
+          title: ' Per Page'
+        description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+      - name: _skip
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of entries to skip in the search.
+          default: 0
+          title: ' Skip'
+        description: Number of entries to skip in the search.
+      - name: _limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+          default: 100
+          title: ' Limit'
+        description: Max number of entries to return in a single query. Limited to 1000.
+      - name: _fields
+        in: query
+        required: false
+        schema:
+          type: string
+          description: 'Fields to project from SummaryDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `task_ids` `uncorrected_energy_per_atom` `energy_per_atom` `formation_energy_per_atom` `energy_above_hull` `is_stable` `equilibrium_reaction_energy_per_atom` `decomposes_to` `xas` `grain_boundaries` `band_gap` `cbm` `vbm` `efermi` `is_gap_direct` `is_metal` `es_source_calc_id` `bandstructure` `dos` `dos_energy_up` `dos_energy_down` `is_magnetic` `ordering` `total_magnetization` `total_magnetization_normalized_vol` `total_magnetization_normalized_formula_units` `num_magnetic_sites` `num_unique_magnetic_sites` `types_of_magnetic_species` `bulk_modulus` `shear_modulus` `universal_anisotropy` `homogeneous_poisson` `e_total` `e_ionic` `e_electronic` `n` `e_ij_max` `weighted_surface_energy_EV_PER_ANG2` `weighted_surface_energy` `weighted_work_function` `surface_anisotropy` `shape_factor` `has_reconstructed` `possible_species` `has_props` `theoretical` `database_IDs`'
+          title: ' Fields'
+        description: 'Fields to project from SummaryDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `task_ids` `uncorrected_energy_per_atom` `energy_per_atom` `formation_energy_per_atom` `energy_above_hull` `is_stable` `equilibrium_reaction_energy_per_atom` `decomposes_to` `xas` `grain_boundaries` `band_gap` `cbm` `vbm` `efermi` `is_gap_direct` `is_metal` `es_source_calc_id` `bandstructure` `dos` `dos_energy_up` `dos_energy_down` `is_magnetic` `ordering` `total_magnetization` `total_magnetization_normalized_vol` `total_magnetization_normalized_formula_units` `num_magnetic_sites` `num_unique_magnetic_sites` `types_of_magnetic_species` `bulk_modulus` `shear_modulus` `universal_anisotropy` `homogeneous_poisson` `e_total` `e_ionic` `e_electronic` `n` `e_ij_max` `weighted_surface_energy_EV_PER_ANG2` `weighted_surface_energy` `weighted_work_function` `surface_anisotropy` `shape_factor` `has_reconstructed` `possible_species` `has_props` `theoretical` `database_IDs`'
+      - name: _all_fields
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: Include all fields.
+          default: false
+          title: ' All Fields'
+        description: Include all fields.
+      - name: license
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - enum:
+            - BY-C
+            - BY-NC
+            - All
+            type: string
+          - type: 'null'
+          description: Query by license. Can be commercial or non-commercial, or both
+          default: BY-C
+          title: License
+        description: Query by license. Can be commercial or non-commercial, or both
+      - name: _sort_fields
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Comma delimited fields to sort with. Prefixing '-' to a field will force a sort in descending order.
+          title: ' Sort Fields'
+        description: Comma delimited fields to sort with. Prefixing '-' to a field will force a sort in descending order.
+      - name: batch_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Query by batch identifier
+          title: Batch Id
+        description: Query by batch identifier
+      - name: batch_id_not_eq
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Exclude batch identifier
+          title: Batch Id Not Eq
+        description: Exclude batch identifier
+      - name: batch_id_eq_any
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Query by a comma-separated list of batch identifiers
+          title: Batch Id Eq Any
+        description: Query by a comma-separated list of batch identifiers
+      - name: batch_id_neq_any
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Exclude a comma-separated list of batch identifiers
+          title: Batch Id Neq Any
+        description: Exclude a comma-separated list of batch identifiers
+      responses:
+        '200':
+          description: Search for a SummaryDoc
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response_SummaryDoc_'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    EmmetMeta:
+      properties:
+        emmet_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Emmet Version
+          description: The version of emmet this document was built with.
+          default: 0.86.4rc4
+        pymatgen_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pymatgen Version
+          description: The version of pymatgen this document was built with.
+          default: 2026.4.16
+        run_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Run Id
+          description: The run id associated with this data build.
+        batch_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Batch Id
+          description: Identifier corresponding to the origin of this document's blessed task.
+        database_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Database Version
+          description: The database version for the built data.
+        build_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Build Date
+          description: The build date for this document.
+        license:
+          anyOf:
+          - type: string
+            enum:
+            - BY-C
+            - BY-NC
+          - type: 'null'
+          title: License
+          description: License for the data entry.
+      type: object
+      title: EmmetMeta
+      description: Default emmet metadata.
+    TypedKpointDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        lattice:
+          $ref: '#/components/schemas/MSONableTypedLatticeDict'
+        fcoords:
+          items:
+            type: number
+          type: array
+          title: Fcoords
+        ccoords:
+          items:
+            type: number
+          type: array
+          title: Ccoords
+        label:
+          type: string
+          title: Label
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      - lattice
+      - fcoords
+      - ccoords
+      - label
+      title: TypedKpointDict
+    TypedAggregateProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Selective Dynamics
+      type: object
+      title: TypedAggregateProperitesDict
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    Response_SummaryDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SummaryDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[SummaryDoc]
+    TypedSpeciesDict:
+      properties:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation State
+        spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin
+        occu:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    DosSummaryData:
+      properties:
+        task_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          title: Task Id
+          description: The source calculation (task) ID for the electronic structure data. This has the same form as a Materials Project ID.
+        band_gap:
+          type: number
+          title: Band Gap
+          description: Band gap energy in eV.
+        cbm:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Cbm
+          description: Conduction band minimum data.
+        vbm:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Vbm
+          description: Valence band maximum data.
+        efermi:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Efermi
+          description: Fermi energy in eV.
+        spin_polarization:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin Polarization
+          description: Spin polarization at the fermi level.
+      type: object
+      required:
+      - task_id
+      - band_gap
+      title: DosSummaryData
+      description: Schematize high-level DOS data for the API.
+    DosData:
+      properties:
+        total:
+          anyOf:
+          - additionalProperties:
+              $ref: '#/components/schemas/DosSummaryData'
+            type: object
+          - type: 'null'
+          title: Total
+          description: Total DOS summary data.
+        elemental:
+          anyOf:
+          - additionalProperties:
+              additionalProperties:
+                additionalProperties:
+                  $ref: '#/components/schemas/DosSummaryData'
+                type: object
+              propertyNames:
+                enum:
+                - s
+                - p
+                - d
+                - f
+                - total
+              type: object
+            type: object
+          - type: 'null'
+          title: Elemental
+          description: Band structure summary data using the Hinuma et al. path convention.
+        orbital:
+          anyOf:
+          - additionalProperties:
+              additionalProperties:
+                $ref: '#/components/schemas/DosSummaryData'
+              type: object
+            propertyNames:
+              enum:
+              - s
+              - p
+              - d
+              - f
+              - total
+            type: object
+          - type: 'null'
+          title: Orbital
+          description: Band structure summary data using the Latimer-Munro path convention.
+        magnetic_ordering:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Magnetic ordering of the calculation.
+      type: object
+      title: DosData
+    TypedSiteDict:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
+      type: object
+      title: TypedSiteDict
+    BandStructureSummaryData:
+      properties:
+        task_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          title: Task Id
+          description: The source calculation (task) ID for the electronic structure data. This has the same form as a Materials Project ID.
+        band_gap:
+          type: number
+          title: Band Gap
+          description: Band gap energy in eV.
+        cbm:
+          anyOf:
+          - $ref: '#/components/schemas/TypedBandDict'
+          - type: 'null'
+          description: Conduction band minimum data.
+        vbm:
+          anyOf:
+          - $ref: '#/components/schemas/TypedBandDict'
+          - type: 'null'
+          description: Valence band maximum data.
+        efermi:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Efermi
+          description: Fermi energy in eV.
+        is_gap_direct:
+          type: boolean
+          title: Is Gap Direct
+          description: Whether the band gap is direct.
+        is_metal:
+          type: boolean
+          title: Is Metal
+          description: Whether the material is a metal.
+        magnetic_ordering:
+          type: string
+          description: Magnetic ordering of the calculation.
+        equivalent_labels:
+          additionalProperties:
+            additionalProperties:
+              additionalProperties:
+                type: string
+              type: object
+            type: object
+          type: object
+          title: Equivalent Labels
+          description: Equivalent k-point labels in other k-path conventions.
+        nbands:
+          type: number
+          title: Nbands
+          description: Number of bands.
+        direct_gap:
+          type: number
+          title: Direct Gap
+          description: Direct gap energy in eV.
+      type: object
+      required:
+      - task_id
+      - band_gap
+      - is_gap_direct
+      - is_metal
+      - magnetic_ordering
+      - equivalent_labels
+      - nbands
+      - direct_gap
+      title: BandStructureSummaryData
+      description: Schematize high-level band structure data for the API.
+    TypedStructureDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        lattice:
+          $ref: '#/components/schemas/TypedLatticeDict'
+        sites:
+          items:
+            $ref: '#/components/schemas/TypedSiteDict'
+          type: array
+          title: Sites
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
+          - type: 'null'
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      - lattice
+      - sites
+      title: TypedStructureDict
+    TypedBandDict:
+      properties:
+        band_index:
+          additionalProperties:
+            items:
+              type: integer
+            type: array
+          type: object
+          title: Band Index
+        kpoint_index:
+          items:
+            type: integer
+          type: array
+          title: Kpoint Index
+        kpoint:
+          $ref: '#/components/schemas/TypedKpointDict'
+          title: Kpoint
+        energy:
+          type: number
+          title: Energy
+        projections:
+          additionalProperties:
+            items:
+              items:
+                type: number
+              type: array
+            type: array
+          type: object
+          title: Projections
+      type: object
+      required:
+      - band_index
+      - kpoint_index
+      - kpoint
+      - energy
+      - projections
+      title: TypedBandDict
+      description: Type def for data stored for cbms or vbms
+    DecompositionProduct:
+      properties:
+        material_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          - type: 'null'
+          title: Material Id
+          description: The Materials Project ID for the material this decomposition points to.
+        formula:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Formula
+          description: The formula of the decomposed material this material decomposes to.
+        amount:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Amount
+          description: The amount of the decomposed material by formula units this this material decomposes to.
+      type: object
+      title: DecompositionProduct
+      description: Entry metadata for a decomposition process
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    TypedSiteProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Selective Dynamics
+        coordination_no:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Coordination No
+        forces:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Forces
+      type: object
+      title: TypedSiteProperitesDict
+    Ordering:
+      type: string
+      enum:
+      - FM
+      - AFM
+      - FiM
+      - NM
+      - Unknown
+      title: Ordering
+      description: Enumeration defining possible magnetic orderings.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    SymmetryData:
+      properties:
+        crystal_system:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Crystal System
+          description: The crystal system for this lattice.
+        symbol:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Space Group Symbol
+          description: The spacegroup symbol for the lattice.
+        hall:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hall Symbol
+          description: Hall symbol for the lattice
+        number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Space Group Number
+          description: The spacegroup number for the lattice.
+        point_group:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Point Group Symbol
+          description: The point group for the lattice.
+        symprec:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Symmetry Finding Precision
+          description: The precision provided to spglib to determine the symmetry of this structure.
+        angle_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Angle Tolerance
+          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: spglib version
+      type: object
+      title: SymmetryData
+      description: Defines a symmetry data set for materials documents
+    PropertyOrigin:
+      properties:
+        name:
+          type: string
+          title: Name
+          description: The property name
+        task_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          title: Task Id
+          description: The calculation ID this property comes from.
+        last_updated:
+          type: string
+          format: date-time
+          title: Last Updated
+          description: The timestamp when this calculation was last updated
+      type: object
+      required:
+      - name
+      - task_id
+      title: PropertyOrigin
+      description: Provenance document for the origin of properties in a material document
+    SummaryDoc:
+      properties:
+        builder_meta:
+          anyOf:
+          - $ref: '#/components/schemas/EmmetMeta'
+          - type: 'null'
+          description: Builder metadata.
+        nsites:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Nsites
+          description: Total number of sites in the structure.
+        elements:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Elements
+          description: List of elements in the material.
+        nelements:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Nelements
+          description: Number of elements.
+        composition:
+          anyOf:
+          - additionalProperties:
+              type: number
+            type: object
+          - type: 'null'
+          title: Composition
+          description: Full composition for the material.
+        composition_reduced:
+          anyOf:
+          - additionalProperties:
+              type: number
+            type: object
+          - type: 'null'
+          title: Reduced Composition
+          description: Simplified representation of the composition.
+        formula_pretty:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pretty Formula
+          description: Cleaned representation of the formula.
+        formula_anonymous:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Anonymous Formula
+          description: Anonymized representation of the formula.
+        chemsys:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Chemical System
+          description: Dash-separated string of elements in the material.
+        volume:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Volume
+          description: Total volume for this structure in Å³.
+        density:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Density
+          description: Density in g/cm³.
+        density_atomic:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Packing Density
+          description: The atomic packing density in Å³/atom.
+        symmetry:
+          anyOf:
+          - $ref: '#/components/schemas/SymmetryData'
+          - type: 'null'
+          description: Symmetry data for this material.
+        material_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          - type: 'null'
+          title: Material Id
+          description: 'The Materials Project ID of the material, used as a universal reference across property documents.This comes in the form: mp-******.'
+        deprecated:
+          type: boolean
+          title: Deprecated
+          description: Whether this property document is deprecated.
+          default: true
+        deprecation_reasons:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Deprecation Reasons
+          description: List of deprecation tags detailing why this document isn't valid.
+        last_updated:
+          type: string
+          format: date-time
+          title: Last Updated
+          description: Timestamp for the most recent calculation update for this property.
+        origins:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/PropertyOrigin'
+            type: array
+          - type: 'null'
+          title: Origins
+          description: Dictionary for tracking the provenance of properties.
+        warnings:
+          items:
+            type: string
+          type: array
+          title: Warnings
+          description: Any warnings related to this property.
+          default: []
+        structure:
+          $ref: '#/components/schemas/TypedStructureDict'
+          title: Structure
+          description: The lowest energy structure for this material.
+        property_name:
+          type: string
+          title: Property Name
+          default: summary
+        task_ids:
+          items:
+            anyOf:
+            - type: string
+              pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+              examples:
+              - mp-3534
+              - '3453'
+              - mp-834-Ag
+            - type: string
+              examples:
+              - mp-ft
+              - task:pqrs
+          type: array
+          title: Calculation IDs
+          description: List of Calculations IDs associated with this material.
+          default: []
+        uncorrected_energy_per_atom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Uncorrected Energy Per Atom
+          description: The total DFT energy of this material per atom in eV/atom.
+        energy_per_atom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Energy Per Atom
+          description: The total corrected DFT energy of this material per atom in eV/atom.
+        formation_energy_per_atom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Formation Energy Per Atom
+          description: The formation energy per atom in eV/atom.
+        energy_above_hull:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Energy Above Hull
+          description: The energy above the hull in eV/Atom.
+        is_stable:
+          type: boolean
+          title: Is Stable
+          description: Flag for whether this material is on the hull and therefore stable.
+          default: false
+        equilibrium_reaction_energy_per_atom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Equilibrium Reaction Energy Per Atom
+          description: The reaction energy of a stable entry from the neighboring equilibrium stable materials in eV. Also known as the inverse distance to hull.
+        decomposes_to:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DecompositionProduct'
+            type: array
+          - type: 'null'
+          title: Decomposes To
+          description: List of decomposition data for this material. Only valid for metastable or unstable material.
+        xas:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/XASSearchData'
+            type: array
+          - type: 'null'
+          title: Xas
+          description: List of xas documents.
+        grain_boundaries:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/GBSearchData'
+            type: array
+          - type: 'null'
+          title: Grain Boundaries
+          description: List of grain boundary documents.
+        band_gap:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Band Gap
+          description: Band gap energy in eV.
+        cbm:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Cbm
+          description: Conduction band minimum data.
+        vbm:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Vbm
+          description: Valence band maximum data.
+        efermi:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Efermi
+          description: Fermi energy in eV.
+        is_gap_direct:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Gap Direct
+          description: Whether the band gap is direct.
+        is_metal:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Metal
+          description: Whether the material is a metal.
+        es_source_calc_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          - type: 'null'
+          title: Es Source Calc Id
+          description: The source calculation ID for the electronic structure data.
+        bandstructure:
+          anyOf:
+          - $ref: '#/components/schemas/BandstructureData'
+          - type: 'null'
+          description: Band structure data for the material.
+        dos:
+          anyOf:
+          - $ref: '#/components/schemas/DosData'
+          - type: 'null'
+          description: Density of states data for the material.
+        dos_energy_up:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Dos Energy Up
+          description: Spin-up DOS band gap in eV.
+        dos_energy_down:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Dos Energy Down
+          description: Spin-down DOS band gap in eV.
+        is_magnetic:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Magnetic
+          description: Whether the material is magnetic.
+        ordering:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Ordering
+          description: Type of magnetic ordering.
+        total_magnetization:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Total Magnetization
+          description: Total magnetization in μB.
+        total_magnetization_normalized_vol:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Total Magnetization Normalized Vol
+          description: Total magnetization normalized by volume in μB/Å³.
+        total_magnetization_normalized_formula_units:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Total Magnetization Normalized Formula Units
+          description: Total magnetization normalized by formula unit in μB/f.u. .
+        num_magnetic_sites:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Magnetic Sites
+          description: The number of magnetic sites.
+        num_unique_magnetic_sites:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Unique Magnetic Sites
+          description: The number of unique magnetic sites.
+        types_of_magnetic_species:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Types Of Magnetic Species
+          description: Magnetic specie elements.
+        bulk_modulus:
+          anyOf:
+          - additionalProperties:
+              type: number
+            type: object
+          - type: 'null'
+          title: Bulk Modulus
+          description: Voigt, Reuss, and Voigt-Reuss-Hill averages of the bulk modulus in GPa.
+        shear_modulus:
+          anyOf:
+          - additionalProperties:
+              type: number
+            type: object
+          - type: 'null'
+          title: Shear Modulus
+          description: Voigt, Reuss, and Voigt-Reuss-Hill averages of the shear modulus in GPa.
+        universal_anisotropy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Universal Anisotropy
+          description: Elastic anisotropy.
+        homogeneous_poisson:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Homogeneous Poisson
+          description: Poisson's ratio.
+        e_total:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: E Total
+          description: Total dielectric constant.
+        e_ionic:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: E Ionic
+          description: Ionic contribution to dielectric constant.
+        e_electronic:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: E Electronic
+          description: Electronic contribution to dielectric constant.
+        n:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: N
+          description: Refractive index.
+        e_ij_max:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: E Ij Max
+          description: Piezoelectric modulus.
+        weighted_surface_energy_EV_PER_ANG2:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Weighted Surface Energy Ev Per Ang2
+          description: Weighted surface energy in eV/Å².
+        weighted_surface_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Weighted Surface Energy
+          description: Weighted surface energy in J/m².
+        weighted_work_function:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Weighted Work Function
+          description: Weighted work function in eV.
+        surface_anisotropy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Surface Anisotropy
+          description: Surface energy anisotropy.
+        shape_factor:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Shape Factor
+          description: Shape factor.
+        has_reconstructed:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Has Reconstructed
+          description: Whether the material has any reconstructed surfaces.
+        possible_species:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Possible Species
+          description: Possible charged species in this material.
+        has_props:
+          anyOf:
+          - additionalProperties:
+              type: boolean
+            type: object
+          - type: 'null'
+          title: Has Props
+          description: List of properties that are available for a given material.
+        theoretical:
+          type: boolean
+          title: Theoretical
+          description: Whether the material is theoretical.
+          default: true
+        database_IDs:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          title: Database Ids
+          description: External database IDs corresponding to this material.
+          default: {}
+      type: object
+      required:
+      - structure
+      title: SummaryDoc
+      description: 'Summary information about materials and their properties, useful for materials
+
+        screening studies and searching.'
+    TypedLatticeDict:
+      properties:
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - matrix
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: TypedLatticeDict
+    GBSearchData:
+      properties:
+        sigma:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Sigma
+          description: Sigma value of the boundary.
+        type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Type
+          description: Grain boundary type.
+        gb_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Gb Energy
+          description: Grain boundary energy in J/m^2.
+        rotation_angle:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Rotation Angle
+          description: Rotation angle in degrees.
+      type: object
+      title: GBSearchData
+      description: Fields in grain boundary sub docs in summary
+    XASSearchData:
+      properties:
+        edge:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Absorption Edge
+          description: The interaction edge for XAS
+        absorbing_element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Absorbing Element
+          description: Absorbing element.
+        spectrum_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Spectrum Type
+          description: Type of XAS spectrum.
+      type: object
+      title: XASSearchData
+      description: Fields in XAS sub docs in summary
+    MSONableTypedLatticeDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          prefixItems:
+          - type: boolean
+          - type: boolean
+          - type: boolean
+          type: array
+          maxItems: 3
+          minItems: 3
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      - matrix
+      - pbc
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: MSONableTypedLatticeDict
+    BandstructureData:
+      properties:
+        setyawan_curtarolo:
+          anyOf:
+          - $ref: '#/components/schemas/BandStructureSummaryData'
+          - type: 'null'
+          description: Band structure summary data using the Setyawan-Curtarolo path convention.
+        hinuma:
+          anyOf:
+          - $ref: '#/components/schemas/BandStructureSummaryData'
+          - type: 'null'
+          description: Band structure summary data using the Hinuma et al. path convention.
+        latimer_munro:
+          anyOf:
+          - $ref: '#/components/schemas/BandStructureSummaryData'
+          - type: 'null'
+          description: Band structure summary data using the Latimer-Munro path convention.
+      type: object
+      title: BandstructureData
+  securitySchemes:
+    ApiKeyAuth:
+      descriptions: MP API key to authorize requests
+      name: X-API-KEY
+      in: header
+      type: apiKey

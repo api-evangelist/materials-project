@@ -1,0 +1,882 @@
+openapi: 3.1.0
+info:
+  title: Materials Project Defect Tasks Materials Alloys API
+  description: "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n"
+  version: 0.86.4rc5.dev1+g77c2c1315
+  x-logo:
+    url: https://raw.githubusercontent.com/materialsproject/emmet/master/emmet-api/emmet/api/core/assets/mp_logo_small.png
+security:
+- ApiKeyAuth: []
+tags:
+- name: Materials Alloys
+  description: Route for retrevial of information about which hypothetical alloy(s) a given material might belong to, following the methodolgy discussed by [Woods-Robinson, Horton and Persson](https://arxiv.org/pdf/2206.10715).
+paths:
+  /materials/alloys/:
+    get:
+      tags:
+      - Materials Alloys
+      summary: Get AlloyPairDoc documents
+      operationId: search_materials_alloys__get
+      parameters:
+      - name: material_ids
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Comma-separated list of material_ids to query on
+          title: Material Ids
+        description: Comma-separated list of material_ids to query on
+      - name: formulae
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Comma-separated list of end-point formulas to query.
+          title: Formulae
+        description: Comma-separated list of end-point formulas to query.
+      - name: _page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Page number to request (takes precedent over _limit and _skip).
+          title: ' Page'
+        description: Page number to request (takes precedent over _limit and _skip).
+      - name: _per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+          default: 100
+          title: ' Per Page'
+        description: Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000.
+      - name: _skip
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of entries to skip in the search.
+          default: 0
+          title: ' Skip'
+        description: Number of entries to skip in the search.
+      - name: _limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Max number of entries to return in a single query. Limited to 1000.
+          default: 100
+          title: ' Limit'
+        description: Max number of entries to return in a single query. Limited to 1000.
+      - name: _fields
+        in: query
+        required: false
+        schema:
+          type: string
+          description: 'Fields to project from AlloyPairDoc as a list of comma separated strings.                    Fields include: `builder_meta` `alloy_pair` `pair_id`'
+          title: ' Fields'
+        description: 'Fields to project from AlloyPairDoc as a list of comma separated strings.                    Fields include: `builder_meta` `alloy_pair` `pair_id`'
+      - name: _all_fields
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: Include all fields.
+          default: false
+          title: ' All Fields'
+        description: Include all fields.
+      responses:
+        '200':
+          description: Search for a AlloyPairDoc
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response_AlloyPairDoc_'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    TypedSiteProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Selective Dynamics
+        coordination_no:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Coordination No
+        forces:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Forces
+      type: object
+      title: TypedSiteProperitesDict
+    TypedSupportedPropertiesDict:
+      properties:
+        energy_above_hull:
+          type: number
+          title: Energy Above Hull
+        formation_energy_per_atom:
+          type: number
+          title: Formation Energy Per Atom
+        band_gap:
+          type: number
+          title: Band Gap
+        is_gap_direct:
+          type: boolean
+          title: Is Gap Direct
+        m_n:
+          type: number
+          title: M N
+        m_p:
+          type: number
+          title: M P
+        theoretical:
+          type: boolean
+          title: Theoretical
+        is_metal:
+          type: boolean
+          title: Is Metal
+      type: object
+      required:
+      - energy_above_hull
+      - formation_energy_per_atom
+      - band_gap
+      - is_gap_direct
+      - m_n
+      - m_p
+      - theoretical
+      - is_metal
+      title: TypedSupportedPropertiesDict
+    TypedAlloyPairDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        '@version':
+          type: string
+          title: '@Version'
+        formula_a:
+          type: string
+          title: Formula A
+        formula_b:
+          type: string
+          title: Formula B
+        structure_a:
+          $ref: '#/components/schemas/TypedStructureDict'
+        structure_b:
+          $ref: '#/components/schemas/TypedStructureDict'
+        id_a:
+          type: string
+          title: Id A
+        id_b:
+          type: string
+          title: Id B
+        chemsys:
+          type: string
+          title: Chemsys
+        alloying_element_a:
+          type: string
+          title: Alloying Element A
+        alloying_element_b:
+          type: string
+          title: Alloying Element B
+        alloying_species_a:
+          items:
+            type: string
+          type: array
+          title: Alloying Species A
+        alloying_species_b:
+          items:
+            type: string
+          type: array
+          title: Alloying Species B
+        observer_elements:
+          items:
+            type: string
+          type: array
+          title: Observer Elements
+        observer_species:
+          items:
+            type: string
+          type: array
+          title: Observer Species
+        anions_a:
+          items:
+            type: string
+          type: array
+          title: Anions A
+        anions_b:
+          items:
+            type: string
+          type: array
+          title: Anions B
+        cations_a:
+          items:
+            type: string
+          type: array
+          title: Cations A
+        cations_b:
+          items:
+            type: string
+          type: array
+          title: Cations B
+        lattice_parameters_a:
+          items:
+            type: number
+          type: array
+          title: Lattice Parameters A
+        lattice_parameters_b:
+          items:
+            type: number
+          type: array
+          title: Lattice Parameters B
+        volume_cube_root_a:
+          type: number
+          title: Volume Cube Root A
+        volume_cube_root_b:
+          type: number
+          title: Volume Cube Root B
+        properties_a:
+          $ref: '#/components/schemas/TypedSupportedPropertiesDict'
+        properties_b:
+          $ref: '#/components/schemas/TypedSupportedPropertiesDict'
+        spacegroup_intl_number_a:
+          type: integer
+          title: Spacegroup Intl Number A
+        spacegroup_intl_number_b:
+          type: integer
+          title: Spacegroup Intl Number B
+        pair_id:
+          type: string
+          title: Pair Id
+        pair_formula:
+          type: string
+          title: Pair Formula
+        alloy_oxidation_state:
+          type: integer
+          title: Alloy Oxidation State
+        isoelectronic:
+          type: boolean
+          title: Isoelectronic
+        anonymous_formula:
+          type: string
+          title: Anonymous Formula
+        nelements:
+          type: integer
+          title: Nelements
+        members:
+          items:
+            $ref: '#/components/schemas/TypedAlloyMemberDict'
+          type: array
+          title: Members
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      - '@version'
+      - formula_a
+      - formula_b
+      - structure_a
+      - structure_b
+      - id_a
+      - id_b
+      - chemsys
+      - alloying_element_a
+      - alloying_element_b
+      - alloying_species_a
+      - alloying_species_b
+      - observer_elements
+      - observer_species
+      - anions_a
+      - anions_b
+      - cations_a
+      - cations_b
+      - lattice_parameters_a
+      - lattice_parameters_b
+      - volume_cube_root_a
+      - volume_cube_root_b
+      - properties_a
+      - properties_b
+      - spacegroup_intl_number_a
+      - spacegroup_intl_number_b
+      - pair_id
+      - pair_formula
+      - alloy_oxidation_state
+      - isoelectronic
+      - anonymous_formula
+      - nelements
+      - members
+      title: TypedAlloyPairDict
+    TypedSiteDict:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
+      type: object
+      title: TypedSiteDict
+    TypedLatticeDict:
+      properties:
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - matrix
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: TypedLatticeDict
+    Element:
+      type: string
+      enum:
+      - H
+      - D
+      - T
+      - He
+      - Li
+      - Be
+      - B
+      - C
+      - N
+      - O
+      - F
+      - Ne
+      - Na
+      - Mg
+      - Al
+      - Si
+      - P
+      - S
+      - Cl
+      - Ar
+      - K
+      - Ca
+      - Sc
+      - Ti
+      - V
+      - Cr
+      - Mn
+      - Fe
+      - Co
+      - Ni
+      - Cu
+      - Zn
+      - Ga
+      - Ge
+      - As
+      - Se
+      - Br
+      - Kr
+      - Rb
+      - Sr
+      - Y
+      - Zr
+      - Nb
+      - Mo
+      - Tc
+      - Ru
+      - Rh
+      - Pd
+      - Ag
+      - Cd
+      - In
+      - Sn
+      - Sb
+      - Te
+      - I
+      - Xe
+      - Cs
+      - Ba
+      - La
+      - Ce
+      - Pr
+      - Nd
+      - Pm
+      - Sm
+      - Eu
+      - Gd
+      - Tb
+      - Dy
+      - Ho
+      - Er
+      - Tm
+      - Yb
+      - Lu
+      - Hf
+      - Ta
+      - W
+      - Re
+      - Os
+      - Ir
+      - Pt
+      - Au
+      - Hg
+      - Tl
+      - Pb
+      - Bi
+      - Po
+      - At
+      - Rn
+      - Fr
+      - Ra
+      - Ac
+      - Th
+      - Pa
+      - U
+      - Np
+      - Pu
+      - Am
+      - Cm
+      - Bk
+      - Cf
+      - Es
+      - Fm
+      - Md
+      - 'No'
+      - Lr
+      - Rf
+      - Db
+      - Sg
+      - Bh
+      - Hs
+      - Mt
+      - Ds
+      - Rg
+      - Cn
+      - Nh
+      - Fl
+      - Mc
+      - Lv
+      - Ts
+      - Og
+      title: Element
+      description: Enum representing an element in the periodic table.
+    EmmetMeta:
+      properties:
+        emmet_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Emmet Version
+          description: The version of emmet this document was built with.
+          default: 0.86.4rc4
+        pymatgen_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pymatgen Version
+          description: The version of pymatgen this document was built with.
+          default: 2026.4.16
+        run_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Run Id
+          description: The run id associated with this data build.
+        batch_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Batch Id
+          description: Identifier corresponding to the origin of this document's blessed task.
+        database_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Database Version
+          description: The database version for the built data.
+        build_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Build Date
+          description: The build date for this document.
+        license:
+          anyOf:
+          - type: string
+            enum:
+            - BY-C
+            - BY-NC
+          - type: 'null'
+          title: License
+          description: License for the data entry.
+      type: object
+      title: EmmetMeta
+      description: Default emmet metadata.
+    TypedAggregateProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Selective Dynamics
+      type: object
+      title: TypedAggregateProperitesDict
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    AlloyPairDoc:
+      properties:
+        builder_meta:
+          anyOf:
+          - $ref: '#/components/schemas/EmmetMeta'
+          - type: 'null'
+          description: Builder metadata.
+        alloy_pair:
+          $ref: '#/components/schemas/TypedAlloyPairDict'
+          title: Alloy Pair
+        pair_id:
+          type: string
+          title: Pair Id
+      type: object
+      required:
+      - alloy_pair
+      - pair_id
+      title: AlloyPairDoc
+    TypedStructureDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        lattice:
+          $ref: '#/components/schemas/TypedLatticeDict'
+        sites:
+          items:
+            $ref: '#/components/schemas/TypedSiteDict'
+          type: array
+          title: Sites
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
+          - type: 'null'
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      - lattice
+      - sites
+      title: TypedStructureDict
+    Response_AlloyPairDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/AlloyPairDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[AlloyPairDoc]
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    TypedSpeciesDict:
+      properties:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation State
+        spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin
+        occu:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    TypedAlloyMemberDict:
+      properties:
+        id_:
+          type: string
+          title: Id
+        db:
+          type: string
+          title: Db
+        composition:
+          additionalProperties:
+            type: number
+          propertyNames:
+            $ref: '#/components/schemas/Element'
+          type: object
+          title: Composition
+        x:
+          type: number
+          title: X
+        is_ordered:
+          type: boolean
+          title: Is Ordered
+      type: object
+      required:
+      - id_
+      - db
+      - composition
+      - x
+      - is_ordered
+      title: TypedAlloyMemberDict
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    ApiKeyAuth:
+      descriptions: MP API key to authorize requests
+      name: X-API-KEY
+      in: header
+      type: apiKey
