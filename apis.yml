@@ -5,7 +5,20 @@ description: >-
   materials science database with data on tens of thousands of materials. The API is offered free of charge and supports
   machine learning, automated analysis, and bulk data downloads.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/materials-project.png
 url: https://raw.githubusercontent.com/api-evangelist/materials-project/refs/heads/main/apis.yml
 tags:
   - Chemistry
@@ -17,25 +30,521 @@ created: '2025-02-06'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: materials-project:materials-project-api
-    name: Materials Project API
-    description: >-
-      The Materials Project API allows anyone to have direct access to current, up-to-date information from the
-      Materials Project database in a structured way, enabling analysis, machine learning, and bulk downloads of
-      materials science data.
-    humanURL: https://next-gen.materialsproject.org/api
-    baseURL: https://api.materialsproject.org
-    tags:
-      - Materials Science
-      - Research
-    properties:
-      - type: Documentation
-        url: https://next-gen.materialsproject.org/api
-      - type: GettingStarted
-        url: https://docs.materialsproject.org/downloading-data/using-the-api
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/materials-project/refs/heads/main/openapi/materials-project-openapi.yml
+- aid: materials-project:materials-project-defect-tasks-api
+  name: Materials Project Defect Tasks API
+  description: The Defect Tasks API from Materials Project — 1 operation(s) for defect tasks.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Defect Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-defect-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-dois-api
+  name: Materials Project DOIs API
+  description: >-
+    Route providing DOI and bibtex reference information for a material.             Note that this data
+    may not be available for all materials in the Materials             Project database. See the `DOIDoc`
+    schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - DOIs
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-dois-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-jcesr-electrolyte-genome-api
+  name: Materials Project JCESR Electrolyte Genome API
+  description: >-
+    Route providing computed data for a legacy molecule such as charge,             electron affinity,
+    and ionization energy. The unique identifier for a molecule             is its `task_id` (e.g. `mol-45807`).
+    See the `MoleculesDoc` schema for a full list of             fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - JCESR Electrolyte Genome
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-jcesr-electrolyte-genome-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-absorption-api
+  name: Materials Project Materials Absorption API
+  description: >-
+    The Materials Absorption API from Materials Project — 1 operation(s) for materials absorption.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Absorption
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-absorption-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-alloys-api
+  name: Materials Project Materials Alloys API
+  description: >-
+    Route for retrevial of information about which hypothetical alloy(s) a given material might belong
+    to, following the methodolgy discussed by [Woods-Robinson, Horton and Persson](https://arxiv.org/pdf/2206.10715).
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Alloys
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-alloys-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-api
+  name: Materials Project Materials API
+  description: >-
+    Route for "core" information associated with a given material in the Materials Project             database.
+    The unique identifier for a material is its `material_id` (e.g. `mp-149`). Core data in             this
+    context refers to the crystal structure, information associated with it such as the density             and
+    chemical formula, and the associated calculations which are identified with unique `task_id`             values.
+    It does not contain any materials properties such as the formation energy or band gap, please             consult
+    other property-specific endpoints for this information. See the `MaterialsDoc` schema for             a
+    full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-bonds-api
+  name: Materials Project Materials Bonds API
+  description: Route for retrevial of bonding information for a given material.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Bonds
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-bonds-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-chemical-environment-api
+  name: Materials Project Materials Chemical Environment API
+  description: >-
+    The Materials Chemical Environment API from Materials Project — 1 operation(s) for materials chemical
+    environment.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Chemical Environment
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-chemical-environment-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-dielectric-api
+  name: Materials Project Materials Dielectric API
+  description: >-
+    Route providing computed dielectric data for a material following the             methodology discussed
+    by [Petousis *et al.*](https://doi.org/10.1038/sdata.2016.134)             Note that dielectric data
+    has not been calculated for all materials in the Materials             Project database. See the `DielectricDoc`
+    schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Dielectric
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-dielectric-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-elasticity-api
+  name: Materials Project Materials Elasticity API
+  description: >-
+    Route providing computed elasticity data for a material following the             methodology discussed
+    by [de Jong *et al.*](https://doi.org/10.1038/sdata.2015.9)             Note that elasticity data
+    has not been calculated for all materials in the Materials             Project database. See the `ElasticityDoc`
+    schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Elasticity
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-elasticity-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-electrodes-api
+  name: Materials Project Materials Electrodes API
+  description: >-
+    Route providing computed electrode data for a material following the             methodology discussed
+    by [Shen *et al.*](https://doi.org/10.1038/s41524-020-00422-3)             Note that electrode data
+    has not been calculated for all materials in the Materials             Project database. See the `InsertionElectrodeDoc`
+    and `ConversionElectrodeDoc` schema             for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Electrodes
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-electrodes-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-electronic-structure-api
+  name: Materials Project Materials Electronic Structure API
+  description: >-
+    Routes providing computed electronic structure related data for a material such as             band
+    gap and fermi level. Python objects for line-mode band structures, density of states, and             fermi
+    surfaces are also available. This data was obtained following the methodology discussed by             [Munro
+    *et al.*](https://doi.org/10.1038/s41524-020-00383-7) and [Ganose *et al.*](https://doi.org/10.21105/joss.03089)             Note
+    that full band structure, density of states, and fermi surface data has not been calculated for             all
+    materials in the Materials Project database. See the `ElectronicStructureDoc` and `FermiDoc` schema             for
+    a full list of fields returned by the associated routes.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Electronic Structure
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-electronic-structure-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-eos-api
+  name: Materials Project Materials EOS API
+  description: >-
+    Route providing computed equations of state data for a material following the             methodology
+    discussed by [Latimer *et al.*](https://doi.org/10.1038/s41524-018-0091-x)             Note that equations
+    of state data has not been calculated for all materials in the Materials             Project database.
+    See the `EOSDoc` schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials EOS
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-eos-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-grain-boundaries-api
+  name: Materials Project Materials Grain Boundaries API
+  description: >-
+    Route providing computed grain boundary data for a material following the             methodology
+    discussed by [Hui *et al.*](https://doi.org/10.1016/j.actamat.2019.12.030)             Note that grain
+    boundary data has not been calculated for all materials in the Materials             Project database.
+    See the `GrainBoundaryDoc` schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Grain Boundaries
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-grain-boundaries-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-magnetism-api
+  name: Materials Project Materials Magnetism API
+  description: >-
+    Route providing computed magnetic ordering related data for a material following the             methodology
+    discussed by [Horton *et al.*](https://doi.org/10.1038/s41524-019-0199-7)             Note that magnetic
+    data has not been calculated for all materials in the Materials             Project database. See
+    the `MagnetismDoc` schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Magnetism
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-magnetism-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-oxidation-states-api
+  name: Materials Project Materials Oxidation States API
+  description: >-
+    Route providing computed oxidation state data for a material following the             methodology
+    employed by the [BVAnalyzer](https://pymatgen.org/pymatgen.analysis.bond_valence.html)             in
+    Pymatgen. Note that oxidation state data has not been calculated for all materials in the Materials             Project
+    database. See the `OxidationStateDoc` schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Oxidation States
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-oxidation-states-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-phonon-api
+  name: Materials Project Materials Phonon API
+  description: >-
+    **Under construction** Route providing computed phonon data for a material following the             methodology
+    discussed by [Petretto *et al.*](https://doi.org/10.1038/sdata.2018.65)             Note that phonon
+    data has not been calculated for all materials in the Materials             Project database. See
+    the `PhononBSDOSDoc` schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Phonon
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-phonon-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-piezoelectric-api
+  name: Materials Project Materials Piezoelectric API
+  description: >-
+    Route providing computed piezoelectric data for a material following the             methodology discussed
+    by [de Jong *et al.*](https://doi.org/10.1038/sdata.2015.53)             Note that piezoelectric data
+    has not been calculated for all materials in the Materials             Project database. See the `PiezoDoc`
+    schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Piezoelectric
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-piezoelectric-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-provenance-api
+  name: Materials Project Materials Provenance API
+  description: >-
+    Route providing provenance data for a material such as whether it is theoretical,             its
+    associated ICSD entries, and relevant references in literature. Note that provenance data             may
+    not be available for all materials in the Materials Project database. See the `ProvenanceDoc`             schema
+    for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Provenance
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-provenance-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-robocrystallographer-api
+  name: Materials Project Materials Robocrystallographer API
+  description: >-
+    Route providing a computed text description for a material following the             methodology discussed
+    by [Ganose *et al.*](https://doi.org/10.1557/mrc.2019.94)             Note that descriptions may not
+    been calculated for all materials in the Materials             Project database. See the `RobocrysDoc`
+    schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Robocrystallographer
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-robocrystallographer-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-similarity-api
+  name: Materials Project Materials Similarity API
+  description: >-
+    Route providing a computed similarity metric between materials following the             methodology
+    discussed by Zimmerman *et al.* in [10.3389/fmats.2017.00034](https://doi.org/10.3389/fmats.2017.00034)             and
+    [10.1039/C9RA07755C](https://doi.org/10.1039/C9RA07755C).             Note that similarity data has
+    not been calculated for all materials in the Materials             Project database. See the `SimilarityDoc`
+    schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Similarity
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-similarity-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-substrates-api
+  name: Materials Project Materials Substrates API
+  description: >-
+    Route providing computed suggested substrate data for a material following the             methodology
+    discussed by [Ding *et al.*](https://doi.org/10.1021/acsami.6b01630)             Note that substrate
+    data has not been calculated for all materials in the Materials             Project database. See
+    the `SubstratesDoc` schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Substrates
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-substrates-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-summary-api
+  name: Materials Project Materials Summary API
+  description: >-
+    Route providing a large amount of amalgamated data for a material. This is constructed by             combining
+    subsets of data from many of the other API endpoints. The summary endpoint is very useful for             performing
+    queries for materials over a large property space. Note that every unique material within             the
+    Materials Project should have a set of summary data. See the `SummaryDoc` schema for a full list of             fields
+    returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Summary
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-summary-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-surface-properties-api
+  name: Materials Project Materials Surface Properties API
+  description: >-
+    Route providing computed surface property data for a material following the             methodology
+    discussed by [Tran *et al.*](https://doi.org/10.1038/sdata.2016.80)             Note that surface
+    data has not been calculated for all materials in the Materials             Project database. See
+    the `SurfacePropDoc` schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Surface Properties
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-surface-properties-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-synthesis-api
+  name: Materials Project Materials Synthesis API
+  description: >-
+    Route providing a synthesis recipes for materials extracted from literature             following
+    the methodology discussed by [Kononova *et al.*](https://doi.org/10.1038/s41597-019-0224-1)             Note
+    that synthesis recipes may not be available for all materials in the Materials             Project
+    database. See the `SynthesisSearchResultModel` schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Synthesis
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-synthesis-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-tasks-api
+  name: Materials Project Materials Tasks API
+  description: >-
+    Route for "core" information associated with a given calculation in the Materials Project             database.
+    Multiple calculations can ultimately be associated with a unique material, and are the source             of
+    its reported properties. The unique identifier for a calculation is its `task_id`. Note             that
+    the `material_id` chosen for a given material is sourced from one of the `task_id` values             associated
+    with it. Core data in this context refers to calculation quantities such as parsed input             and
+    output data (e.g. VASP input flags, atomic forces, structures) and runtime statistics. See the             `TaskDoc`
+    schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-thermo-api
+  name: Materials Project Materials Thermo API
+  description: >-
+    Route providing computed thermodynamic data for a material such as             formation energy and
+    energy above hull. Corrected energy values are also available that employ             the schemes
+    discussed by             [Jain *et al.*](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.84.045115)             and
+    [Wang *et al.*](https://chemrxiv.org/engage/chemrxiv/article-details/60c758d9469df42a4ef45757)            See
+    the `ThermoDoc` schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials Thermo
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-thermo-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-materials-xas-api
+  name: Materials Project Materials XAS API
+  description: >-
+    Route providing computed x-ray absorption spectroscopy data for a material following the             methodology
+    discussed by [Mathew *et al.*](https://doi.org/10.1038/sdata.2018.151)             and [Chen *et al.*](https://doi.org/10.1038/s41597-021-00936-5)             Note
+    that x-ray absorption spectroscopy data has not been calculated for all materials in the Materials             Project
+    database. See the `XASDoc` schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Materials XAS
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-materials-xas-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
+- aid: materials-project:materials-project-molecules-summary-api
+  name: Materials Project Molecules Summary API
+  description: >-
+    Route for a summary of all data calculated on 'core' molecules in the Materials Project             molecules
+    database. See the `MoleculeSummaryDoc` schema for a full list of fields returned by this route.
+  humanURL: https://next-gen.materialsproject.org/api
+  baseURL: https://api.materialsproject.org
+  tags:
+  - Molecules Summary
+  properties:
+  - type: OpenAPI
+    url: openapi/materials-project-molecules-summary-api-openapi.yml
+  - type: Documentation
+    url: https://next-gen.materialsproject.org/api
+  - type: GettingStarted
+    url: https://docs.materialsproject.org/downloading-data/using-the-api
 common:
   - type: AgenticAccess
     url: agentic-access/materials-project-agentic-access.yml
