@@ -1,0 +1,271 @@
+{
+  "item": [
+    {
+      "id": "db03f914-709d-4c67-87c7-713847cdbb66",
+      "name": "DOIs",
+      "description": {
+        "content": "Route providing DOI and bibtex reference information for a material.             Note that this data may not be available for all materials in the Materials             Project database. See the `DOIDoc` schema for a full list of fields returned by this route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0614b51e-50a9-417a-bb94-80583eb31bab",
+          "name": "Get DOIDoc documents",
+          "request": {
+            "name": "Get DOIDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "doi",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "material_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of material_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from DOIDoc as a list of comma separated strings.                    Fields include: `doi` `bibtex` `material_id`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16718f25-970a-4088-80f7-f865d8e8d943",
+              "name": "Search for a DOIDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doi",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"doi\": \"string\",\n      \"bibtex\": \"string\",\n      \"material_id\": \"string\"\n    },\n    {\n      \"doi\": \"string\",\n      \"bibtex\": \"string\",\n      \"material_id\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 8296,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 2882,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"2020-08-21T03:59:20.074Z\",\n    \"total_doc\": 3853,\n    \"facet\": {\n      \"key_0\": false,\n      \"key_1\": 3155.6626937466813,\n      \"key_2\": \"string\",\n      \"key_3\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20ccbeb0-613d-497c-a8d7-abae552432c2",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doi",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "00ed0003-6f2a-4f69-bd11-4730d6e01e76",
+    "name": "Materials Project Defect Tasks DOIs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

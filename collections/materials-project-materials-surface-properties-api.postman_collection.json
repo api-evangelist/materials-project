@@ -1,0 +1,428 @@
+{
+  "item": [
+    {
+      "id": "b1cccb3c-b06b-40e7-af1c-6da27db4a1db",
+      "name": "Materials Surface Properties",
+      "description": {
+        "content": "Route providing computed surface property data for a material following the             methodology discussed by [Tran *et al.*](https://doi.org/10.1038/sdata.2016.80)             Note that surface data has not been calculated for all materials in the Materials             Project database. See the `SurfacePropDoc` schema for a full list of fields returned by this route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4cf9ee38-3f07-4fe2-a065-859cdb62dad1",
+          "name": "Get SurfacePropDoc documents",
+          "request": {
+            "name": "Get SurfacePropDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "surface_properties",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "material_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of material_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "weighted_surface_energy_EV_PER_ANG2_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of weighted_surface_energy_EV_PER_ANG2"
+                },
+                {
+                  "disabled": false,
+                  "key": "weighted_surface_energy_EV_PER_ANG2_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of weighted_surface_energy_EV_PER_ANG2"
+                },
+                {
+                  "disabled": false,
+                  "key": "weighted_surface_energy_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of weighted_surface_energy"
+                },
+                {
+                  "disabled": false,
+                  "key": "weighted_surface_energy_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of weighted_surface_energy"
+                },
+                {
+                  "disabled": false,
+                  "key": "surface_anisotropy_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of surface_anisotropy"
+                },
+                {
+                  "disabled": false,
+                  "key": "surface_anisotropy_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of surface_anisotropy"
+                },
+                {
+                  "disabled": false,
+                  "key": "shape_factor_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of shape_factor"
+                },
+                {
+                  "disabled": false,
+                  "key": "shape_factor_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of shape_factor"
+                },
+                {
+                  "disabled": false,
+                  "key": "weighted_work_function_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of weighted_work_function"
+                },
+                {
+                  "disabled": false,
+                  "key": "weighted_work_function_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of weighted_work_function"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_reconstructed",
+                  "value": "<boolean>",
+                  "description": "Whether the entry has a reconstructed surface."
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from SurfacePropDoc as a list of comma separated strings.                    Fields include: `surfaces` `weighted_surface_energy_EV_PER_ANG2` `weighted_surface_energy` `surface_anisotropy` `pretty_formula` `shape_factor` `weighted_work_function` `has_reconstructed` `material_id` `structure`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5a8110e-220f-43a5-910f-56494d3e3297",
+              "name": "Search for a SurfacePropDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "surface_properties",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_EV_PER_ANG2_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_EV_PER_ANG2_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "surface_anisotropy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "surface_anisotropy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "shape_factor_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "shape_factor_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_work_function_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_work_function_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "has_reconstructed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"surfaces\": [\n        {\n          \"miller_index\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"surface_energy_EV_PER_ANG2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"surface_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_reconstructed\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"structure\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"work_function\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"efermi\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"area_fraction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"has_wulff\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"miller_index\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"surface_energy_EV_PER_ANG2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"surface_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_reconstructed\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"structure\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"work_function\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"efermi\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"area_fraction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"has_wulff\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"weighted_surface_energy_EV_PER_ANG2\": 6057.992854588711,\n      \"weighted_surface_energy\": 7541.872329189744,\n      \"surface_anisotropy\": 528.9012455914599,\n      \"pretty_formula\": \"string\",\n      \"shape_factor\": 4438.376957688614,\n      \"weighted_work_function\": 7418.794660877411,\n      \"has_reconstructed\": false,\n      \"material_id\": \"string\",\n      \"structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"a\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"b\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"c\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alpha\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"beta\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gamma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"charge\": 8953.37091164799,\n        \"properties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"surfaces\": [\n        {\n          \"miller_index\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"surface_energy_EV_PER_ANG2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"surface_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_reconstructed\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"structure\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"work_function\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"efermi\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"area_fraction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"has_wulff\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"miller_index\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"surface_energy_EV_PER_ANG2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"surface_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_reconstructed\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"structure\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"work_function\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"efermi\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"area_fraction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"has_wulff\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"weighted_surface_energy_EV_PER_ANG2\": 8250.0943204853,\n      \"weighted_surface_energy\": 4240.16409645649,\n      \"surface_anisotropy\": 697.8220666439605,\n      \"pretty_formula\": \"string\",\n      \"shape_factor\": 2003.7080647994553,\n      \"weighted_work_function\": 202.50053857456484,\n      \"has_reconstructed\": false,\n      \"material_id\": \"string\",\n      \"structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"a\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"b\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"c\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alpha\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"beta\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gamma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"charge\": 8064.819301189772,\n        \"properties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 2904,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 5869,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1954-12-25T20:48:24.871Z\",\n    \"total_doc\": 5866,\n    \"facet\": {\n      \"key_0\": \"string\",\n      \"key_1\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1967387-545c-423d-8673-eb9ff346fc06",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "surface_properties",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_EV_PER_ANG2_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_EV_PER_ANG2_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "surface_anisotropy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "surface_anisotropy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "shape_factor_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "shape_factor_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_work_function_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_work_function_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "has_reconstructed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b2927811-bd99-4a31-a058-624445527ae5",
+    "name": "Materials Project Defect Tasks Materials Surface Properties API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

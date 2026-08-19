@@ -1,0 +1,264 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Materials Project Defect Tasks Materials Tasks API",
+    "version": "0.86.4rc5.dev1+g77c2c1315"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Materials Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get TrajectoryDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/tasks/trajectory/",
+            "params": [
+              {
+                "name": "task_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of task_ids to query on"
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              }
+            ]
+          },
+          "docs": "Get TrajectoryDoc documents"
+        },
+        {
+          "info": {
+            "name": "Get EntryDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/tasks/entries/",
+            "params": [
+              {
+                "name": "task_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of task_ids to query on"
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              }
+            ]
+          },
+          "docs": "Get EntryDoc documents"
+        },
+        {
+          "info": {
+            "name": "Get DeprecationDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/tasks/deprecation/",
+            "params": [
+              {
+                "name": "task_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of task_ids to query on"
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              }
+            ]
+          },
+          "docs": "Get DeprecationDoc documents"
+        },
+        {
+          "info": {
+            "name": "Get TaskDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/tasks/",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "query",
+                "description": "Query by batch identifier"
+              },
+              {
+                "name": "batch_id_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Exclude batch identifier"
+              },
+              {
+                "name": "batch_id_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query by a comma-separated list of batch identifiers"
+              },
+              {
+                "name": "batch_id_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Exclude a comma-separated list of batch identifiers"
+              },
+              {
+                "name": "formula",
+                "value": "",
+                "type": "query",
+                "description": "Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided."
+              },
+              {
+                "name": "elements",
+                "value": "",
+                "type": "query",
+                "description": "Query by elements in the material composition as a comma-separated list"
+              },
+              {
+                "name": "exclude_elements",
+                "value": "",
+                "type": "query",
+                "description": "Query by excluded elements in the material composition as a comma-separated list"
+              },
+              {
+                "name": "task_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of task_ids to query on"
+              },
+              {
+                "name": "last_updated_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum last updated UTC datetime"
+              },
+              {
+                "name": "last_updated_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum last updated UTC datetime"
+              },
+              {
+                "name": "_forward",
+                "value": "",
+                "type": "query",
+                "description": "Whether to page forward (True) or backward (False) in the search results."
+              },
+              {
+                "name": "_pagination_token",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token for the next set of results."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from TaskDoc as a list of comma separated strings.                    Fields include: `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `batch_id` `calc_type` `completed_at` `dir_name` `icsd_id` `input` `last_updated` `orig_inputs` `output` `run_type` `structure` `tags` `task_id` `task_type` `transformations` `vasp_objects` `vasp_version` `additional_json` `analysis` `author` `calcs_reversed` `custodian` `entry` `included_objects` `run_stats` `state` `task_label`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              }
+            ]
+          },
+          "docs": "Get TaskDoc documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

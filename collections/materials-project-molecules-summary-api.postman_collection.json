@@ -1,0 +1,526 @@
+{
+  "item": [
+    {
+      "id": "2e05e88a-a35a-4a5a-aaf8-685355505670",
+      "name": "Molecules Summary",
+      "description": {
+        "content": "Route for a summary of all data calculated on 'core' molecules in the Materials Project             molecules database. See the `MoleculeSummaryDoc` schema for a full list of fields returned by this route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1badeb84-c732-4959-8833-c19cad9985f2",
+          "name": "Get MoleculeSummaryDoc documents",
+          "request": {
+            "name": "Get MoleculeSummaryDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "molecules",
+                "summary",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "molecule_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of molecule_ids to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "formula",
+                  "value": "<string>",
+                  "description": "Query by alphabetical formula. A comma delimited string list of alphabetical formulas can also be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "chemsys",
+                  "value": "<string>",
+                  "description": "A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries"
+                },
+                {
+                  "disabled": false,
+                  "key": "elements",
+                  "value": "<string>",
+                  "description": "Query by elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_elements",
+                  "value": "<string>",
+                  "description": "Query by excluded elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_props",
+                  "value": "<string>",
+                  "description": "Comma-delimited list of possible properties given by HasPropsEnum to search for."
+                },
+                {
+                  "disabled": false,
+                  "key": "charge",
+                  "value": "<integer>",
+                  "description": "Query by molecular charge"
+                },
+                {
+                  "disabled": false,
+                  "key": "spin_multiplicity",
+                  "value": "<integer>",
+                  "description": "Query by molecular spin multiplicity."
+                },
+                {
+                  "disabled": false,
+                  "key": "inchi",
+                  "value": "<string>",
+                  "description": "International chemical identifier (InChI) string for this molecule"
+                },
+                {
+                  "disabled": false,
+                  "key": "inchi_key",
+                  "value": "<string>",
+                  "description": "Hash of the InChI, also known as the InChI-key"
+                },
+                {
+                  "disabled": false,
+                  "key": "species_hash",
+                  "value": "<string>",
+                  "description": "Graph hash augmented with node species"
+                },
+                {
+                  "disabled": false,
+                  "key": "coord_hash",
+                  "value": "<string>",
+                  "description": "Graph hash augmented with node XYZ coordinates"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements",
+                  "value": "<integer>",
+                  "description": "Query for nelements being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nelements being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "_sort_fields",
+                  "value": "<string>",
+                  "description": "Comma delimited fields to sort with. Prefixing '-' to a field will force a sort in descending order."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from MoleculeSummaryDoc as a list of comma separated strings.                    Fields include: `charge` `spin_multiplicity` `natoms` `elements` `nelements` `nelectrons` `composition` `composition_reduced` `formula_alphabetical` `formula_pretty` `formula_anonymous` `chemsys` `symmetry` `species_hash` `coord_hash` `property_name` `property_id` `molecule_id` `deprecated` `deprecation_reasons` `level_of_theory` `solvent` `lot_solvent` `last_updated` `origins` `warnings` `molecules` `molecule_levels_of_theory` `inchi` `inchi_key` `task_ids` `similar_molecules` `constituent_molecules` `unique_calc_types` `unique_task_types` `unique_levels_of_theory` `unique_solvents` `unique_lot_solvents` `thermo` `vibration` `orbitals` `partial_charges` `partial_spins` `bonding` `multipole_moments` `redox` `metal_binding` `has_props`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e68bfd31-3378-4ec3-9e32-1f7c1a29a0a7",
+              "name": "Search for a MoleculeSummaryDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "molecules",
+                    "summary",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "molecule_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_props",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "charge",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "spin_multiplicity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "inchi",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "inchi_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "species_hash",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "coord_hash",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_sort_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"property_id\": \"string\",\n      \"molecule_id\": \"1a525231bdac3f13e2fac0962fe8d053-Mg1-0-1\",\n      \"deprecated\": true,\n      \"molecules\": {\n        \"key_0\": {\n          \"@module\": \"string\",\n          \"@class\": \"string\",\n          \"charge\": 2450.9514493781157,\n          \"spin_multiplicity\": 7057,\n          \"sites\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"properties\": {\n            \"magmom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"charge\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"velocities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"selective_dynamics\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"key_1\": {\n          \"@module\": \"string\",\n          \"@class\": \"string\",\n          \"charge\": 2377.6852083786825,\n          \"spin_multiplicity\": 7307,\n          \"sites\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"properties\": {\n            \"magmom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"charge\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"velocities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"selective_dynamics\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"charge\": 6802,\n      \"spin_multiplicity\": 1077,\n      \"natoms\": 4833,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 6157,\n      \"nelectrons\": 6750,\n      \"composition\": {\n        \"key_0\": 197.2241690482379\n      },\n      \"composition_reduced\": {\n        \"key_0\": 6125.071587570305,\n        \"key_1\": 7473.6038158207375,\n        \"key_2\": 2096.188022329806\n      },\n      \"formula_alphabetical\": \"string\",\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"symmetry\": {\n        \"point_group\": \"string\",\n        \"rotation_number\": 3669,\n        \"linear\": true,\n        \"tolerance\": 7243.561330767942,\n        \"eigen_tolerance\": 5627.698565960999,\n        \"matrix_tolerance\": 9153.511760648873\n      },\n      \"species_hash\": \"string\",\n      \"coord_hash\": \"string\",\n      \"property_name\": \"summary\",\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"level_of_theory\": \"string\",\n      \"solvent\": \"string\",\n      \"lot_solvent\": \"string\",\n      \"last_updated\": \"2009-06-29T09:19:12.700Z\",\n      \"molecule_levels_of_theory\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"inchi\": \"string\",\n      \"inchi_key\": \"string\",\n      \"unique_calc_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"unique_task_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"unique_levels_of_theory\": [\n        \"string\",\n        \"string\"\n      ],\n      \"unique_solvents\": [\n        \"string\",\n        \"string\"\n      ],\n      \"unique_lot_solvents\": [\n        \"string\",\n        \"string\"\n      ],\n      \"thermo\": {\n        \"key_0\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"electronic_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"zero_point_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"total_enthalpy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"total_entropy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"vibration\": {\n        \"key_0\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"frequencies\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_1\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"frequencies\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"orbitals\": {\n        \"key_0\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"open_shell\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"partial_charges\": {\n        \"key_0\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"partial_charges\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"partial_spins\": {\n        \"key_0\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"partial_spins\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"partial_spins\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_2\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"partial_spins\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"key_1\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"partial_spins\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"key_2\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"partial_spins\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"key_3\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"partial_spins\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"key_4\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"partial_spins\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"partial_spins\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"bonding\": {\n        \"key_0\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bond_types\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bonds\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bonds_nometal\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bond_types\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bonds\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bonds_nometal\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"key_1\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bond_types\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bonds\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bonds_nometal\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bond_types\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bonds\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bonds_nometal\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"multipole_moments\": {\n        \"key_0\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"total_dipole\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"resp_total_dipole\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"redox\": {\n        \"key_0\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"electron_affinity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ea_task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ionization_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ie_task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reduction_free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"red_molecule_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"oxidation_free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ox_molecule_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reduction_potential\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"oxidation_potential\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_1\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"electron_affinity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ea_task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ionization_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ie_task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reduction_free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"red_molecule_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"oxidation_free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ox_molecule_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reduction_potential\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"oxidation_potential\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_2\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"electron_affinity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ea_task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ionization_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ie_task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reduction_free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"red_molecule_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"oxidation_free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ox_molecule_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reduction_potential\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"oxidation_potential\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"metal_binding\": {\n        \"key_0\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_charges_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_spins_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_charges_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_spins_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_charge_spin_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_bonding_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_bonding_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_bonding_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_correction_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_combined_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"has_props\": {\n        \"key_0\": false,\n        \"key_1\": true,\n        \"key_2\": true\n      }\n    },\n    {\n      \"property_id\": \"string\",\n      \"molecule_id\": \"1a525231bdac3f13e2fac0962fe8d053-Mg1-0-1\",\n      \"deprecated\": true,\n      \"molecules\": {\n        \"key_0\": {\n          \"@module\": \"string\",\n          \"@class\": \"string\",\n          \"charge\": 6838.504528067242,\n          \"spin_multiplicity\": 6365,\n          \"sites\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"properties\": {\n            \"magmom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"charge\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"velocities\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"selective_dynamics\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"charge\": 6826,\n      \"spin_multiplicity\": 8359,\n      \"natoms\": 6076,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 9764,\n      \"nelectrons\": 9398,\n      \"composition\": {\n        \"key_0\": 6464.961677631801,\n        \"key_1\": 9610.863747801244,\n        \"key_2\": 5367.804771306447,\n        \"key_3\": 7821.3563259177245\n      },\n      \"composition_reduced\": {\n        \"key_0\": 2963.7356671872394\n      },\n      \"formula_alphabetical\": \"string\",\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"symmetry\": {\n        \"point_group\": \"string\",\n        \"rotation_number\": 2613,\n        \"linear\": true,\n        \"tolerance\": 7311.503134041744,\n        \"eigen_tolerance\": 1379.7225300972905,\n        \"matrix_tolerance\": 9659.416420477235\n      },\n      \"species_hash\": \"string\",\n      \"coord_hash\": \"string\",\n      \"property_name\": \"summary\",\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"level_of_theory\": \"string\",\n      \"solvent\": \"string\",\n      \"lot_solvent\": \"string\",\n      \"last_updated\": \"1974-10-17T18:23:11.355Z\",\n      \"molecule_levels_of_theory\": {\n        \"key_0\": \"string\"\n      },\n      \"inchi\": \"string\",\n      \"inchi_key\": \"string\",\n      \"unique_calc_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"unique_task_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"unique_levels_of_theory\": [\n        \"string\",\n        \"string\"\n      ],\n      \"unique_solvents\": [\n        \"string\",\n        \"string\"\n      ],\n      \"unique_lot_solvents\": [\n        \"string\",\n        \"string\"\n      ],\n      \"thermo\": {\n        \"key_0\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"electronic_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"zero_point_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"total_enthalpy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"total_entropy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_1\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"electronic_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"zero_point_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"total_enthalpy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"total_entropy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"vibration\": {\n        \"key_0\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"frequencies\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_1\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"frequencies\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_2\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"frequencies\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"orbitals\": {\n        \"key_0\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"open_shell\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"partial_charges\": {\n        \"key_0\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"partial_charges\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"partial_charges\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"partial_spins\": {\n        \"key_0\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"partial_spins\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"key_1\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"partial_spins\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"partial_spins\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"bonding\": {\n        \"key_0\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bond_types\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bonds\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bonds_nometal\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bond_types\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bonds\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bonds_nometal\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_2\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bond_types\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bonds\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bonds_nometal\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"multipole_moments\": {\n        \"key_0\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"total_dipole\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"resp_total_dipole\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_1\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"total_dipole\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"resp_total_dipole\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"redox\": {\n        \"key_0\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"electron_affinity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ea_task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ionization_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ie_task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reduction_free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"red_molecule_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"oxidation_free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ox_molecule_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reduction_potential\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"oxidation_potential\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_1\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"electron_affinity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ea_task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ionization_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ie_task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reduction_free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"red_molecule_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"oxidation_free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ox_molecule_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reduction_potential\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"oxidation_potential\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_2\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"electron_affinity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ea_task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ionization_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ie_task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reduction_free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"red_molecule_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"oxidation_free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ox_molecule_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reduction_potential\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"oxidation_potential\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_3\": {\n          \"property_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"level_of_theory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"electron_affinity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ea_task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ionization_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ie_task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reduction_free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"red_molecule_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"oxidation_free_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ox_molecule_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reduction_potential\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"oxidation_potential\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"metal_binding\": {\n        \"key_0\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_charges_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_spins_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_charges_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_spins_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_charge_spin_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_bonding_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_bonding_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_bonding_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_correction_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_combined_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_charges_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_spins_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_charges_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_spins_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_charge_spin_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_bonding_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_bonding_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_bonding_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_correction_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_combined_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"key_1\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_charges_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_spins_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_charges_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_spins_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_charge_spin_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_bonding_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_bonding_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_bonding_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_correction_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_combined_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"key_2\": {\n          \"key_0\": {\n            \"property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"level_of_theory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_charges_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_spins_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_charges_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_partial_spins_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_charge_spin_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_bonding_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_bonding_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_bonding_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_property_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_correction_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_thermo_combined_lot_solvent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"binding_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"has_props\": {\n        \"key_0\": false\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 7696,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 9702,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"2017-07-03T08:15:12.856Z\",\n    \"total_doc\": 3509,\n    \"facet\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": 6748\n    },\n    \"key_0\": false,\n    \"key_1\": \"string\",\n    \"key_2\": 4794\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fe0f228-32c7-4590-a7e6-c75d4b2edcc5",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "molecules",
+                    "summary",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "molecule_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_props",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "charge",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "spin_multiplicity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "inchi",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "inchi_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "species_hash",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "coord_hash",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_sort_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "45ecc54e-248e-4b07-bed7-b255c1653b86",
+    "name": "Materials Project Defect Tasks Molecules Summary API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

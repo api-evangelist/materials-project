@@ -1,0 +1,219 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Materials Project Defect Tasks Materials Substrates API",
+    "version": "0.86.4rc5.dev1+g77c2c1315"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Materials Substrates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SubstratesDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/substrates/",
+            "params": [
+              {
+                "name": "film_orientation",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated integers defining the film surface orientation."
+              },
+              {
+                "name": "substrate_orientation",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated integers defining the substrate surface orientation."
+              },
+              {
+                "name": "area_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of area"
+              },
+              {
+                "name": "area_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of area"
+              },
+              {
+                "name": "energy_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of energy"
+              },
+              {
+                "name": "energy_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of energy"
+              },
+              {
+                "name": "norients_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of norients"
+              },
+              {
+                "name": "norients_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of norients"
+              },
+              {
+                "name": "norients",
+                "value": "",
+                "type": "query",
+                "description": "Query for norients being equal to an exact value"
+              },
+              {
+                "name": "norients_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for norients being not equal to an exact value"
+              },
+              {
+                "name": "norients_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for norients being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "norients_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for norients being not any of these values.                             Provide a comma separated list."
+              },
+              {
+                "name": "sub_form",
+                "value": "",
+                "type": "query",
+                "description": "Query for sub_form being equal to a value"
+              },
+              {
+                "name": "sub_form_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for sub_form being not equal to a value"
+              },
+              {
+                "name": "sub_form_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for sub_form being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "sub_form_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for sub_form being not any of these values. Provide a comma separated list"
+              },
+              {
+                "name": "sub_id",
+                "value": "",
+                "type": "query",
+                "description": "Query for sub_id being equal to a value"
+              },
+              {
+                "name": "sub_id_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for sub_id being not equal to a value"
+              },
+              {
+                "name": "sub_id_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for sub_id being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "sub_id_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for sub_id being not any of these values. Provide a comma separated list"
+              },
+              {
+                "name": "film_id",
+                "value": "",
+                "type": "query",
+                "description": "Query for film_id being equal to a value"
+              },
+              {
+                "name": "film_id_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for film_id being not equal to a value"
+              },
+              {
+                "name": "film_id_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for film_id being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "film_id_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for film_id being not any of these values. Provide a comma separated list"
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from SubstratesDoc as a list of comma separated strings.                    Fields include: `sub_form` `sub_id` `film_orient` `area` `energy` `film_id` `norients` `orient`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              }
+            ]
+          },
+          "docs": "Get SubstratesDoc documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

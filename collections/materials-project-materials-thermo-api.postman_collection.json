@@ -1,0 +1,806 @@
+{
+  "item": [
+    {
+      "id": "f8f99e3d-f7ba-4cc9-b1f2-2fee1479b10e",
+      "name": "Materials Thermo",
+      "description": {
+        "content": "Route providing computed thermodynamic data for a material such as             formation energy and energy above hull. Corrected energy values are also available that employ             the schemes discussed by             [Jain *et al.*](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.84.045115)             and [Wang *et al.*](https://chemrxiv.org/engage/chemrxiv/article-details/60c758d9469df42a4ef45757)            See the `ThermoDoc` schema for a full list of fields returned by this route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "50ab0028-2567-4d58-8665-72da53c3cafb",
+          "name": "Get ThermoDoc documents",
+          "request": {
+            "name": "Get ThermoDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "thermo",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "thermo_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of thermo_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "material_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of material_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "thermo_types",
+                  "value": "<string>",
+                  "description": "Comma-separated list of thermo_type values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "formula",
+                  "value": "<string>",
+                  "description": "Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "chemsys",
+                  "value": "<string>",
+                  "description": "A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_stable",
+                  "value": "<boolean>",
+                  "description": "Whether the material is stable."
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nsites"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nsites"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites",
+                  "value": "<integer>",
+                  "description": "Query for nsites being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nsites being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nsites being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nsites being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements",
+                  "value": "<integer>",
+                  "description": "Query for nelements being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nelements being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of density"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of density"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_atomic_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of density_atomic"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_atomic_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of density_atomic"
+                },
+                {
+                  "disabled": false,
+                  "key": "uncorrected_energy_per_atom_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of uncorrected_energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "uncorrected_energy_per_atom_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of uncorrected_energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_per_atom_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_per_atom_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_uncertainy_per_atom_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of energy_uncertainy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_uncertainy_per_atom_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of energy_uncertainy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "formation_energy_per_atom_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of formation_energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "formation_energy_per_atom_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of formation_energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_above_hull_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of energy_above_hull"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_above_hull_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of energy_above_hull"
+                },
+                {
+                  "disabled": false,
+                  "key": "equilibrium_reaction_energy_per_atom_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of equilibrium_reaction_energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "equilibrium_reaction_energy_per_atom_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of equilibrium_reaction_energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "decomposition_enthalpy_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of decomposition_enthalpy"
+                },
+                {
+                  "disabled": false,
+                  "key": "decomposition_enthalpy_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of decomposition_enthalpy"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from ThermoDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `thermo_type` `thermo_id` `uncorrected_energy_per_atom` `energy_per_atom` `energy_uncertainy_per_atom` `formation_energy_per_atom` `energy_above_hull` `is_stable` `equilibrium_reaction_energy_per_atom` `decomposes_to` `decomposition_enthalpy` `decomposition_enthalpy_decomposes_to` `energy_type` `entry_types` `entries`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "license",
+                  "value": "<string>",
+                  "description": "Query by license. Can be commercial or non-commercial, or both"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29a1020b-42a3-47e2-b869-df2c68113162",
+              "name": "Search for a ThermoDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "thermo",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "thermo_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "thermo_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_stable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nsites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "uncorrected_energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "uncorrected_energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_uncertainy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_uncertainy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "formation_energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "formation_energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_above_hull_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_above_hull_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "equilibrium_reaction_energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "equilibrium_reaction_energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "decomposition_enthalpy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "decomposition_enthalpy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    },
+                    {
+                      "key": "license",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"thermo_type\": \"string\",\n      \"thermo_id\": \"string\",\n      \"uncorrected_energy_per_atom\": 1541.2194152016723,\n      \"energy_per_atom\": 4513.514567450391,\n      \"energy_above_hull\": 2994.566601198475,\n      \"energy_type\": \"string\",\n      \"entry_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"entries\": {\n        \"key_0\": {\n          \"key_0\": true,\n          \"key_1\": \"string\",\n          \"key_2\": true\n        },\n        \"key_1\": {\n          \"key_0\": 7526,\n          \"key_1\": true,\n          \"key_2\": \"string\"\n        }\n      },\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"2023-11-20T12:03:04.054Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 4598,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 2099,\n      \"composition\": {\n        \"key_0\": 4829.589386411394\n      },\n      \"composition_reduced\": {\n        \"key_0\": 2319.3377839274253\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 3019.8624023917487,\n      \"density\": 2133.121649421419,\n      \"density_atomic\": 5676.56911357916,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 8343,\n        \"point_group\": \"string\",\n        \"symprec\": 2505.0953527976662,\n        \"angle_tolerance\": 6967.255822919931,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1959-03-07T01:07:34.450Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1980-02-04T16:19:23.419Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1953-01-03T03:40:01.146Z\"\n        }\n      ],\n      \"property_name\": \"thermo\",\n      \"energy_uncertainy_per_atom\": 1658.8941119896438,\n      \"formation_energy_per_atom\": 1110.1400382239501,\n      \"is_stable\": false,\n      \"equilibrium_reaction_energy_per_atom\": 4650.087893730149,\n      \"decomposes_to\": [\n        {\n          \"material_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"material_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"decomposition_enthalpy\": 4146.064738061032,\n      \"decomposition_enthalpy_decomposes_to\": [\n        {\n          \"material_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"material_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"thermo_type\": \"string\",\n      \"thermo_id\": \"string\",\n      \"uncorrected_energy_per_atom\": 661.0641546192353,\n      \"energy_per_atom\": 178.28933777830235,\n      \"energy_above_hull\": 7094.556468131682,\n      \"energy_type\": \"string\",\n      \"entry_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"entries\": {\n        \"key_0\": {\n          \"key_0\": \"string\"\n        },\n        \"key_1\": {\n          \"key_0\": true,\n          \"key_1\": 923,\n          \"key_2\": 4448\n        }\n      },\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"2013-02-07T02:29:10.471Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 5528,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 8717,\n      \"composition\": {\n        \"key_0\": 311.72353501394247,\n        \"key_1\": 8485.658229224397,\n        \"key_2\": 520.1665820027546,\n        \"key_3\": 8816.221968689262\n      },\n      \"composition_reduced\": {\n        \"key_0\": 4818.196750827172,\n        \"key_1\": 8641.837476809043,\n        \"key_2\": 2042.462802278243\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 1125.697941934466,\n      \"density\": 4384.867640807074,\n      \"density_atomic\": 5380.589764064583,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 7319,\n        \"point_group\": \"string\",\n        \"symprec\": 5293.67803930364,\n        \"angle_tolerance\": 4485.5757331280965,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1952-06-06T10:41:38.655Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2012-05-01T17:51:25.581Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2019-04-14T09:28:39.062Z\"\n        }\n      ],\n      \"property_name\": \"thermo\",\n      \"energy_uncertainy_per_atom\": 2360.7149289574027,\n      \"formation_energy_per_atom\": 6393.313062749585,\n      \"is_stable\": false,\n      \"equilibrium_reaction_energy_per_atom\": 3252.9710101909536,\n      \"decomposes_to\": [\n        {\n          \"material_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"material_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"decomposition_enthalpy\": 8769.620703869843,\n      \"decomposition_enthalpy_decomposes_to\": [\n        {\n          \"material_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"material_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 7841,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 5159,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1955-03-11T14:20:47.070Z\",\n    \"total_doc\": 1734,\n    \"facet\": {\n      \"key_0\": true,\n      \"key_1\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "920dffb7-7757-4213-805e-5503c0a97358",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "thermo",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "thermo_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "thermo_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_stable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nsites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "uncorrected_energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "uncorrected_energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_uncertainy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_uncertainy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "formation_energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "formation_energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_above_hull_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_above_hull_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "equilibrium_reaction_energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "equilibrium_reaction_energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "decomposition_enthalpy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "decomposition_enthalpy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    },
+                    {
+                      "key": "license",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d20f8f5c-d56c-4b82-85d9-c55ef4ec9caf",
+    "name": "Materials Project Defect Tasks Materials Thermo API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

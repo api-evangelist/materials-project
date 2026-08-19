@@ -1,0 +1,358 @@
+{
+  "item": [
+    {
+      "id": "dc5e314a-5675-4da4-80e4-aa532bb1b311",
+      "name": "Defect Tasks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3200f3df-5dae-4e5a-94f8-843a57d26099",
+          "name": "Get DefectTaskDoc documents",
+          "request": {
+            "name": "Get DefectTaskDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "defects",
+                "tasks",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "formula",
+                  "value": "<string>",
+                  "description": "Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "chemsys",
+                  "value": "<string>",
+                  "description": "A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries"
+                },
+                {
+                  "disabled": false,
+                  "key": "elements",
+                  "value": "<string>",
+                  "description": "Query by elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_elements",
+                  "value": "<string>",
+                  "description": "Query by excluded elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "task_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of task_ids to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_updated_min",
+                  "value": "<dateTime>",
+                  "description": "Minimum last updated UTC datetime"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_updated_max",
+                  "value": "<dateTime>",
+                  "description": "Maximum last updated UTC datetime"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from DefectTaskDoc as a list of comma separated strings.                    Fields include: `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `batch_id` `calc_type` `completed_at` `dir_name` `icsd_id` `input` `last_updated` `orig_inputs` `output` `run_type` `structure` `tags` `task_id` `task_type` `transformations` `vasp_objects` `vasp_version` `additional_json` `analysis` `author` `calcs_reversed` `custodian` `entry` `included_objects` `run_stats` `state` `task_label` `defect_name` `bulk_formula` `defect` `charge_state` `supercell_matrix`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ea79067-33a7-4f2b-90d2-ffbf643e9676",
+              "name": "Search for a DefectTaskDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defects",
+                    "tasks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_updated_min",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "last_updated_max",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"defect_name\": \"string\",\n      \"bulk_formula\": \"string\",\n      \"defect\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"@version\": \"string\",\n        \"structure\": {\n          \"@module\": \"string\",\n          \"@class\": \"string\",\n          \"lattice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sites\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"properties\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"site\": {\n          \"@class\": \"string\",\n          \"@module\": \"string\",\n          \"label\": \"string\",\n          \"name\": \"string\",\n          \"properties\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"species\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"abc\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"xyz\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"multiplicity\": 5285,\n        \"oxi_state\": 2086.9615904537595,\n        \"equivalent_sites\": [\n          {\n            \"@class\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"@module\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"species\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"abc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"xyz\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"@class\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"@module\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"species\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"abc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"xyz\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"symprec\": 5330.933472510718,\n        \"angle_tolerance\": 5635.758411727679,\n        \"user_changes\": [\n          9292,\n          8135\n        ]\n      },\n      \"nsites\": 8998,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 9322,\n      \"composition\": {\n        \"key_0\": 4783.282785996018,\n        \"key_1\": 1529.730985389398\n      },\n      \"composition_reduced\": {\n        \"key_0\": 9148.277676240394\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 6348.168845657908,\n      \"density\": 433.12589066322295,\n      \"density_atomic\": 8030.493833526402,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 3356,\n        \"point_group\": \"string\",\n        \"symprec\": 5557.227372721195,\n        \"angle_tolerance\": 6369.07219880653,\n        \"version\": \"string\"\n      },\n      \"batch_id\": \"string\",\n      \"calc_type\": \"string\",\n      \"completed_at\": \"1969-08-15T11:55:15.335Z\",\n      \"dir_name\": \"string\",\n      \"icsd_id\": 801,\n      \"input\": {\n        \"incar\": {\n          \"key_0\": \"string\",\n          \"key_1\": false,\n          \"key_2\": \"string\"\n        },\n        \"kpoints\": {\n          \"key_0\": \"string\"\n        },\n        \"nkpoints\": 3533,\n        \"potcar_spec\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar_type\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"parameters\": {\n          \"key_0\": 4538.774537366201\n        },\n        \"lattice_rec\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"structure\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"is_hubbard\": false,\n        \"hubbards\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"last_updated\": \"1972-12-06T06:23:46.614Z\",\n      \"orig_inputs\": {\n        \"incar\": {\n          \"key_0\": \"string\",\n          \"key_1\": false,\n          \"key_2\": 7273,\n          \"key_3\": false\n        },\n        \"kpoints\": {\n          \"key_0\": true\n        },\n        \"nkpoints\": 1335,\n        \"potcar_spec\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar_type\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"parameters\": {\n          \"key_0\": 5355\n        },\n        \"lattice_rec\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"structure\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"is_hubbard\": false,\n        \"hubbards\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"output\": {\n        \"structure\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"density\": 4256.816077666469,\n        \"energy\": 6360.103155560928,\n        \"forces\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"stress\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"energy_per_atom\": 5657.765650797698,\n        \"bandgap\": 1696.9051216775322\n      },\n      \"run_type\": \"string\",\n      \"structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"a\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"b\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"c\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alpha\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"beta\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gamma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"charge\": 3422.724438513486,\n        \"properties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"task_id\": \"mp-3534\",\n      \"task_type\": \"string\",\n      \"transformations\": {\n        \"key_0\": \"string\"\n      },\n      \"vasp_objects\": {\n        \"key_0\": 8817,\n        \"key_1\": \"string\"\n      },\n      \"vasp_version\": \"string\",\n      \"additional_json\": {\n        \"key_0\": false,\n        \"key_1\": 618.7979699717672,\n        \"key_2\": 7341.841859659133\n      },\n      \"analysis\": {\n        \"delta_volume\": 46.355390471348734,\n        \"delta_volume_percent\": 1773.7560034966227,\n        \"max_force\": 7292.227444961249,\n        \"warnings\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"errors\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"author\": \"string\",\n      \"calcs_reversed\": [\n        {\n          \"dir_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vasp_version\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"has_vasp_completed\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"completed_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_file_paths\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bader\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ddec6\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"run_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"calc_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"dir_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vasp_version\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"has_vasp_completed\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"completed_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_file_paths\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bader\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ddec6\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"run_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"calc_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"custodian\": [\n        {\n          \"corrections\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"job\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"corrections\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"job\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"entry\": {\n        \"key_0\": \"string\"\n      },\n      \"included_objects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"run_stats\": {\n        \"key_0\": {\n          \"average_memory\": 0,\n          \"max_memory\": 0,\n          \"elapsed_time\": 0,\n          \"system_time\": 0,\n          \"user_time\": 0,\n          \"total_time\": 0,\n          \"cores\": 0\n        }\n      },\n      \"state\": \"string\",\n      \"task_label\": \"string\",\n      \"charge_state\": 5659,\n      \"supercell_matrix\": [\n        [\n          8869,\n          2773\n        ],\n        [\n          1056,\n          589\n        ]\n      ]\n    },\n    {\n      \"defect_name\": \"string\",\n      \"bulk_formula\": \"string\",\n      \"defect\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"@version\": \"string\",\n        \"structure\": {\n          \"@module\": \"string\",\n          \"@class\": \"string\",\n          \"lattice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sites\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"properties\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"site\": {\n          \"@class\": \"string\",\n          \"@module\": \"string\",\n          \"label\": \"string\",\n          \"name\": \"string\",\n          \"properties\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"species\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"abc\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"xyz\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"multiplicity\": 4194,\n        \"oxi_state\": 5711.859416882467,\n        \"equivalent_sites\": [\n          {\n            \"@class\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"@module\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"species\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"abc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"xyz\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"@class\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"@module\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"species\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"abc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"xyz\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"symprec\": 7896.833770868702,\n        \"angle_tolerance\": 8382.925515718602,\n        \"user_changes\": [\n          3044,\n          1742\n        ]\n      },\n      \"nsites\": 8957,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 517,\n      \"composition\": {\n        \"key_0\": 1504.6012010559684\n      },\n      \"composition_reduced\": {\n        \"key_0\": 1115.7714825414023\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 4175.42309294445,\n      \"density\": 8491.827727293987,\n      \"density_atomic\": 8877.606921648034,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 5978,\n        \"point_group\": \"string\",\n        \"symprec\": 6663.461910754904,\n        \"angle_tolerance\": 6518.648870719557,\n        \"version\": \"string\"\n      },\n      \"batch_id\": \"string\",\n      \"calc_type\": \"string\",\n      \"completed_at\": \"1973-07-10T00:32:44.185Z\",\n      \"dir_name\": \"string\",\n      \"icsd_id\": 1880,\n      \"input\": {\n        \"incar\": {\n          \"key_0\": 6198.456896573147,\n          \"key_1\": true\n        },\n        \"kpoints\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"nkpoints\": 2465,\n        \"potcar_spec\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar_type\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"parameters\": {\n          \"key_0\": 610.1003192040012\n        },\n        \"lattice_rec\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"structure\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"is_hubbard\": false,\n        \"hubbards\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"last_updated\": \"2004-08-08T20:06:03.797Z\",\n      \"orig_inputs\": {\n        \"incar\": {\n          \"key_0\": 2238.365345773843,\n          \"key_1\": false\n        },\n        \"kpoints\": {\n          \"key_0\": 3088,\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"nkpoints\": 7767,\n        \"potcar_spec\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar_type\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"parameters\": {\n          \"key_0\": 2066.9105029640455,\n          \"key_1\": true,\n          \"key_2\": 9011.519797362433\n        },\n        \"lattice_rec\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"structure\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"is_hubbard\": false,\n        \"hubbards\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"output\": {\n        \"structure\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"density\": 7431.494079819618,\n        \"energy\": 2902.594139663256,\n        \"forces\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"stress\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"energy_per_atom\": 3652.5552346857935,\n        \"bandgap\": 4570.018791324722\n      },\n      \"run_type\": \"string\",\n      \"structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"a\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"b\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"c\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alpha\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"beta\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gamma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"charge\": 8839.306237100713,\n        \"properties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"task_id\": \"mp-3534\",\n      \"task_type\": \"string\",\n      \"transformations\": {\n        \"key_0\": 1577\n      },\n      \"vasp_objects\": {\n        \"key_0\": false,\n        \"key_1\": 4349.924230797666,\n        \"key_2\": 6723\n      },\n      \"vasp_version\": \"string\",\n      \"additional_json\": {\n        \"key_0\": true,\n        \"key_1\": true\n      },\n      \"analysis\": {\n        \"delta_volume\": 9864.125332063213,\n        \"delta_volume_percent\": 6203.24253946091,\n        \"max_force\": 4455.51341994885,\n        \"warnings\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"errors\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"author\": \"string\",\n      \"calcs_reversed\": [\n        {\n          \"dir_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vasp_version\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"has_vasp_completed\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"completed_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_file_paths\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bader\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ddec6\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"run_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"calc_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"dir_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vasp_version\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"has_vasp_completed\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"completed_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_file_paths\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bader\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ddec6\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"run_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"calc_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"custodian\": [\n        {\n          \"corrections\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"job\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"corrections\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"job\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"entry\": {\n        \"key_0\": 203.38845263974227,\n        \"key_1\": 3029.896588031774\n      },\n      \"included_objects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"run_stats\": {\n        \"key_0\": {\n          \"average_memory\": 0,\n          \"max_memory\": 0,\n          \"elapsed_time\": 0,\n          \"system_time\": 0,\n          \"user_time\": 0,\n          \"total_time\": 0,\n          \"cores\": 0\n        }\n      },\n      \"state\": \"string\",\n      \"task_label\": \"string\",\n      \"charge_state\": 9835,\n      \"supercell_matrix\": [\n        [\n          5834,\n          7628\n        ],\n        [\n          3989,\n          6200\n        ]\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 1424,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 9333,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"2005-07-26T15:49:57.843Z\",\n    \"total_doc\": 6353,\n    \"facet\": {\n      \"key_0\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcc1020b-df94-4859-a106-2fef2e2bab50",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defects",
+                    "tasks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_updated_min",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "last_updated_max",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bcc96447-3586-4517-bd6a-ae77b24df48d",
+    "name": "Materials Project Defect Tasks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

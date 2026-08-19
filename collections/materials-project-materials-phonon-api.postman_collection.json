@@ -1,0 +1,778 @@
+{
+  "item": [
+    {
+      "id": "8feba6ea-fe91-439c-bbd8-2a758ec4ae87",
+      "name": "Materials Phonon",
+      "description": {
+        "content": "**Under construction** Route providing computed phonon data for a material following the             methodology discussed by [Petretto *et al.*](https://doi.org/10.1038/sdata.2018.65)             Note that phonon data has not been calculated for all materials in the Materials             Project database. See the `PhononBSDOSDoc` schema for a full list of fields returned by this route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ad9e193f-26a8-4190-98a0-a0c768568fd6",
+          "name": "Get PhononBSDOSDoc documents",
+          "request": {
+            "name": "Get PhononBSDOSDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "phonon",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "material_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of material_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "formula",
+                  "value": "<string>",
+                  "description": "Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "chemsys",
+                  "value": "<string>",
+                  "description": "A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries"
+                },
+                {
+                  "disabled": false,
+                  "key": "elements",
+                  "value": "<string>",
+                  "description": "Query by elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_elements",
+                  "value": "<string>",
+                  "description": "Query by excluded elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "crystal_system",
+                  "value": "<string>",
+                  "description": "Crystal system of the material. If a comma-separated string, will query by multiple crystal systems."
+                },
+                {
+                  "disabled": false,
+                  "key": "spacegroup_number",
+                  "value": "<integer>",
+                  "description": "Space group number of the material. If a comma-separated string, will query by multiple space group numbers."
+                },
+                {
+                  "disabled": false,
+                  "key": "spacegroup_symbol",
+                  "value": "<string>",
+                  "description": "Space group symbol of the material. If a comma-separated string, will query by multiple space group numbers."
+                },
+                {
+                  "disabled": false,
+                  "key": "phonon_method",
+                  "value": "<string>",
+                  "description": "Phonon Method to search for"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nsites"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nsites"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites",
+                  "value": "<integer>",
+                  "description": "Query for nsites being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nsites being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nsites being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nsites being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements",
+                  "value": "<integer>",
+                  "description": "Query for nelements being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nelements being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of density"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of density"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_atomic_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of density_atomic"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_atomic_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of density_atomic"
+                },
+                {
+                  "disabled": false,
+                  "key": "total_dft_energy_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of total_dft_energy"
+                },
+                {
+                  "disabled": false,
+                  "key": "total_dft_energy_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of total_dft_energy"
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_per_formula_unit_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of volume_per_formula_unit"
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_per_formula_unit_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of volume_per_formula_unit"
+                },
+                {
+                  "disabled": false,
+                  "key": "formula_units_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of formula_units"
+                },
+                {
+                  "disabled": false,
+                  "key": "formula_units_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of formula_units"
+                },
+                {
+                  "disabled": false,
+                  "key": "formula_units",
+                  "value": "<integer>",
+                  "description": "Query for formula_units being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "formula_units_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for formula_units being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "formula_units_eq_any",
+                  "value": "<string>",
+                  "description": "Query for formula_units being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "formula_units_neq_any",
+                  "value": "<string>",
+                  "description": "Query for formula_units being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from PhononBSDOSDoc as a list of comma separated strings.                    Fields include: `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `identifier` `phonon_method` `phonon_bandstructure` `phonon_dos` `epsilon_static` `epsilon_electronic` `born` `force_constants` `last_updated` `sum_rules_breaking` `structure` `total_dft_energy` `volume_per_formula_unit` `formula_units` `supercell_matrix` `primitive_matrix` `code` `post_process_settings` `thermal_displacement_data` `calc_meta` `material_id` `task_ids`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0e9f2d0-a9f6-4317-a24e-22d13f451f14",
+              "name": "Search for a PhononBSDOSDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "phonon",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "crystal_system",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "spacegroup_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "spacegroup_symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phonon_method",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_dft_energy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_dft_energy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_per_formula_unit_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_per_formula_unit_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "formula_units_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "formula_units_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "formula_units",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "formula_units_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "formula_units_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula_units_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65a1dbc1-56d5-4ec0-a93e-44d10e2a4156",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "phonon",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "crystal_system",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "spacegroup_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "spacegroup_symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phonon_method",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_dft_energy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_dft_energy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_per_formula_unit_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_per_formula_unit_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "formula_units_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "formula_units_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "formula_units",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "formula_units_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "formula_units_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula_units_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e40b5f53-bd46-470c-8562-ecddc599a833",
+    "name": "Materials Project Defect Tasks Materials Phonon API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

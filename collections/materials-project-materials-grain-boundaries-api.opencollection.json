@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Materials Project Defect Tasks Materials Grain Boundaries API",
+    "version": "0.86.4rc5.dev1+g77c2c1315"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Materials Grain Boundaries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get GrainBoundaryDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/grain_boundaries/",
+            "params": [
+              {
+                "name": "material_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of material_id values to query on"
+              },
+              {
+                "name": "task_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Materials Project IDs to query on."
+              },
+              {
+                "name": "sigma_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of sigma"
+              },
+              {
+                "name": "sigma_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of sigma"
+              },
+              {
+                "name": "sigma",
+                "value": "",
+                "type": "query",
+                "description": "Value of sigma."
+              },
+              {
+                "name": "sigma_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for sigma being not equal to an exact value"
+              },
+              {
+                "name": "sigma_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for sigma being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "sigma_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for sigma being not any of these values.                             Provide a comma separated list."
+              },
+              {
+                "name": "rotation_angle_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of rotation_angle"
+              },
+              {
+                "name": "rotation_angle_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of rotation_angle"
+              },
+              {
+                "name": "gb_energy_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of gb_energy"
+              },
+              {
+                "name": "gb_energy_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of gb_energy"
+              },
+              {
+                "name": "w_sep_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of w_sep"
+              },
+              {
+                "name": "w_sep_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of w_sep"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Grain boundary type."
+              },
+              {
+                "name": "chemsys",
+                "value": "",
+                "type": "query",
+                "description": "Dash-delimited string of elements in the material."
+              },
+              {
+                "name": "pretty_formula",
+                "value": "",
+                "type": "query",
+                "description": "Formula of the material."
+              },
+              {
+                "name": "gb_plane",
+                "value": "",
+                "type": "query",
+                "description": "Miller index of the grain boundary plane as comma delimitd integers."
+              },
+              {
+                "name": "rotation_axis",
+                "value": "",
+                "type": "query",
+                "description": "Miller index of the rotation axis as comma delimitd integers."
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from GrainBoundaryDoc as a list of comma separated strings.                    Fields include: `material_id` `sigma` `type` `rotation_axis` `gb_plane` `rotation_angle` `gb_energy` `initial_structure` `final_structure` `pretty_formula` `w_sep` `structure` `chemsys` `last_updated`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              }
+            ]
+          },
+          "docs": "Get GrainBoundaryDoc documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

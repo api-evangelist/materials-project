@@ -1,0 +1,446 @@
+{
+  "item": [
+    {
+      "id": "df9a6030-267a-44e0-9700-045ff2949778",
+      "name": "Materials Robocrystallographer",
+      "description": {
+        "content": "Route providing a computed text description for a material following the             methodology discussed by [Ganose *et al.*](https://doi.org/10.1557/mrc.2019.94)             Note that descriptions may not been calculated for all materials in the Materials             Project database. See the `RobocrysDoc` schema for a full list of fields returned by this route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "89a453be-afe9-492a-a196-dc9eb8fc1212",
+          "name": "Get RobocrystallogapherDoc documents",
+          "request": {
+            "name": "Get RobocrystallogapherDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "robocrys",
+                "text_search",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "keywords",
+                  "value": "<string>",
+                  "description": "(Required) Comma delimited string keywords to search robocrystallographer description text with"
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search"
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "1000",
+                  "description": "Max number of entries to return in a single query. Limited to 1000 by default"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3846d5dd-4314-43ef-b1d8-3fe98db21c07",
+              "name": "Get RobocrystallogapherDoc data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "robocrys",
+                    "text_search",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keywords",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "1000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"description\": \"string\",\n      \"condensed_structure\": {\n        \"mineral\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"dimensionality\": 9270,\n        \"formula\": \"string\",\n        \"spg_symbol\": \"string\",\n        \"crystal_system\": \"string\"\n      },\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1985-07-27T20:30:13.912Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 9455,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 9374,\n      \"composition\": {\n        \"key_0\": 1838.78444404728,\n        \"key_1\": 5860.438388122358\n      },\n      \"composition_reduced\": {\n        \"key_0\": 7062.406159623995\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 1090.1570390344395,\n      \"density\": 4219.408725569526,\n      \"density_atomic\": 2740.3919416806357,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 5622,\n        \"point_group\": \"string\",\n        \"symprec\": 2920.26609264078,\n        \"angle_tolerance\": 792.8041605713687,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1999-03-18T06:47:17.175Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1975-02-19T19:32:16.704Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1951-03-01T10:50:33.763Z\"\n        }\n      ],\n      \"property_name\": \"robocrys\",\n      \"robocrys_version\": \"0.86.4rc4\"\n    },\n    {\n      \"description\": \"string\",\n      \"condensed_structure\": {\n        \"mineral\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"dimensionality\": 9143,\n        \"formula\": \"string\",\n        \"spg_symbol\": \"string\",\n        \"crystal_system\": \"string\"\n      },\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1967-05-04T00:31:36.126Z\",\n        \"license\": \"BY-C\"\n      },\n      \"nsites\": 9888,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 4157,\n      \"composition\": {\n        \"key_0\": 9656.351803530408,\n        \"key_1\": 9335.989231239266,\n        \"key_2\": 7741.56240732561,\n        \"key_3\": 863.5350970930078\n      },\n      \"composition_reduced\": {\n        \"key_0\": 3130.290179103444\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 1833.5307118166277,\n      \"density\": 3243.5336857902043,\n      \"density_atomic\": 207.47724610983065,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 5727,\n        \"point_group\": \"string\",\n        \"symprec\": 8999.898059446223,\n        \"angle_tolerance\": 5360.964938376052,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"2001-05-29T00:40:48.404Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2005-09-24T16:17:34.275Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2024-05-23T07:34:10.615Z\"\n        }\n      ],\n      \"property_name\": \"robocrys\",\n      \"robocrys_version\": \"0.86.4rc4\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 7975,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 8959,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1978-12-27T16:20:35.002Z\",\n    \"total_doc\": 6470,\n    \"facet\": {\n      \"key_0\": 6127\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f68a326-76ca-4543-bada-a46dba9a3059",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "robocrys",
+                    "text_search",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keywords",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "1000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8237f356-dc47-4921-84b6-d5deb8d0f608",
+          "name": "Get RobocrystallogapherDoc documents",
+          "request": {
+            "name": "Get RobocrystallogapherDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "robocrys",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "material_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of material_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from RobocrystallogapherDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `description` `condensed_structure` `robocrys_version`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4bbc166a-a025-4674-af0d-eff4b6fdea37",
+              "name": "Search for a RobocrystallogapherDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "robocrys",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"description\": \"string\",\n      \"condensed_structure\": {\n        \"mineral\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"dimensionality\": 9270,\n        \"formula\": \"string\",\n        \"spg_symbol\": \"string\",\n        \"crystal_system\": \"string\"\n      },\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1985-07-27T20:30:13.912Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 9455,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 9374,\n      \"composition\": {\n        \"key_0\": 1838.78444404728,\n        \"key_1\": 5860.438388122358\n      },\n      \"composition_reduced\": {\n        \"key_0\": 7062.406159623995\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 1090.1570390344395,\n      \"density\": 4219.408725569526,\n      \"density_atomic\": 2740.3919416806357,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 5622,\n        \"point_group\": \"string\",\n        \"symprec\": 2920.26609264078,\n        \"angle_tolerance\": 792.8041605713687,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1999-03-18T06:47:17.175Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1975-02-19T19:32:16.704Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1951-03-01T10:50:33.763Z\"\n        }\n      ],\n      \"property_name\": \"robocrys\",\n      \"robocrys_version\": \"0.86.4rc4\"\n    },\n    {\n      \"description\": \"string\",\n      \"condensed_structure\": {\n        \"mineral\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"dimensionality\": 9143,\n        \"formula\": \"string\",\n        \"spg_symbol\": \"string\",\n        \"crystal_system\": \"string\"\n      },\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1967-05-04T00:31:36.126Z\",\n        \"license\": \"BY-C\"\n      },\n      \"nsites\": 9888,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 4157,\n      \"composition\": {\n        \"key_0\": 9656.351803530408,\n        \"key_1\": 9335.989231239266,\n        \"key_2\": 7741.56240732561,\n        \"key_3\": 863.5350970930078\n      },\n      \"composition_reduced\": {\n        \"key_0\": 3130.290179103444\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 1833.5307118166277,\n      \"density\": 3243.5336857902043,\n      \"density_atomic\": 207.47724610983065,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 5727,\n        \"point_group\": \"string\",\n        \"symprec\": 8999.898059446223,\n        \"angle_tolerance\": 5360.964938376052,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"2001-05-29T00:40:48.404Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2005-09-24T16:17:34.275Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2024-05-23T07:34:10.615Z\"\n        }\n      ],\n      \"property_name\": \"robocrys\",\n      \"robocrys_version\": \"0.86.4rc4\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 7975,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 8959,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1978-12-27T16:20:35.002Z\",\n    \"total_doc\": 6470,\n    \"facet\": {\n      \"key_0\": 6127\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a752410-75ac-4c0e-9245-161980d1d534",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "robocrys",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4a0ddf4c-60e9-41b7-94ac-148a6de25131",
+    "name": "Materials Project Defect Tasks Materials Robocrystallographer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

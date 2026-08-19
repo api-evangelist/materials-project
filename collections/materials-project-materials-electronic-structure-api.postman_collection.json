@@ -1,0 +1,1669 @@
+{
+  "item": [
+    {
+      "id": "51d58cbf-36b7-429d-a2c0-3b22455c6644",
+      "name": "Materials Electronic Structure",
+      "description": {
+        "content": "Routes providing computed electronic structure related data for a material such as             band gap and fermi level. Python objects for line-mode band structures, density of states, and             fermi surfaces are also available. This data was obtained following the methodology discussed by             [Munro *et al.*](https://doi.org/10.1038/s41524-020-00383-7) and [Ganose *et al.*](https://doi.org/10.21105/joss.03089)             Note that full band structure, density of states, and fermi surface data has not been calculated for             all materials in the Materials Project database. See the `ElectronicStructureDoc` and `FermiDoc` schema             for a full list of fields returned by the associated routes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e80f2922-ad70-4cdf-b28e-657d293bb319",
+          "name": "Get FermiDoc documents",
+          "request": {
+            "name": "Get FermiDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "fermi",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "material_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of material_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from FermiDoc as a list of comma separated strings.                    Fields include: `fermi_surfaces` `surface_types` `material_id` `last_updated`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "424a21a3-af09-4951-abf1-7b0348b06258",
+              "name": "Search for a FermiDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "fermi",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"fermi_surfaces\": [\n        {\n          \"key_0\": 1601\n        },\n        {\n          \"key_0\": false\n        }\n      ],\n      \"surface_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"material_id\": \"string\",\n      \"last_updated\": \"1995-12-01T11:38:33.919Z\"\n    },\n    {\n      \"fermi_surfaces\": [\n        {\n          \"key_0\": \"string\",\n          \"key_1\": 6472,\n          \"key_2\": 8281.164245760252\n        },\n        {\n          \"key_0\": 5215,\n          \"key_1\": 8331\n        }\n      ],\n      \"surface_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"material_id\": \"string\",\n      \"last_updated\": \"1986-09-18T00:58:24.819Z\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 4909,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 375,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"2012-07-05T15:34:13.293Z\",\n    \"total_doc\": 4000,\n    \"facet\": {\n      \"key_0\": 4019\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b153fa2f-f08b-464c-bdb1-b1451e4a92af",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "fermi",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d22865a-3262-4a5b-ac57-5f0cdde302a3",
+          "name": "Get ElectronicStructureDoc documents",
+          "request": {
+            "name": "Get ElectronicStructureDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "electronic_structure",
+                "bandstructure",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path_type",
+                  "value": "<string>",
+                  "description": "k-path selection convention for the band structure."
+                },
+                {
+                  "disabled": false,
+                  "key": "band_gap_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the band gap energy in eV."
+                },
+                {
+                  "disabled": false,
+                  "key": "band_gap_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the band gap energy in eV."
+                },
+                {
+                  "disabled": false,
+                  "key": "efermi_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the fermi energy in eV."
+                },
+                {
+                  "disabled": false,
+                  "key": "efermi_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the fermi energy in eV."
+                },
+                {
+                  "disabled": false,
+                  "key": "magnetic_ordering",
+                  "value": "<string>",
+                  "description": "Magnetic ordering associated with the data."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_gap_direct",
+                  "value": "<boolean>",
+                  "description": "Whether a band gap is direct or not."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_metal",
+                  "value": "<boolean>",
+                  "description": "Whether the material is considered a metal."
+                },
+                {
+                  "disabled": false,
+                  "key": "deprecated",
+                  "value": "<boolean>",
+                  "description": "Whether the material is marked as deprecated"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from ElectronicStructureDoc as a list of comma separated strings.                    Fields include: `task_id` `band_gap` `cbm` `vbm` `efermi` `is_gap_direct` `is_metal` `magnetic_ordering` `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `bandstructure` `dos`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60f77dc3-2f73-490d-ab4b-aa1c1cabb3ef",
+              "name": "Search for a ElectronicStructureDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "electronic_structure",
+                    "bandstructure",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "band_gap_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "band_gap_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "magnetic_ordering",
+                      "value": "NM"
+                    },
+                    {
+                      "key": "is_gap_direct",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_metal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "deprecated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"task_id\": \"mp-3534\",\n      \"band_gap\": 9680.595123299041,\n      \"is_gap_direct\": true,\n      \"is_metal\": true,\n      \"magnetic_ordering\": \"string\",\n      \"cbm\": 8524.024996273638,\n      \"vbm\": 6515.138349325852,\n      \"efermi\": 161.63696055987108,\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"2010-02-11T18:58:00.641Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 9396,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 5751,\n      \"composition\": {\n        \"key_0\": 5757.580259425975,\n        \"key_1\": 909.2186739512564,\n        \"key_2\": 2662.922029551712\n      },\n      \"composition_reduced\": {\n        \"key_0\": 1706.5800179462387,\n        \"key_1\": 4694.235266035725\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 8246.141988316327,\n      \"density\": 5898.643628445118,\n      \"density_atomic\": 8457.845280215433,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 8001,\n        \"point_group\": \"string\",\n        \"symprec\": 8883.101684765052,\n        \"angle_tolerance\": 3437.8650064296144,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1978-04-12T13:33:48.950Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1973-06-02T22:54:38.564Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1984-12-08T12:19:42.750Z\"\n        }\n      ],\n      \"property_name\": \"electronic_structure\",\n      \"bandstructure\": {\n        \"setyawan_curtarolo\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hinuma\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"latimer_munro\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"dos\": {\n        \"total\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"elemental\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"orbital\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"magnetic_ordering\": \"string\"\n      }\n    },\n    {\n      \"task_id\": \"mp-3534\",\n      \"band_gap\": 3865.633054082568,\n      \"is_gap_direct\": false,\n      \"is_metal\": true,\n      \"magnetic_ordering\": \"string\",\n      \"cbm\": 6056.0870060809675,\n      \"vbm\": 3259.6232067934448,\n      \"efermi\": 4665.580652164683,\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1985-11-08T03:59:41.058Z\",\n        \"license\": \"BY-C\"\n      },\n      \"nsites\": 593,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 1810,\n      \"composition\": {\n        \"key_0\": 442.3312764388021,\n        \"key_1\": 4460.539769566793,\n        \"key_2\": 9691.324745846383\n      },\n      \"composition_reduced\": {\n        \"key_0\": 1214.3661485080138\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 4863.70655009271,\n      \"density\": 8406.44636931908,\n      \"density_atomic\": 3472.719666986802,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 1490,\n        \"point_group\": \"string\",\n        \"symprec\": 5296.805782708039,\n        \"angle_tolerance\": 1820.4517564581834,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1996-07-26T03:20:49.252Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1999-03-09T16:28:37.029Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1960-12-27T13:29:20.511Z\"\n        }\n      ],\n      \"property_name\": \"electronic_structure\",\n      \"bandstructure\": {\n        \"setyawan_curtarolo\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hinuma\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"latimer_munro\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"dos\": {\n        \"total\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"elemental\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"orbital\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"magnetic_ordering\": \"string\"\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 5958,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 6212,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"2013-10-23T17:54:02.690Z\",\n    \"total_doc\": 8409,\n    \"facet\": {\n      \"key_0\": true,\n      \"key_1\": true,\n      \"key_2\": \"string\",\n      \"key_3\": 933.5760287178985\n    },\n    \"key_0\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b645e34b-4403-4616-ab06-4b6d6c3c15e3",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "electronic_structure",
+                    "bandstructure",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "band_gap_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "band_gap_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "magnetic_ordering",
+                      "value": "NM"
+                    },
+                    {
+                      "key": "is_gap_direct",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_metal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "deprecated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bdeb1d20-e173-4ff3-af0f-93159f3ddacd",
+          "name": "Get ElectronicStructureDoc documents",
+          "request": {
+            "name": "Get ElectronicStructureDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "electronic_structure",
+                "dos",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "projection_type",
+                  "value": "<string>",
+                  "description": "Projection type for the density of states data."
+                },
+                {
+                  "disabled": false,
+                  "key": "spin",
+                  "value": "<string>",
+                  "description": "Spin channel for density of states data. '1' corresponds to spin up."
+                },
+                {
+                  "disabled": false,
+                  "key": "element",
+                  "value": "<string>",
+                  "description": "Element type for projected density of states data."
+                },
+                {
+                  "disabled": false,
+                  "key": "orbital",
+                  "value": "<integer>",
+                  "description": "Orbital type for projected density of states data."
+                },
+                {
+                  "disabled": false,
+                  "key": "band_gap_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the band gap energy in eV."
+                },
+                {
+                  "disabled": false,
+                  "key": "band_gap_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the band gap energy in eV."
+                },
+                {
+                  "disabled": false,
+                  "key": "efermi_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the fermi energy in eV."
+                },
+                {
+                  "disabled": false,
+                  "key": "efermi_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the fermi energy in eV."
+                },
+                {
+                  "disabled": false,
+                  "key": "magnetic_ordering",
+                  "value": "<string>",
+                  "description": "Magnetic ordering associated with the data."
+                },
+                {
+                  "disabled": false,
+                  "key": "deprecated",
+                  "value": "<boolean>",
+                  "description": "Whether the material is marked as deprecated"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from ElectronicStructureDoc as a list of comma separated strings.                    Fields include: `task_id` `band_gap` `cbm` `vbm` `efermi` `is_gap_direct` `is_metal` `magnetic_ordering` `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `bandstructure` `dos`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f70a894f-d555-48d6-8b63-d4bf63355642",
+              "name": "Search for a ElectronicStructureDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "electronic_structure",
+                    "dos",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projection_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "spin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "element",
+                      "value": "Mt"
+                    },
+                    {
+                      "key": "orbital",
+                      "value": "1"
+                    },
+                    {
+                      "key": "band_gap_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "band_gap_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "magnetic_ordering",
+                      "value": "NM"
+                    },
+                    {
+                      "key": "deprecated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"task_id\": \"mp-3534\",\n      \"band_gap\": 9680.595123299041,\n      \"is_gap_direct\": true,\n      \"is_metal\": true,\n      \"magnetic_ordering\": \"string\",\n      \"cbm\": 8524.024996273638,\n      \"vbm\": 6515.138349325852,\n      \"efermi\": 161.63696055987108,\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"2010-02-11T18:58:00.641Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 9396,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 5751,\n      \"composition\": {\n        \"key_0\": 5757.580259425975,\n        \"key_1\": 909.2186739512564,\n        \"key_2\": 2662.922029551712\n      },\n      \"composition_reduced\": {\n        \"key_0\": 1706.5800179462387,\n        \"key_1\": 4694.235266035725\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 8246.141988316327,\n      \"density\": 5898.643628445118,\n      \"density_atomic\": 8457.845280215433,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 8001,\n        \"point_group\": \"string\",\n        \"symprec\": 8883.101684765052,\n        \"angle_tolerance\": 3437.8650064296144,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1978-04-12T13:33:48.950Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1973-06-02T22:54:38.564Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1984-12-08T12:19:42.750Z\"\n        }\n      ],\n      \"property_name\": \"electronic_structure\",\n      \"bandstructure\": {\n        \"setyawan_curtarolo\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hinuma\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"latimer_munro\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"dos\": {\n        \"total\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"elemental\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"orbital\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"magnetic_ordering\": \"string\"\n      }\n    },\n    {\n      \"task_id\": \"mp-3534\",\n      \"band_gap\": 3865.633054082568,\n      \"is_gap_direct\": false,\n      \"is_metal\": true,\n      \"magnetic_ordering\": \"string\",\n      \"cbm\": 6056.0870060809675,\n      \"vbm\": 3259.6232067934448,\n      \"efermi\": 4665.580652164683,\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1985-11-08T03:59:41.058Z\",\n        \"license\": \"BY-C\"\n      },\n      \"nsites\": 593,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 1810,\n      \"composition\": {\n        \"key_0\": 442.3312764388021,\n        \"key_1\": 4460.539769566793,\n        \"key_2\": 9691.324745846383\n      },\n      \"composition_reduced\": {\n        \"key_0\": 1214.3661485080138\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 4863.70655009271,\n      \"density\": 8406.44636931908,\n      \"density_atomic\": 3472.719666986802,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 1490,\n        \"point_group\": \"string\",\n        \"symprec\": 5296.805782708039,\n        \"angle_tolerance\": 1820.4517564581834,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1996-07-26T03:20:49.252Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1999-03-09T16:28:37.029Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1960-12-27T13:29:20.511Z\"\n        }\n      ],\n      \"property_name\": \"electronic_structure\",\n      \"bandstructure\": {\n        \"setyawan_curtarolo\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hinuma\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"latimer_munro\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"dos\": {\n        \"total\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"elemental\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"orbital\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"magnetic_ordering\": \"string\"\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 5958,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 6212,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"2013-10-23T17:54:02.690Z\",\n    \"total_doc\": 8409,\n    \"facet\": {\n      \"key_0\": true,\n      \"key_1\": true,\n      \"key_2\": \"string\",\n      \"key_3\": 933.5760287178985\n    },\n    \"key_0\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb3a2a8f-6868-4c76-a882-590fc4f31ae3",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "electronic_structure",
+                    "dos",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projection_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "spin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "element",
+                      "value": "Mt"
+                    },
+                    {
+                      "key": "orbital",
+                      "value": "1"
+                    },
+                    {
+                      "key": "band_gap_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "band_gap_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "magnetic_ordering",
+                      "value": "NM"
+                    },
+                    {
+                      "key": "deprecated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ecdf81fc-08f3-4749-a47f-3bf24ed7327b",
+          "name": "Get ElectronicStructureDoc documents",
+          "request": {
+            "name": "Get ElectronicStructureDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "electronic_structure",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "material_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of material_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "magnetic_ordering",
+                  "value": "<string>",
+                  "description": "Magnetic ordering associated with the data."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_gap_direct",
+                  "value": "<boolean>",
+                  "description": "Whether a band gap is direct or not."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_metal",
+                  "value": "<boolean>",
+                  "description": "Whether the material is considered a metal."
+                },
+                {
+                  "disabled": false,
+                  "key": "formula",
+                  "value": "<string>",
+                  "description": "Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "chemsys",
+                  "value": "<string>",
+                  "description": "A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries"
+                },
+                {
+                  "disabled": false,
+                  "key": "elements",
+                  "value": "<string>",
+                  "description": "Query by elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_elements",
+                  "value": "<string>",
+                  "description": "Query by excluded elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "band_gap_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of band_gap"
+                },
+                {
+                  "disabled": false,
+                  "key": "band_gap_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of band_gap"
+                },
+                {
+                  "disabled": false,
+                  "key": "cbm_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of cbm"
+                },
+                {
+                  "disabled": false,
+                  "key": "cbm_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of cbm"
+                },
+                {
+                  "disabled": false,
+                  "key": "vbm_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of vbm"
+                },
+                {
+                  "disabled": false,
+                  "key": "vbm_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of vbm"
+                },
+                {
+                  "disabled": false,
+                  "key": "efermi_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of efermi"
+                },
+                {
+                  "disabled": false,
+                  "key": "efermi_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of efermi"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nsites"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nsites"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites",
+                  "value": "<integer>",
+                  "description": "Query for nsites being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nsites being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nsites being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nsites being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements",
+                  "value": "<integer>",
+                  "description": "Query for nelements being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nelements being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of density"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of density"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_atomic_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of density_atomic"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_atomic_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of density_atomic"
+                },
+                {
+                  "disabled": false,
+                  "key": "deprecated",
+                  "value": "<boolean>",
+                  "description": "Whether the material is marked as deprecated"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from ElectronicStructureDoc as a list of comma separated strings.                    Fields include: `task_id` `band_gap` `cbm` `vbm` `efermi` `is_gap_direct` `is_metal` `magnetic_ordering` `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `bandstructure` `dos`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aea5cbcc-301a-4588-9a5c-4ace07a0e349",
+              "name": "Search for a ElectronicStructureDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "electronic_structure",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "magnetic_ordering",
+                      "value": "NM"
+                    },
+                    {
+                      "key": "is_gap_direct",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_metal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "band_gap_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "band_gap_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "cbm_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "cbm_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "vbm_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "vbm_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "nsites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "deprecated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"task_id\": \"mp-3534\",\n      \"band_gap\": 9680.595123299041,\n      \"is_gap_direct\": true,\n      \"is_metal\": true,\n      \"magnetic_ordering\": \"string\",\n      \"cbm\": 8524.024996273638,\n      \"vbm\": 6515.138349325852,\n      \"efermi\": 161.63696055987108,\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"2010-02-11T18:58:00.641Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 9396,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 5751,\n      \"composition\": {\n        \"key_0\": 5757.580259425975,\n        \"key_1\": 909.2186739512564,\n        \"key_2\": 2662.922029551712\n      },\n      \"composition_reduced\": {\n        \"key_0\": 1706.5800179462387,\n        \"key_1\": 4694.235266035725\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 8246.141988316327,\n      \"density\": 5898.643628445118,\n      \"density_atomic\": 8457.845280215433,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 8001,\n        \"point_group\": \"string\",\n        \"symprec\": 8883.101684765052,\n        \"angle_tolerance\": 3437.8650064296144,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1978-04-12T13:33:48.950Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1973-06-02T22:54:38.564Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1984-12-08T12:19:42.750Z\"\n        }\n      ],\n      \"property_name\": \"electronic_structure\",\n      \"bandstructure\": {\n        \"setyawan_curtarolo\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hinuma\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"latimer_munro\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"dos\": {\n        \"total\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"elemental\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"orbital\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"magnetic_ordering\": \"string\"\n      }\n    },\n    {\n      \"task_id\": \"mp-3534\",\n      \"band_gap\": 3865.633054082568,\n      \"is_gap_direct\": false,\n      \"is_metal\": true,\n      \"magnetic_ordering\": \"string\",\n      \"cbm\": 6056.0870060809675,\n      \"vbm\": 3259.6232067934448,\n      \"efermi\": 4665.580652164683,\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1985-11-08T03:59:41.058Z\",\n        \"license\": \"BY-C\"\n      },\n      \"nsites\": 593,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 1810,\n      \"composition\": {\n        \"key_0\": 442.3312764388021,\n        \"key_1\": 4460.539769566793,\n        \"key_2\": 9691.324745846383\n      },\n      \"composition_reduced\": {\n        \"key_0\": 1214.3661485080138\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 4863.70655009271,\n      \"density\": 8406.44636931908,\n      \"density_atomic\": 3472.719666986802,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 1490,\n        \"point_group\": \"string\",\n        \"symprec\": 5296.805782708039,\n        \"angle_tolerance\": 1820.4517564581834,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1996-07-26T03:20:49.252Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1999-03-09T16:28:37.029Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1960-12-27T13:29:20.511Z\"\n        }\n      ],\n      \"property_name\": \"electronic_structure\",\n      \"bandstructure\": {\n        \"setyawan_curtarolo\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hinuma\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"latimer_munro\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"dos\": {\n        \"total\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"elemental\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"orbital\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"magnetic_ordering\": \"string\"\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 5958,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 6212,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"2013-10-23T17:54:02.690Z\",\n    \"total_doc\": 8409,\n    \"facet\": {\n      \"key_0\": true,\n      \"key_1\": true,\n      \"key_2\": \"string\",\n      \"key_3\": 933.5760287178985\n    },\n    \"key_0\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f9c7c28-846d-4b5b-9694-952afd4e69b0",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "electronic_structure",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "magnetic_ordering",
+                      "value": "NM"
+                    },
+                    {
+                      "key": "is_gap_direct",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_metal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "band_gap_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "band_gap_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "cbm_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "cbm_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "vbm_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "vbm_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "nsites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "deprecated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5a2e3888-ec0a-4521-8a15-5c89196358a5",
+    "name": "Materials Project Defect Tasks Materials Electronic Structure API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

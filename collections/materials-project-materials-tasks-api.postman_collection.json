@@ -1,0 +1,1000 @@
+{
+  "item": [
+    {
+      "id": "e58ff899-77de-4e9c-a901-163de91f2880",
+      "name": "Materials Tasks",
+      "description": {
+        "content": "Route for \"core\" information associated with a given calculation in the Materials Project             database. Multiple calculations can ultimately be associated with a unique material, and are the source             of its reported properties. The unique identifier for a calculation is its `task_id`. Note             that the `material_id` chosen for a given material is sourced from one of the `task_id` values             associated with it. Core data in this context refers to calculation quantities such as parsed input             and output data (e.g. VASP input flags, atomic forces, structures) and runtime statistics. See the             `TaskDoc` schema for a full list of fields returned by this route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cf91a7a6-c067-4336-af8e-cb9209053a50",
+          "name": "Get TrajectoryDoc documents",
+          "request": {
+            "name": "Get TrajectoryDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "tasks",
+                "trajectory",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "task_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of task_ids to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02040fb5-dc31-4384-9e19-46f1ce780c11",
+              "name": "Search for a TrajectoryDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "tasks",
+                    "trajectory",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"task_id\": \"string\",\n      \"trajectories\": [\n        {\n          \"elements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"cart_coords\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"num_ionic_steps\": 7527,\n          \"lattice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"forces\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stress\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"electronic_steps\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"num_electronic_steps\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"e_wo_entrp\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"e_fr_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"identifier\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"run_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"elements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"cart_coords\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"num_ionic_steps\": 8306,\n          \"lattice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"forces\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stress\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"electronic_steps\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"num_electronic_steps\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"e_wo_entrp\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"e_fr_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"identifier\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"run_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"task_id\": \"string\",\n      \"trajectories\": [\n        {\n          \"elements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"cart_coords\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"num_ionic_steps\": 1200,\n          \"lattice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"forces\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stress\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"electronic_steps\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"num_electronic_steps\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"e_wo_entrp\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"e_fr_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"identifier\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"run_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"elements\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"cart_coords\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"num_ionic_steps\": 1899,\n          \"lattice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"forces\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stress\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"electronic_steps\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"num_electronic_steps\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"e_wo_entrp\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"e_fr_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"identifier\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"run_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 7168,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 5460,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1964-12-15T21:32:23.113Z\",\n    \"total_doc\": 7936,\n    \"facet\": {\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    },\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b22136c-045a-43ed-9372-752d743e06cc",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "tasks",
+                    "trajectory",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "006eb499-29c0-4d31-9a4d-1443a7a84b44",
+          "name": "Get EntryDoc documents",
+          "request": {
+            "name": "Get EntryDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "tasks",
+                "entries",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "task_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of task_ids to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9bdb43f-cdc8-45e4-9882-2662b507231d",
+              "name": "Search for a EntryDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "tasks",
+                    "entries",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"task_id\": \"string\",\n      \"entry\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": 907.959324082076\n      }\n    },\n    {\n      \"task_id\": \"string\",\n      \"entry\": {\n        \"key_0\": 4464\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 4050,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 3087,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1955-12-08T05:30:04.476Z\",\n    \"total_doc\": 24,\n    \"facet\": {\n      \"key_0\": true\n    },\n    \"key_0\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc8bae73-3e32-4ab5-ab54-0152d2df6d6a",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "tasks",
+                    "entries",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0996d040-4aa3-4b40-87f9-3b7338e73c6d",
+          "name": "Get DeprecationDoc documents",
+          "request": {
+            "name": "Get DeprecationDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "tasks",
+                "deprecation",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "task_ids",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of task_ids to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f6a6301-c69d-4de5-8dec-f9365c06f241",
+              "name": "Search for a DeprecationDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "tasks",
+                    "deprecation",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"task_id\": \"string\",\n      \"deprecated\": true,\n      \"deprecation_reason\": \"string\"\n    },\n    {\n      \"task_id\": \"string\",\n      \"deprecated\": false,\n      \"deprecation_reason\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 293,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 6467,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"2007-03-08T04:34:35.423Z\",\n    \"total_doc\": 4088,\n    \"facet\": {\n      \"key_0\": 4778,\n      \"key_1\": 6309,\n      \"key_2\": 4900.517291012369,\n      \"key_3\": \"string\",\n      \"key_4\": true\n    },\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "749908f1-4547-487b-8167-40e265ac1bca",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "tasks",
+                    "deprecation",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8646bd8-9e1e-40cf-85e2-7d07edcf08a0",
+          "name": "Get TaskDoc documents",
+          "request": {
+            "name": "Get TaskDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "tasks",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "batch_id",
+                  "value": "<string>",
+                  "description": "Query by batch identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "batch_id_not_eq",
+                  "value": "<string>",
+                  "description": "Exclude batch identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "batch_id_eq_any",
+                  "value": "<string>",
+                  "description": "Query by a comma-separated list of batch identifiers"
+                },
+                {
+                  "disabled": false,
+                  "key": "batch_id_neq_any",
+                  "value": "<string>",
+                  "description": "Exclude a comma-separated list of batch identifiers"
+                },
+                {
+                  "disabled": false,
+                  "key": "formula",
+                  "value": "<string>",
+                  "description": "Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "elements",
+                  "value": "<string>",
+                  "description": "Query by elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_elements",
+                  "value": "<string>",
+                  "description": "Query by excluded elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "task_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of task_ids to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_updated_min",
+                  "value": "<dateTime>",
+                  "description": "Minimum last updated UTC datetime"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_updated_max",
+                  "value": "<dateTime>",
+                  "description": "Maximum last updated UTC datetime"
+                },
+                {
+                  "disabled": false,
+                  "key": "_forward",
+                  "value": "true",
+                  "description": "Whether to page forward (True) or backward (False) in the search results."
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagination_token",
+                  "value": "<string>",
+                  "description": "Pagination token for the next set of results."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from TaskDoc as a list of comma separated strings.                    Fields include: `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `batch_id` `calc_type` `completed_at` `dir_name` `icsd_id` `input` `last_updated` `orig_inputs` `output` `run_type` `structure` `tags` `task_id` `task_type` `transformations` `vasp_objects` `vasp_version` `additional_json` `analysis` `author` `calcs_reversed` `custodian` `entry` `included_objects` `run_stats` `state` `task_label`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8995a08a-dacc-4289-8017-cf5f4f6767b4",
+              "name": "Search for a TaskDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "tasks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "batch_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_not_eq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_updated_min",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "last_updated_max",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "_forward",
+                      "value": "true"
+                    },
+                    {
+                      "key": "_pagination_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"nsites\": 6980,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 6952,\n      \"composition\": {\n        \"key_0\": 7277.16560617539,\n        \"key_1\": 5845.329671217601,\n        \"key_2\": 4682.014858123164,\n        \"key_3\": 5284.268681738393\n      },\n      \"composition_reduced\": {\n        \"key_0\": 1643.6665479935086\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 862.5890494995991,\n      \"density\": 5023.713094907451,\n      \"density_atomic\": 7910.839179633968,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 7277,\n        \"point_group\": \"string\",\n        \"symprec\": 8221.188658024106,\n        \"angle_tolerance\": 270.5391980219718,\n        \"version\": \"string\"\n      },\n      \"batch_id\": \"string\",\n      \"calc_type\": \"string\",\n      \"completed_at\": \"2012-11-20T09:28:28.778Z\",\n      \"dir_name\": \"string\",\n      \"icsd_id\": 7213,\n      \"input\": {\n        \"incar\": {\n          \"key_0\": 3461.7726945124527,\n          \"key_1\": 5039.328553648512,\n          \"key_2\": 338,\n          \"key_3\": true\n        },\n        \"kpoints\": {\n          \"key_0\": 7623.632604860265,\n          \"key_1\": 7565.251790805169,\n          \"key_2\": 6124,\n          \"key_3\": \"string\",\n          \"key_4\": \"string\"\n        },\n        \"nkpoints\": 6165,\n        \"potcar_spec\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar_type\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"parameters\": {\n          \"key_0\": 3249.097331010746,\n          \"key_1\": 4257,\n          \"key_2\": 7448.332688281918\n        },\n        \"lattice_rec\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"structure\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"is_hubbard\": false,\n        \"hubbards\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_3\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"last_updated\": \"1964-08-21T20:32:30.124Z\",\n      \"orig_inputs\": {\n        \"incar\": {\n          \"key_0\": 5872.9771580205115\n        },\n        \"kpoints\": {\n          \"key_0\": true\n        },\n        \"nkpoints\": 5287,\n        \"potcar_spec\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar_type\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"parameters\": {\n          \"key_0\": false,\n          \"key_1\": 2485\n        },\n        \"lattice_rec\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"structure\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"is_hubbard\": false,\n        \"hubbards\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"output\": {\n        \"structure\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"density\": 3454.324419998491,\n        \"energy\": 2661.6803623422747,\n        \"forces\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"stress\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"energy_per_atom\": 6812.757044632632,\n        \"bandgap\": 7735.897395655516\n      },\n      \"run_type\": \"string\",\n      \"structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"a\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"b\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"c\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alpha\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"beta\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gamma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"charge\": 2455.5273927270136,\n        \"properties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"task_id\": \"mp-3534\",\n      \"task_type\": \"string\",\n      \"transformations\": {\n        \"key_0\": 9861,\n        \"key_1\": 7051,\n        \"key_2\": false\n      },\n      \"vasp_objects\": {\n        \"key_0\": true,\n        \"key_1\": 9717,\n        \"key_2\": \"string\"\n      },\n      \"vasp_version\": \"string\",\n      \"additional_json\": {\n        \"key_0\": true,\n        \"key_1\": 6834\n      },\n      \"analysis\": {\n        \"delta_volume\": 627.9291024619715,\n        \"delta_volume_percent\": 1251.1040265073868,\n        \"max_force\": 8866.174274434066,\n        \"warnings\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"errors\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"author\": \"string\",\n      \"calcs_reversed\": [\n        {\n          \"dir_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vasp_version\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"has_vasp_completed\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"completed_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_file_paths\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bader\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ddec6\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"run_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"calc_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"dir_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vasp_version\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"has_vasp_completed\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"completed_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_file_paths\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bader\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ddec6\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"run_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"calc_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"custodian\": [\n        {\n          \"corrections\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"job\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"corrections\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"job\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"entry\": {\n        \"key_0\": 1703.089706612829,\n        \"key_1\": 4063.8740841538965,\n        \"key_2\": false,\n        \"key_3\": 5330.147838352495,\n        \"key_4\": 724\n      },\n      \"included_objects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"run_stats\": {\n        \"key_0\": {\n          \"average_memory\": 0,\n          \"max_memory\": 0,\n          \"elapsed_time\": 0,\n          \"system_time\": 0,\n          \"user_time\": 0,\n          \"total_time\": 0,\n          \"cores\": 0\n        },\n        \"key_1\": {\n          \"average_memory\": 0,\n          \"max_memory\": 0,\n          \"elapsed_time\": 0,\n          \"system_time\": 0,\n          \"user_time\": 0,\n          \"total_time\": 0,\n          \"cores\": 0\n        }\n      },\n      \"state\": \"string\",\n      \"task_label\": \"string\"\n    },\n    {\n      \"nsites\": 2347,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 2646,\n      \"composition\": {\n        \"key_0\": 364.37849961417413,\n        \"key_1\": 6346.476882253459,\n        \"key_2\": 551.5931837767207,\n        \"key_3\": 1946.6873576582643\n      },\n      \"composition_reduced\": {\n        \"key_0\": 3759.9458902095885,\n        \"key_1\": 7606.679814878049,\n        \"key_2\": 4648.779334631144\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 9899.662594100138,\n      \"density\": 4333.883146267496,\n      \"density_atomic\": 1988.2844546222366,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 8062,\n        \"point_group\": \"string\",\n        \"symprec\": 8084.757361748168,\n        \"angle_tolerance\": 6272.893364341885,\n        \"version\": \"string\"\n      },\n      \"batch_id\": \"string\",\n      \"calc_type\": \"string\",\n      \"completed_at\": \"1984-05-13T22:22:55.867Z\",\n      \"dir_name\": \"string\",\n      \"icsd_id\": 966,\n      \"input\": {\n        \"incar\": {\n          \"key_0\": 3738.355633895408,\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": true\n        },\n        \"kpoints\": {\n          \"key_0\": 9858\n        },\n        \"nkpoints\": 6786,\n        \"potcar_spec\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar_type\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"parameters\": {\n          \"key_0\": 8934.917514303426,\n          \"key_1\": 4024,\n          \"key_2\": \"string\"\n        },\n        \"lattice_rec\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"structure\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"is_hubbard\": false,\n        \"hubbards\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"last_updated\": \"2012-02-25T22:16:34.946Z\",\n      \"orig_inputs\": {\n        \"incar\": {\n          \"key_0\": 534\n        },\n        \"kpoints\": {\n          \"key_0\": 9176.061115462875\n        },\n        \"nkpoints\": 4613,\n        \"potcar_spec\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"potcar_type\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"parameters\": {\n          \"key_0\": false\n        },\n        \"lattice_rec\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"structure\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"is_hubbard\": false,\n        \"hubbards\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"output\": {\n        \"structure\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"density\": 4199.369469377802,\n        \"energy\": 3724.664550397411,\n        \"forces\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"stress\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"energy_per_atom\": 1684.6892705219318,\n        \"bandgap\": 931.7071078026518\n      },\n      \"run_type\": \"string\",\n      \"structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"a\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"b\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"c\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alpha\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"beta\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gamma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"charge\": 3564.692033794954,\n        \"properties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"task_id\": \"mp-3534\",\n      \"task_type\": \"string\",\n      \"transformations\": {\n        \"key_0\": 5596.341982385143\n      },\n      \"vasp_objects\": {\n        \"key_0\": false,\n        \"key_1\": true\n      },\n      \"vasp_version\": \"string\",\n      \"additional_json\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"analysis\": {\n        \"delta_volume\": 9245.185845350996,\n        \"delta_volume_percent\": 5464.626253271829,\n        \"max_force\": 1384.5014396982847,\n        \"warnings\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"errors\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"author\": \"string\",\n      \"calcs_reversed\": [\n        {\n          \"dir_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vasp_version\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"has_vasp_completed\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"completed_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_file_paths\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bader\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ddec6\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"run_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"calc_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"dir_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vasp_version\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"has_vasp_completed\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"completed_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_file_paths\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bader\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ddec6\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"run_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"task_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"calc_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"custodian\": [\n        {\n          \"corrections\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"job\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"corrections\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"job\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"entry\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"included_objects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"run_stats\": {\n        \"key_0\": {\n          \"average_memory\": 0,\n          \"max_memory\": 0,\n          \"elapsed_time\": 0,\n          \"system_time\": 0,\n          \"user_time\": 0,\n          \"total_time\": 0,\n          \"cores\": 0\n        },\n        \"key_1\": {\n          \"average_memory\": 0,\n          \"max_memory\": 0,\n          \"elapsed_time\": 0,\n          \"system_time\": 0,\n          \"user_time\": 0,\n          \"total_time\": 0,\n          \"cores\": 0\n        }\n      },\n      \"state\": \"string\",\n      \"task_label\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 9486,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 8644,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1993-08-16T23:23:54.567Z\",\n    \"total_doc\": 1090,\n    \"facet\": {\n      \"key_0\": 6752,\n      \"key_1\": \"string\"\n    },\n    \"key_0\": 771,\n    \"key_1\": 151.4355772817877\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "896fe5cb-6f96-4374-8f4c-b0d2bcb1166f",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "tasks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "batch_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_not_eq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_updated_min",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "last_updated_max",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "_forward",
+                      "value": "true"
+                    },
+                    {
+                      "key": "_pagination_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5c9f7271-3ff0-4cfe-b6ff-6c3be5c61f78",
+    "name": "Materials Project Defect Tasks Materials Tasks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Materials Project Defect Tasks Materials Surface Properties API",
+    "version": "0.86.4rc5.dev1+g77c2c1315"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Materials Surface Properties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SurfacePropDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/surface_properties/",
+            "params": [
+              {
+                "name": "material_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of material_id values to query on"
+              },
+              {
+                "name": "weighted_surface_energy_EV_PER_ANG2_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of weighted_surface_energy_EV_PER_ANG2"
+              },
+              {
+                "name": "weighted_surface_energy_EV_PER_ANG2_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of weighted_surface_energy_EV_PER_ANG2"
+              },
+              {
+                "name": "weighted_surface_energy_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of weighted_surface_energy"
+              },
+              {
+                "name": "weighted_surface_energy_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of weighted_surface_energy"
+              },
+              {
+                "name": "surface_anisotropy_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of surface_anisotropy"
+              },
+              {
+                "name": "surface_anisotropy_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of surface_anisotropy"
+              },
+              {
+                "name": "shape_factor_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of shape_factor"
+              },
+              {
+                "name": "shape_factor_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of shape_factor"
+              },
+              {
+                "name": "weighted_work_function_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of weighted_work_function"
+              },
+              {
+                "name": "weighted_work_function_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of weighted_work_function"
+              },
+              {
+                "name": "has_reconstructed",
+                "value": "",
+                "type": "query",
+                "description": "Whether the entry has a reconstructed surface."
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from SurfacePropDoc as a list of comma separated strings.                    Fields include: `surfaces` `weighted_surface_energy_EV_PER_ANG2` `weighted_surface_energy` `surface_anisotropy` `pretty_formula` `shape_factor` `weighted_work_function` `has_reconstructed` `material_id` `structure`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              }
+            ]
+          },
+          "docs": "Get SurfacePropDoc documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

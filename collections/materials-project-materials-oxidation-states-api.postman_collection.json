@@ -1,0 +1,330 @@
+{
+  "item": [
+    {
+      "id": "9509441e-f685-4593-adf7-579945a68beb",
+      "name": "Materials Oxidation States",
+      "description": {
+        "content": "Route providing computed oxidation state data for a material following the             methodology employed by the [BVAnalyzer](https://pymatgen.org/pymatgen.analysis.bond_valence.html)             in Pymatgen. Note that oxidation state data has not been calculated for all materials in the Materials             Project database. See the `OxidationStateDoc` schema for a full list of fields returned by this route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d7e3a499-7036-4a02-8e2c-bad95a9d2f62",
+          "name": "Get OxidationStateDoc documents",
+          "request": {
+            "name": "Get OxidationStateDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "oxidation_states",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "material_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of material_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "formula",
+                  "value": "<string>",
+                  "description": "Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "chemsys",
+                  "value": "<string>",
+                  "description": "A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries"
+                },
+                {
+                  "disabled": false,
+                  "key": "possible_species",
+                  "value": "<string>",
+                  "description": "Comma delimited list of element symbols appended with oxidation states.                 (e.g. Cr2+,O2-)"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from OxidationStateDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `possible_species` `possible_valences` `average_oxidation_states` `method`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "license",
+                  "value": "<string>",
+                  "description": "Query by license. Can be commercial or non-commercial, or both"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c66d10aa-cd76-461d-9255-ca76c194af08",
+              "name": "Search for a OxidationStateDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "oxidation_states",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "possible_species",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    },
+                    {
+                      "key": "license",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"a\": 2618.822771681331,\n          \"b\": 4360.701258020365,\n          \"c\": 3709.0600504509976,\n          \"alpha\": 225.87958988502078,\n          \"beta\": 1507.0286808059918,\n          \"gamma\": 8570.972658825429,\n          \"volume\": 9065.577563962885,\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"species\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"abc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"xyz\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"species\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"abc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"xyz\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"charge\": 400.02340256147903,\n        \"properties\": {\n          \"magmom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"velocities\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"selective_dynamics\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"possible_species\": [\n        \"string\",\n        \"string\"\n      ],\n      \"possible_valences\": [\n        3816.1638128648747,\n        7530.4871391078395\n      ],\n      \"average_oxidation_states\": {\n        \"key_0\": 2848.748282952256\n      },\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1994-02-19T15:02:43.146Z\",\n        \"license\": \"BY-C\"\n      },\n      \"nsites\": 4995,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 4169,\n      \"composition\": {\n        \"key_0\": 2738.2435316182764\n      },\n      \"composition_reduced\": {\n        \"key_0\": 7149.78637478299,\n        \"key_1\": 9105.428149407142\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 5533.933634745035,\n      \"density\": 5008.830211663911,\n      \"density_atomic\": 9169.786053970545,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 6355,\n        \"point_group\": \"string\",\n        \"symprec\": 3260.49055999462,\n        \"angle_tolerance\": 3562.0698633842685,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1967-08-26T03:47:55.712Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1948-02-03T21:12:01.334Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1954-01-14T04:38:40.940Z\"\n        }\n      ],\n      \"property_name\": \"oxidation\",\n      \"method\": \"string\"\n    },\n    {\n      \"structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"a\": 9191.039842774351,\n          \"b\": 4888.674090348679,\n          \"c\": 6542.79154741978,\n          \"alpha\": 6157.38420598323,\n          \"beta\": 5972.8476116656275,\n          \"gamma\": 5751.202695508196,\n          \"volume\": 184.23707791043188,\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"species\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"abc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"xyz\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"species\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"abc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"xyz\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"charge\": 2170.397895323034,\n        \"properties\": {\n          \"magmom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"velocities\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"selective_dynamics\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"possible_species\": [\n        \"string\",\n        \"string\"\n      ],\n      \"possible_valences\": [\n        7955.232892519936,\n        7775.451746521215\n      ],\n      \"average_oxidation_states\": {\n        \"key_0\": 835.0489322401921,\n        \"key_1\": 2979.308038483159,\n        \"key_2\": 6148.828341609155,\n        \"key_3\": 8487.303106070198\n      },\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"2024-04-12T05:58:20.180Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 4414,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 5461,\n      \"composition\": {\n        \"key_0\": 9520.242780297713,\n        \"key_1\": 9105.902712015484\n      },\n      \"composition_reduced\": {\n        \"key_0\": 1776.4101831287217,\n        \"key_1\": 2665.311393139239\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 3445.5988023683526,\n      \"density\": 4578.091828044927,\n      \"density_atomic\": 761.2298893149539,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 8454,\n        \"point_group\": \"string\",\n        \"symprec\": 6370.711950127904,\n        \"angle_tolerance\": 9359.598024774923,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1950-09-23T20:42:03.524Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1964-04-04T20:00:17.961Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1954-09-08T16:39:14.006Z\"\n        }\n      ],\n      \"property_name\": \"oxidation\",\n      \"method\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 8596,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 5738,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1992-04-12T21:44:44.732Z\",\n    \"total_doc\": 3892,\n    \"facet\": {\n      \"key_0\": \"string\",\n      \"key_1\": 9112\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0fa2da4-9489-4718-aa7d-0737543d4cce",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "oxidation_states",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "possible_species",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    },
+                    {
+                      "key": "license",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "79f3063d-70b6-4e0a-833c-0489e0251c71",
+    "name": "Materials Project Defect Tasks Materials Oxidation States API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

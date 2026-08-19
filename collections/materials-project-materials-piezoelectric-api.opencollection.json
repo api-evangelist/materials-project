@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Materials Project Defect Tasks Materials Piezoelectric API",
+    "version": "0.86.4rc5.dev1+g77c2c1315"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Materials Piezoelectric",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get PiezoelectricDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/piezoelectric/",
+            "params": [
+              {
+                "name": "material_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of material_id values to query on"
+              },
+              {
+                "name": "piezo_modulus_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the piezoelectric modulus in C/m²."
+              },
+              {
+                "name": "piezo_modulus_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the piezoelectric modulus in C/m²."
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from PiezoelectricDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `total` `ionic` `electronic` `e_ij_max` `max_direction` `strain_for_max`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              }
+            ]
+          },
+          "docs": "Get PiezoelectricDoc documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

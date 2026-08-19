@@ -1,0 +1,1715 @@
+{
+  "item": [
+    {
+      "id": "f9e2012d-c793-4751-bb40-a0634976df0a",
+      "name": "Materials",
+      "description": {
+        "content": "Route for \"core\" information associated with a given material in the Materials Project             database. The unique identifier for a material is its `material_id` (e.g. `mp-149`). Core data in             this context refers to the crystal structure, information associated with it such as the density             and chemical formula, and the associated calculations which are identified with unique `task_id`             values. It does not contain any materials properties such as the formation energy or band gap, please             consult other property-specific endpoints for this information. See the `MaterialsDoc` schema for             a full list of fields returned by this route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1ab87724-c5b1-46d3-a10e-f6f00b84ed0a",
+          "name": "Get MaterialsDoc documents",
+          "request": {
+            "name": "Get MaterialsDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "core",
+                "blessed_tasks",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "run_type",
+                  "value": "<string>",
+                  "description": "(Required) Calculation run type of blessed task data"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_min",
+                  "value": "<number>",
+                  "description": "Minimum total uncorrected DFT energy in eV/atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_max",
+                  "value": "<number>",
+                  "description": "Maximum total uncorrected DFT energy in eV/atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "material_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of material_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "formula",
+                  "value": "<string>",
+                  "description": "Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "chemsys",
+                  "value": "<string>",
+                  "description": "A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries"
+                },
+                {
+                  "disabled": false,
+                  "key": "elements",
+                  "value": "<string>",
+                  "description": "Query by elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_elements",
+                  "value": "<string>",
+                  "description": "Query by excluded elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "task_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of task_ids to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "deprecated",
+                  "value": "<boolean>",
+                  "description": "Whether the material is marked as deprecated"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nsites"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nsites"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites",
+                  "value": "<integer>",
+                  "description": "Query for nsites being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nsites being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nsites being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nsites being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements",
+                  "value": "<integer>",
+                  "description": "Query for nelements being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nelements being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of density"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of density"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_atomic_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of density_atomic"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_atomic_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of density_atomic"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "license",
+                  "value": "<string>",
+                  "description": "Query by license. Can be commercial or non-commercial, or both"
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from MaterialsDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `initial_structures` `task_ids` `deprecated_tasks` `calc_types` `created_at` `task_types` `run_types` `entries`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54772e20-1e89-4349-bde7-878646b90989",
+              "name": "Search for a MaterialsDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "core",
+                    "blessed_tasks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "run_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "energy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deprecated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nsites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "license",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"a\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"b\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"c\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alpha\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"beta\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gamma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"charge\": 4371.922351950914,\n        \"properties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1976-10-04T14:24:20.118Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 918,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 8759,\n      \"composition\": {\n        \"key_0\": 7937.713137464652,\n        \"key_1\": 4663.6107653341405,\n        \"key_2\": 6644.1572028772425,\n        \"key_3\": 2122.427548696383\n      },\n      \"composition_reduced\": {\n        \"key_0\": 4194.332267616682,\n        \"key_1\": 7852.783990511749\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 4754.074222628925,\n      \"density\": 8933.769603070401,\n      \"density_atomic\": 1920.8506668221182,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 3722,\n        \"point_group\": \"string\",\n        \"symprec\": 2364.074366011257,\n        \"angle_tolerance\": 4674.273080990246,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1960-09-25T02:33:43.497Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1983-05-17T03:29:26.939Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1960-04-21T22:25:29.271Z\"\n        }\n      ],\n      \"calc_types\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"created_at\": \"1998-03-16T19:33:26.410Z\",\n      \"task_types\": {\n        \"key_0\": \"string\"\n      },\n      \"run_types\": {\n        \"key_0\": \"string\"\n      },\n      \"entries\": {\n        \"GGA\": {\n          \"key_0\": \"string\",\n          \"key_1\": false\n        },\n        \"GGA+U\": {\n          \"key_0\": \"string\"\n        },\n        \"PBEsol\": {\n          \"key_0\": 1359,\n          \"key_1\": 6109\n        },\n        \"SCAN\": {\n          \"key_0\": false\n        },\n        \"r2SCAN\": {\n          \"key_0\": 3179.56144878776,\n          \"key_1\": 2008,\n          \"key_2\": \"string\"\n        },\n        \"HSE06\": {\n          \"key_0\": \"string\",\n          \"key_1\": 5983,\n          \"key_2\": \"string\"\n        }\n      }\n    },\n    {\n      \"structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"a\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"b\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"c\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alpha\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"beta\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gamma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"charge\": 1825.8555785912301,\n        \"properties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"2013-04-16T13:33:43.118Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 133,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 722,\n      \"composition\": {\n        \"key_0\": 3096.796116075963,\n        \"key_1\": 1842.0422951183502\n      },\n      \"composition_reduced\": {\n        \"key_0\": 7381.649810360315,\n        \"key_1\": 4035.0697515545066\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 3158.913491664308,\n      \"density\": 1655.3802857701262,\n      \"density_atomic\": 8571.968723251886,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 3544,\n        \"point_group\": \"string\",\n        \"symprec\": 2178.846153132804,\n        \"angle_tolerance\": 8988.36148824844,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1974-08-13T12:37:26.151Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1961-10-27T17:07:11.263Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2005-05-10T21:59:33.810Z\"\n        }\n      ],\n      \"calc_types\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"created_at\": \"1998-11-13T20:29:09.633Z\",\n      \"task_types\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"run_types\": {\n        \"key_0\": \"string\"\n      },\n      \"entries\": {\n        \"GGA\": {\n          \"key_0\": 6583,\n          \"key_1\": 4457.363006946057,\n          \"key_2\": true\n        },\n        \"GGA+U\": {\n          \"key_0\": 3652,\n          \"key_1\": true\n        },\n        \"PBEsol\": {\n          \"key_0\": 7191,\n          \"key_1\": 6620\n        },\n        \"SCAN\": {\n          \"key_0\": 9956.470828379603,\n          \"key_1\": false\n        },\n        \"r2SCAN\": {\n          \"key_0\": true\n        },\n        \"HSE06\": {\n          \"key_0\": 8664\n        }\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 8287,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 1593,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1970-12-31T09:17:21.847Z\",\n    \"total_doc\": 3666,\n    \"facet\": {\n      \"key_0\": 4901\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d16765d-3a35-49a6-8c17-888aeaa06b1c",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "core",
+                    "blessed_tasks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "run_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "energy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deprecated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nsites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "license",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "845d2bce-4f2b-45bc-b15d-f93529dec2c2",
+          "name": "Post FindStructure documents",
+          "request": {
+            "name": "Post FindStructure documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "core",
+                "find_structure",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ltol",
+                  "value": "0.2",
+                  "description": "Fractional length tolerance. Default is 0.2."
+                },
+                {
+                  "disabled": false,
+                  "key": "stol",
+                  "value": "0.3",
+                  "description": "Site tolerance. Defined as the fraction of the average free                     length per atom := ( V / Nsites ) ** (1/3). Default is 0.3."
+                },
+                {
+                  "disabled": false,
+                  "key": "angle_tol",
+                  "value": "5",
+                  "description": "Angle tolerance in degrees. Default is 5 degrees."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "1",
+                  "description": "Maximum number of matches to show. Defaults to 1, only showing the best match."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": 8005.564126654507,\n  \"key_1\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "337a7cfb-44e5-4fac-b70c-f80eccdc0ce2",
+              "name": "Post FindStructure data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "core",
+                    "find_structure",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ltol",
+                      "value": "0.2"
+                    },
+                    {
+                      "key": "stol",
+                      "value": "0.3"
+                    },
+                    {
+                      "key": "angle_tol",
+                      "value": "5"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": \"string\",\n  \"key_1\": 5390.6343169211605\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"material_id\": \"mp-3534\",\n      \"normalized_rms_displacement\": 8026.356031918942,\n      \"max_distance_paired_sites\": 3484.3161655978615\n    },\n    {\n      \"material_id\": \"mp-3534\",\n      \"normalized_rms_displacement\": 1617.9191712154184,\n      \"max_distance_paired_sites\": 401.5375916017083\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 8199,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 7023,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1953-07-05T02:52:00.302Z\",\n    \"total_doc\": 8810,\n    \"facet\": {\n      \"key_0\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "526fb51d-16d8-4cca-91ca-59ab44181ec7",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "core",
+                    "find_structure",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ltol",
+                      "value": "0.2"
+                    },
+                    {
+                      "key": "stol",
+                      "value": "0.3"
+                    },
+                    {
+                      "key": "angle_tol",
+                      "value": "5"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": \"string\",\n  \"key_1\": 5390.6343169211605\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c103f25-7dc5-4bb7-9850-94335c8f919e",
+          "name": "Get FormulaAutocomplete documents",
+          "request": {
+            "name": "Get FormulaAutocomplete documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "core",
+                "formula_autocomplete",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "formula",
+                  "value": "<string>",
+                  "description": "(Required) Human readable chemical formula."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of matches to show. Defaults to 10."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0994d35c-0073-462b-9a88-0e364ccaa816",
+              "name": "Get FormulaAutocomplete data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "core",
+                    "formula_autocomplete",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"formula_pretty\": \"string\"\n    },\n    {\n      \"formula_pretty\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 3571,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 6841,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1948-03-14T14:45:47.868Z\",\n    \"total_doc\": 4397,\n    \"facet\": {\n      \"key_0\": 7458\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "060d0362-8e33-45df-9812-8397362e1867",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "core",
+                    "formula_autocomplete",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7fb16ce9-46e0-430c-b609-bd4d300bea12",
+          "name": "Get MaterialsDoc documents",
+          "request": {
+            "name": "Get MaterialsDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "core",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "material_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of material_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "formula",
+                  "value": "<string>",
+                  "description": "Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "chemsys",
+                  "value": "<string>",
+                  "description": "A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries"
+                },
+                {
+                  "disabled": false,
+                  "key": "elements",
+                  "value": "<string>",
+                  "description": "Query by elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_elements",
+                  "value": "<string>",
+                  "description": "Query by excluded elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "task_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of task_ids to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "crystal_system",
+                  "value": "<string>",
+                  "description": "Crystal system of the material. If a comma-separated string, will query by multiple crystal systems."
+                },
+                {
+                  "disabled": false,
+                  "key": "spacegroup_number",
+                  "value": "<integer>",
+                  "description": "Space group number of the material. If a comma-separated string, will query by multiple space group numbers."
+                },
+                {
+                  "disabled": false,
+                  "key": "spacegroup_symbol",
+                  "value": "<string>",
+                  "description": "Space group symbol of the material. If a comma-separated string, will query by multiple space group numbers."
+                },
+                {
+                  "disabled": false,
+                  "key": "deprecated",
+                  "value": "<boolean>",
+                  "description": "Whether the material is marked as deprecated"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nsites"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nsites"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites",
+                  "value": "<integer>",
+                  "description": "Query for nsites being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nsites being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nsites being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nsites being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements",
+                  "value": "<integer>",
+                  "description": "Query for nelements being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nelements being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of density"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of density"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_atomic_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of density_atomic"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_atomic_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of density_atomic"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from MaterialsDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `initial_structures` `task_ids` `deprecated_tasks` `calc_types` `created_at` `task_types` `run_types` `entries`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "license",
+                  "value": "<string>",
+                  "description": "Query by license. Can be commercial or non-commercial, or both"
+                },
+                {
+                  "disabled": false,
+                  "key": "batch_id",
+                  "value": "<string>",
+                  "description": "Query by batch identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "batch_id_not_eq",
+                  "value": "<string>",
+                  "description": "Exclude batch identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "batch_id_eq_any",
+                  "value": "<string>",
+                  "description": "Query by a comma-separated list of batch identifiers"
+                },
+                {
+                  "disabled": false,
+                  "key": "batch_id_neq_any",
+                  "value": "<string>",
+                  "description": "Exclude a comma-separated list of batch identifiers"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95c39885-7cd7-4f6f-b4a2-88a2bd862561",
+              "name": "Search for a MaterialsDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "core",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "crystal_system",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "spacegroup_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "spacegroup_symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deprecated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nsites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    },
+                    {
+                      "key": "license",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_not_eq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_neq_any",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"a\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"b\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"c\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alpha\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"beta\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gamma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"charge\": 4371.922351950914,\n        \"properties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1976-10-04T14:24:20.118Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 918,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 8759,\n      \"composition\": {\n        \"key_0\": 7937.713137464652,\n        \"key_1\": 4663.6107653341405,\n        \"key_2\": 6644.1572028772425,\n        \"key_3\": 2122.427548696383\n      },\n      \"composition_reduced\": {\n        \"key_0\": 4194.332267616682,\n        \"key_1\": 7852.783990511749\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 4754.074222628925,\n      \"density\": 8933.769603070401,\n      \"density_atomic\": 1920.8506668221182,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 3722,\n        \"point_group\": \"string\",\n        \"symprec\": 2364.074366011257,\n        \"angle_tolerance\": 4674.273080990246,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1960-09-25T02:33:43.497Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1983-05-17T03:29:26.939Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1960-04-21T22:25:29.271Z\"\n        }\n      ],\n      \"calc_types\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"created_at\": \"1998-03-16T19:33:26.410Z\",\n      \"task_types\": {\n        \"key_0\": \"string\"\n      },\n      \"run_types\": {\n        \"key_0\": \"string\"\n      },\n      \"entries\": {\n        \"GGA\": {\n          \"key_0\": \"string\",\n          \"key_1\": false\n        },\n        \"GGA+U\": {\n          \"key_0\": \"string\"\n        },\n        \"PBEsol\": {\n          \"key_0\": 1359,\n          \"key_1\": 6109\n        },\n        \"SCAN\": {\n          \"key_0\": false\n        },\n        \"r2SCAN\": {\n          \"key_0\": 3179.56144878776,\n          \"key_1\": 2008,\n          \"key_2\": \"string\"\n        },\n        \"HSE06\": {\n          \"key_0\": \"string\",\n          \"key_1\": 5983,\n          \"key_2\": \"string\"\n        }\n      }\n    },\n    {\n      \"structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"a\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"b\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"c\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alpha\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"beta\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gamma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"charge\": 1825.8555785912301,\n        \"properties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"2013-04-16T13:33:43.118Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 133,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 722,\n      \"composition\": {\n        \"key_0\": 3096.796116075963,\n        \"key_1\": 1842.0422951183502\n      },\n      \"composition_reduced\": {\n        \"key_0\": 7381.649810360315,\n        \"key_1\": 4035.0697515545066\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 3158.913491664308,\n      \"density\": 1655.3802857701262,\n      \"density_atomic\": 8571.968723251886,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 3544,\n        \"point_group\": \"string\",\n        \"symprec\": 2178.846153132804,\n        \"angle_tolerance\": 8988.36148824844,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1974-08-13T12:37:26.151Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1961-10-27T17:07:11.263Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2005-05-10T21:59:33.810Z\"\n        }\n      ],\n      \"calc_types\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"created_at\": \"1998-11-13T20:29:09.633Z\",\n      \"task_types\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"run_types\": {\n        \"key_0\": \"string\"\n      },\n      \"entries\": {\n        \"GGA\": {\n          \"key_0\": 6583,\n          \"key_1\": 4457.363006946057,\n          \"key_2\": true\n        },\n        \"GGA+U\": {\n          \"key_0\": 3652,\n          \"key_1\": true\n        },\n        \"PBEsol\": {\n          \"key_0\": 7191,\n          \"key_1\": 6620\n        },\n        \"SCAN\": {\n          \"key_0\": 9956.470828379603,\n          \"key_1\": false\n        },\n        \"r2SCAN\": {\n          \"key_0\": true\n        },\n        \"HSE06\": {\n          \"key_0\": 8664\n        }\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 8287,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 1593,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1970-12-31T09:17:21.847Z\",\n    \"total_doc\": 3666,\n    \"facet\": {\n      \"key_0\": 4901\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c512e81-49b2-49a4-8449-a49eb51a879c",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "core",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "crystal_system",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "spacegroup_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "spacegroup_symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deprecated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nsites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    },
+                    {
+                      "key": "license",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_not_eq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_neq_any",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4361cc36-c69e-486f-97d6-865994b2076f",
+    "name": "Project Defect Tasks Materials API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

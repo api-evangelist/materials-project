@@ -1,0 +1,442 @@
+{
+  "item": [
+    {
+      "id": "1fe27e42-93ee-416c-96fe-7bd492f36021",
+      "name": "Materials Synthesis",
+      "description": {
+        "content": "Route providing a synthesis recipes for materials extracted from literature             following the methodology discussed by [Kononova *et al.*](https://doi.org/10.1038/s41597-019-0224-1)             Note that synthesis recipes may not be available for all materials in the Materials             Project database. See the `SynthesisSearchResultModel` schema for a full list of fields returned by this route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "48784559-0a00-4703-a829-107590335901",
+          "name": "Get SynthesisSearchResultModel documents",
+          "request": {
+            "name": "Get SynthesisSearchResultModel documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "synthesis",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "keywords",
+                  "value": "<string>",
+                  "description": "Comma delimited string keywords to search synthesis paragraph text with."
+                },
+                {
+                  "disabled": false,
+                  "key": "synthesis_type",
+                  "value": "<string>",
+                  "description": "Type of synthesis to include."
+                },
+                {
+                  "disabled": false,
+                  "key": "synthesis_type",
+                  "value": "<string>",
+                  "description": "Type of synthesis to include."
+                },
+                {
+                  "disabled": false,
+                  "key": "target_formula",
+                  "value": "<string>",
+                  "description": "Chemical formula of the target material."
+                },
+                {
+                  "disabled": false,
+                  "key": "precursor_formula",
+                  "value": "<string>",
+                  "description": "Chemical formula of the precursor material."
+                },
+                {
+                  "disabled": false,
+                  "key": "operations",
+                  "value": "<string>",
+                  "description": "List of operations that syntheses must have."
+                },
+                {
+                  "disabled": false,
+                  "key": "operations",
+                  "value": "<string>",
+                  "description": "List of operations that syntheses must have."
+                },
+                {
+                  "disabled": false,
+                  "key": "condition_heating_temperature_min",
+                  "value": "<number>",
+                  "description": "Minimal heating temperature."
+                },
+                {
+                  "disabled": false,
+                  "key": "condition_heating_temperature_max",
+                  "value": "<number>",
+                  "description": "Maximal heating temperature."
+                },
+                {
+                  "disabled": false,
+                  "key": "condition_heating_time_min",
+                  "value": "<number>",
+                  "description": "Minimal heating time."
+                },
+                {
+                  "disabled": false,
+                  "key": "condition_heating_time_max",
+                  "value": "<number>",
+                  "description": "Maximal heating time."
+                },
+                {
+                  "disabled": false,
+                  "key": "condition_heating_atmosphere",
+                  "value": "<string>",
+                  "description": "Required heating atmosphere, such as \"air\", \"argon\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "condition_heating_atmosphere",
+                  "value": "<string>",
+                  "description": "Required heating atmosphere, such as \"air\", \"argon\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "condition_mixing_device",
+                  "value": "<string>",
+                  "description": "Required mixing device, such as \"zirconia\", \"Al2O3\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "condition_mixing_device",
+                  "value": "<string>",
+                  "description": "Required mixing device, such as \"zirconia\", \"Al2O3\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "condition_mixing_media",
+                  "value": "<string>",
+                  "description": "Required mixing media, such as \"alcohol\", \"water\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "condition_mixing_media",
+                  "value": "<string>",
+                  "description": "Required mixing media, such as \"alcohol\", \"water\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search"
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "10",
+                  "description": "Max number of entries to return in a single query. Limited to 10."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "187f39be-b766-4aa5-b4fe-994041935681",
+              "name": "Get SynthesisSearchResultModel data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "synthesis",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keywords",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "synthesis_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "synthesis_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "target_formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "precursor_formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "operations",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "operations",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "condition_heating_temperature_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "condition_heating_temperature_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "condition_heating_time_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "condition_heating_time_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "condition_heating_atmosphere",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "condition_heating_atmosphere",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "condition_mixing_device",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "condition_mixing_device",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "condition_mixing_media",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "condition_mixing_media",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"doi\": \"string\",\n      \"synthesis_type\": \"string\",\n      \"reaction_string\": \"string\",\n      \"reaction\": {\n        \"left_side\": [\n          {\n            \"material\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"material\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"right_side\": [\n          {\n            \"material\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"material\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"element_substitution\": {}\n      },\n      \"target\": {\n        \"material_string\": \"string\",\n        \"material_formula\": \"string\",\n        \"composition\": [\n          {\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"elements\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"elements\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"material_name\": \"string\",\n        \"phase\": \"string\",\n        \"is_acronym\": true,\n        \"amounts_vars\": {},\n        \"elements_vars\": {},\n        \"oxygen_deficiency\": \"string\"\n      },\n      \"targets_formula\": [\n        \"string\",\n        \"string\"\n      ],\n      \"precursors_formula\": [\n        \"string\",\n        \"string\"\n      ],\n      \"targets_formula_s\": [\n        \"string\",\n        \"string\"\n      ],\n      \"precursors_formula_s\": [\n        \"string\",\n        \"string\"\n      ],\n      \"precursors\": [\n        {\n          \"material_string\": \"string\",\n          \"material_formula\": \"string\",\n          \"composition\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"material_name\": \"string\",\n          \"phase\": \"string\",\n          \"is_acronym\": false,\n          \"amounts_vars\": {},\n          \"elements_vars\": {},\n          \"oxygen_deficiency\": \"string\"\n        },\n        {\n          \"material_string\": \"string\",\n          \"material_formula\": \"string\",\n          \"composition\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"material_name\": \"string\",\n          \"phase\": \"string\",\n          \"is_acronym\": false,\n          \"amounts_vars\": {},\n          \"elements_vars\": {},\n          \"oxygen_deficiency\": \"string\"\n        }\n      ],\n      \"operations\": [\n        {\n          \"type\": \"string\",\n          \"token\": \"string\",\n          \"conditions\": {\n            \"heating_temperature\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"heating_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"heating_atmosphere\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mixing_device\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mixing_media\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"type\": \"string\",\n          \"token\": \"string\",\n          \"conditions\": {\n            \"heating_temperature\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"heating_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"heating_atmosphere\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mixing_device\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mixing_media\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"paragraph_string\": \"\",\n      \"search_score\": 1398.3691106175079,\n      \"highlights\": [\n        {\n          \"score\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"texts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"score\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"texts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"doi\": \"string\",\n      \"synthesis_type\": \"string\",\n      \"reaction_string\": \"string\",\n      \"reaction\": {\n        \"left_side\": [\n          {\n            \"material\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"material\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"right_side\": [\n          {\n            \"material\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"material\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"element_substitution\": {}\n      },\n      \"target\": {\n        \"material_string\": \"string\",\n        \"material_formula\": \"string\",\n        \"composition\": [\n          {\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"elements\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"elements\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"material_name\": \"string\",\n        \"phase\": \"string\",\n        \"is_acronym\": true,\n        \"amounts_vars\": {},\n        \"elements_vars\": {},\n        \"oxygen_deficiency\": \"string\"\n      },\n      \"targets_formula\": [\n        \"string\",\n        \"string\"\n      ],\n      \"precursors_formula\": [\n        \"string\",\n        \"string\"\n      ],\n      \"targets_formula_s\": [\n        \"string\",\n        \"string\"\n      ],\n      \"precursors_formula_s\": [\n        \"string\",\n        \"string\"\n      ],\n      \"precursors\": [\n        {\n          \"material_string\": \"string\",\n          \"material_formula\": \"string\",\n          \"composition\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"material_name\": \"string\",\n          \"phase\": \"string\",\n          \"is_acronym\": false,\n          \"amounts_vars\": {},\n          \"elements_vars\": {},\n          \"oxygen_deficiency\": \"string\"\n        },\n        {\n          \"material_string\": \"string\",\n          \"material_formula\": \"string\",\n          \"composition\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"material_name\": \"string\",\n          \"phase\": \"string\",\n          \"is_acronym\": true,\n          \"amounts_vars\": {},\n          \"elements_vars\": {},\n          \"oxygen_deficiency\": \"string\"\n        }\n      ],\n      \"operations\": [\n        {\n          \"type\": \"string\",\n          \"token\": \"string\",\n          \"conditions\": {\n            \"heating_temperature\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"heating_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"heating_atmosphere\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mixing_device\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mixing_media\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"type\": \"string\",\n          \"token\": \"string\",\n          \"conditions\": {\n            \"heating_temperature\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"heating_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"heating_atmosphere\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mixing_device\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mixing_media\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"paragraph_string\": \"\",\n      \"search_score\": 4578.482557874339,\n      \"highlights\": [\n        {\n          \"score\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"texts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"score\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"texts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 4703,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 9128,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1960-01-11T15:50:08.654Z\",\n    \"total_doc\": 5853,\n    \"facet\": {\n      \"key_0\": 7311\n    },\n    \"key_0\": 40,\n    \"key_1\": 8148\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "450c6d51-2f35-493f-8632-ab80b740f514",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "synthesis",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keywords",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "synthesis_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "synthesis_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "target_formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "precursor_formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "operations",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "operations",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "condition_heating_temperature_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "condition_heating_temperature_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "condition_heating_time_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "condition_heating_time_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "condition_heating_atmosphere",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "condition_heating_atmosphere",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "condition_mixing_device",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "condition_mixing_device",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "condition_mixing_media",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "condition_mixing_media",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ac22b003-997e-448f-9542-c027550181b4",
+    "name": "Materials Project Defect Tasks Materials Synthesis API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

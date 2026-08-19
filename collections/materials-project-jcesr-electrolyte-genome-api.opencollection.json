@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Materials Project Defect Tasks JCESR Electrolyte Genome API",
+    "version": "0.86.4rc5.dev1+g77c2c1315"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "JCESR Electrolyte Genome",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get MoleculesDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/molecules/jcesr/",
+            "params": [
+              {
+                "name": "nelements_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the number of elements."
+              },
+              {
+                "name": "nelements_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the number of elements."
+              },
+              {
+                "name": "EA_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the electron affinity in eV."
+              },
+              {
+                "name": "EA_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the electron affinity in eV."
+              },
+              {
+                "name": "IE_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the ionization energy in eV."
+              },
+              {
+                "name": "IE_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the ionization energy in eV."
+              },
+              {
+                "name": "charge_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the charge in +e."
+              },
+              {
+                "name": "charge_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the charge in +e."
+              },
+              {
+                "name": "pointgroup",
+                "value": "",
+                "type": "query",
+                "description": "Point of the molecule in Schoenflies notation."
+              },
+              {
+                "name": "smiles",
+                "value": "",
+                "type": "query",
+                "description": "The simplified molecular input line-entry system (SMILES)             representation of the molecule."
+              },
+              {
+                "name": "elements",
+                "value": "",
+                "type": "query",
+                "description": "Query by elements in the material composition as a comma-separated list"
+              },
+              {
+                "name": "formula",
+                "value": "",
+                "type": "query",
+                "description": "Chemical formula of the molecule. A comma-separated list of formulas is also accepted."
+              },
+              {
+                "name": "task_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of task_ids to query on"
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "_sort_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma delimited fields to sort with. Prefixing '-' to a field will force a sort in descending order."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from MoleculesDoc as a list of comma separated strings.                    Fields include: `elements` `nelements` `EA` `IE` `charge` `pointgroup` `smiles` `task_id` `molecule` `formula_pretty` `svg`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              }
+            ]
+          },
+          "docs": "Get MoleculesDoc documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Materials Project Defect Tasks Molecules Summary API",
+    "version": "0.86.4rc5.dev1+g77c2c1315"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Molecules Summary",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get MoleculeSummaryDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/molecules/summary/",
+            "params": [
+              {
+                "name": "molecule_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of molecule_ids to query on"
+              },
+              {
+                "name": "formula",
+                "value": "",
+                "type": "query",
+                "description": "Query by alphabetical formula. A comma delimited string list of alphabetical formulas can also be provided."
+              },
+              {
+                "name": "chemsys",
+                "value": "",
+                "type": "query",
+                "description": "A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries"
+              },
+              {
+                "name": "elements",
+                "value": "",
+                "type": "query",
+                "description": "Query by elements in the material composition as a comma-separated list"
+              },
+              {
+                "name": "exclude_elements",
+                "value": "",
+                "type": "query",
+                "description": "Query by excluded elements in the material composition as a comma-separated list"
+              },
+              {
+                "name": "has_props",
+                "value": "",
+                "type": "query",
+                "description": "Comma-delimited list of possible properties given by HasPropsEnum to search for."
+              },
+              {
+                "name": "charge",
+                "value": "",
+                "type": "query",
+                "description": "Query by molecular charge"
+              },
+              {
+                "name": "spin_multiplicity",
+                "value": "",
+                "type": "query",
+                "description": "Query by molecular spin multiplicity."
+              },
+              {
+                "name": "inchi",
+                "value": "",
+                "type": "query",
+                "description": "International chemical identifier (InChI) string for this molecule"
+              },
+              {
+                "name": "inchi_key",
+                "value": "",
+                "type": "query",
+                "description": "Hash of the InChI, also known as the InChI-key"
+              },
+              {
+                "name": "species_hash",
+                "value": "",
+                "type": "query",
+                "description": "Graph hash augmented with node species"
+              },
+              {
+                "name": "coord_hash",
+                "value": "",
+                "type": "query",
+                "description": "Graph hash augmented with node XYZ coordinates"
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "nelements_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of nelements"
+              },
+              {
+                "name": "nelements_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of nelements"
+              },
+              {
+                "name": "nelements",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being equal to an exact value"
+              },
+              {
+                "name": "nelements_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being not equal to an exact value"
+              },
+              {
+                "name": "nelements_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "nelements_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+              },
+              {
+                "name": "_sort_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma delimited fields to sort with. Prefixing '-' to a field will force a sort in descending order."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from MoleculeSummaryDoc as a list of comma separated strings.                    Fields include: `charge` `spin_multiplicity` `natoms` `elements` `nelements` `nelectrons` `composition` `composition_reduced` `formula_alphabetical` `formula_pretty` `formula_anonymous` `chemsys` `symmetry` `species_hash` `coord_hash` `property_name` `property_id` `molecule_id` `deprecated` `deprecation_reasons` `level_of_theory` `solvent` `lot_solvent` `last_updated` `origins` `warnings` `molecules` `molecule_levels_of_theory` `inchi` `inchi_key` `task_ids` `similar_molecules` `constituent_molecules` `unique_calc_types` `unique_task_types` `unique_levels_of_theory` `unique_solvents` `unique_lot_solvents` `thermo` `vibration` `orbitals` `partial_charges` `partial_spins` `bonding` `multipole_moments` `redox` `metal_binding` `has_props`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              }
+            ]
+          },
+          "docs": "Get MoleculeSummaryDoc documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

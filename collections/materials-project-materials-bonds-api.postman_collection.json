@@ -1,0 +1,386 @@
+{
+  "item": [
+    {
+      "id": "d1c03c0f-885b-4f31-b342-e78de184fdd8",
+      "name": "Materials Bonds",
+      "description": {
+        "content": "Route for retrevial of bonding information for a given material.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "748f261e-cd1b-42c7-8b72-004b8f709ee9",
+          "name": "Get BondingDoc documents",
+          "request": {
+            "name": "Get BondingDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "bonds",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "material_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of material_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_bond_length_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the maximum bond length in the structure."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_bond_length_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the maximum bond length in the structure."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_bond_length_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the minimum bond length in the structure."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_bond_length_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the minimum bond length in the structure."
+                },
+                {
+                  "disabled": false,
+                  "key": "mean_bond_length_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the mean bond length in the structure."
+                },
+                {
+                  "disabled": false,
+                  "key": "mean_bond_length_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the mean bond length in the structure."
+                },
+                {
+                  "disabled": false,
+                  "key": "coordination_envs",
+                  "value": "<string>",
+                  "description": "Query by coordination environments in the material composition as a comma-separated list (e.g. 'Mo-S(6),S-Mo(3)')"
+                },
+                {
+                  "disabled": false,
+                  "key": "coordination_envs_anonymous",
+                  "value": "<string>",
+                  "description": "Query by anonymous coordination environments in the material composition as a comma-separated list (e.g. 'A-B(6),A-B(3)')"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from BondingDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `structure_graph` `method` `bond_types` `bond_length_stats` `coordination_envs` `coordination_envs_anonymous`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c6420a1-2d94-4ca9-b00a-111eb1556bd8",
+              "name": "Search for a BondingDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "bonds",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_bond_length_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "max_bond_length_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "min_bond_length_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "min_bond_length_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "mean_bond_length_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "mean_bond_length_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "coordination_envs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "coordination_envs_anonymous",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"structure_graph\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"structure\": {\n          \"@module\": \"string\",\n          \"@class\": \"string\",\n          \"lattice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sites\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"properties\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"graphs\": {\n          \"directed\": true,\n          \"multigraph\": false,\n          \"graph\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"adjacency\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"method\": \"string\",\n      \"bond_types\": {\n        \"key_0\": [\n          7511.436515088435,\n          9838.595000768884\n        ],\n        \"key_1\": [\n          2252.8211882117566,\n          6497.983395201614\n        ]\n      },\n      \"bond_length_stats\": {\n        \"all_weights\": [\n          6188.674758977772,\n          1332.511108093154\n        ],\n        \"min\": 5067.588796305037,\n        \"max\": 7656.94549719688,\n        \"mean\": 7724.163303173308,\n        \"variance\": 7991.664592181014\n      },\n      \"coordination_envs\": [\n        \"string\",\n        \"string\"\n      ],\n      \"coordination_envs_anonymous\": [\n        \"string\",\n        \"string\"\n      ],\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1993-01-26T04:52:22.262Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 5911,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 1798,\n      \"composition\": {\n        \"key_0\": 3086.7782310422585,\n        \"key_1\": 1782.1878596182205,\n        \"key_2\": 5926.909864763625,\n        \"key_3\": 501.4594391308158\n      },\n      \"composition_reduced\": {\n        \"key_0\": 5926.8246143251645,\n        \"key_1\": 3629.113436658609,\n        \"key_2\": 1724.1223253421988,\n        \"key_3\": 3357.911643375925\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 4534.179404989462,\n      \"density\": 5085.176949304559,\n      \"density_atomic\": 543.0404333041649,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 2899,\n        \"point_group\": \"string\",\n        \"symprec\": 7577.815146466037,\n        \"angle_tolerance\": 368.62988769516437,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1974-02-24T11:23:04.270Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2013-08-14T07:59:18.025Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1986-08-19T22:55:06.414Z\"\n        }\n      ],\n      \"property_name\": \"bonding\"\n    },\n    {\n      \"structure_graph\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"structure\": {\n          \"@module\": \"string\",\n          \"@class\": \"string\",\n          \"lattice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sites\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"properties\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"graphs\": {\n          \"directed\": false,\n          \"multigraph\": true,\n          \"graph\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"adjacency\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"method\": \"string\",\n      \"bond_types\": {\n        \"key_0\": [\n          3870.4840905476367,\n          8168.152447118232\n        ],\n        \"key_1\": [\n          6501.037260783214,\n          682.2958488097008\n        ],\n        \"key_2\": [\n          5586.836205793337,\n          7315.741815006895\n        ]\n      },\n      \"bond_length_stats\": {\n        \"all_weights\": [\n          9105.307096007087,\n          3169.609716164338\n        ],\n        \"min\": 89.93021334911755,\n        \"max\": 7314.288422850652,\n        \"mean\": 8073.032362325196,\n        \"variance\": 1673.6708586165505\n      },\n      \"coordination_envs\": [\n        \"string\",\n        \"string\"\n      ],\n      \"coordination_envs_anonymous\": [\n        \"string\",\n        \"string\"\n      ],\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"2005-03-25T11:14:31.518Z\",\n        \"license\": \"BY-C\"\n      },\n      \"nsites\": 7475,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 1722,\n      \"composition\": {\n        \"key_0\": 8586.90576075854,\n        \"key_1\": 4729.35385181947\n      },\n      \"composition_reduced\": {\n        \"key_0\": 4507.067815364677,\n        \"key_1\": 248.78713545873788\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 4142.16356723129,\n      \"density\": 7763.878506507109,\n      \"density_atomic\": 5387.345869053721,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 9765,\n        \"point_group\": \"string\",\n        \"symprec\": 8123.184157324602,\n        \"angle_tolerance\": 1858.4055562624935,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"2023-12-31T08:17:58.588Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2009-02-08T22:14:22.626Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2010-02-15T12:00:34.630Z\"\n        }\n      ],\n      \"property_name\": \"bonding\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 9421,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 7775,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1949-09-28T14:27:20.483Z\",\n    \"total_doc\": 6711,\n    \"facet\": {\n      \"key_0\": 6224\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1cf97a62-87fb-4b92-aba7-3ffa1246918c",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "bonds",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_bond_length_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "max_bond_length_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "min_bond_length_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "min_bond_length_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "mean_bond_length_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "mean_bond_length_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "coordination_envs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "coordination_envs_anonymous",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "575724e2-f042-4b2c-be04-a1339250e7a4",
+    "name": "Materials Project Defect Tasks Materials Bonds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

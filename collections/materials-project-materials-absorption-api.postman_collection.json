@@ -1,0 +1,554 @@
+{
+  "item": [
+    {
+      "id": "45235e34-124e-4991-8139-08df7e1893e4",
+      "name": "Materials Absorption",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8773484f-63fd-4c2b-af15-1a130d7960ae",
+          "name": "Get AbsorptionDoc documents",
+          "request": {
+            "name": "Get AbsorptionDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "absorption",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "material_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of material_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nsites"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nsites"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites",
+                  "value": "<integer>",
+                  "description": "Query for nsites being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nsites being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nsites being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nsites being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements",
+                  "value": "<integer>",
+                  "description": "Query for nelements being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nelements being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of density"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of density"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_atomic_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of density_atomic"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_atomic_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of density_atomic"
+                },
+                {
+                  "disabled": false,
+                  "key": "bandgap_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of bandgap"
+                },
+                {
+                  "disabled": false,
+                  "key": "bandgap_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of bandgap"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from AbsorptionDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `task_id` `energies` `energy_max` `absorption_coefficient` `average_imaginary_dielectric` `average_real_dielectric` `bandgap` `nkpoints`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4bbdbfc4-280c-460e-bd1d-d2fa806fcbbe",
+              "name": "Search for a AbsorptionDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "absorption",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "bandgap_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "bandgap_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"task_id\": \"string\",\n      \"energies\": [\n        2837.3868662150694,\n        9965.053854269692\n      ],\n      \"energy_max\": 878.089927092539,\n      \"absorption_coefficient\": [\n        1539.261825583703,\n        8613.572818031353\n      ],\n      \"average_imaginary_dielectric\": [\n        3510.637650796619,\n        8024.622550338706\n      ],\n      \"average_real_dielectric\": [\n        998.3002075344549,\n        9588.664791021594\n      ],\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"2015-11-02T10:38:21.570Z\",\n        \"license\": \"BY-C\"\n      },\n      \"nsites\": 9817,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 6148,\n      \"composition\": {\n        \"key_0\": 6777.005858782078,\n        \"key_1\": 3980.9699350687188\n      },\n      \"composition_reduced\": {\n        \"key_0\": 6657.259021585533,\n        \"key_1\": 6872.991711914845,\n        \"key_2\": 3766.2064044891677\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 3760.7396226744836,\n      \"density\": 9502.948036867714,\n      \"density_atomic\": 2863.1451146008367,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 8102,\n        \"point_group\": \"string\",\n        \"symprec\": 7792.550598397317,\n        \"angle_tolerance\": 552.6651117995884,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1994-01-23T03:18:43.830Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2003-04-09T09:15:14.469Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1981-12-21T03:35:40.706Z\"\n        }\n      ],\n      \"property_name\": \"Optical absorption spectrum\",\n      \"bandgap\": 3781.606756225112,\n      \"nkpoints\": 1117.855309864334\n    },\n    {\n      \"task_id\": \"string\",\n      \"energies\": [\n        1075.3401878788627,\n        5978.156106083735\n      ],\n      \"energy_max\": 5697.585557523449,\n      \"absorption_coefficient\": [\n        2538.71545028204,\n        461.9098932349797\n      ],\n      \"average_imaginary_dielectric\": [\n        4886.909728539007,\n        8682.262490248968\n      ],\n      \"average_real_dielectric\": [\n        1677.2861012587382,\n        3106.5174230622115\n      ],\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"2022-02-18T21:31:52.909Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 4793,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 319,\n      \"composition\": {\n        \"key_0\": 9409.417569317626,\n        \"key_1\": 8336.952000579526\n      },\n      \"composition_reduced\": {\n        \"key_0\": 5433.468615817615,\n        \"key_1\": 1112.3398177891263\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 4284.468115986797,\n      \"density\": 1477.1979177802375,\n      \"density_atomic\": 4942.303793917094,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 7691,\n        \"point_group\": \"string\",\n        \"symprec\": 7035.861811157136,\n        \"angle_tolerance\": 1487.9623238519923,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"2020-03-21T12:49:19.964Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2012-11-16T07:03:26.999Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2025-05-18T16:41:34.099Z\"\n        }\n      ],\n      \"property_name\": \"Optical absorption spectrum\",\n      \"bandgap\": 5445.434560990658,\n      \"nkpoints\": 383.64590758656504\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 2652,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 1557,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1994-09-16T02:10:44.286Z\",\n    \"total_doc\": 2885,\n    \"facet\": {\n      \"key_0\": false,\n      \"key_1\": false,\n      \"key_2\": 1603\n    },\n    \"key_0\": 7525.648162018805,\n    \"key_1\": 5477.753560558409\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d8dbdd5-3c47-4f36-a093-0a16ec7ac60c",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "absorption",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "bandgap_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "bandgap_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3df9d2ef-0d2a-47ef-a7ee-8b822492fa6e",
+    "name": "Materials Project Defect Tasks Materials Absorption API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

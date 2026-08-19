@@ -1,0 +1,1898 @@
+{
+  "item": [
+    {
+      "id": "3535bc8a-ed15-4609-9688-ce3b6ec943c9",
+      "name": "Materials Summary",
+      "description": {
+        "content": "Route providing a large amount of amalgamated data for a material. This is constructed by             combining subsets of data from many of the other API endpoints. The summary endpoint is very useful for             performing queries for materials over a large property space. Note that every unique material within             the Materials Project should have a set of summary data. See the `SummaryDoc` schema for a full list of             fields returned by this route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e96a6c55-f6fe-43cd-8e63-3518c4651176",
+          "name": "Get SummaryDoc documents",
+          "request": {
+            "name": "Get SummaryDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "summary",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "material_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of material_ids to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "formula",
+                  "value": "<string>",
+                  "description": "Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "chemsys",
+                  "value": "<string>",
+                  "description": "A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries"
+                },
+                {
+                  "disabled": false,
+                  "key": "elements",
+                  "value": "<string>",
+                  "description": "Query by elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_elements",
+                  "value": "<string>",
+                  "description": "Query by excluded elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "possible_species",
+                  "value": "<string>",
+                  "description": "Comma delimited list of element symbols appended with oxidation states.                 (e.g. Cr2+,O2-)"
+                },
+                {
+                  "disabled": false,
+                  "key": "crystal_system",
+                  "value": "<string>",
+                  "description": "Crystal system of the material. If a comma-separated string, will query by multiple crystal systems."
+                },
+                {
+                  "disabled": false,
+                  "key": "spacegroup_number",
+                  "value": "<integer>",
+                  "description": "Space group number of the material. If a comma-separated string, will query by multiple space group numbers."
+                },
+                {
+                  "disabled": false,
+                  "key": "spacegroup_symbol",
+                  "value": "<string>",
+                  "description": "Space group symbol of the material. If a comma-separated string, will query by multiple space group numbers."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_stable",
+                  "value": "<boolean>",
+                  "description": "Whether the material is stable."
+                },
+                {
+                  "disabled": false,
+                  "key": "theoretical",
+                  "value": "<boolean>",
+                  "description": "Whether the material is theoretical."
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>",
+                  "description": "Magnetic ordering of the material."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_gap_direct",
+                  "value": "<boolean>",
+                  "description": "Whether a band gap is direct or not."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_metal",
+                  "value": "<boolean>",
+                  "description": "Whether the material is considered a metal."
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nsites"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nsites"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites",
+                  "value": "<integer>",
+                  "description": "Query for nsites being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nsites being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nsites being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nsites_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nsites being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements",
+                  "value": "<integer>",
+                  "description": "Query for nelements being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nelements being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of density"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of density"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_atomic_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of density_atomic"
+                },
+                {
+                  "disabled": false,
+                  "key": "density_atomic_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of density_atomic"
+                },
+                {
+                  "disabled": false,
+                  "key": "uncorrected_energy_per_atom_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of uncorrected_energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "uncorrected_energy_per_atom_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of uncorrected_energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_per_atom_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_per_atom_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "formation_energy_per_atom_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of formation_energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "formation_energy_per_atom_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of formation_energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_above_hull_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of energy_above_hull"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_above_hull_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of energy_above_hull"
+                },
+                {
+                  "disabled": false,
+                  "key": "equilibrium_reaction_energy_per_atom_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of equilibrium_reaction_energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "equilibrium_reaction_energy_per_atom_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of equilibrium_reaction_energy_per_atom"
+                },
+                {
+                  "disabled": false,
+                  "key": "band_gap_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of band_gap"
+                },
+                {
+                  "disabled": false,
+                  "key": "band_gap_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of band_gap"
+                },
+                {
+                  "disabled": false,
+                  "key": "cbm_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of cbm"
+                },
+                {
+                  "disabled": false,
+                  "key": "cbm_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of cbm"
+                },
+                {
+                  "disabled": false,
+                  "key": "vbm_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of vbm"
+                },
+                {
+                  "disabled": false,
+                  "key": "vbm_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of vbm"
+                },
+                {
+                  "disabled": false,
+                  "key": "efermi_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of efermi"
+                },
+                {
+                  "disabled": false,
+                  "key": "efermi_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of efermi"
+                },
+                {
+                  "disabled": false,
+                  "key": "dos_energy_up_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of dos_energy_up"
+                },
+                {
+                  "disabled": false,
+                  "key": "dos_energy_up_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of dos_energy_up"
+                },
+                {
+                  "disabled": false,
+                  "key": "dos_energy_down_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of dos_energy_down"
+                },
+                {
+                  "disabled": false,
+                  "key": "dos_energy_down_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of dos_energy_down"
+                },
+                {
+                  "disabled": false,
+                  "key": "total_magnetization_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of total_magnetization"
+                },
+                {
+                  "disabled": false,
+                  "key": "total_magnetization_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of total_magnetization"
+                },
+                {
+                  "disabled": false,
+                  "key": "total_magnetization_normalized_vol_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of total_magnetization_normalized_vol"
+                },
+                {
+                  "disabled": false,
+                  "key": "total_magnetization_normalized_vol_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of total_magnetization_normalized_vol"
+                },
+                {
+                  "disabled": false,
+                  "key": "total_magnetization_normalized_formula_units_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of total_magnetization_normalized_formula_units"
+                },
+                {
+                  "disabled": false,
+                  "key": "total_magnetization_normalized_formula_units_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of total_magnetization_normalized_formula_units"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_magnetic_sites_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of num_magnetic_sites"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_magnetic_sites_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of num_magnetic_sites"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_magnetic_sites",
+                  "value": "<integer>",
+                  "description": "Query for num_magnetic_sites being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_magnetic_sites_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for num_magnetic_sites being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_magnetic_sites_eq_any",
+                  "value": "<string>",
+                  "description": "Query for num_magnetic_sites being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_magnetic_sites_neq_any",
+                  "value": "<string>",
+                  "description": "Query for num_magnetic_sites being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_unique_magnetic_sites_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of num_unique_magnetic_sites"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_unique_magnetic_sites_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of num_unique_magnetic_sites"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_unique_magnetic_sites",
+                  "value": "<integer>",
+                  "description": "Query for num_unique_magnetic_sites being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_unique_magnetic_sites_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for num_unique_magnetic_sites being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_unique_magnetic_sites_eq_any",
+                  "value": "<string>",
+                  "description": "Query for num_unique_magnetic_sites being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_unique_magnetic_sites_neq_any",
+                  "value": "<string>",
+                  "description": "Query for num_unique_magnetic_sites being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "universal_anisotropy_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of universal_anisotropy"
+                },
+                {
+                  "disabled": false,
+                  "key": "universal_anisotropy_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of universal_anisotropy"
+                },
+                {
+                  "disabled": false,
+                  "key": "homogeneous_poisson_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of homogeneous_poisson"
+                },
+                {
+                  "disabled": false,
+                  "key": "homogeneous_poisson_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of homogeneous_poisson"
+                },
+                {
+                  "disabled": false,
+                  "key": "e_total_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of e_total"
+                },
+                {
+                  "disabled": false,
+                  "key": "e_total_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of e_total"
+                },
+                {
+                  "disabled": false,
+                  "key": "e_ionic_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of e_ionic"
+                },
+                {
+                  "disabled": false,
+                  "key": "e_ionic_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of e_ionic"
+                },
+                {
+                  "disabled": false,
+                  "key": "e_electronic_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of e_electronic"
+                },
+                {
+                  "disabled": false,
+                  "key": "e_electronic_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of e_electronic"
+                },
+                {
+                  "disabled": false,
+                  "key": "n_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of n"
+                },
+                {
+                  "disabled": false,
+                  "key": "n_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of n"
+                },
+                {
+                  "disabled": false,
+                  "key": "e_ij_max_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of e_ij_max"
+                },
+                {
+                  "disabled": false,
+                  "key": "e_ij_max_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of e_ij_max"
+                },
+                {
+                  "disabled": false,
+                  "key": "weighted_surface_energy_EV_PER_ANG2_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of weighted_surface_energy_EV_PER_ANG2"
+                },
+                {
+                  "disabled": false,
+                  "key": "weighted_surface_energy_EV_PER_ANG2_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of weighted_surface_energy_EV_PER_ANG2"
+                },
+                {
+                  "disabled": false,
+                  "key": "weighted_surface_energy_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of weighted_surface_energy"
+                },
+                {
+                  "disabled": false,
+                  "key": "weighted_surface_energy_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of weighted_surface_energy"
+                },
+                {
+                  "disabled": false,
+                  "key": "weighted_work_function_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of weighted_work_function"
+                },
+                {
+                  "disabled": false,
+                  "key": "weighted_work_function_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of weighted_work_function"
+                },
+                {
+                  "disabled": false,
+                  "key": "surface_anisotropy_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of surface_anisotropy"
+                },
+                {
+                  "disabled": false,
+                  "key": "surface_anisotropy_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of surface_anisotropy"
+                },
+                {
+                  "disabled": false,
+                  "key": "shape_factor_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of shape_factor"
+                },
+                {
+                  "disabled": false,
+                  "key": "shape_factor_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of shape_factor"
+                },
+                {
+                  "disabled": false,
+                  "key": "k_voigt_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the Voigt average of the bulk modulus in GPa."
+                },
+                {
+                  "disabled": false,
+                  "key": "k_voigt_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the Voigt average of the bulk modulus in GPa."
+                },
+                {
+                  "disabled": false,
+                  "key": "k_reuss_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the Reuss average of the bulk modulus in GPa."
+                },
+                {
+                  "disabled": false,
+                  "key": "k_reuss_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the Reuss average of the bulk modulus in GPa."
+                },
+                {
+                  "disabled": false,
+                  "key": "k_vrh_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the Voigt-Reuss-Hill average of the bulk modulus in GPa."
+                },
+                {
+                  "disabled": false,
+                  "key": "k_vrh_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the Voigt-Reuss-Hill average of the bulk modulus in GPa."
+                },
+                {
+                  "disabled": false,
+                  "key": "g_voigt_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the Voigt average of the shear modulus in GPa."
+                },
+                {
+                  "disabled": false,
+                  "key": "g_voigt_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the Voigt average of the shear modulus in GPa."
+                },
+                {
+                  "disabled": false,
+                  "key": "g_reuss_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the Reuss average of the shear modulus in GPa."
+                },
+                {
+                  "disabled": false,
+                  "key": "g_reuss_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the Reuss average of the shear modulus in GPa."
+                },
+                {
+                  "disabled": false,
+                  "key": "g_vrh_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the Voigt-Reuss-Hill average of the shear modulus in GPa."
+                },
+                {
+                  "disabled": false,
+                  "key": "g_vrh_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the Voigt-Reuss-Hill average of the shear modulus in GPa."
+                },
+                {
+                  "disabled": false,
+                  "key": "has_reconstructed",
+                  "value": "<boolean>",
+                  "description": "Whether the material has reconstructed surfaces."
+                },
+                {
+                  "disabled": false,
+                  "key": "has_props",
+                  "value": "<string>",
+                  "description": "Comma-delimited list of possible properties given by HasPropsEnum to search for."
+                },
+                {
+                  "disabled": false,
+                  "key": "deprecated",
+                  "value": "<boolean>",
+                  "description": "Whether the material is marked as deprecated"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from SummaryDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `task_ids` `uncorrected_energy_per_atom` `energy_per_atom` `formation_energy_per_atom` `energy_above_hull` `is_stable` `equilibrium_reaction_energy_per_atom` `decomposes_to` `xas` `grain_boundaries` `band_gap` `cbm` `vbm` `efermi` `is_gap_direct` `is_metal` `es_source_calc_id` `bandstructure` `dos` `dos_energy_up` `dos_energy_down` `is_magnetic` `ordering` `total_magnetization` `total_magnetization_normalized_vol` `total_magnetization_normalized_formula_units` `num_magnetic_sites` `num_unique_magnetic_sites` `types_of_magnetic_species` `bulk_modulus` `shear_modulus` `universal_anisotropy` `homogeneous_poisson` `e_total` `e_ionic` `e_electronic` `n` `e_ij_max` `weighted_surface_energy_EV_PER_ANG2` `weighted_surface_energy` `weighted_work_function` `surface_anisotropy` `shape_factor` `has_reconstructed` `possible_species` `has_props` `theoretical` `database_IDs`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "license",
+                  "value": "<string>",
+                  "description": "Query by license. Can be commercial or non-commercial, or both"
+                },
+                {
+                  "disabled": false,
+                  "key": "_sort_fields",
+                  "value": "<string>",
+                  "description": "Comma delimited fields to sort with. Prefixing '-' to a field will force a sort in descending order."
+                },
+                {
+                  "disabled": false,
+                  "key": "batch_id",
+                  "value": "<string>",
+                  "description": "Query by batch identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "batch_id_not_eq",
+                  "value": "<string>",
+                  "description": "Exclude batch identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "batch_id_eq_any",
+                  "value": "<string>",
+                  "description": "Query by a comma-separated list of batch identifiers"
+                },
+                {
+                  "disabled": false,
+                  "key": "batch_id_neq_any",
+                  "value": "<string>",
+                  "description": "Exclude a comma-separated list of batch identifiers"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9454c88-edef-4573-9fa3-2591980d05ec",
+              "name": "Search for a SummaryDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "summary",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "possible_species",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "crystal_system",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "spacegroup_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "spacegroup_symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_stable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "theoretical",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "AFM"
+                    },
+                    {
+                      "key": "is_gap_direct",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_metal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nsites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "uncorrected_energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "uncorrected_energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "formation_energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "formation_energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_above_hull_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_above_hull_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "equilibrium_reaction_energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "equilibrium_reaction_energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "band_gap_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "band_gap_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "cbm_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "cbm_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "vbm_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "vbm_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "dos_energy_up_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "dos_energy_up_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "dos_energy_down_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "dos_energy_down_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_magnetization_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_magnetization_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_magnetization_normalized_vol_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_magnetization_normalized_vol_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_magnetization_normalized_formula_units_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_magnetization_normalized_formula_units_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "num_magnetic_sites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_magnetic_sites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_magnetic_sites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_magnetic_sites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_magnetic_sites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_magnetic_sites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_unique_magnetic_sites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_unique_magnetic_sites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_unique_magnetic_sites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_unique_magnetic_sites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_unique_magnetic_sites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_unique_magnetic_sites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "universal_anisotropy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "universal_anisotropy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "homogeneous_poisson_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "homogeneous_poisson_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_total_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_total_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_ionic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_ionic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_electronic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_electronic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "n_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "n_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_ij_max_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_ij_max_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_EV_PER_ANG2_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_EV_PER_ANG2_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_work_function_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_work_function_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "surface_anisotropy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "surface_anisotropy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "shape_factor_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "shape_factor_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "k_voigt_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "k_voigt_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "k_reuss_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "k_reuss_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "k_vrh_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "k_vrh_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "g_voigt_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "g_voigt_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "g_reuss_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "g_reuss_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "g_vrh_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "g_vrh_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "has_reconstructed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "has_props",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deprecated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    },
+                    {
+                      "key": "license",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_sort_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_not_eq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_neq_any",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"a\": 5233.497731266428,\n          \"b\": 4238.905820433673,\n          \"c\": 3883.893017587482,\n          \"alpha\": 2043.591357611042,\n          \"beta\": 8320.172374102787,\n          \"gamma\": 1706.678952412185,\n          \"volume\": 1774.8911014702107,\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"species\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"abc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"xyz\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"species\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"abc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"xyz\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"charge\": 7032.790977365301,\n        \"properties\": {\n          \"magmom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"velocities\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"selective_dynamics\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"2007-09-13T12:52:14.642Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 5417,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 8856,\n      \"composition\": {\n        \"key_0\": 3976.4561089470217,\n        \"key_1\": 5319.314200527062\n      },\n      \"composition_reduced\": {\n        \"key_0\": 1020.1821052695715,\n        \"key_1\": 9034.74799243275\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 4008.8115646330357,\n      \"density\": 3017.1535085622613,\n      \"density_atomic\": 5783.0905089524485,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 4610,\n        \"point_group\": \"string\",\n        \"symprec\": 7419.885211187898,\n        \"angle_tolerance\": 7435.5201523340465,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"1959-04-27T13:55:32.888Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2023-04-18T05:30:32.407Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1968-09-11T20:07:58.070Z\"\n        }\n      ],\n      \"property_name\": \"summary\",\n      \"uncorrected_energy_per_atom\": 7572.692819528832,\n      \"energy_per_atom\": 2502.838456573964,\n      \"formation_energy_per_atom\": 9493.313129916232,\n      \"energy_above_hull\": 4336.517950229639,\n      \"is_stable\": false,\n      \"equilibrium_reaction_energy_per_atom\": 7509.651339306017,\n      \"decomposes_to\": [\n        {\n          \"material_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"material_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"xas\": [\n        {\n          \"edge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"absorbing_element\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"spectrum_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"edge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"absorbing_element\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"spectrum_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"grain_boundaries\": [\n        {\n          \"sigma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gb_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"rotation_angle\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"sigma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gb_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"rotation_angle\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"band_gap\": 8356.355483402373,\n      \"cbm\": 1285.3922019303677,\n      \"vbm\": 7756.170766225072,\n      \"efermi\": 9418.394293034291,\n      \"is_gap_direct\": true,\n      \"is_metal\": true,\n      \"es_source_calc_id\": \"mp-3534\",\n      \"bandstructure\": {\n        \"setyawan_curtarolo\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hinuma\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"latimer_munro\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"dos\": {\n        \"total\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"elemental\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"orbital\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_3\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_4\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"magnetic_ordering\": \"string\"\n      },\n      \"dos_energy_up\": 1161.7740670709497,\n      \"dos_energy_down\": 8419.88483741348,\n      \"is_magnetic\": true,\n      \"ordering\": \"string\",\n      \"total_magnetization\": 5743.343984238887,\n      \"total_magnetization_normalized_vol\": 5140.902640974709,\n      \"total_magnetization_normalized_formula_units\": 9470.33959873975,\n      \"num_magnetic_sites\": 6076,\n      \"num_unique_magnetic_sites\": 4623,\n      \"types_of_magnetic_species\": [\n        \"string\",\n        \"string\"\n      ],\n      \"bulk_modulus\": {\n        \"key_0\": 9145.956595704818,\n        \"key_1\": 8467.27768369677,\n        \"key_2\": 3351.8137598027965\n      },\n      \"shear_modulus\": {\n        \"key_0\": 3623.626432743484,\n        \"key_1\": 8841.19236629555\n      },\n      \"universal_anisotropy\": 4089.459872908757,\n      \"homogeneous_poisson\": 5280.893103360348,\n      \"e_total\": 2797.917282233309,\n      \"e_ionic\": 2969.46184672911,\n      \"e_electronic\": 2128.4786888922513,\n      \"n\": 21.2395577826352,\n      \"e_ij_max\": 1864.5457360243256,\n      \"weighted_surface_energy_EV_PER_ANG2\": 5206.919818162253,\n      \"weighted_surface_energy\": 5620.889085448115,\n      \"weighted_work_function\": 8491.973237313481,\n      \"surface_anisotropy\": 1962.0528096710377,\n      \"shape_factor\": 5598.125284627863,\n      \"has_reconstructed\": false,\n      \"possible_species\": [\n        \"string\",\n        \"string\"\n      ],\n      \"has_props\": {\n        \"key_0\": true,\n        \"key_1\": false,\n        \"key_2\": false\n      },\n      \"theoretical\": true,\n      \"database_IDs\": {}\n    },\n    {\n      \"structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"a\": 4995.664439974331,\n          \"b\": 9114.929507100074,\n          \"c\": 8767.398183566345,\n          \"alpha\": 4610.203259505018,\n          \"beta\": 9217.880754963982,\n          \"gamma\": 3017.948218394174,\n          \"volume\": 5199.937178121553,\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"species\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"abc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"xyz\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"species\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"abc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"xyz\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"charge\": 1408.1556298090702,\n        \"properties\": {\n          \"magmom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"velocities\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"selective_dynamics\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1979-08-15T22:19:14.253Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"nsites\": 2285,\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 8985,\n      \"composition\": {\n        \"key_0\": 9050.567516197292\n      },\n      \"composition_reduced\": {\n        \"key_0\": 8010.516741678809,\n        \"key_1\": 8129.639114819808\n      },\n      \"formula_pretty\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"chemsys\": \"string\",\n      \"volume\": 3105.8988118823195,\n      \"density\": 8836.745594971935,\n      \"density_atomic\": 5702.320976029552,\n      \"symmetry\": {\n        \"crystal_system\": \"string\",\n        \"symbol\": \"string\",\n        \"hall\": \"string\",\n        \"number\": 9831,\n        \"point_group\": \"string\",\n        \"symprec\": 4110.030016949307,\n        \"angle_tolerance\": 3804.599063885725,\n        \"version\": \"string\"\n      },\n      \"material_id\": \"mp-3534\",\n      \"deprecated\": true,\n      \"deprecation_reasons\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_updated\": \"2010-06-06T11:19:08.127Z\",\n      \"origins\": [\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"1961-05-09T11:43:41.692Z\"\n        },\n        {\n          \"name\": \"string\",\n          \"task_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_updated\": \"2006-10-23T22:28:59.031Z\"\n        }\n      ],\n      \"property_name\": \"summary\",\n      \"uncorrected_energy_per_atom\": 5092.456195869671,\n      \"energy_per_atom\": 2141.959615565742,\n      \"formation_energy_per_atom\": 7211.5187320251425,\n      \"energy_above_hull\": 9728.974709552842,\n      \"is_stable\": false,\n      \"equilibrium_reaction_energy_per_atom\": 7028.588096069035,\n      \"decomposes_to\": [\n        {\n          \"material_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"material_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"xas\": [\n        {\n          \"edge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"absorbing_element\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"spectrum_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"edge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"absorbing_element\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"spectrum_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"grain_boundaries\": [\n        {\n          \"sigma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gb_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"rotation_angle\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"sigma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gb_energy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"rotation_angle\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"band_gap\": 8357.390656711204,\n      \"cbm\": 6354.029791822169,\n      \"vbm\": 3377.259190096644,\n      \"efermi\": 1936.8326877789643,\n      \"is_gap_direct\": true,\n      \"is_metal\": false,\n      \"es_source_calc_id\": \"mp-3534\",\n      \"bandstructure\": {\n        \"setyawan_curtarolo\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hinuma\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"latimer_munro\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"dos\": {\n        \"total\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"elemental\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"orbital\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"magnetic_ordering\": \"string\"\n      },\n      \"dos_energy_up\": 8524.87061937179,\n      \"dos_energy_down\": 9230.314083790274,\n      \"is_magnetic\": true,\n      \"ordering\": \"string\",\n      \"total_magnetization\": 1225.8583395467092,\n      \"total_magnetization_normalized_vol\": 431.22208081167844,\n      \"total_magnetization_normalized_formula_units\": 9454.23894527196,\n      \"num_magnetic_sites\": 9443,\n      \"num_unique_magnetic_sites\": 7199,\n      \"types_of_magnetic_species\": [\n        \"string\",\n        \"string\"\n      ],\n      \"bulk_modulus\": {\n        \"key_0\": 8331.11780805116\n      },\n      \"shear_modulus\": {\n        \"key_0\": 8481.31442394997,\n        \"key_1\": 6724.333094418652\n      },\n      \"universal_anisotropy\": 9297.758083849067,\n      \"homogeneous_poisson\": 9161.129279566634,\n      \"e_total\": 8635.091412634456,\n      \"e_ionic\": 1636.476481358712,\n      \"e_electronic\": 9345.944445492214,\n      \"n\": 5745.776901328724,\n      \"e_ij_max\": 6803.8952651307845,\n      \"weighted_surface_energy_EV_PER_ANG2\": 9592.698144814101,\n      \"weighted_surface_energy\": 7622.493992607173,\n      \"weighted_work_function\": 9147.507074787847,\n      \"surface_anisotropy\": 946.5136379769701,\n      \"shape_factor\": 8428.436314875225,\n      \"has_reconstructed\": false,\n      \"possible_species\": [\n        \"string\",\n        \"string\"\n      ],\n      \"has_props\": {\n        \"key_0\": false,\n        \"key_1\": true\n      },\n      \"theoretical\": true,\n      \"database_IDs\": {}\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 2567,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 9642,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1951-11-10T22:27:45.075Z\",\n    \"total_doc\": 3162,\n    \"facet\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a39d234d-129a-42d4-9335-39d298aefbaf",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "summary",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "possible_species",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "crystal_system",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "spacegroup_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "spacegroup_symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_stable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "theoretical",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "AFM"
+                    },
+                    {
+                      "key": "is_gap_direct",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_metal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nsites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "density_atomic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "uncorrected_energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "uncorrected_energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "formation_energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "formation_energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_above_hull_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_above_hull_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "equilibrium_reaction_energy_per_atom_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "equilibrium_reaction_energy_per_atom_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "band_gap_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "band_gap_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "cbm_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "cbm_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "vbm_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "vbm_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "efermi_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "dos_energy_up_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "dos_energy_up_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "dos_energy_down_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "dos_energy_down_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_magnetization_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_magnetization_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_magnetization_normalized_vol_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_magnetization_normalized_vol_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_magnetization_normalized_formula_units_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "total_magnetization_normalized_formula_units_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "num_magnetic_sites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_magnetic_sites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_magnetic_sites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_magnetic_sites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_magnetic_sites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_magnetic_sites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_unique_magnetic_sites_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_unique_magnetic_sites_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_unique_magnetic_sites",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_unique_magnetic_sites_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_unique_magnetic_sites_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_unique_magnetic_sites_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "universal_anisotropy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "universal_anisotropy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "homogeneous_poisson_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "homogeneous_poisson_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_total_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_total_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_ionic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_ionic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_electronic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_electronic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "n_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "n_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_ij_max_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_ij_max_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_EV_PER_ANG2_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_EV_PER_ANG2_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_surface_energy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_work_function_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "weighted_work_function_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "surface_anisotropy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "surface_anisotropy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "shape_factor_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "shape_factor_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "k_voigt_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "k_voigt_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "k_reuss_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "k_reuss_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "k_vrh_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "k_vrh_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "g_voigt_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "g_voigt_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "g_reuss_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "g_reuss_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "g_vrh_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "g_vrh_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "has_reconstructed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "has_props",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deprecated",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    },
+                    {
+                      "key": "license",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_sort_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_not_eq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch_id_neq_any",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d2eafc6b-8c9f-4980-b52b-2293ba473568",
+    "name": "Materials Project Defect Tasks Materials Summary API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

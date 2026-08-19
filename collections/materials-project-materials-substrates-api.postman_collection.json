@@ -1,0 +1,596 @@
+{
+  "item": [
+    {
+      "id": "16bc3dc6-bea6-4b6e-a512-6f9cf5a892ce",
+      "name": "Materials Substrates",
+      "description": {
+        "content": "Route providing computed suggested substrate data for a material following the             methodology discussed by [Ding *et al.*](https://doi.org/10.1021/acsami.6b01630)             Note that substrate data has not been calculated for all materials in the Materials             Project database. See the `SubstratesDoc` schema for a full list of fields returned by this route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2de3b6b3-8245-4b73-a8df-14877ecb8b9c",
+          "name": "Get SubstratesDoc documents",
+          "request": {
+            "name": "Get SubstratesDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "substrates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "film_orientation",
+                  "value": "<string>",
+                  "description": "Comma separated integers defining the film surface orientation."
+                },
+                {
+                  "disabled": false,
+                  "key": "substrate_orientation",
+                  "value": "<string>",
+                  "description": "Comma separated integers defining the substrate surface orientation."
+                },
+                {
+                  "disabled": false,
+                  "key": "area_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of area"
+                },
+                {
+                  "disabled": false,
+                  "key": "area_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of area"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of energy"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of energy"
+                },
+                {
+                  "disabled": false,
+                  "key": "norients_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of norients"
+                },
+                {
+                  "disabled": false,
+                  "key": "norients_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of norients"
+                },
+                {
+                  "disabled": false,
+                  "key": "norients",
+                  "value": "<integer>",
+                  "description": "Query for norients being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "norients_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for norients being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "norients_eq_any",
+                  "value": "<string>",
+                  "description": "Query for norients being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "norients_neq_any",
+                  "value": "<string>",
+                  "description": "Query for norients being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "sub_form",
+                  "value": "<string>",
+                  "description": "Query for sub_form being equal to a value"
+                },
+                {
+                  "disabled": false,
+                  "key": "sub_form_not_eq",
+                  "value": "<string>",
+                  "description": "Query for sub_form being not equal to a value"
+                },
+                {
+                  "disabled": false,
+                  "key": "sub_form_eq_any",
+                  "value": "<string>",
+                  "description": "Query for sub_form being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "sub_form_neq_any",
+                  "value": "<string>",
+                  "description": "Query for sub_form being not any of these values. Provide a comma separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "sub_id",
+                  "value": "<string>",
+                  "description": "Query for sub_id being equal to a value"
+                },
+                {
+                  "disabled": false,
+                  "key": "sub_id_not_eq",
+                  "value": "<string>",
+                  "description": "Query for sub_id being not equal to a value"
+                },
+                {
+                  "disabled": false,
+                  "key": "sub_id_eq_any",
+                  "value": "<string>",
+                  "description": "Query for sub_id being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "sub_id_neq_any",
+                  "value": "<string>",
+                  "description": "Query for sub_id being not any of these values. Provide a comma separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "film_id",
+                  "value": "<string>",
+                  "description": "Query for film_id being equal to a value"
+                },
+                {
+                  "disabled": false,
+                  "key": "film_id_not_eq",
+                  "value": "<string>",
+                  "description": "Query for film_id being not equal to a value"
+                },
+                {
+                  "disabled": false,
+                  "key": "film_id_eq_any",
+                  "value": "<string>",
+                  "description": "Query for film_id being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "film_id_neq_any",
+                  "value": "<string>",
+                  "description": "Query for film_id being not any of these values. Provide a comma separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from SubstratesDoc as a list of comma separated strings.                    Fields include: `sub_form` `sub_id` `film_orient` `area` `energy` `film_id` `norients` `orient`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3be0e8d0-e05e-41f5-b17b-8fac41de6ffe",
+              "name": "Search for a SubstratesDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "substrates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "film_orientation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "substrate_orientation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "area_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "area_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "norients_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "norients_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "norients",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "norients_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "norients_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "norients_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_form",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_form_not_eq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_form_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_form_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_id_not_eq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_id_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_id_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "film_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "film_id_not_eq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "film_id_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "film_id_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"sub_form\": \"string\",\n      \"sub_id\": \"string\",\n      \"film_orient\": \"string\",\n      \"area\": 1033.770195309197,\n      \"energy\": 2170.1776761070814,\n      \"film_id\": \"string\",\n      \"_norients\": 8208,\n      \"orient\": \"string\"\n    },\n    {\n      \"sub_form\": \"string\",\n      \"sub_id\": \"string\",\n      \"film_orient\": \"string\",\n      \"area\": 7875.163264231446,\n      \"energy\": 6185.532299675501,\n      \"film_id\": \"string\",\n      \"_norients\": 3871,\n      \"orient\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 9645,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 3096,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1962-08-07T21:01:08.892Z\",\n    \"total_doc\": 9471,\n    \"facet\": {\n      \"key_0\": 4375.277810545138,\n      \"key_1\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a255265-1948-4b23-9f5d-442b665c89e9",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "substrates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "film_orientation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "substrate_orientation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "area_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "area_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "norients_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "norients_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "norients",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "norients_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "norients_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "norients_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_form",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_form_not_eq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_form_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_form_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_id_not_eq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_id_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sub_id_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "film_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "film_id_not_eq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "film_id_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "film_id_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "181432a4-1b30-4123-a831-31b59b7cb6d1",
+    "name": "Materials Project Defect Tasks Materials Substrates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

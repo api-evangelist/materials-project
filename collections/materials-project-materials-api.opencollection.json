@@ -1,0 +1,562 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Project Defect Tasks Materials API",
+    "version": "0.86.4rc5.dev1+g77c2c1315"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Materials",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get MaterialsDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/core/blessed_tasks/",
+            "params": [
+              {
+                "name": "run_type",
+                "value": "",
+                "type": "query",
+                "description": "Calculation run type of blessed task data"
+              },
+              {
+                "name": "energy_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum total uncorrected DFT energy in eV/atom"
+              },
+              {
+                "name": "energy_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum total uncorrected DFT energy in eV/atom"
+              },
+              {
+                "name": "material_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of material_id values to query on"
+              },
+              {
+                "name": "formula",
+                "value": "",
+                "type": "query",
+                "description": "Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided."
+              },
+              {
+                "name": "chemsys",
+                "value": "",
+                "type": "query",
+                "description": "A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries"
+              },
+              {
+                "name": "elements",
+                "value": "",
+                "type": "query",
+                "description": "Query by elements in the material composition as a comma-separated list"
+              },
+              {
+                "name": "exclude_elements",
+                "value": "",
+                "type": "query",
+                "description": "Query by excluded elements in the material composition as a comma-separated list"
+              },
+              {
+                "name": "task_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of task_ids to query on"
+              },
+              {
+                "name": "deprecated",
+                "value": "",
+                "type": "query",
+                "description": "Whether the material is marked as deprecated"
+              },
+              {
+                "name": "nsites_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of nsites"
+              },
+              {
+                "name": "nsites_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of nsites"
+              },
+              {
+                "name": "nsites",
+                "value": "",
+                "type": "query",
+                "description": "Query for nsites being equal to an exact value"
+              },
+              {
+                "name": "nsites_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for nsites being not equal to an exact value"
+              },
+              {
+                "name": "nsites_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nsites being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "nsites_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nsites being not any of these values.                             Provide a comma separated list."
+              },
+              {
+                "name": "nelements_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of nelements"
+              },
+              {
+                "name": "nelements_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of nelements"
+              },
+              {
+                "name": "nelements",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being equal to an exact value"
+              },
+              {
+                "name": "nelements_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being not equal to an exact value"
+              },
+              {
+                "name": "nelements_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "nelements_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+              },
+              {
+                "name": "volume_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of volume"
+              },
+              {
+                "name": "volume_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of volume"
+              },
+              {
+                "name": "density_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of density"
+              },
+              {
+                "name": "density_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of density"
+              },
+              {
+                "name": "density_atomic_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of density_atomic"
+              },
+              {
+                "name": "density_atomic_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of density_atomic"
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "license",
+                "value": "",
+                "type": "query",
+                "description": "Query by license. Can be commercial or non-commercial, or both"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from MaterialsDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `initial_structures` `task_ids` `deprecated_tasks` `calc_types` `created_at` `task_types` `run_types` `entries`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              }
+            ]
+          },
+          "docs": "Get MaterialsDoc documents"
+        },
+        {
+          "info": {
+            "name": "Post FindStructure documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/materials/core/find_structure/",
+            "params": [
+              {
+                "name": "ltol",
+                "value": "",
+                "type": "query",
+                "description": "Fractional length tolerance. Default is 0.2."
+              },
+              {
+                "name": "stol",
+                "value": "",
+                "type": "query",
+                "description": "Site tolerance. Defined as the fraction of the average free                     length per atom := ( V / Nsites ) ** (1/3). Default is 0.3."
+              },
+              {
+                "name": "angle_tol",
+                "value": "",
+                "type": "query",
+                "description": "Angle tolerance in degrees. Default is 5 degrees."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of matches to show. Defaults to 1, only showing the best match."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Post FindStructure documents"
+        },
+        {
+          "info": {
+            "name": "Get FormulaAutocomplete documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/core/formula_autocomplete/",
+            "params": [
+              {
+                "name": "formula",
+                "value": "",
+                "type": "query",
+                "description": "Human readable chemical formula."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of matches to show. Defaults to 10."
+              }
+            ]
+          },
+          "docs": "Get FormulaAutocomplete documents"
+        },
+        {
+          "info": {
+            "name": "Get MaterialsDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/core/",
+            "params": [
+              {
+                "name": "material_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of material_id values to query on"
+              },
+              {
+                "name": "formula",
+                "value": "",
+                "type": "query",
+                "description": "Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided."
+              },
+              {
+                "name": "chemsys",
+                "value": "",
+                "type": "query",
+                "description": "A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries"
+              },
+              {
+                "name": "elements",
+                "value": "",
+                "type": "query",
+                "description": "Query by elements in the material composition as a comma-separated list"
+              },
+              {
+                "name": "exclude_elements",
+                "value": "",
+                "type": "query",
+                "description": "Query by excluded elements in the material composition as a comma-separated list"
+              },
+              {
+                "name": "task_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of task_ids to query on"
+              },
+              {
+                "name": "crystal_system",
+                "value": "",
+                "type": "query",
+                "description": "Crystal system of the material. If a comma-separated string, will query by multiple crystal systems."
+              },
+              {
+                "name": "spacegroup_number",
+                "value": "",
+                "type": "query",
+                "description": "Space group number of the material. If a comma-separated string, will query by multiple space group numbers."
+              },
+              {
+                "name": "spacegroup_symbol",
+                "value": "",
+                "type": "query",
+                "description": "Space group symbol of the material. If a comma-separated string, will query by multiple space group numbers."
+              },
+              {
+                "name": "deprecated",
+                "value": "",
+                "type": "query",
+                "description": "Whether the material is marked as deprecated"
+              },
+              {
+                "name": "nsites_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of nsites"
+              },
+              {
+                "name": "nsites_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of nsites"
+              },
+              {
+                "name": "nsites",
+                "value": "",
+                "type": "query",
+                "description": "Query for nsites being equal to an exact value"
+              },
+              {
+                "name": "nsites_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for nsites being not equal to an exact value"
+              },
+              {
+                "name": "nsites_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nsites being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "nsites_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nsites being not any of these values.                             Provide a comma separated list."
+              },
+              {
+                "name": "nelements_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of nelements"
+              },
+              {
+                "name": "nelements_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of nelements"
+              },
+              {
+                "name": "nelements",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being equal to an exact value"
+              },
+              {
+                "name": "nelements_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being not equal to an exact value"
+              },
+              {
+                "name": "nelements_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "nelements_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+              },
+              {
+                "name": "volume_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of volume"
+              },
+              {
+                "name": "volume_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of volume"
+              },
+              {
+                "name": "density_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of density"
+              },
+              {
+                "name": "density_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of density"
+              },
+              {
+                "name": "density_atomic_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of density_atomic"
+              },
+              {
+                "name": "density_atomic_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of density_atomic"
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from MaterialsDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `initial_structures` `task_ids` `deprecated_tasks` `calc_types` `created_at` `task_types` `run_types` `entries`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              },
+              {
+                "name": "license",
+                "value": "",
+                "type": "query",
+                "description": "Query by license. Can be commercial or non-commercial, or both"
+              },
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "query",
+                "description": "Query by batch identifier"
+              },
+              {
+                "name": "batch_id_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Exclude batch identifier"
+              },
+              {
+                "name": "batch_id_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query by a comma-separated list of batch identifiers"
+              },
+              {
+                "name": "batch_id_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Exclude a comma-separated list of batch identifiers"
+              }
+            ]
+          },
+          "docs": "Get MaterialsDoc documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

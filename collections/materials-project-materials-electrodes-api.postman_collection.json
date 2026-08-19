@@ -1,0 +1,1491 @@
+{
+  "item": [
+    {
+      "id": "0288b8b9-2212-4d47-861e-aef1eee07af9",
+      "name": "Materials Electrodes",
+      "description": {
+        "content": "Route providing computed electrode data for a material following the             methodology discussed by [Shen *et al.*](https://doi.org/10.1038/s41524-020-00422-3)             Note that electrode data has not been calculated for all materials in the Materials             Project database. See the `InsertionElectrodeDoc` and `ConversionElectrodeDoc` schema             for a full list of fields returned by this route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bb7ae6e8-1bea-4169-8461-edff24ba7e1a",
+          "name": "Get InsertionElectrodeDoc documents",
+          "request": {
+            "name": "Get InsertionElectrodeDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "insertion_electrodes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "battery_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of battery_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "formula",
+                  "value": "<string>",
+                  "description": "Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "chemsys",
+                  "value": "<string>",
+                  "description": "A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries"
+                },
+                {
+                  "disabled": false,
+                  "key": "working_ion",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "elements",
+                  "value": "<string>",
+                  "description": "Query by elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_elements",
+                  "value": "<string>",
+                  "description": "Query by excluded elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_steps_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of num_steps"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_steps_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of num_steps"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_steps",
+                  "value": "<integer>",
+                  "description": "Query for num_steps being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_steps_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for num_steps being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_steps_eq_any",
+                  "value": "<string>",
+                  "description": "Query for num_steps being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_steps_neq_any",
+                  "value": "<string>",
+                  "description": "Query for num_steps being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_voltage_step_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of max_voltage_step"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_voltage_step_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of max_voltage_step"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements",
+                  "value": "<integer>",
+                  "description": "Query for nelements being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nelements being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_delta_volume_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of max_delta_volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_delta_volume_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of max_delta_volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "average_voltage_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of average_voltage"
+                },
+                {
+                  "disabled": false,
+                  "key": "average_voltage_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of average_voltage"
+                },
+                {
+                  "disabled": false,
+                  "key": "capacity_grav_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of capacity_grav"
+                },
+                {
+                  "disabled": false,
+                  "key": "capacity_grav_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of capacity_grav"
+                },
+                {
+                  "disabled": false,
+                  "key": "capacity_vol_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of capacity_vol"
+                },
+                {
+                  "disabled": false,
+                  "key": "capacity_vol_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of capacity_vol"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_grav_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of energy_grav"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_grav_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of energy_grav"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_vol_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of energy_vol"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_vol_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of energy_vol"
+                },
+                {
+                  "disabled": false,
+                  "key": "fracA_charge_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of fracA_charge"
+                },
+                {
+                  "disabled": false,
+                  "key": "fracA_charge_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of fracA_charge"
+                },
+                {
+                  "disabled": false,
+                  "key": "fracA_discharge_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of fracA_discharge"
+                },
+                {
+                  "disabled": false,
+                  "key": "fracA_discharge_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of fracA_discharge"
+                },
+                {
+                  "disabled": false,
+                  "key": "stability_charge_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of stability_charge"
+                },
+                {
+                  "disabled": false,
+                  "key": "stability_charge_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of stability_charge"
+                },
+                {
+                  "disabled": false,
+                  "key": "stability_discharge_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of stability_discharge"
+                },
+                {
+                  "disabled": false,
+                  "key": "stability_discharge_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of stability_discharge"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from InsertionElectrodeDoc as a list of comma separated strings.                    Fields include: `builder_meta` `battery_type` `battery_id` `thermo_type` `battery_formula` `working_ion` `num_steps` `max_voltage_step` `last_updated` `framework` `framework_formula` `elements` `nelements` `chemsys` `formula_anonymous` `warnings` `formula_charge` `formula_discharge` `max_delta_volume` `average_voltage` `capacity_grav` `capacity_vol` `energy_grav` `energy_vol` `fracA_charge` `fracA_discharge` `stability_charge` `stability_discharge` `id_charge` `id_discharge` `host_structure` `adj_pairs` `material_ids` `entries_composition_summary` `electrode_object`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "_sort_fields",
+                  "value": "<string>",
+                  "description": "Comma delimited fields to sort with. Prefixing '-' to a field will force a sort in descending order."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb269ff8-f0c1-4dcb-b45c-08b55d8fbffa",
+              "name": "Search for a InsertionElectrodeDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "insertion_electrodes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "battery_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "working_ion",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_steps_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_steps_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_voltage_step_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "max_voltage_step_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_delta_volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "max_delta_volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "average_voltage_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "average_voltage_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_grav_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_grav_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_vol_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_vol_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_grav_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_grav_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_vol_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_vol_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_charge_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_charge_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_discharge_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_discharge_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "stability_charge_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "stability_charge_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "stability_discharge_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "stability_discharge_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    },
+                    {
+                      "key": "_sort_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"2007-05-14T20:17:29.650Z\",\n        \"license\": \"BY-C\"\n      },\n      \"battery_type\": \"string\",\n      \"battery_id\": \"string\",\n      \"thermo_type\": \"string\",\n      \"battery_formula\": \"string\",\n      \"working_ion\": \"string\",\n      \"num_steps\": 6726,\n      \"max_voltage_step\": 982.9708337471487,\n      \"last_updated\": \"1972-10-17T11:34:14.726Z\",\n      \"framework\": {\n        \"key_0\": 2021.9050938003957\n      },\n      \"framework_formula\": \"string\",\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 5455,\n      \"chemsys\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"formula_charge\": \"string\",\n      \"formula_discharge\": \"string\",\n      \"max_delta_volume\": 962.4478666198199,\n      \"average_voltage\": 4067.0423290364265,\n      \"capacity_grav\": 2852.031321094701,\n      \"capacity_vol\": 5129.995404388454,\n      \"energy_grav\": 9633.85049890389,\n      \"energy_vol\": 5481.320808103045,\n      \"fracA_charge\": 1373.3773352543753,\n      \"fracA_discharge\": 7206.87862868945,\n      \"stability_charge\": 4904.495504513154,\n      \"stability_discharge\": 306.63108166592343,\n      \"id_charge\": \"mp-3534\",\n      \"id_discharge\": \"mp-3534\",\n      \"host_structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"a\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"b\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"c\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alpha\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"beta\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gamma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"charge\": 688.7819678453511,\n        \"properties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"adj_pairs\": [\n        {\n          \"formula_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"max_delta_volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"average_voltage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stability_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stability_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"formula_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"max_delta_volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"average_voltage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stability_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stability_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"material_ids\": [\n        \"mp-3534\",\n        \"mp-3534\"\n      ],\n      \"entries_composition_summary\": {\n        \"all_formulas\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"all_chemsys\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"all_formula_anonymous\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"all_elements\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"all_composition_reduced\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"electrode_object\": {\n        \"key_0\": 9011,\n        \"key_1\": true,\n        \"key_2\": 3169.818140027926\n      }\n    },\n    {\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1966-12-22T19:28:25.756Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"battery_type\": \"string\",\n      \"battery_id\": \"string\",\n      \"thermo_type\": \"string\",\n      \"battery_formula\": \"string\",\n      \"working_ion\": \"string\",\n      \"num_steps\": 8951,\n      \"max_voltage_step\": 5291.2252417119,\n      \"last_updated\": \"1995-09-22T10:50:15.142Z\",\n      \"framework\": {\n        \"key_0\": 4039.709583230573,\n        \"key_1\": 1681.3248610349863\n      },\n      \"framework_formula\": \"string\",\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 6333,\n      \"chemsys\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"formula_charge\": \"string\",\n      \"formula_discharge\": \"string\",\n      \"max_delta_volume\": 4818.688598683467,\n      \"average_voltage\": 8487.394766930565,\n      \"capacity_grav\": 6368.232784977664,\n      \"capacity_vol\": 2189.535184932294,\n      \"energy_grav\": 1967.797049855522,\n      \"energy_vol\": 9677.866129464623,\n      \"fracA_charge\": 711.872731548483,\n      \"fracA_discharge\": 9290.296495380131,\n      \"stability_charge\": 6406.386960063016,\n      \"stability_discharge\": 5985.805686443125,\n      \"id_charge\": \"mp-3534\",\n      \"id_discharge\": \"mp-3534\",\n      \"host_structure\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"lattice\": {\n          \"matrix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"a\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"b\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"c\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alpha\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"beta\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gamma\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pbc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"sites\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"charge\": 468.03566364697514,\n        \"properties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"adj_pairs\": [\n        {\n          \"formula_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"max_delta_volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"average_voltage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stability_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stability_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"formula_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"max_delta_volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"average_voltage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stability_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stability_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"material_ids\": [\n        \"mp-3534\",\n        \"mp-3534\"\n      ],\n      \"entries_composition_summary\": {\n        \"all_formulas\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"all_chemsys\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"all_formula_anonymous\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"all_elements\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"all_composition_reduced\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"electrode_object\": {\n        \"key_0\": false\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 4570,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 3750,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"2014-07-15T10:46:03.705Z\",\n    \"total_doc\": 2307,\n    \"facet\": {\n      \"key_0\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1df2097-0e6a-4017-b2c6-8d277c67def3",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "insertion_electrodes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "battery_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "chemsys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "working_ion",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_steps_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_steps_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_voltage_step_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "max_voltage_step_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_delta_volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "max_delta_volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "average_voltage_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "average_voltage_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_grav_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_grav_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_vol_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_vol_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_grav_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_grav_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_vol_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_vol_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_charge_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_charge_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_discharge_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_discharge_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "stability_charge_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "stability_charge_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "stability_discharge_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "stability_discharge_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    },
+                    {
+                      "key": "_sort_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b01058f-0f1b-4203-8eff-9a032d50d471",
+          "name": "Get ConversionElectrodeDoc documents",
+          "request": {
+            "name": "Get ConversionElectrodeDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "conversion_electrodes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "battery_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of battery_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "working_ion",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_steps_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of num_steps"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_steps_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of num_steps"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_steps",
+                  "value": "<integer>",
+                  "description": "Query for num_steps being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_steps_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for num_steps being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "num_steps_eq_any",
+                  "value": "<string>",
+                  "description": "Query for num_steps being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_steps_neq_any",
+                  "value": "<string>",
+                  "description": "Query for num_steps being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_voltage_step_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of max_voltage_step"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_voltage_step_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of max_voltage_step"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_max",
+                  "value": "<integer>",
+                  "description": "Query for maximum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_min",
+                  "value": "<integer>",
+                  "description": "Query for minimum value of nelements"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements",
+                  "value": "<integer>",
+                  "description": "Query for nelements being equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_not_eq",
+                  "value": "<integer>",
+                  "description": "Query for nelements being not equal to an exact value"
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_eq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being any of these values. Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_neq_any",
+                  "value": "<string>",
+                  "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_delta_volume_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of max_delta_volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_delta_volume_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of max_delta_volume"
+                },
+                {
+                  "disabled": false,
+                  "key": "average_voltage_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of average_voltage"
+                },
+                {
+                  "disabled": false,
+                  "key": "average_voltage_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of average_voltage"
+                },
+                {
+                  "disabled": false,
+                  "key": "capacity_grav_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of capacity_grav"
+                },
+                {
+                  "disabled": false,
+                  "key": "capacity_grav_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of capacity_grav"
+                },
+                {
+                  "disabled": false,
+                  "key": "capacity_vol_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of capacity_vol"
+                },
+                {
+                  "disabled": false,
+                  "key": "capacity_vol_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of capacity_vol"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_grav_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of energy_grav"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_grav_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of energy_grav"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_vol_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of energy_vol"
+                },
+                {
+                  "disabled": false,
+                  "key": "energy_vol_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of energy_vol"
+                },
+                {
+                  "disabled": false,
+                  "key": "fracA_charge_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of fracA_charge"
+                },
+                {
+                  "disabled": false,
+                  "key": "fracA_charge_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of fracA_charge"
+                },
+                {
+                  "disabled": false,
+                  "key": "fracA_discharge_max",
+                  "value": "<number>",
+                  "description": "Query for maximum value of fracA_discharge"
+                },
+                {
+                  "disabled": false,
+                  "key": "fracA_discharge_min",
+                  "value": "<number>",
+                  "description": "Query for minimum value of fracA_discharge"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from ConversionElectrodeDoc as a list of comma separated strings.                    Fields include: `builder_meta` `battery_type` `battery_id` `thermo_type` `battery_formula` `working_ion` `num_steps` `max_voltage_step` `last_updated` `framework` `framework_formula` `elements` `nelements` `chemsys` `formula_anonymous` `warnings` `formula_charge` `formula_discharge` `max_delta_volume` `average_voltage` `capacity_grav` `capacity_vol` `energy_grav` `energy_vol` `fracA_charge` `fracA_discharge` `reaction` `initial_comp_formula` `adj_pairs` `electrode_object`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d654b2b4-859c-4911-89e1-c576bf0d6983",
+              "name": "Search for a ConversionElectrodeDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "conversion_electrodes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "battery_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "working_ion",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_steps_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_steps_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_voltage_step_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "max_voltage_step_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_delta_volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "max_delta_volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "average_voltage_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "average_voltage_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_grav_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_grav_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_vol_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_vol_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_grav_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_grav_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_vol_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_vol_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_charge_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_charge_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_discharge_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_discharge_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1984-12-12T07:11:27.504Z\",\n        \"license\": \"BY-NC\"\n      },\n      \"battery_type\": \"string\",\n      \"battery_id\": \"string\",\n      \"thermo_type\": \"string\",\n      \"battery_formula\": \"string\",\n      \"working_ion\": \"string\",\n      \"num_steps\": 2308,\n      \"max_voltage_step\": 8484.668431087919,\n      \"last_updated\": \"1963-10-08T00:01:49.271Z\",\n      \"framework\": {\n        \"key_0\": 3206.246206287281,\n        \"key_1\": 9883.913942049829,\n        \"key_2\": 9120.40449524026,\n        \"key_3\": 1277.199380366606\n      },\n      \"framework_formula\": \"string\",\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 8989,\n      \"chemsys\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"formula_charge\": \"string\",\n      \"formula_discharge\": \"string\",\n      \"max_delta_volume\": 8747.269798851255,\n      \"average_voltage\": 1684.7726088302172,\n      \"capacity_grav\": 3639.4566548662,\n      \"capacity_vol\": 3664.9950653439732,\n      \"energy_grav\": 7862.222988973461,\n      \"energy_vol\": 4032.5880419358127,\n      \"fracA_charge\": 8526.73136205775,\n      \"fracA_discharge\": 3593.296187018936,\n      \"reaction\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"reactants\": {\n          \"key_0\": 2805.77352524481\n        },\n        \"products\": {\n          \"key_0\": 5276.199688189868,\n          \"key_1\": 8434.239613028134\n        }\n      },\n      \"initial_comp_formula\": \"string\",\n      \"adj_pairs\": [\n        {\n          \"formula_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"max_delta_volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"average_voltage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reaction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"formula_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"max_delta_volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"average_voltage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reaction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"electrode_object\": {\n        \"key_0\": 5575\n      }\n    },\n    {\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1947-07-13T12:17:59.364Z\",\n        \"license\": \"BY-C\"\n      },\n      \"battery_type\": \"string\",\n      \"battery_id\": \"string\",\n      \"thermo_type\": \"string\",\n      \"battery_formula\": \"string\",\n      \"working_ion\": \"string\",\n      \"num_steps\": 3523,\n      \"max_voltage_step\": 5242.131183938026,\n      \"last_updated\": \"1962-11-05T11:00:48.713Z\",\n      \"framework\": {\n        \"key_0\": 1632.7500065219003,\n        \"key_1\": 304.91638598745266\n      },\n      \"framework_formula\": \"string\",\n      \"elements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"nelements\": 6288,\n      \"chemsys\": \"string\",\n      \"formula_anonymous\": \"string\",\n      \"formula_charge\": \"string\",\n      \"formula_discharge\": \"string\",\n      \"max_delta_volume\": 982.4615512894275,\n      \"average_voltage\": 5251.060555569124,\n      \"capacity_grav\": 5549.189810647444,\n      \"capacity_vol\": 9526.142714735872,\n      \"energy_grav\": 9472.387757297636,\n      \"energy_vol\": 9453.825671413839,\n      \"fracA_charge\": 6900.738357251434,\n      \"fracA_discharge\": 74.26432395315263,\n      \"reaction\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"reactants\": {\n          \"key_0\": 427.91975489876677,\n          \"key_1\": 941.968140764653\n        },\n        \"products\": {\n          \"key_0\": 5688.127585823192\n        }\n      },\n      \"initial_comp_formula\": \"string\",\n      \"adj_pairs\": [\n        {\n          \"formula_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"max_delta_volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"average_voltage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reaction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"formula_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formula_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"max_delta_volume\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"average_voltage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"capacity_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_grav\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"energy_vol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fracA_discharge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reaction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"electrode_object\": {\n        \"key_0\": 9690.652133839141\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 1154,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 5555,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"2021-05-23T09:10:07.084Z\",\n    \"total_doc\": 1152,\n    \"facet\": {\n      \"key_0\": \"string\"\n    },\n    \"key_0\": 1239,\n    \"key_1\": 1371.7886642390542\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11cf35ed-f3ce-47c8-a2d5-fd2c8fe44c81",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "conversion_electrodes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "battery_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "working_ion",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_steps_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_steps_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "num_steps_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_voltage_step_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "max_voltage_step_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "nelements_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_not_eq",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nelements_eq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nelements_neq_any",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_delta_volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "max_delta_volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "average_voltage_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "average_voltage_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_grav_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_grav_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_vol_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "capacity_vol_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_grav_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_grav_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_vol_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "energy_vol_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_charge_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_charge_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_discharge_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "fracA_discharge_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a85eddf1-cdb8-4510-bb1a-331e9a7fbc0e",
+    "name": "Materials Project Defect Tasks Materials Electrodes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

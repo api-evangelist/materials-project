@@ -1,0 +1,456 @@
+{
+  "item": [
+    {
+      "id": "bd49fd3c-3225-4bf4-8259-c026f59239d2",
+      "name": "JCESR Electrolyte Genome",
+      "description": {
+        "content": "Route providing computed data for a legacy molecule such as charge,             electron affinity, and ionization energy. The unique identifier for a molecule             is its `task_id` (e.g. `mol-45807`). See the `MoleculesDoc` schema for a full list of             fields returned by this route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3d6d9e60-cdaf-4d56-8875-90270019e6e7",
+          "name": "Get MoleculesDoc documents",
+          "request": {
+            "name": "Get MoleculesDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "molecules",
+                "jcesr",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "nelements_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the number of elements."
+                },
+                {
+                  "disabled": false,
+                  "key": "nelements_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the number of elements."
+                },
+                {
+                  "disabled": false,
+                  "key": "EA_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the electron affinity in eV."
+                },
+                {
+                  "disabled": false,
+                  "key": "EA_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the electron affinity in eV."
+                },
+                {
+                  "disabled": false,
+                  "key": "IE_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the ionization energy in eV."
+                },
+                {
+                  "disabled": false,
+                  "key": "IE_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the ionization energy in eV."
+                },
+                {
+                  "disabled": false,
+                  "key": "charge_max",
+                  "value": "<integer>",
+                  "description": "Maximum value for the charge in +e."
+                },
+                {
+                  "disabled": false,
+                  "key": "charge_min",
+                  "value": "<integer>",
+                  "description": "Minimum value for the charge in +e."
+                },
+                {
+                  "disabled": false,
+                  "key": "pointgroup",
+                  "value": "<string>",
+                  "description": "Point of the molecule in Schoenflies notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "smiles",
+                  "value": "<string>",
+                  "description": "The simplified molecular input line-entry system (SMILES)             representation of the molecule."
+                },
+                {
+                  "disabled": false,
+                  "key": "elements",
+                  "value": "<string>",
+                  "description": "Query by elements in the material composition as a comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "formula",
+                  "value": "<string>",
+                  "description": "Chemical formula of the molecule. A comma-separated list of formulas is also accepted."
+                },
+                {
+                  "disabled": false,
+                  "key": "task_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of task_ids to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_sort_fields",
+                  "value": "<string>",
+                  "description": "Comma delimited fields to sort with. Prefixing '-' to a field will force a sort in descending order."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from MoleculesDoc as a list of comma separated strings.                    Fields include: `elements` `nelements` `EA` `IE` `charge` `pointgroup` `smiles` `task_id` `molecule` `formula_pretty` `svg`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c94fe9c-b7f9-4a7c-a5a5-4797c4d8bb25",
+              "name": "Search for a MoleculesDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "molecules",
+                    "jcesr",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "nelements_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "EA_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "EA_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "IE_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "IE_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "charge_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "charge_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pointgroup",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "smiles",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_sort_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"elements\": [\n        \"Se\",\n        \"O\"\n      ],\n      \"nelements\": 3469,\n      \"EA\": 4974.212984843512,\n      \"IE\": 8197.7615622674,\n      \"charge\": 3651,\n      \"pointgroup\": \"string\",\n      \"smiles\": \"string\",\n      \"task_id\": \"string\",\n      \"molecule\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"charge\": 4618.9940331008875,\n        \"spin_multiplicity\": 7056,\n        \"sites\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"properties\": {\n          \"magmom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"velocities\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"selective_dynamics\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"formula_pretty\": \"string\",\n      \"svg\": \"string\"\n    },\n    {\n      \"elements\": [\n        \"V\",\n        \"Pd\"\n      ],\n      \"nelements\": 8509,\n      \"EA\": 6607.451558847704,\n      \"IE\": 7309.684742445407,\n      \"charge\": 3118,\n      \"pointgroup\": \"string\",\n      \"smiles\": \"string\",\n      \"task_id\": \"string\",\n      \"molecule\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"charge\": 4490.074916213482,\n        \"spin_multiplicity\": 1367,\n        \"sites\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"properties\": {\n          \"magmom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"velocities\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"selective_dynamics\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"formula_pretty\": \"string\",\n      \"svg\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 5406,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 9989,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1990-12-02T18:14:49.986Z\",\n    \"total_doc\": 5189,\n    \"facet\": {\n      \"key_0\": 841.9030328074728\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b85826d9-bbcc-45d8-ae19-c551c27d1cb7",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "molecules",
+                    "jcesr",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "nelements_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "nelements_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "EA_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "EA_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "IE_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "IE_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "charge_max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "charge_min",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pointgroup",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "smiles",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "elements",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formula",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_sort_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cd26ea1d-c925-4d64-9195-1e193394ce6c",
+    "name": "Materials Project Defect Tasks JCESR Electrolyte Genome API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

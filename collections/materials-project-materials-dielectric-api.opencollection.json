@@ -1,0 +1,129 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Materials Project Defect Tasks Materials Dielectric API",
+    "version": "0.86.4rc5.dev1+g77c2c1315"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Materials Dielectric",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get DielectricDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/dielectric/",
+            "params": [
+              {
+                "name": "material_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of material_id values to query on"
+              },
+              {
+                "name": "e_total_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the total dielectric constant."
+              },
+              {
+                "name": "e_total_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the total dielectric constant."
+              },
+              {
+                "name": "e_ionic_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the ionic dielectric constant."
+              },
+              {
+                "name": "e_ionic_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the ionic dielectric constant."
+              },
+              {
+                "name": "e_electronic_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the electronic dielectric constant."
+              },
+              {
+                "name": "e_electronic_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the electronic dielectric constant."
+              },
+              {
+                "name": "n_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the refractive index."
+              },
+              {
+                "name": "n_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the refractive index."
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from DielectricDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `total` `ionic` `electronic` `e_total` `e_ionic` `e_electronic` `n`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              }
+            ]
+          },
+          "docs": "Get DielectricDoc documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,552 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Materials Project Defect Tasks Materials Electronic Structure API",
+    "version": "0.86.4rc5.dev1+g77c2c1315"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Materials Electronic Structure",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get FermiDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/fermi/",
+            "params": [
+              {
+                "name": "material_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of material_id values to query on"
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from FermiDoc as a list of comma separated strings.                    Fields include: `fermi_surfaces` `surface_types` `material_id` `last_updated`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              }
+            ]
+          },
+          "docs": "Get FermiDoc documents"
+        },
+        {
+          "info": {
+            "name": "Get ElectronicStructureDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/electronic_structure/bandstructure/",
+            "params": [
+              {
+                "name": "path_type",
+                "value": "",
+                "type": "query",
+                "description": "k-path selection convention for the band structure."
+              },
+              {
+                "name": "band_gap_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the band gap energy in eV."
+              },
+              {
+                "name": "band_gap_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the band gap energy in eV."
+              },
+              {
+                "name": "efermi_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the fermi energy in eV."
+              },
+              {
+                "name": "efermi_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the fermi energy in eV."
+              },
+              {
+                "name": "magnetic_ordering",
+                "value": "",
+                "type": "query",
+                "description": "Magnetic ordering associated with the data."
+              },
+              {
+                "name": "is_gap_direct",
+                "value": "",
+                "type": "query",
+                "description": "Whether a band gap is direct or not."
+              },
+              {
+                "name": "is_metal",
+                "value": "",
+                "type": "query",
+                "description": "Whether the material is considered a metal."
+              },
+              {
+                "name": "deprecated",
+                "value": "",
+                "type": "query",
+                "description": "Whether the material is marked as deprecated"
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from ElectronicStructureDoc as a list of comma separated strings.                    Fields include: `task_id` `band_gap` `cbm` `vbm` `efermi` `is_gap_direct` `is_metal` `magnetic_ordering` `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `bandstructure` `dos`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              }
+            ]
+          },
+          "docs": "Get ElectronicStructureDoc documents"
+        },
+        {
+          "info": {
+            "name": "Get ElectronicStructureDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/electronic_structure/dos/",
+            "params": [
+              {
+                "name": "projection_type",
+                "value": "",
+                "type": "query",
+                "description": "Projection type for the density of states data."
+              },
+              {
+                "name": "spin",
+                "value": "",
+                "type": "query",
+                "description": "Spin channel for density of states data. '1' corresponds to spin up."
+              },
+              {
+                "name": "element",
+                "value": "",
+                "type": "query",
+                "description": "Element type for projected density of states data."
+              },
+              {
+                "name": "orbital",
+                "value": "",
+                "type": "query",
+                "description": "Orbital type for projected density of states data."
+              },
+              {
+                "name": "band_gap_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the band gap energy in eV."
+              },
+              {
+                "name": "band_gap_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the band gap energy in eV."
+              },
+              {
+                "name": "efermi_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the fermi energy in eV."
+              },
+              {
+                "name": "efermi_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the fermi energy in eV."
+              },
+              {
+                "name": "magnetic_ordering",
+                "value": "",
+                "type": "query",
+                "description": "Magnetic ordering associated with the data."
+              },
+              {
+                "name": "deprecated",
+                "value": "",
+                "type": "query",
+                "description": "Whether the material is marked as deprecated"
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from ElectronicStructureDoc as a list of comma separated strings.                    Fields include: `task_id` `band_gap` `cbm` `vbm` `efermi` `is_gap_direct` `is_metal` `magnetic_ordering` `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `bandstructure` `dos`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              }
+            ]
+          },
+          "docs": "Get ElectronicStructureDoc documents"
+        },
+        {
+          "info": {
+            "name": "Get ElectronicStructureDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/electronic_structure/",
+            "params": [
+              {
+                "name": "material_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of material_id values to query on"
+              },
+              {
+                "name": "magnetic_ordering",
+                "value": "",
+                "type": "query",
+                "description": "Magnetic ordering associated with the data."
+              },
+              {
+                "name": "is_gap_direct",
+                "value": "",
+                "type": "query",
+                "description": "Whether a band gap is direct or not."
+              },
+              {
+                "name": "is_metal",
+                "value": "",
+                "type": "query",
+                "description": "Whether the material is considered a metal."
+              },
+              {
+                "name": "formula",
+                "value": "",
+                "type": "query",
+                "description": "Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided."
+              },
+              {
+                "name": "chemsys",
+                "value": "",
+                "type": "query",
+                "description": "A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries"
+              },
+              {
+                "name": "elements",
+                "value": "",
+                "type": "query",
+                "description": "Query by elements in the material composition as a comma-separated list"
+              },
+              {
+                "name": "exclude_elements",
+                "value": "",
+                "type": "query",
+                "description": "Query by excluded elements in the material composition as a comma-separated list"
+              },
+              {
+                "name": "band_gap_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of band_gap"
+              },
+              {
+                "name": "band_gap_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of band_gap"
+              },
+              {
+                "name": "cbm_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of cbm"
+              },
+              {
+                "name": "cbm_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of cbm"
+              },
+              {
+                "name": "vbm_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of vbm"
+              },
+              {
+                "name": "vbm_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of vbm"
+              },
+              {
+                "name": "efermi_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of efermi"
+              },
+              {
+                "name": "efermi_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of efermi"
+              },
+              {
+                "name": "nsites_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of nsites"
+              },
+              {
+                "name": "nsites_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of nsites"
+              },
+              {
+                "name": "nsites",
+                "value": "",
+                "type": "query",
+                "description": "Query for nsites being equal to an exact value"
+              },
+              {
+                "name": "nsites_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for nsites being not equal to an exact value"
+              },
+              {
+                "name": "nsites_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nsites being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "nsites_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nsites being not any of these values.                             Provide a comma separated list."
+              },
+              {
+                "name": "nelements_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of nelements"
+              },
+              {
+                "name": "nelements_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of nelements"
+              },
+              {
+                "name": "nelements",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being equal to an exact value"
+              },
+              {
+                "name": "nelements_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being not equal to an exact value"
+              },
+              {
+                "name": "nelements_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "nelements_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+              },
+              {
+                "name": "volume_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of volume"
+              },
+              {
+                "name": "volume_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of volume"
+              },
+              {
+                "name": "density_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of density"
+              },
+              {
+                "name": "density_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of density"
+              },
+              {
+                "name": "density_atomic_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of density_atomic"
+              },
+              {
+                "name": "density_atomic_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of density_atomic"
+              },
+              {
+                "name": "deprecated",
+                "value": "",
+                "type": "query",
+                "description": "Whether the material is marked as deprecated"
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from ElectronicStructureDoc as a list of comma separated strings.                    Fields include: `task_id` `band_gap` `cbm` `vbm` `efermi` `is_gap_direct` `is_metal` `magnetic_ordering` `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `bandstructure` `dos`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              }
+            ]
+          },
+          "docs": "Get ElectronicStructureDoc documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

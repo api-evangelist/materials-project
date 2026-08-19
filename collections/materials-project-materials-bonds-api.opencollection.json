@@ -1,0 +1,129 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Materials Project Defect Tasks Materials Bonds API",
+    "version": "0.86.4rc5.dev1+g77c2c1315"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Materials Bonds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get BondingDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/bonds/",
+            "params": [
+              {
+                "name": "material_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of material_id values to query on"
+              },
+              {
+                "name": "max_bond_length_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the maximum bond length in the structure."
+              },
+              {
+                "name": "max_bond_length_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the maximum bond length in the structure."
+              },
+              {
+                "name": "min_bond_length_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the minimum bond length in the structure."
+              },
+              {
+                "name": "min_bond_length_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the minimum bond length in the structure."
+              },
+              {
+                "name": "mean_bond_length_max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum value for the mean bond length in the structure."
+              },
+              {
+                "name": "mean_bond_length_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum value for the mean bond length in the structure."
+              },
+              {
+                "name": "coordination_envs",
+                "value": "",
+                "type": "query",
+                "description": "Query by coordination environments in the material composition as a comma-separated list (e.g. 'Mo-S(6),S-Mo(3)')"
+              },
+              {
+                "name": "coordination_envs_anonymous",
+                "value": "",
+                "type": "query",
+                "description": "Query by anonymous coordination environments in the material composition as a comma-separated list (e.g. 'A-B(6),A-B(3)')"
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from BondingDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `structure_graph` `method` `bond_types` `bond_length_stats` `coordination_envs` `coordination_envs_anonymous`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              }
+            ]
+          },
+          "docs": "Get BondingDoc documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

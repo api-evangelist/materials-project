@@ -1,0 +1,386 @@
+{
+  "item": [
+    {
+      "id": "81f9644e-83a5-49cf-9a1e-9e3103db9c56",
+      "name": "Materials Dielectric",
+      "description": {
+        "content": "Route providing computed dielectric data for a material following the             methodology discussed by [Petousis *et al.*](https://doi.org/10.1038/sdata.2016.134)             Note that dielectric data has not been calculated for all materials in the Materials             Project database. See the `DielectricDoc` schema for a full list of fields returned by this route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a3c74cc-5940-4d0c-85ac-4431949d12af",
+          "name": "Get DielectricDoc documents",
+          "request": {
+            "name": "Get DielectricDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "dielectric",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "material_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of material_id values to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "e_total_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the total dielectric constant."
+                },
+                {
+                  "disabled": false,
+                  "key": "e_total_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the total dielectric constant."
+                },
+                {
+                  "disabled": false,
+                  "key": "e_ionic_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the ionic dielectric constant."
+                },
+                {
+                  "disabled": false,
+                  "key": "e_ionic_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the ionic dielectric constant."
+                },
+                {
+                  "disabled": false,
+                  "key": "e_electronic_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the electronic dielectric constant."
+                },
+                {
+                  "disabled": false,
+                  "key": "e_electronic_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the electronic dielectric constant."
+                },
+                {
+                  "disabled": false,
+                  "key": "n_max",
+                  "value": "<number>",
+                  "description": "Maximum value for the refractive index."
+                },
+                {
+                  "disabled": false,
+                  "key": "n_min",
+                  "value": "<number>",
+                  "description": "Minimum value for the refractive index."
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from DielectricDoc as a list of comma separated strings.                    Fields include: `builder_meta` `nsites` `elements` `nelements` `composition` `composition_reduced` `formula_pretty` `formula_anonymous` `chemsys` `volume` `density` `density_atomic` `symmetry` `material_id` `deprecated` `deprecation_reasons` `last_updated` `origins` `warnings` `structure` `property_name` `total` `ionic` `electronic` `e_total` `e_ionic` `e_electronic` `n`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eaac290f-be57-4992-9f67-026fcaebfc06",
+              "name": "Search for a DielectricDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "dielectric",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "e_total_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_total_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_ionic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_ionic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_electronic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_electronic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "n_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "n_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a8a6415-7729-4528-bd60-8dc819659cb2",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "dielectric",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "e_total_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_total_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_ionic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_ionic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_electronic_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "e_electronic_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "n_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "n_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e257f72b-3011-47b3-a458-619e17381034",
+    "name": "Materials Project Defect Tasks Materials Dielectric API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

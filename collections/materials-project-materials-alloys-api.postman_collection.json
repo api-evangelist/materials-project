@@ -1,0 +1,288 @@
+{
+  "item": [
+    {
+      "id": "def611c0-42ef-4e76-8337-ab75b6d0dbf4",
+      "name": "Materials Alloys",
+      "description": {
+        "content": "Route for retrevial of information about which hypothetical alloy(s) a given material might belong to, following the methodolgy discussed by [Woods-Robinson, Horton and Persson](https://arxiv.org/pdf/2206.10715).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a26adaf0-1352-4c15-8be6-72f3187e8eb5",
+          "name": "Get AlloyPairDoc documents",
+          "request": {
+            "name": "Get AlloyPairDoc documents",
+            "description": {},
+            "url": {
+              "path": [
+                "materials",
+                "alloys",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "material_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of material_ids to query on"
+                },
+                {
+                  "disabled": false,
+                  "key": "formulae",
+                  "value": "<string>",
+                  "description": "Comma-separated list of end-point formulas to query."
+                },
+                {
+                  "disabled": false,
+                  "key": "_page",
+                  "value": "<integer>",
+                  "description": "Page number to request (takes precedent over _limit and _skip)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_per_page",
+                  "value": "100",
+                  "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_skip",
+                  "value": "0",
+                  "description": "Number of entries to skip in the search."
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "Max number of entries to return in a single query. Limited to 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Fields to project from AlloyPairDoc as a list of comma separated strings.                    Fields include: `builder_meta` `alloy_pair` `pair_id`"
+                },
+                {
+                  "disabled": false,
+                  "key": "_all_fields",
+                  "value": "false",
+                  "description": "Include all fields."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e9ea45f-a83e-400a-9afb-2ac3b258100d",
+              "name": "Search for a AlloyPairDoc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "alloys",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formulae",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"alloy_pair\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"@version\": \"string\",\n        \"formula_a\": \"string\",\n        \"formula_b\": \"string\",\n        \"structure_a\": {\n          \"@module\": \"string\",\n          \"@class\": \"string\",\n          \"lattice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sites\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"properties\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"structure_b\": {\n          \"@module\": \"string\",\n          \"@class\": \"string\",\n          \"lattice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sites\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"properties\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"id_a\": \"string\",\n        \"id_b\": \"string\",\n        \"chemsys\": \"string\",\n        \"alloying_element_a\": \"string\",\n        \"alloying_element_b\": \"string\",\n        \"alloying_species_a\": [\n          \"string\",\n          \"string\"\n        ],\n        \"alloying_species_b\": [\n          \"string\",\n          \"string\"\n        ],\n        \"observer_elements\": [\n          \"string\",\n          \"string\"\n        ],\n        \"observer_species\": [\n          \"string\",\n          \"string\"\n        ],\n        \"anions_a\": [\n          \"string\",\n          \"string\"\n        ],\n        \"anions_b\": [\n          \"string\",\n          \"string\"\n        ],\n        \"cations_a\": [\n          \"string\",\n          \"string\"\n        ],\n        \"cations_b\": [\n          \"string\",\n          \"string\"\n        ],\n        \"lattice_parameters_a\": [\n          6639.999890067236,\n          7460.606095242318\n        ],\n        \"lattice_parameters_b\": [\n          2796.7500744908457,\n          9829.404810806776\n        ],\n        \"volume_cube_root_a\": 873.9574261800332,\n        \"volume_cube_root_b\": 177.21699613414853,\n        \"properties_a\": {\n          \"energy_above_hull\": 6972.19437810407,\n          \"formation_energy_per_atom\": 1178.386952435029,\n          \"band_gap\": 5712.536078848522,\n          \"is_gap_direct\": false,\n          \"m_n\": 3133.6096262760125,\n          \"m_p\": 1443.9067411255157,\n          \"theoretical\": false,\n          \"is_metal\": false\n        },\n        \"properties_b\": {\n          \"energy_above_hull\": 4201.951886734383,\n          \"formation_energy_per_atom\": 7692.540332884432,\n          \"band_gap\": 8780.057134386183,\n          \"is_gap_direct\": false,\n          \"m_n\": 3757.6120500523625,\n          \"m_p\": 1063.102188096524,\n          \"theoretical\": false,\n          \"is_metal\": false\n        },\n        \"spacegroup_intl_number_a\": 9062,\n        \"spacegroup_intl_number_b\": 1463,\n        \"pair_id\": \"string\",\n        \"pair_formula\": \"string\",\n        \"alloy_oxidation_state\": 3080,\n        \"isoelectronic\": false,\n        \"anonymous_formula\": \"string\",\n        \"nelements\": 7933,\n        \"members\": [\n          {\n            \"id_\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"db\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"composition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"x\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_ordered\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id_\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"db\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"composition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"x\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_ordered\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"pair_id\": \"string\",\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1998-03-07T06:35:23.909Z\",\n        \"license\": \"BY-NC\"\n      }\n    },\n    {\n      \"alloy_pair\": {\n        \"@module\": \"string\",\n        \"@class\": \"string\",\n        \"@version\": \"string\",\n        \"formula_a\": \"string\",\n        \"formula_b\": \"string\",\n        \"structure_a\": {\n          \"@module\": \"string\",\n          \"@class\": \"string\",\n          \"lattice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sites\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"properties\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"structure_b\": {\n          \"@module\": \"string\",\n          \"@class\": \"string\",\n          \"lattice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sites\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"charge\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"properties\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"id_a\": \"string\",\n        \"id_b\": \"string\",\n        \"chemsys\": \"string\",\n        \"alloying_element_a\": \"string\",\n        \"alloying_element_b\": \"string\",\n        \"alloying_species_a\": [\n          \"string\",\n          \"string\"\n        ],\n        \"alloying_species_b\": [\n          \"string\",\n          \"string\"\n        ],\n        \"observer_elements\": [\n          \"string\",\n          \"string\"\n        ],\n        \"observer_species\": [\n          \"string\",\n          \"string\"\n        ],\n        \"anions_a\": [\n          \"string\",\n          \"string\"\n        ],\n        \"anions_b\": [\n          \"string\",\n          \"string\"\n        ],\n        \"cations_a\": [\n          \"string\",\n          \"string\"\n        ],\n        \"cations_b\": [\n          \"string\",\n          \"string\"\n        ],\n        \"lattice_parameters_a\": [\n          9506.49344674827,\n          3859.889477536501\n        ],\n        \"lattice_parameters_b\": [\n          5694.019857970498,\n          7304.98355330429\n        ],\n        \"volume_cube_root_a\": 1205.5462637264748,\n        \"volume_cube_root_b\": 2237.0176623844195,\n        \"properties_a\": {\n          \"energy_above_hull\": 9631.980889129234,\n          \"formation_energy_per_atom\": 3095.441363225464,\n          \"band_gap\": 2858.936845848996,\n          \"is_gap_direct\": false,\n          \"m_n\": 7217.221249505115,\n          \"m_p\": 7382.458949121246,\n          \"theoretical\": true,\n          \"is_metal\": false\n        },\n        \"properties_b\": {\n          \"energy_above_hull\": 4257.389317471896,\n          \"formation_energy_per_atom\": 1051.9761729368372,\n          \"band_gap\": 6264.600566817823,\n          \"is_gap_direct\": false,\n          \"m_n\": 7095.838090767006,\n          \"m_p\": 9765.684948237498,\n          \"theoretical\": false,\n          \"is_metal\": true\n        },\n        \"spacegroup_intl_number_a\": 7658,\n        \"spacegroup_intl_number_b\": 1637,\n        \"pair_id\": \"string\",\n        \"pair_formula\": \"string\",\n        \"alloy_oxidation_state\": 3977,\n        \"isoelectronic\": false,\n        \"anonymous_formula\": \"string\",\n        \"nelements\": 3319,\n        \"members\": [\n          {\n            \"id_\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"db\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"composition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"x\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_ordered\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id_\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"db\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"composition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"x\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_ordered\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"pair_id\": \"string\",\n      \"builder_meta\": {\n        \"emmet_version\": \"string\",\n        \"pymatgen_version\": \"string\",\n        \"run_id\": \"string\",\n        \"batch_id\": \"string\",\n        \"database_version\": \"string\",\n        \"build_date\": \"1965-10-19T03:03:04.667Z\",\n        \"license\": \"BY-NC\"\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 5540,\n      \"message\": \"string\"\n    },\n    {\n      \"code\": 7877,\n      \"message\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"api_version\": \"0.86.4rc5.dev1+g77c2c1315\",\n    \"time_stamp\": \"1966-03-26T23:11:27.438Z\",\n    \"total_doc\": 9158,\n    \"facet\": {\n      \"key_0\": 9242.56530023719,\n      \"key_1\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3de77525-e1a9-4e6b-8803-86e972a918fa",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "materials",
+                    "alloys",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "material_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "formulae",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_per_page",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_all_fields",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "29f2a026-b36c-4812-9168-1e1a6f13d325",
+    "name": "Materials Project Defect Tasks Materials Alloys API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,560 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Materials Project Defect Tasks Materials Electrodes API",
+    "version": "0.86.4rc5.dev1+g77c2c1315"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Materials Electrodes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get InsertionElectrodeDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/insertion_electrodes/",
+            "params": [
+              {
+                "name": "battery_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of battery_id values to query on"
+              },
+              {
+                "name": "formula",
+                "value": "",
+                "type": "query",
+                "description": "Query by formula including anonymized formula or by including wild cards. A comma delimited string list of anonymous formulas or regular formulas can also be provided."
+              },
+              {
+                "name": "chemsys",
+                "value": "",
+                "type": "query",
+                "description": "A comma delimited string list of chemical systems. Wildcards for unknown elements only supported for single chemsys queries"
+              },
+              {
+                "name": "working_ion",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "elements",
+                "value": "",
+                "type": "query",
+                "description": "Query by elements in the material composition as a comma-separated list"
+              },
+              {
+                "name": "exclude_elements",
+                "value": "",
+                "type": "query",
+                "description": "Query by excluded elements in the material composition as a comma-separated list"
+              },
+              {
+                "name": "num_steps_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of num_steps"
+              },
+              {
+                "name": "num_steps_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of num_steps"
+              },
+              {
+                "name": "num_steps",
+                "value": "",
+                "type": "query",
+                "description": "Query for num_steps being equal to an exact value"
+              },
+              {
+                "name": "num_steps_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for num_steps being not equal to an exact value"
+              },
+              {
+                "name": "num_steps_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for num_steps being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "num_steps_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for num_steps being not any of these values.                             Provide a comma separated list."
+              },
+              {
+                "name": "max_voltage_step_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of max_voltage_step"
+              },
+              {
+                "name": "max_voltage_step_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of max_voltage_step"
+              },
+              {
+                "name": "nelements_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of nelements"
+              },
+              {
+                "name": "nelements_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of nelements"
+              },
+              {
+                "name": "nelements",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being equal to an exact value"
+              },
+              {
+                "name": "nelements_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being not equal to an exact value"
+              },
+              {
+                "name": "nelements_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "nelements_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+              },
+              {
+                "name": "max_delta_volume_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of max_delta_volume"
+              },
+              {
+                "name": "max_delta_volume_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of max_delta_volume"
+              },
+              {
+                "name": "average_voltage_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of average_voltage"
+              },
+              {
+                "name": "average_voltage_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of average_voltage"
+              },
+              {
+                "name": "capacity_grav_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of capacity_grav"
+              },
+              {
+                "name": "capacity_grav_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of capacity_grav"
+              },
+              {
+                "name": "capacity_vol_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of capacity_vol"
+              },
+              {
+                "name": "capacity_vol_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of capacity_vol"
+              },
+              {
+                "name": "energy_grav_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of energy_grav"
+              },
+              {
+                "name": "energy_grav_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of energy_grav"
+              },
+              {
+                "name": "energy_vol_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of energy_vol"
+              },
+              {
+                "name": "energy_vol_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of energy_vol"
+              },
+              {
+                "name": "fracA_charge_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of fracA_charge"
+              },
+              {
+                "name": "fracA_charge_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of fracA_charge"
+              },
+              {
+                "name": "fracA_discharge_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of fracA_discharge"
+              },
+              {
+                "name": "fracA_discharge_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of fracA_discharge"
+              },
+              {
+                "name": "stability_charge_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of stability_charge"
+              },
+              {
+                "name": "stability_charge_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of stability_charge"
+              },
+              {
+                "name": "stability_discharge_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of stability_discharge"
+              },
+              {
+                "name": "stability_discharge_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of stability_discharge"
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from InsertionElectrodeDoc as a list of comma separated strings.                    Fields include: `builder_meta` `battery_type` `battery_id` `thermo_type` `battery_formula` `working_ion` `num_steps` `max_voltage_step` `last_updated` `framework` `framework_formula` `elements` `nelements` `chemsys` `formula_anonymous` `warnings` `formula_charge` `formula_discharge` `max_delta_volume` `average_voltage` `capacity_grav` `capacity_vol` `energy_grav` `energy_vol` `fracA_charge` `fracA_discharge` `stability_charge` `stability_discharge` `id_charge` `id_discharge` `host_structure` `adj_pairs` `material_ids` `entries_composition_summary` `electrode_object`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              },
+              {
+                "name": "_sort_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma delimited fields to sort with. Prefixing '-' to a field will force a sort in descending order."
+              }
+            ]
+          },
+          "docs": "Get InsertionElectrodeDoc documents"
+        },
+        {
+          "info": {
+            "name": "Get ConversionElectrodeDoc documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/materials/conversion_electrodes/",
+            "params": [
+              {
+                "name": "battery_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of battery_id values to query on"
+              },
+              {
+                "name": "working_ion",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "num_steps_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of num_steps"
+              },
+              {
+                "name": "num_steps_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of num_steps"
+              },
+              {
+                "name": "num_steps",
+                "value": "",
+                "type": "query",
+                "description": "Query for num_steps being equal to an exact value"
+              },
+              {
+                "name": "num_steps_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for num_steps being not equal to an exact value"
+              },
+              {
+                "name": "num_steps_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for num_steps being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "num_steps_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for num_steps being not any of these values.                             Provide a comma separated list."
+              },
+              {
+                "name": "max_voltage_step_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of max_voltage_step"
+              },
+              {
+                "name": "max_voltage_step_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of max_voltage_step"
+              },
+              {
+                "name": "nelements_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of nelements"
+              },
+              {
+                "name": "nelements_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of nelements"
+              },
+              {
+                "name": "nelements",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being equal to an exact value"
+              },
+              {
+                "name": "nelements_not_eq",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being not equal to an exact value"
+              },
+              {
+                "name": "nelements_eq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being any of these values. Provide a comma separated list."
+              },
+              {
+                "name": "nelements_neq_any",
+                "value": "",
+                "type": "query",
+                "description": "Query for nelements being not any of these values.                             Provide a comma separated list."
+              },
+              {
+                "name": "max_delta_volume_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of max_delta_volume"
+              },
+              {
+                "name": "max_delta_volume_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of max_delta_volume"
+              },
+              {
+                "name": "average_voltage_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of average_voltage"
+              },
+              {
+                "name": "average_voltage_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of average_voltage"
+              },
+              {
+                "name": "capacity_grav_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of capacity_grav"
+              },
+              {
+                "name": "capacity_grav_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of capacity_grav"
+              },
+              {
+                "name": "capacity_vol_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of capacity_vol"
+              },
+              {
+                "name": "capacity_vol_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of capacity_vol"
+              },
+              {
+                "name": "energy_grav_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of energy_grav"
+              },
+              {
+                "name": "energy_grav_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of energy_grav"
+              },
+              {
+                "name": "energy_vol_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of energy_vol"
+              },
+              {
+                "name": "energy_vol_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of energy_vol"
+              },
+              {
+                "name": "fracA_charge_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of fracA_charge"
+              },
+              {
+                "name": "fracA_charge_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of fracA_charge"
+              },
+              {
+                "name": "fracA_discharge_max",
+                "value": "",
+                "type": "query",
+                "description": "Query for maximum value of fracA_discharge"
+              },
+              {
+                "name": "fracA_discharge_min",
+                "value": "",
+                "type": "query",
+                "description": "Query for minimum value of fracA_discharge"
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to request (takes precedent over _limit and _skip)."
+              },
+              {
+                "name": "_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to show per page (takes precedent over _limit and _skip). Limited to 1000."
+              },
+              {
+                "name": "_skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to skip in the search."
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of entries to return in a single query. Limited to 1000."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to project from ConversionElectrodeDoc as a list of comma separated strings.                    Fields include: `builder_meta` `battery_type` `battery_id` `thermo_type` `battery_formula` `working_ion` `num_steps` `max_voltage_step` `last_updated` `framework` `framework_formula` `elements` `nelements` `chemsys` `formula_anonymous` `warnings` `formula_charge` `formula_discharge` `max_delta_volume` `average_voltage` `capacity_grav` `capacity_vol` `energy_grav` `energy_vol` `fracA_charge` `fracA_discharge` `reaction` `initial_comp_formula` `adj_pairs` `electrode_object`"
+              },
+              {
+                "name": "_all_fields",
+                "value": "",
+                "type": "query",
+                "description": "Include all fields."
+              }
+            ]
+          },
+          "docs": "Get ConversionElectrodeDoc documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
