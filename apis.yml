@@ -5,6 +5,18 @@ description: >-
   materials science database with data on tens of thousands of materials. The API is offered free of charge and supports
   machine learning, automated analysis, and bulk data downloads.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
