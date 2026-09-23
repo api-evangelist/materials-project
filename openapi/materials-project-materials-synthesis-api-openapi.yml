@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Materials Project Defect Tasks Materials Synthesis API
-  description: "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n"
+  title: Materials Project Materials Synthesis API
+  description: The Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.
   version: 0.86.4rc5.dev1+g77c2c1315
   x-logo:
     url: https://raw.githubusercontent.com/materialsproject/emmet/master/emmet-api/emmet/api/core/assets/mp_logo_small.png
@@ -9,7 +9,7 @@ security:
 - ApiKeyAuth: []
 tags:
 - name: Materials Synthesis
-  description: Route providing a synthesis recipes for materials extracted from literature             following the methodology discussed by [Kononova *et al.*](https://doi.org/10.1038/s41597-019-0224-1)             Note that synthesis recipes may not be available for all materials in the Materials             Project database. See the `SynthesisSearchResultModel` schema for a full list of fields returned by this route.
+  description: Route providing a synthesis recipes for materials extracted from literature following the methodology discussed by Kononova *et al.* Note that synthesis recipes may not be available for all materials in the Materials Project database. See the `SynthesisSearchResultModel` schema for a full list of fields returned by this route.
 paths:
   /materials/synthesis/:
     get:
@@ -181,142 +181,66 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    AtlasSearchHighlight:
+    ValidationError:
       properties:
-        score:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Score
-        path:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Path
-        texts:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Response_SynthesisSearchResultModel_:
+      properties:
+        data:
           anyOf:
           - items:
-              $ref: '#/components/schemas/AtlasSearchText'
+              $ref: '#/components/schemas/SynthesisSearchResultModel'
             type: array
           - type: 'null'
-          title: Texts
-      type: object
-      title: AtlasSearchHighlight
-      description: Schematize MongoDB Atlas search highlight match.
-    AtlasSearchText:
-      properties:
-        value:
+          title: Data
+          description: List of returned data
+        errors:
           anyOf:
-          - type: string
-          - type: 'null'
-          title: Value
-        type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Type
-      type: object
-      title: AtlasSearchText
-      description: Schematize MongoDB Atlas search text match.
-    ExtractedMaterial:
-      properties:
-        material_string:
-          type: string
-          title: Material String
-          description: String of the material as written in paper.
-        material_formula:
-          type: string
-          title: Material Formula
-          description: Normalized formula of the material.
-        material_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Material Name
-          description: English name of the material.
-        phase:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Phase
-          description: Phase description of material, such as anatase.
-        is_acronym:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Is Acronym
-          description: Whether the material is an acronym, such as LMO for LiMn2O4.
-        composition:
-          items:
-            $ref: '#/components/schemas/Component'
-          type: array
-          title: Composition
-          description: List of components in this material.
-        amounts_vars:
-          additionalProperties:
-            $ref: '#/components/schemas/Values'
-          type: object
-          title: Amounts Vars
-          description: Amount variables (formula subscripts).
-          default: {}
-        elements_vars:
-          additionalProperties:
-            items:
-              type: string
+          - items:
+              $ref: '#/components/schemas/Error'
             type: array
-          type: object
-          title: Elements Vars
-          description: Chemical element variables
-          default: {}
-        additives:
-          items:
-            type: string
-          type: array
-          title: Additives
-          description: list of additives, dopants, etc.
-          default: []
-        oxygen_deficiency:
-          anyOf:
-          - type: string
           - type: 'null'
-          title: Oxygen Deficiency
-          description: Symbol indicating whether the materials is oxygen deficient.
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
       type: object
-      required:
-      - material_string
-      - material_formula
-      - composition
-      title: ExtractedMaterial
-      description: Model for a material extracted from the literature
-    Value:
-      properties:
-        min_value:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Min Value
-          description: Minimal value.
-        max_value:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Max Value
-          description: Maximal value.
-        values:
-          items:
-            type: number
-          type: array
-          title: Values
-          description: Enumerated values in the literature.
-          default: []
-        units:
-          type: string
-          title: Units
-          description: Unit of this value.
-      type: object
-      required:
-      - units
-      title: Value
+      title: Response[SynthesisSearchResultModel]
     Values:
       properties:
         values:
@@ -368,153 +292,6 @@ components:
       - right_side
       title: ReactionFormula
       description: Model for a balanced reaction
-    Operation:
-      properties:
-        type:
-          type: string
-          title: Type
-          description: Type of the operation as classified by the pipeline.
-        token:
-          type: string
-          title: Token
-          description: Token (word) of the operation as written in paper.
-        conditions:
-          $ref: '#/components/schemas/Conditions'
-          description: The conditions linked to this operation.
-      type: object
-      required:
-      - type
-      - token
-      - conditions
-      title: Operation
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    FormulaPart:
-      properties:
-        amount:
-          type: string
-          title: Amount
-          description: Amount of the compound in a formula.
-          default: '1'
-        material:
-          type: string
-          title: Material
-          description: The compound that participates in a reaction.
-      type: object
-      required:
-      - material
-      title: FormulaPart
-    Conditions:
-      properties:
-        heating_temperature:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Value'
-            type: array
-          - type: 'null'
-          title: Heating Temperature
-          description: Heating temperatures.
-        heating_time:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Value'
-            type: array
-          - type: 'null'
-          title: Heating Time
-          description: Heating times.
-        heating_atmosphere:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Heating Atmosphere
-          description: List of heating atmospheres.
-        mixing_device:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Mixing Device
-          description: Mixing device, if this operation is MIXING.
-        mixing_media:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Mixing Media
-          description: Mixing media, if this operation is MIXING.
-      type: object
-      title: Conditions
-    Response_SynthesisSearchResultModel_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/SynthesisSearchResultModel'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[SynthesisSearchResultModel]
-    Component:
-      properties:
-        formula:
-          type: string
-          title: Formula
-          description: Formula of this component.
-        amount:
-          type: string
-          title: Amount
-          description: Amount of this component.
-        elements:
-          additionalProperties:
-            type: string
-          type: object
-          title: Elements
-          description: Amount of each chemical elements in this component.
-      type: object
-      required:
-      - formula
-      - amount
-      - elements
-      title: Component
     Meta:
       properties:
         api_version:
@@ -545,6 +322,69 @@ components:
       type: object
       title: Meta
       description: Meta information for the MAPI Response.
+    Operation:
+      properties:
+        type:
+          type: string
+          title: Type
+          description: Type of the operation as classified by the pipeline.
+        token:
+          type: string
+          title: Token
+          description: Token (word) of the operation as written in paper.
+        conditions:
+          $ref: '#/components/schemas/Conditions'
+          description: The conditions linked to this operation.
+      type: object
+      required:
+      - type
+      - token
+      - conditions
+      title: Operation
+    AtlasSearchHighlight:
+      properties:
+        score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Score
+        path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Path
+        texts:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/AtlasSearchText'
+            type: array
+          - type: 'null'
+          title: Texts
+      type: object
+      title: AtlasSearchHighlight
+      description: Schematize MongoDB Atlas search highlight match.
+    Component:
+      properties:
+        formula:
+          type: string
+          title: Formula
+          description: Formula of this component.
+        amount:
+          type: string
+          title: Amount
+          description: Amount of this component.
+        elements:
+          additionalProperties:
+            type: string
+          type: object
+          title: Elements
+          description: Amount of each chemical elements in this component.
+      type: object
+      required:
+      - formula
+      - amount
+      - elements
+      title: Component
     SynthesisSearchResultModel:
       properties:
         doi:
@@ -637,6 +477,145 @@ components:
       description: 'Model for a document containing synthesis recipes
 
         data and additional keyword search results'
+    ExtractedMaterial:
+      properties:
+        material_string:
+          type: string
+          title: Material String
+          description: String of the material as written in paper.
+        material_formula:
+          type: string
+          title: Material Formula
+          description: Normalized formula of the material.
+        material_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Material Name
+          description: English name of the material.
+        phase:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Phase
+          description: Phase description of material, such as anatase.
+        is_acronym:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Acronym
+          description: Whether the material is an acronym, such as LMO for LiMn2O4.
+        composition:
+          items:
+            $ref: '#/components/schemas/Component'
+          type: array
+          title: Composition
+          description: List of components in this material.
+        amounts_vars:
+          additionalProperties:
+            $ref: '#/components/schemas/Values'
+          type: object
+          title: Amounts Vars
+          description: Amount variables (formula subscripts).
+          default: {}
+        elements_vars:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          title: Elements Vars
+          description: Chemical element variables
+          default: {}
+        additives:
+          items:
+            type: string
+          type: array
+          title: Additives
+          description: list of additives, dopants, etc.
+          default: []
+        oxygen_deficiency:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Oxygen Deficiency
+          description: Symbol indicating whether the materials is oxygen deficient.
+      type: object
+      required:
+      - material_string
+      - material_formula
+      - composition
+      title: ExtractedMaterial
+      description: Model for a material extracted from the literature
+    Conditions:
+      properties:
+        heating_temperature:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Value'
+            type: array
+          - type: 'null'
+          title: Heating Temperature
+          description: Heating temperatures.
+        heating_time:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Value'
+            type: array
+          - type: 'null'
+          title: Heating Time
+          description: Heating times.
+        heating_atmosphere:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Heating Atmosphere
+          description: List of heating atmospheres.
+        mixing_device:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mixing Device
+          description: Mixing device, if this operation is MIXING.
+        mixing_media:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mixing Media
+          description: Mixing media, if this operation is MIXING.
+      type: object
+      title: Conditions
+    Value:
+      properties:
+        min_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min Value
+          description: Minimal value.
+        max_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max Value
+          description: Maximal value.
+        values:
+          items:
+            type: number
+          type: array
+          title: Values
+          description: Enumerated values in the literature.
+          default: []
+        units:
+          type: string
+          title: Units
+          description: Unit of this value.
+      type: object
+      required:
+      - units
+      title: Value
     Error:
       properties:
         code:
@@ -653,15 +632,36 @@ components:
       - message
       title: Error
       description: Base Error model for General API.
-    HTTPValidationError:
+    FormulaPart:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        amount:
+          type: string
+          title: Amount
+          description: Amount of the compound in a formula.
+          default: '1'
+        material:
+          type: string
+          title: Material
+          description: The compound that participates in a reaction.
       type: object
-      title: HTTPValidationError
+      required:
+      - material
+      title: FormulaPart
+    AtlasSearchText:
+      properties:
+        value:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Value
+        type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Type
+      type: object
+      title: AtlasSearchText
+      description: Schematize MongoDB Atlas search text match.
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

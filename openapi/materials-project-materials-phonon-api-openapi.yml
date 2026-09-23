@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Materials Project Defect Tasks Materials Phonon API
-  description: "\nThe Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.\n\nThis allows for analysis, development of automated tools, machine learning, downloading personal copies of the Materials Project database and more on a large scale.\n\nThe API is offered with the hopes of making Materials Project data more useful to you. We want you to use our data! As such, the API is offered free-of-charge and we support several tools to help you get started.\n\n## API Key\nTo make any request to the Materials Project API, you must use an API key. Your API key is generated for you automatically upon registering with the Materials Project website and is synced with the email you used to register.\n\nRemember to keep your API key safe and to not share it with anyone you do not trust.\n\nIf you are logged in, you can always access your API key from this page or from your [dashboard](https://next-gen.materialsproject.org/dashboard).\n\nIf you intend heavy API usage, you can give us a heads up by sending a message to <heavy.api.use@materialsproject.org>. With the exception of retrieving charge densities, this is not required, but may help us if we see unusual load on our servers.\n\n## Accessing Data\nTo use the API, you have three options:\n\n1. You can use our first-party supported Python client. This is the recommend route. The `mp-api` package containing the client is pip installable.\n\n    ```\n    pip install mp-api\n    ```\n\n    The `MPRester` client can be accessed by importing from it. This will ultimately replace the legacy `MPRester` available in pymatgen.\n\n    For more details on how to use this, including code examples, please see <https://next-gen.materialsproject.org/api>.\n\n2. You can demo the API interactively on this documentation page. Click the \"Authorize\" button, paste in your API key, and then click the appropriate section to try out a query.\n\n3. Since this is a REST API, and offers a fully-compliant OpenAPI specification, it's possible to use the API with many libraries in many languages and environments, including JavaScript, MATLAB, Mathematica, etc. However, we do not offer first-party support for explaining how to do this, and you will have to follow the specification yourself.\n\n"
+  title: Materials Project Materials Phonon API
+  description: The Materials Project API allows anyone to have direct access to current, up-to-date information from the Materials Project database in a structured way.
   version: 0.86.4rc5.dev1+g77c2c1315
   x-logo:
     url: https://raw.githubusercontent.com/materialsproject/emmet/master/emmet-api/emmet/api/core/assets/mp_logo_small.png
@@ -9,7 +9,7 @@ security:
 - ApiKeyAuth: []
 tags:
 - name: Materials Phonon
-  description: '**Under construction** Route providing computed phonon data for a material following the             methodology discussed by [Petretto *et al.*](https://doi.org/10.1038/sdata.2018.65)             Note that phonon data has not been calculated for all materials in the Materials             Project database. See the `PhononBSDOSDoc` schema for a full list of fields returned by this route.'
+  description: '**Under construction** Route providing computed phonon data for a material following the methodology discussed by Petretto *et al.* Note that phonon data has not been calculated for all materials in the Materials Project database. See the `PhononBSDOSDoc` schema for a full list of fields returned by this route.'
   externalDocs:
     description: For a more detailed description
     url: https://docs.materialsproject.org/methodology/phonons
@@ -447,98 +447,23 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    PhononComputationalSettings:
+    SumRuleChecks:
       properties:
-        npoints_band:
+        asr:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
-          title: Npoints Band
-          description: number of points for band structure computation
-        kpath_scheme:
+          title: Asr
+          description: The violation of the acoustic sum rule.
+        cnsr:
           anyOf:
-          - type: string
+          - type: number
           - type: 'null'
-          title: Kpath Scheme
-          description: indicates the kpath scheme
-        kpoint_density_dos:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Kpoint Density Dos
-          description: number of points for computation of free energies and densities of states
+          title: Cnsr
+          description: The violation of the charge neutral sum rule.
       type: object
-      title: PhononComputationalSettings
-      description: Collection to store computational settings for the phonon computation.
-    Response_PhononBSDOSDoc_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/PhononBSDOSDoc'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[PhononBSDOSDoc]
-    TypedAggregateProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: boolean
-              - type: boolean
-              - type: boolean
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Selective Dynamics
-      type: object
-      title: TypedAggregateProperitesDict
+      title: SumRuleChecks
+      description: Container class for defining sum rule checks.
     PhononBS:
       properties:
         identifier:
@@ -658,36 +583,45 @@ components:
       - frequencies
       title: PhononBS
       description: Define schema of pymatgen phonon band structure.
-    Meta:
+    TypedSiteDict:
       properties:
-        api_version:
-          type: string
-          title: Api Version
-          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
-          default: 0.86.4rc5.dev1+g77c2c1315
-        time_stamp:
-          type: string
-          format: date-time
-          title: Time Stamp
-          description: A string containing the date and time at which the query was executed
-        total_doc:
+        label:
           anyOf:
-          - type: integer
-            minimum: 0.0
+          - type: string
           - type: 'null'
-          title: Total Doc
-          description: The total number of documents available for this query
-        facet:
+          title: Label
+        name:
           anyOf:
-          - additionalProperties: true
-            type: object
+          - type: string
           - type: 'null'
-          title: Facet
-          description: A dictionary containing the facets available for this query
-      additionalProperties: true
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
       type: object
-      title: Meta
-      description: Meta information for the MAPI Response.
+      title: TypedSiteDict
     ThermalDisplacementData:
       properties:
         freq_min_thermal_displacements:
@@ -775,6 +709,58 @@ components:
       type: object
       title: ThermalDisplacementData
       description: Collection to store information on the thermal displacement matrices.
+    TypedLatticeDict:
+      properties:
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - matrix
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: TypedLatticeDict
     TypedSpeciesDict:
       properties:
         element:
@@ -799,54 +785,264 @@ components:
           title: Occu
       type: object
       title: TypedSpeciesDict
-    HTTPValidationError:
+    SymmetryData:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        crystal_system:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Crystal System
+          description: The crystal system for this lattice.
+        symbol:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Space Group Symbol
+          description: The spacegroup symbol for the lattice.
+        hall:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hall Symbol
+          description: Hall symbol for the lattice
+        number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Space Group Number
+          description: The spacegroup number for the lattice.
+        point_group:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Point Group Symbol
+          description: The point group for the lattice.
+        symprec:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Symmetry Finding Precision
+          description: The precision provided to spglib to determine the symmetry of this structure.
+        angle_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Angle Tolerance
+          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: spglib version
       type: object
-      title: HTTPValidationError
-    TypedSiteDict:
+      title: SymmetryData
+      description: Defines a symmetry data set for materials documents
+    TypedAggregateProperitesDict:
       properties:
-        label:
+        magmom:
           anyOf:
-          - type: string
+          - items:
+              type: number
+            type: array
           - type: 'null'
-          title: Label
-        name:
+          title: Magmom
+        charge:
           anyOf:
-          - type: string
+          - items:
+              type: number
+            type: array
           - type: 'null'
-          title: Name
+          title: Charge
+        velocities:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Selective Dynamics
+      type: object
+      title: TypedAggregateProperitesDict
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TypedStructureDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        lattice:
+          $ref: '#/components/schemas/TypedLatticeDict'
+        sites:
+          items:
+            $ref: '#/components/schemas/TypedSiteDict'
+          type: array
+          title: Sites
         properties:
           anyOf:
-          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
           - type: 'null'
-        species:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TypedSpeciesDict'
-            type: array
-          - type: 'null'
-          title: Species
-        abc:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Abc
-        xyz:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Xyz
       type: object
-      title: TypedSiteDict
+      required:
+      - '@module'
+      - '@class'
+      - lattice
+      - sites
+      title: TypedStructureDict
+    PhononMethod:
+      type: string
+      enum:
+      - dfpt
+      - phonopy
+      - pheasy
+      title: PhononMethod
+      description: Define common methods for computed phonon properties.
+    PhononDOS:
+      properties:
+        identifier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Identifier
+          description: The identifier of this object.
+        structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Structure
+          description: The structure associated with this calculation.
+        frequencies:
+          items:
+            type: number
+          type: array
+          title: Frequencies
+          description: The phonon frequencies in THz.
+        densities:
+          items:
+            type: number
+          type: array
+          title: Densities
+          description: The phonon density of states.
+        projected_densities:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Projected Densities
+          description: The projected phonon density of states.
+      type: object
+      required:
+      - frequencies
+      - densities
+      title: PhononDOS
+      description: Define schema of pymatgen phonon density of states.
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    Response_PhononBSDOSDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/PhononBSDOSDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[PhononBSDOSDoc]
     PhononBSDOSDoc:
       properties:
         nsites:
@@ -1294,53 +1490,6 @@ components:
       - check_sum_rule_deviations
       title: PhononBSDOSDoc
       description: Built data version of PhononBSDOSTask.
-    TypedStructureDict:
-      properties:
-        '@module':
-          type: string
-          title: '@Module'
-        '@class':
-          type: string
-          title: '@Class'
-        charge:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Charge
-        lattice:
-          $ref: '#/components/schemas/TypedLatticeDict'
-        sites:
-          items:
-            $ref: '#/components/schemas/TypedSiteDict'
-          type: array
-          title: Sites
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
-          - type: 'null'
-      type: object
-      required:
-      - '@module'
-      - '@class'
-      - lattice
-      - sites
-      title: TypedStructureDict
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
-      type: object
-      required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
     TypedSiteProperitesDict:
       properties:
         magmom:
@@ -1389,92 +1538,31 @@ components:
           title: Forces
       type: object
       title: TypedSiteProperitesDict
-    ValidationError:
+    HTTPValidationError:
       properties:
-        loc:
+        detail:
           items:
-            anyOf:
-            - type: string
-            - type: integer
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Location
-        msg:
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
           type: string
           title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
+          description: The description of the error
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    PhononMethod:
-      type: string
-      enum:
-      - dfpt
-      - phonopy
-      - pheasy
-      title: PhononMethod
-      description: Define common methods for computed phonon properties.
-    SymmetryData:
-      properties:
-        crystal_system:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Crystal System
-          description: The crystal system for this lattice.
-        symbol:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Space Group Symbol
-          description: The spacegroup symbol for the lattice.
-        hall:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Hall Symbol
-          description: Hall symbol for the lattice
-        number:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Space Group Number
-          description: The spacegroup number for the lattice.
-        point_group:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Point Group Symbol
-          description: The point group for the lattice.
-        symprec:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Symmetry Finding Precision
-          description: The precision provided to spglib to determine the symmetry of this structure.
-        angle_tolerance:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Angle Tolerance
-          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
-        version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: spglib version
-      type: object
-      title: SymmetryData
-      description: Defines a symmetry data set for materials documents
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
     CalcMeta:
       properties:
         identifier:
@@ -1506,117 +1594,29 @@ components:
       type: object
       title: CalcMeta
       description: Lightweight representation for storing jobflow-style job info.
-    TypedLatticeDict:
+    PhononComputationalSettings:
       properties:
-        matrix:
-          items:
-            items:
-              type: number
-            type: array
-          type: array
-          title: Matrix
-        pbc:
+        npoints_band:
           anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
+          - type: integer
           - type: 'null'
-          title: Pbc
-        a:
-          type: number
-          title: A
-        b:
-          type: number
-          title: B
-        c:
-          type: number
-          title: C
-        alpha:
-          type: number
-          title: Alpha
-        beta:
-          type: number
-          title: Beta
-        gamma:
-          type: number
-          title: Gamma
-        volume:
-          type: number
-          title: Volume
-      type: object
-      required:
-      - matrix
-      - a
-      - b
-      - c
-      - alpha
-      - beta
-      - gamma
-      - volume
-      title: TypedLatticeDict
-    PhononDOS:
-      properties:
-        identifier:
+          title: Npoints Band
+          description: number of points for band structure computation
+        kpath_scheme:
           anyOf:
           - type: string
           - type: 'null'
-          title: Identifier
-          description: The identifier of this object.
-        structure:
+          title: Kpath Scheme
+          description: indicates the kpath scheme
+        kpoint_density_dos:
           anyOf:
-          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: integer
           - type: 'null'
-          title: Structure
-          description: The structure associated with this calculation.
-        frequencies:
-          items:
-            type: number
-          type: array
-          title: Frequencies
-          description: The phonon frequencies in THz.
-        densities:
-          items:
-            type: number
-          type: array
-          title: Densities
-          description: The phonon density of states.
-        projected_densities:
-          anyOf:
-          - items:
-              items:
-                type: number
-              type: array
-            type: array
-          - type: 'null'
-          title: Projected Densities
-          description: The projected phonon density of states.
+          title: Kpoint Density Dos
+          description: number of points for computation of free energies and densities of states
       type: object
-      required:
-      - frequencies
-      - densities
-      title: PhononDOS
-      description: Define schema of pymatgen phonon density of states.
-    SumRuleChecks:
-      properties:
-        asr:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Asr
-          description: The violation of the acoustic sum rule.
-        cnsr:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Cnsr
-          description: The violation of the charge neutral sum rule.
-      type: object
-      title: SumRuleChecks
-      description: Container class for defining sum rule checks.
+      title: PhononComputationalSettings
+      description: Collection to store computational settings for the phonon computation.
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests
