@@ -309,15 +309,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     Meta:
       properties:
         api_version:
@@ -348,47 +339,6 @@ components:
       type: object
       title: Meta
       description: Meta information for the MAPI Response.
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
-      type: object
-      required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
-    Response_SubstratesDoc_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/SubstratesDoc'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[SubstratesDoc]
     ValidationError:
       properties:
         loc:
@@ -415,6 +365,31 @@ components:
       - msg
       - type
       title: ValidationError
+    Response_SubstratesDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SubstratesDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[SubstratesDoc]
     SubstratesDoc:
       properties:
         sub_form:
@@ -468,6 +443,31 @@ components:
       type: object
       title: SubstratesDoc
       description: Possible growth substrates for a given material.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

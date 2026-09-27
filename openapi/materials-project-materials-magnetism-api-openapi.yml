@@ -205,6 +205,139 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    Response_MagnetismDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/MagnetismDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[MagnetismDoc]
+    SymmetryData:
+      properties:
+        crystal_system:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Crystal System
+          description: The crystal system for this lattice.
+        symbol:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Space Group Symbol
+          description: The spacegroup symbol for the lattice.
+        hall:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hall Symbol
+          description: Hall symbol for the lattice
+        number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Space Group Number
+          description: The spacegroup number for the lattice.
+        point_group:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Point Group Symbol
+          description: The point group for the lattice.
+        symprec:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Symmetry Finding Precision
+          description: The precision provided to spglib to determine the symmetry of this structure.
+        angle_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Angle Tolerance
+          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: spglib version
+      type: object
+      title: SymmetryData
+      description: Defines a symmetry data set for materials documents
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     PropertyOrigin:
       properties:
         name:
@@ -289,86 +422,6 @@ components:
       type: object
       title: EmmetMeta
       description: Default emmet metadata.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    Response_MagnetismDoc_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/MagnetismDoc'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[MagnetismDoc]
-    Meta:
-      properties:
-        api_version:
-          type: string
-          title: Api Version
-          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
-          default: 0.86.4rc5.dev1+g77c2c1315
-        time_stamp:
-          type: string
-          format: date-time
-          title: Time Stamp
-          description: A string containing the date and time at which the query was executed
-        total_doc:
-          anyOf:
-          - type: integer
-            minimum: 0.0
-          - type: 'null'
-          title: Total Doc
-          description: The total number of documents available for this query
-        facet:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Facet
-          description: A dictionary containing the facets available for this query
-      additionalProperties: true
-      type: object
-      title: Meta
-      description: Meta information for the MAPI Response.
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
-      type: object
-      required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
     Ordering:
       type: string
       enum:
@@ -379,58 +432,6 @@ components:
       - Unknown
       title: Ordering
       description: Enumeration defining possible magnetic orderings.
-    SymmetryData:
-      properties:
-        crystal_system:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Crystal System
-          description: The crystal system for this lattice.
-        symbol:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Space Group Symbol
-          description: The spacegroup symbol for the lattice.
-        hall:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Hall Symbol
-          description: Hall symbol for the lattice
-        number:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Space Group Number
-          description: The spacegroup number for the lattice.
-        point_group:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Point Group Symbol
-          description: The point group for the lattice.
-        symprec:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Symmetry Finding Precision
-          description: The precision provided to spglib to determine the symmetry of this structure.
-        angle_tolerance:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Angle Tolerance
-          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
-        version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: spglib version
-      type: object
-      title: SymmetryData
-      description: Defines a symmetry data set for materials documents
     MagnetismDoc:
       properties:
         builder_meta:
@@ -634,32 +635,31 @@ components:
       type: object
       title: MagnetismDoc
       description: Magnetic data obtain from the calculated structure
-    ValidationError:
+    HTTPValidationError:
       properties:
-        loc:
+        detail:
           items:
-            anyOf:
-            - type: string
-            - type: integer
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Location
-        msg:
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
           type: string
           title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
+          description: The description of the error
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

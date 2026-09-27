@@ -358,38 +358,212 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    PropertyOrigin:
+    SymmetryData:
       properties:
-        name:
-          type: string
-          title: Name
-          description: The property name
-        task_id:
+        crystal_system:
           anyOf:
           - type: string
-            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
-            examples:
-            - mp-3534
-            - '3453'
-            - mp-834-Ag
+          - type: 'null'
+          title: Crystal System
+          description: The crystal system for this lattice.
+        symbol:
+          anyOf:
           - type: string
-            examples:
-            - mp-ft
-            - task:pqrs
-          title: Task Id
-          description: The calculation ID this property comes from.
-        last_updated:
+          - type: 'null'
+          title: Space Group Symbol
+          description: The spacegroup symbol for the lattice.
+        hall:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hall Symbol
+          description: Hall symbol for the lattice
+        number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Space Group Number
+          description: The spacegroup number for the lattice.
+        point_group:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Point Group Symbol
+          description: The point group for the lattice.
+        symprec:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Symmetry Finding Precision
+          description: The precision provided to spglib to determine the symmetry of this structure.
+        angle_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Angle Tolerance
+          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: spglib version
+      type: object
+      title: SymmetryData
+      description: Defines a symmetry data set for materials documents
+    Response_ChemEnvDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ChemEnvDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[ChemEnvDoc]
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
           type: string
           format: date-time
-          title: Last Updated
-          description: The timestamp when this calculation was last updated
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    TypedSpeciesDict:
+      properties:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation State
+        spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin
+        occu:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
       type: object
       required:
-      - name
-      - task_id
-      title: PropertyOrigin
-      description: Provenance document for the origin of properties in a material document
-    TypedStructureDict:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TypedSiteProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Selective Dynamics
+        coordination_no:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Coordination No
+        forces:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Forces
+      type: object
+      title: TypedSiteProperitesDict
+    TypedMoleculeDict:
       properties:
         '@module':
           type: string
@@ -398,81 +572,27 @@ components:
           type: string
           title: '@Class'
         charge:
-          anyOf:
-          - type: number
-          - type: 'null'
+          type: number
           title: Charge
-        lattice:
-          $ref: '#/components/schemas/TypedLatticeDict'
+        spin_multiplicity:
+          type: integer
+          title: Spin Multiplicity
         sites:
           items:
             $ref: '#/components/schemas/TypedSiteDict'
           type: array
           title: Sites
         properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
-          - type: 'null'
+          $ref: '#/components/schemas/TypedAggregateProperitesDict'
       type: object
       required:
       - '@module'
       - '@class'
-      - lattice
+      - charge
+      - spin_multiplicity
       - sites
-      title: TypedStructureDict
-    EmmetMeta:
-      properties:
-        emmet_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Emmet Version
-          description: The version of emmet this document was built with.
-          default: 0.86.4rc4
-        pymatgen_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Pymatgen Version
-          description: The version of pymatgen this document was built with.
-          default: 2026.4.16
-        run_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Run Id
-          description: The run id associated with this data build.
-        batch_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Batch Id
-          description: Identifier corresponding to the origin of this document's blessed task.
-        database_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Database Version
-          description: The database version for the built data.
-        build_date:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Build Date
-          description: The build date for this document.
-        license:
-          anyOf:
-          - type: string
-            enum:
-            - BY-C
-            - BY-NC
-          - type: 'null'
-          title: License
-          description: License for the data entry.
-      type: object
-      title: EmmetMeta
-      description: Default emmet metadata.
+      - properties
+      title: TypedMoleculeDict
     ChemEnvDoc:
       properties:
         builder_meta:
@@ -962,201 +1082,6 @@ components:
       description: 'Coordination environments based on cation-anion bonds computed for all unique cations in this structure.
 
         If no oxidation states are available, all bonds will be considered as a fall-back.'
-    Response_ChemEnvDoc_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ChemEnvDoc'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[ChemEnvDoc]
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    TypedSiteDict:
-      properties:
-        label:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Label
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedSiteProperitesDict'
-          - type: 'null'
-        species:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TypedSpeciesDict'
-            type: array
-          - type: 'null'
-          title: Species
-        abc:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Abc
-        xyz:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Xyz
-      type: object
-      title: TypedSiteDict
-    TypedAggregateProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: boolean
-              - type: boolean
-              - type: boolean
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Selective Dynamics
-      type: object
-      title: TypedAggregateProperitesDict
-    TypedSiteProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - prefixItems:
-            - type: number
-            - type: number
-            - type: number
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Selective Dynamics
-        coordination_no:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Coordination No
-        forces:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Forces
-      type: object
-      title: TypedSiteProperitesDict
-    TypedMoleculeDict:
-      properties:
-        '@module':
-          type: string
-          title: '@Module'
-        '@class':
-          type: string
-          title: '@Class'
-        charge:
-          type: number
-          title: Charge
-        spin_multiplicity:
-          type: integer
-          title: Spin Multiplicity
-        sites:
-          items:
-            $ref: '#/components/schemas/TypedSiteDict'
-          type: array
-          title: Sites
-        properties:
-          $ref: '#/components/schemas/TypedAggregateProperitesDict'
-      type: object
-      required:
-      - '@module'
-      - '@class'
-      - charge
-      - spin_multiplicity
-      - sites
-      - properties
-      title: TypedMoleculeDict
     TypedLatticeDict:
       properties:
         matrix:
@@ -1209,36 +1134,138 @@ components:
       - gamma
       - volume
       title: TypedLatticeDict
-    Meta:
+    TypedStructureDict:
       properties:
-        api_version:
+        '@module':
           type: string
-          title: Api Version
-          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
-          default: 0.86.4rc5.dev1+g77c2c1315
-        time_stamp:
+          title: '@Module'
+        '@class':
           type: string
-          format: date-time
-          title: Time Stamp
-          description: A string containing the date and time at which the query was executed
-        total_doc:
+          title: '@Class'
+        charge:
           anyOf:
-          - type: integer
-            minimum: 0.0
+          - type: number
           - type: 'null'
-          title: Total Doc
-          description: The total number of documents available for this query
-        facet:
+          title: Charge
+        lattice:
+          $ref: '#/components/schemas/TypedLatticeDict'
+        sites:
+          items:
+            $ref: '#/components/schemas/TypedSiteDict'
+          type: array
+          title: Sites
+        properties:
           anyOf:
-          - additionalProperties: true
-            type: object
+          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
           - type: 'null'
-          title: Facet
-          description: A dictionary containing the facets available for this query
-      additionalProperties: true
       type: object
-      title: Meta
-      description: Meta information for the MAPI Response.
+      required:
+      - '@module'
+      - '@class'
+      - lattice
+      - sites
+      title: TypedStructureDict
+    EmmetMeta:
+      properties:
+        emmet_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Emmet Version
+          description: The version of emmet this document was built with.
+          default: 0.86.4rc4
+        pymatgen_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pymatgen Version
+          description: The version of pymatgen this document was built with.
+          default: 2026.4.16
+        run_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Run Id
+          description: The run id associated with this data build.
+        batch_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Batch Id
+          description: Identifier corresponding to the origin of this document's blessed task.
+        database_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Database Version
+          description: The database version for the built data.
+        build_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Build Date
+          description: The build date for this document.
+        license:
+          anyOf:
+          - type: string
+            enum:
+            - BY-C
+            - BY-NC
+          - type: 'null'
+          title: License
+          description: License for the data entry.
+      type: object
+      title: EmmetMeta
+      description: Default emmet metadata.
+    TypedSiteDict:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
+      type: object
+      title: TypedSiteDict
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     Error:
       properties:
         code:
@@ -1255,108 +1282,81 @@ components:
       - message
       title: Error
       description: Base Error model for General API.
-    SymmetryData:
+    PropertyOrigin:
       properties:
-        crystal_system:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Crystal System
-          description: The crystal system for this lattice.
-        symbol:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Space Group Symbol
-          description: The spacegroup symbol for the lattice.
-        hall:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Hall Symbol
-          description: Hall symbol for the lattice
-        number:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Space Group Number
-          description: The spacegroup number for the lattice.
-        point_group:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Point Group Symbol
-          description: The point group for the lattice.
-        symprec:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Symmetry Finding Precision
-          description: The precision provided to spglib to determine the symmetry of this structure.
-        angle_tolerance:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Angle Tolerance
-          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
-        version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: spglib version
-      type: object
-      title: SymmetryData
-      description: Defines a symmetry data set for materials documents
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        name:
           type: string
-          title: Message
-        type:
+          title: Name
+          description: The property name
+        task_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          title: Task Id
+          description: The calculation ID this property comes from.
+        last_updated:
           type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
+          format: date-time
+          title: Last Updated
+          description: The timestamp when this calculation was last updated
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    TypedSpeciesDict:
+      - name
+      - task_id
+      title: PropertyOrigin
+      description: Provenance document for the origin of properties in a material document
+    TypedAggregateProperitesDict:
       properties:
-        element:
+        magmom:
           anyOf:
-          - type: string
+          - items:
+              type: number
+            type: array
           - type: 'null'
-          title: Element
-        oxidation_state:
+          title: Magmom
+        charge:
           anyOf:
-          - type: number
+          - items:
+              type: number
+            type: array
           - type: 'null'
-          title: Oxidation State
-        spin:
+          title: Charge
+        velocities:
           anyOf:
-          - type: number
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
           - type: 'null'
-          title: Spin
-        occu:
+          title: Velocities
+        selective_dynamics:
           anyOf:
-          - type: number
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
           - type: 'null'
-          title: Occu
+          title: Selective Dynamics
       type: object
-      title: TypedSpeciesDict
+      title: TypedAggregateProperitesDict
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

@@ -887,403 +887,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    TypedSiteDict:
-      properties:
-        label:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Label
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedSiteProperitesDict'
-          - type: 'null'
-        species:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TypedSpeciesDict'
-            type: array
-          - type: 'null'
-          title: Species
-        abc:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Abc
-        xyz:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Xyz
-      type: object
-      title: TypedSiteDict
-    TypedLatticeDict:
-      properties:
-        matrix:
-          items:
-            items:
-              type: number
-            type: array
-          type: array
-          title: Matrix
-        pbc:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Pbc
-        a:
-          type: number
-          title: A
-        b:
-          type: number
-          title: B
-        c:
-          type: number
-          title: C
-        alpha:
-          type: number
-          title: Alpha
-        beta:
-          type: number
-          title: Beta
-        gamma:
-          type: number
-          title: Gamma
-        volume:
-          type: number
-          title: Volume
-      type: object
-      required:
-      - matrix
-      - a
-      - b
-      - c
-      - alpha
-      - beta
-      - gamma
-      - volume
-      title: TypedLatticeDict
-    TypedSpeciesDict:
-      properties:
-        element:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Element
-        oxidation_state:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Oxidation State
-        spin:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Spin
-        occu:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Occu
-      type: object
-      title: TypedSpeciesDict
-    Response_FormulaAutocomplete_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/FormulaAutocomplete'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[FormulaAutocomplete]
-    FormulaAutocomplete:
-      properties:
-        formula_pretty:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Formula Pretty
-          description: Human readable chemical formula.
-      type: object
-      title: FormulaAutocomplete
-      description: Class defining formula autocomplete return data
-    BlessedCalcs:
-      properties:
-        GGA:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Gga
-        GGA+U:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Gga+U
-        PBEsol:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Pbesol
-        SCAN:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Scan
-        r2SCAN:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: R2Scan
-        HSE06:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Hse06
-      type: object
-      title: BlessedCalcs
-    SymmetryData:
-      properties:
-        crystal_system:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Crystal System
-          description: The crystal system for this lattice.
-        symbol:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Space Group Symbol
-          description: The spacegroup symbol for the lattice.
-        hall:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Hall Symbol
-          description: Hall symbol for the lattice
-        number:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Space Group Number
-          description: The spacegroup number for the lattice.
-        point_group:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Point Group Symbol
-          description: The point group for the lattice.
-        symprec:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Symmetry Finding Precision
-          description: The precision provided to spglib to determine the symmetry of this structure.
-        angle_tolerance:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Angle Tolerance
-          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
-        version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: spglib version
-      type: object
-      title: SymmetryData
-      description: Defines a symmetry data set for materials documents
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    TypedAggregateProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: boolean
-              - type: boolean
-              - type: boolean
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Selective Dynamics
-      type: object
-      title: TypedAggregateProperitesDict
-    TypedStructureDict:
-      properties:
-        '@module':
-          type: string
-          title: '@Module'
-        '@class':
-          type: string
-          title: '@Class'
-        charge:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Charge
-        lattice:
-          $ref: '#/components/schemas/TypedLatticeDict'
-        sites:
-          items:
-            $ref: '#/components/schemas/TypedSiteDict'
-          type: array
-          title: Sites
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
-          - type: 'null'
-      type: object
-      required:
-      - '@module'
-      - '@class'
-      - lattice
-      - sites
-      title: TypedStructureDict
-    EmmetMeta:
-      properties:
-        emmet_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Emmet Version
-          description: The version of emmet this document was built with.
-          default: 0.86.4rc4
-        pymatgen_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Pymatgen Version
-          description: The version of pymatgen this document was built with.
-          default: 2026.4.16
-        run_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Run Id
-          description: The run id associated with this data build.
-        batch_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Batch Id
-          description: Identifier corresponding to the origin of this document's blessed task.
-        database_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Database Version
-          description: The database version for the built data.
-        build_date:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Build Date
-          description: The build date for this document.
-        license:
-          anyOf:
-          - type: string
-            enum:
-            - BY-C
-            - BY-NC
-          - type: 'null'
-          title: License
-          description: License for the data entry.
-      type: object
-      title: EmmetMeta
-      description: Default emmet metadata.
     Response_MaterialsDoc_:
       properties:
         data:
@@ -1309,68 +912,54 @@ components:
           description: Extra information for the query
       type: object
       title: Response[MaterialsDoc]
-    Meta:
+    TypedSiteProperitesDict:
       properties:
-        api_version:
-          type: string
-          title: Api Version
-          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
-          default: 0.86.4rc5.dev1+g77c2c1315
-        time_stamp:
-          type: string
-          format: date-time
-          title: Time Stamp
-          description: A string containing the date and time at which the query was executed
-        total_doc:
+        magmom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Selective Dynamics
+        coordination_no:
           anyOf:
           - type: integer
-            minimum: 0.0
           - type: 'null'
-          title: Total Doc
-          description: The total number of documents available for this query
-        facet:
+          title: Coordination No
+        forces:
           anyOf:
-          - additionalProperties: true
-            type: object
+          - items:
+              type: number
+            type: array
           - type: 'null'
-          title: Facet
-          description: A dictionary containing the facets available for this query
-      additionalProperties: true
+          title: Forces
       type: object
-      title: Meta
-      description: Meta information for the MAPI Response.
-    FindStructure:
-      properties:
-        material_id:
-          anyOf:
-          - type: string
-            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
-            examples:
-            - mp-3534
-            - '3453'
-            - mp-834-Ag
-          - type: string
-            examples:
-            - mp-ft
-            - task:pqrs
-          - type: 'null'
-          title: Material Id
-          description: 'The ID of this material, used as a universal reference across property documents.This comes in the form: mp-******.'
-        normalized_rms_displacement:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Normalized Rms Displacement
-          description: Volume normalized root-mean squared displacement between the structures
-        max_distance_paired_sites:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Max Distance Paired Sites
-          description: Maximum distance between paired sites.
-      type: object
-      title: FindStructure
-      description: Class defining find structure return data
+      title: TypedSiteProperitesDict
     MaterialsDoc:
       properties:
         builder_meta:
@@ -1577,6 +1166,445 @@ components:
       required:
       - structure
       title: MaterialsDoc
+    TypedLatticeDict:
+      properties:
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - matrix
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: TypedLatticeDict
+    FormulaAutocomplete:
+      properties:
+        formula_pretty:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Formula Pretty
+          description: Human readable chemical formula.
+      type: object
+      title: FormulaAutocomplete
+      description: Class defining formula autocomplete return data
+    Response_FormulaAutocomplete_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/FormulaAutocomplete'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[FormulaAutocomplete]
+    BlessedCalcs:
+      properties:
+        GGA:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Gga
+        GGA+U:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Gga+U
+        PBEsol:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Pbesol
+        SCAN:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Scan
+        r2SCAN:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: R2Scan
+        HSE06:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Hse06
+      type: object
+      title: BlessedCalcs
+    FindStructure:
+      properties:
+        material_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          - type: 'null'
+          title: Material Id
+          description: 'The ID of this material, used as a universal reference across property documents.This comes in the form: mp-******.'
+        normalized_rms_displacement:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Normalized Rms Displacement
+          description: Volume normalized root-mean squared displacement between the structures
+        max_distance_paired_sites:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max Distance Paired Sites
+          description: Maximum distance between paired sites.
+      type: object
+      title: FindStructure
+      description: Class defining find structure return data
+    Response_FindStructure_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/FindStructure'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[FindStructure]
+    TypedSiteDict:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
+      type: object
+      title: TypedSiteDict
+    TypedSpeciesDict:
+      properties:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation State
+        spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin
+        occu:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
+    SymmetryData:
+      properties:
+        crystal_system:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Crystal System
+          description: The crystal system for this lattice.
+        symbol:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Space Group Symbol
+          description: The spacegroup symbol for the lattice.
+        hall:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hall Symbol
+          description: Hall symbol for the lattice
+        number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Space Group Number
+          description: The spacegroup number for the lattice.
+        point_group:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Point Group Symbol
+          description: The point group for the lattice.
+        symprec:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Symmetry Finding Precision
+          description: The precision provided to spglib to determine the symmetry of this structure.
+        angle_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Angle Tolerance
+          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: spglib version
+      type: object
+      title: SymmetryData
+      description: Defines a symmetry data set for materials documents
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    TypedStructureDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        lattice:
+          $ref: '#/components/schemas/TypedLatticeDict'
+        sites:
+          items:
+            $ref: '#/components/schemas/TypedSiteDict'
+          type: array
+          title: Sites
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
+          - type: 'null'
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      - lattice
+      - sites
+      title: TypedStructureDict
+    EmmetMeta:
+      properties:
+        emmet_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Emmet Version
+          description: The version of emmet this document was built with.
+          default: 0.86.4rc4
+        pymatgen_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pymatgen Version
+          description: The version of pymatgen this document was built with.
+          default: 2026.4.16
+        run_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Run Id
+          description: The run id associated with this data build.
+        batch_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Batch Id
+          description: Identifier corresponding to the origin of this document's blessed task.
+        database_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Database Version
+          description: The database version for the built data.
+        build_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Build Date
+          description: The build date for this document.
+        license:
+          anyOf:
+          - type: string
+            enum:
+            - BY-C
+            - BY-NC
+          - type: 'null'
+          title: License
+          description: License for the data entry.
+      type: object
+      title: EmmetMeta
+      description: Default emmet metadata.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
     PropertyOrigin:
       properties:
         name:
@@ -1608,104 +1636,76 @@ components:
       - task_id
       title: PropertyOrigin
       description: Provenance document for the origin of properties in a material document
-    TypedSiteProperitesDict:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TypedAggregateProperitesDict:
       properties:
         magmom:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - prefixItems:
-            - type: number
-            - type: number
-            - type: number
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Selective Dynamics
-        coordination_no:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Coordination No
-        forces:
           anyOf:
           - items:
               type: number
             type: array
           - type: 'null'
-          title: Forces
-      type: object
-      title: TypedSiteProperitesDict
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
-      type: object
-      required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
-    Response_FindStructure_:
-      properties:
-        data:
+          title: Magmom
+        charge:
           anyOf:
           - items:
-              $ref: '#/components/schemas/FindStructure'
+              type: number
             type: array
           - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
+          title: Charge
+        velocities:
           anyOf:
           - items:
-              $ref: '#/components/schemas/Error'
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
             type: array
           - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
+          title: Velocities
+        selective_dynamics:
           anyOf:
-          - $ref: '#/components/schemas/Meta'
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
           - type: 'null'
-          description: Extra information for the query
+          title: Selective Dynamics
       type: object
-      title: Response[FindStructure]
+      title: TypedAggregateProperitesDict
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

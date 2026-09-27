@@ -271,37 +271,36 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    TypedStructureDict:
+    Meta:
       properties:
-        '@module':
+        api_version:
           type: string
-          title: '@Module'
-        '@class':
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
           type: string
-          title: '@Class'
-        charge:
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
           anyOf:
-          - type: number
+          - type: integer
+            minimum: 0.0
           - type: 'null'
-          title: Charge
-        lattice:
-          $ref: '#/components/schemas/TypedLatticeDict'
-        sites:
-          items:
-            $ref: '#/components/schemas/TypedSiteDict'
-          type: array
-          title: Sites
-        properties:
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
           anyOf:
-          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
+          - additionalProperties: true
+            type: object
           - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
       type: object
-      required:
-      - '@module'
-      - '@class'
-      - lattice
-      - sites
-      title: TypedStructureDict
+      title: Meta
+      description: Meta information for the MAPI Response.
     ValidationError:
       properties:
         loc:
@@ -376,45 +375,66 @@ components:
           title: Forces
       type: object
       title: TypedSiteProperitesDict
-    TypedSiteDict:
+    TypedGrainBoundaryDict:
       properties:
-        label:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Label
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedSiteProperitesDict'
-          - type: 'null'
-        species:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TypedSpeciesDict'
-            type: array
-          - type: 'null'
-          title: Species
-        abc:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Abc
-        xyz:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Xyz
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        lattice:
+          $ref: '#/components/schemas/TypedLatticeDict'
+        sites:
+          items:
+            $ref: '#/components/schemas/TypedSiteDict'
+          type: array
+          title: Sites
+        init_cell:
+          $ref: '#/components/schemas/TypedStructureDict'
+        rotation_axis:
+          items:
+            type: integer
+          type: array
+          title: Rotation Axis
+        rotation_angle:
+          type: number
+          title: Rotation Angle
+        gb_plane:
+          items:
+            type: integer
+          type: array
+          title: Gb Plane
+        join_plane:
+          items:
+            type: integer
+          type: array
+          title: Join Plane
+        vacuum_thickness:
+          type: number
+          title: Vacuum Thickness
+        ab_shift:
+          items:
+            type: number
+          type: array
+          title: Ab Shift
+        oriented_unit_cell:
+          $ref: '#/components/schemas/TypedStructureDict'
       type: object
-      title: TypedSiteDict
+      required:
+      - '@module'
+      - '@class'
+      - lattice
+      - sites
+      - init_cell
+      - rotation_axis
+      - rotation_angle
+      - gb_plane
+      - join_plane
+      - vacuum_thickness
+      - ab_shift
+      - oriented_unit_cell
+      title: TypedGrainBoundaryDict
     GrainBoundaryDoc:
       properties:
         material_id:
@@ -507,59 +527,6 @@ components:
       type: object
       title: GrainBoundaryDoc
       description: Grain boundary energies, work of separation...
-    TypedAggregateProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: boolean
-              - type: boolean
-              - type: boolean
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Selective Dynamics
-      type: object
-      title: TypedAggregateProperitesDict
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     TypedLatticeDict:
       properties:
         matrix:
@@ -612,53 +579,7 @@ components:
       - gamma
       - volume
       title: TypedLatticeDict
-    Meta:
-      properties:
-        api_version:
-          type: string
-          title: Api Version
-          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
-          default: 0.86.4rc5.dev1+g77c2c1315
-        time_stamp:
-          type: string
-          format: date-time
-          title: Time Stamp
-          description: A string containing the date and time at which the query was executed
-        total_doc:
-          anyOf:
-          - type: integer
-            minimum: 0.0
-          - type: 'null'
-          title: Total Doc
-          description: The total number of documents available for this query
-        facet:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Facet
-          description: A dictionary containing the facets available for this query
-      additionalProperties: true
-      type: object
-      title: Meta
-      description: Meta information for the MAPI Response.
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
-      type: object
-      required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
-    TypedGrainBoundaryDict:
+    TypedStructureDict:
       properties:
         '@module':
           type: string
@@ -666,6 +587,11 @@ components:
         '@class':
           type: string
           title: '@Class'
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
         lattice:
           $ref: '#/components/schemas/TypedLatticeDict'
         sites:
@@ -673,51 +599,17 @@ components:
             $ref: '#/components/schemas/TypedSiteDict'
           type: array
           title: Sites
-        init_cell:
-          $ref: '#/components/schemas/TypedStructureDict'
-        rotation_axis:
-          items:
-            type: integer
-          type: array
-          title: Rotation Axis
-        rotation_angle:
-          type: number
-          title: Rotation Angle
-        gb_plane:
-          items:
-            type: integer
-          type: array
-          title: Gb Plane
-        join_plane:
-          items:
-            type: integer
-          type: array
-          title: Join Plane
-        vacuum_thickness:
-          type: number
-          title: Vacuum Thickness
-        ab_shift:
-          items:
-            type: number
-          type: array
-          title: Ab Shift
-        oriented_unit_cell:
-          $ref: '#/components/schemas/TypedStructureDict'
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
+          - type: 'null'
       type: object
       required:
       - '@module'
       - '@class'
       - lattice
       - sites
-      - init_cell
-      - rotation_axis
-      - rotation_angle
-      - gb_plane
-      - join_plane
-      - vacuum_thickness
-      - ab_shift
-      - oriented_unit_cell
-      title: TypedGrainBoundaryDict
+      title: TypedStructureDict
     Response_GrainBoundaryDoc_:
       properties:
         data:
@@ -743,6 +635,54 @@ components:
           description: Extra information for the query
       type: object
       title: Response[GrainBoundaryDoc]
+    TypedSiteDict:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
+      type: object
+      title: TypedSiteDict
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     TypedSpeciesDict:
       properties:
         element:
@@ -767,6 +707,66 @@ components:
           title: Occu
       type: object
       title: TypedSpeciesDict
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    TypedAggregateProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Selective Dynamics
+      type: object
+      title: TypedAggregateProperitesDict
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

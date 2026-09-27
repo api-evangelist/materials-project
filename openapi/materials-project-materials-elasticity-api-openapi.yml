@@ -268,55 +268,30 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    TypedSiteDict:
+    TypedSiteProperitesDict:
       properties:
-        label:
+        magmom:
           anyOf:
-          - type: string
+          - type: number
           - type: 'null'
-          title: Label
-        name:
+          title: Magmom
+        charge:
           anyOf:
-          - type: string
+          - type: number
           - type: 'null'
-          title: Name
-        properties:
+          title: Charge
+        velocities:
           anyOf:
-          - $ref: '#/components/schemas/TypedSiteProperitesDict'
-          - type: 'null'
-        species:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TypedSpeciesDict'
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
             type: array
+            maxItems: 3
+            minItems: 3
           - type: 'null'
-          title: Species
-        abc:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Abc
-        xyz:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Xyz
-      type: object
-      title: TypedSiteDict
-    TypedLatticeDict:
-      properties:
-        matrix:
-          items:
-            items:
-              type: number
-            type: array
-          type: array
-          title: Matrix
-        pbc:
+          title: Velocities
+        selective_dynamics:
           anyOf:
           - prefixItems:
             - type: boolean
@@ -326,888 +301,21 @@ components:
             maxItems: 3
             minItems: 3
           - type: 'null'
-          title: Pbc
-        a:
-          type: number
-          title: A
-        b:
-          type: number
-          title: B
-        c:
-          type: number
-          title: C
-        alpha:
-          type: number
-          title: Alpha
-        beta:
-          type: number
-          title: Beta
-        gamma:
-          type: number
-          title: Gamma
-        volume:
-          type: number
-          title: Volume
-      type: object
-      required:
-      - matrix
-      - a
-      - b
-      - c
-      - alpha
-      - beta
-      - gamma
-      - volume
-      title: TypedLatticeDict
-    Response_ElasticityDoc_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ElasticityDoc'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[ElasticityDoc]
-    TypedSpeciesDict:
-      properties:
-        element:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Element
-        oxidation_state:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Oxidation State
-        spin:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Spin
-        occu:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Occu
-      type: object
-      title: TypedSpeciesDict
-    ThermalConductivity:
-      properties:
-        clarke:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Clarke
-          description: Clarke's thermal conductivity (SI units)
-        cahill:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Cahill
-          description: Cahill's thermal conductivity (SI units)
-      type: object
-      title: ThermalConductivity
-    BulkModulus:
-      properties:
-        voigt:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Voigt
-          description: Bulk modulus Voigt average (GPa)
-        reuss:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Reuss
-          description: Bulk modulus Reuss average (GPa)
-        vrh:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Vrh
-          description: Bulk modulus Voigt-Reuss-Hill average (GPa)
-      type: object
-      title: BulkModulus
-    ElasticityDoc:
-      properties:
-        builder_meta:
-          anyOf:
-          - $ref: '#/components/schemas/EmmetMeta'
-          - type: 'null'
-          description: Builder metadata.
-        nsites:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Nsites
-          description: Total number of sites in the structure.
-        elements:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Elements
-          description: List of elements in the material.
-        nelements:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Nelements
-          description: Number of elements.
-        composition:
-          anyOf:
-          - additionalProperties:
-              type: number
-            type: object
-          - type: 'null'
-          title: Composition
-          description: Full composition for the material.
-        composition_reduced:
-          anyOf:
-          - additionalProperties:
-              type: number
-            type: object
-          - type: 'null'
-          title: Reduced Composition
-          description: Simplified representation of the composition.
-        formula_pretty:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Pretty Formula
-          description: Cleaned representation of the formula.
-        formula_anonymous:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Anonymous Formula
-          description: Anonymized representation of the formula.
-        chemsys:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Chemical System
-          description: Dash-separated string of elements in the material.
-        volume:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Volume
-          description: Total volume for this structure in Å³.
-        density:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Density
-          description: Density in g/cm³.
-        density_atomic:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Packing Density
-          description: The atomic packing density in Å³/atom.
-        symmetry:
-          anyOf:
-          - $ref: '#/components/schemas/SymmetryData'
-          - type: 'null'
-          description: Symmetry data for this material.
-        material_id:
-          anyOf:
-          - type: string
-            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
-            examples:
-            - mp-3534
-            - '3453'
-            - mp-834-Ag
-          - type: string
-            examples:
-            - mp-ft
-            - task:pqrs
-          - type: 'null'
-          title: Material Id
-          description: 'The Materials Project ID of the material, used as a universal reference across property documents.This comes in the form: mp-******.'
-        deprecated:
-          type: boolean
-          title: Deprecated
-          description: Whether this property document is deprecated.
-          default: true
-        deprecation_reasons:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Deprecation Reasons
-          description: List of deprecation tags detailing why this document isn't valid.
-        last_updated:
-          type: string
-          format: date-time
-          title: Last Updated
-          description: Timestamp for the most recent calculation update for this property.
-        origins:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/PropertyOrigin'
-            type: array
-          - type: 'null'
-          title: Origins
-          description: Dictionary for tracking the provenance of properties.
-        warnings:
-          items:
-            type: string
-          type: array
-          title: Warnings
-          description: Any warnings related to this property.
-          default: []
-        structure:
-          anyOf:
-          - $ref: '#/components/schemas/TypedStructureDict'
-          - type: 'null'
-          title: Structure
-          description: Structure to compute the elasticity
-        property_name:
-          type: string
-          title: Property Name
-          default: elasticity
-        order:
-          type: integer
-          title: Order
-          description: Order of the expansion of the elastic tensor
-          default: 2
-        elastic_tensor:
-          anyOf:
-          - $ref: '#/components/schemas/ElasticTensorDoc'
-          - type: 'null'
-          description: Elastic tensor
-        compliance_tensor:
-          anyOf:
-          - $ref: '#/components/schemas/ComplianceTensorDoc'
-          - type: 'null'
-          description: Compliance tensor
-        bulk_modulus:
-          anyOf:
-          - $ref: '#/components/schemas/BulkModulus'
-          - type: 'null'
-          description: Bulk modulus
-        shear_modulus:
-          anyOf:
-          - $ref: '#/components/schemas/ShearModulus'
-          - type: 'null'
-          description: Shear modulus
-        sound_velocity:
-          anyOf:
-          - $ref: '#/components/schemas/SoundVelocity'
-          - type: 'null'
-          description: Sound velocity
-        thermal_conductivity:
-          anyOf:
-          - $ref: '#/components/schemas/ThermalConductivity'
-          - type: 'null'
-          description: Thermal conductivity
-        youngs_modulus:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Youngs Modulus
-          description: Young's modulus (SI units)
-        universal_anisotropy:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Universal Anisotropy
-          description: Universal elastic anisotropy
-        homogeneous_poisson:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Homogeneous Poisson
-          description: Homogeneous Poisson ratio
-        debye_temperature:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Debye Temperature
-          description: Debye temperature (SI units)
-        fitting_data:
-          anyOf:
-          - $ref: '#/components/schemas/FittingData'
-          - type: 'null'
-          description: Data used to fit the elastic tensor
-        fitting_method:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Fitting Method
-          description: Method used to fit the elastic tensor
-        state:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: State
-          description: 'State of the fitting/analysis: `successful` or `failed`'
-      type: object
-      title: ElasticityDoc
-    ShearModulus:
-      properties:
-        voigt:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Voigt
-          description: Shear modulus Voigt average (GPa)
-        reuss:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Reuss
-          description: Shear modulus Reuss average (GPa)
-        vrh:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Vrh
-          description: Shear modulus Voigt-Reuss-Hill average (GPa)
-      type: object
-      title: ShearModulus
-    SymmetryData:
-      properties:
-        crystal_system:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Crystal System
-          description: The crystal system for this lattice.
-        symbol:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Space Group Symbol
-          description: The spacegroup symbol for the lattice.
-        hall:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Hall Symbol
-          description: Hall symbol for the lattice
-        number:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Space Group Number
-          description: The spacegroup number for the lattice.
-        point_group:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Point Group Symbol
-          description: The point group for the lattice.
-        symprec:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Symmetry Finding Precision
-          description: The precision provided to spglib to determine the symmetry of this structure.
-        angle_tolerance:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Angle Tolerance
-          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
-        version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: spglib version
-      type: object
-      title: SymmetryData
-      description: Defines a symmetry data set for materials documents
-    ComplianceTensorDoc:
-      properties:
-        raw:
-          anyOf:
-          - prefixItems:
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            type: array
-            maxItems: 6
-            minItems: 6
-          - type: 'null'
-          title: Raw
-          description: Compliance tensor corresponding to structure orientation (TPa^-1)
-        ieee_format:
-          anyOf:
-          - prefixItems:
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            type: array
-            maxItems: 6
-            minItems: 6
-          - type: 'null'
-          title: Ieee Format
-          description: Compliance tensor corresponding to IEEE orientation (TPa^-1)
-      type: object
-      title: ComplianceTensorDoc
-    TypedAggregateProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: boolean
-              - type: boolean
-              - type: boolean
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
           title: Selective Dynamics
-      type: object
-      title: TypedAggregateProperitesDict
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    ElasticTensorDoc:
-      properties:
-        raw:
-          anyOf:
-          - prefixItems:
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            type: array
-            maxItems: 6
-            minItems: 6
-          - type: 'null'
-          title: Raw
-          description: Elastic tensor corresponding to structure orientation (GPa)
-        ieee_format:
-          anyOf:
-          - prefixItems:
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            type: array
-            maxItems: 6
-            minItems: 6
-          - type: 'null'
-          title: Ieee Format
-          description: Elastic tensor corresponding to IEEE orientation (GPa)
-      type: object
-      title: ElasticTensorDoc
-    TypedStructureDict:
-      properties:
-        '@module':
-          type: string
-          title: '@Module'
-        '@class':
-          type: string
-          title: '@Class'
-        charge:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Charge
-        lattice:
-          $ref: '#/components/schemas/TypedLatticeDict'
-        sites:
-          items:
-            $ref: '#/components/schemas/TypedSiteDict'
-          type: array
-          title: Sites
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
-          - type: 'null'
-      type: object
-      required:
-      - '@module'
-      - '@class'
-      - lattice
-      - sites
-      title: TypedStructureDict
-    EmmetMeta:
-      properties:
-        emmet_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Emmet Version
-          description: The version of emmet this document was built with.
-          default: 0.86.4rc4
-        pymatgen_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Pymatgen Version
-          description: The version of pymatgen this document was built with.
-          default: 2026.4.16
-        run_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Run Id
-          description: The run id associated with this data build.
-        batch_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Batch Id
-          description: Identifier corresponding to the origin of this document's blessed task.
-        database_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Database Version
-          description: The database version for the built data.
-        build_date:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Build Date
-          description: The build date for this document.
-        license:
-          anyOf:
-          - type: string
-            enum:
-            - BY-C
-            - BY-NC
-          - type: 'null'
-          title: License
-          description: License for the data entry.
-      type: object
-      title: EmmetMeta
-      description: Default emmet metadata.
-    Meta:
-      properties:
-        api_version:
-          type: string
-          title: Api Version
-          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
-          default: 0.86.4rc5.dev1+g77c2c1315
-        time_stamp:
-          type: string
-          format: date-time
-          title: Time Stamp
-          description: A string containing the date and time at which the query was executed
-        total_doc:
+        coordination_no:
           anyOf:
           - type: integer
-            minimum: 0.0
           - type: 'null'
-          title: Total Doc
-          description: The total number of documents available for this query
-        facet:
+          title: Coordination No
+        forces:
           anyOf:
-          - additionalProperties: true
-            type: object
+          - items:
+              type: number
+            type: array
           - type: 'null'
-          title: Facet
-          description: A dictionary containing the facets available for this query
-      additionalProperties: true
+          title: Forces
       type: object
-      title: Meta
-      description: Meta information for the MAPI Response.
+      title: TypedSiteProperitesDict
     FittingData:
       properties:
         deformations:
@@ -1428,37 +536,255 @@ components:
         With the data here, one can redo the fitting to regenerate the elastic data,
 
         e.g. using `ElasticityDoc.from_deformations_and_stresses()`.'
-    PropertyOrigin:
+    TypedLatticeDict:
       properties:
-        name:
-          type: string
-          title: Name
-          description: The property name
-        task_id:
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
           anyOf:
-          - type: string
-            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
-            examples:
-            - mp-3534
-            - '3453'
-            - mp-834-Ag
-          - type: string
-            examples:
-            - mp-ft
-            - task:pqrs
-          title: Task Id
-          description: The calculation ID this property comes from.
-        last_updated:
-          type: string
-          format: date-time
-          title: Last Updated
-          description: The timestamp when this calculation was last updated
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
       type: object
       required:
-      - name
-      - task_id
-      title: PropertyOrigin
-      description: Provenance document for the origin of properties in a material document
+      - matrix
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: TypedLatticeDict
+    ThermalConductivity:
+      properties:
+        clarke:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Clarke
+          description: Clarke's thermal conductivity (SI units)
+        cahill:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Cahill
+          description: Cahill's thermal conductivity (SI units)
+      type: object
+      title: ThermalConductivity
+    ElasticTensorDoc:
+      properties:
+        raw:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Raw
+          description: Elastic tensor corresponding to structure orientation (GPa)
+        ieee_format:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Ieee Format
+          description: Elastic tensor corresponding to IEEE orientation (GPa)
+      type: object
+      title: ElasticTensorDoc
+    TypedSiteDict:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
+      type: object
+      title: TypedSiteDict
     SoundVelocity:
       properties:
         transverse:
@@ -1493,54 +819,218 @@ components:
           description: Snyder's total sound velocity (SI units)
       type: object
       title: SoundVelocity
-    TypedSiteProperitesDict:
+    TypedSpeciesDict:
       properties:
-        magmom:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
           anyOf:
           - type: number
           - type: 'null'
-          title: Magmom
+          title: Oxidation State
+        spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin
+        occu:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
+    SymmetryData:
+      properties:
+        crystal_system:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Crystal System
+          description: The crystal system for this lattice.
+        symbol:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Space Group Symbol
+          description: The spacegroup symbol for the lattice.
+        hall:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hall Symbol
+          description: Hall symbol for the lattice
+        number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Space Group Number
+          description: The spacegroup number for the lattice.
+        point_group:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Point Group Symbol
+          description: The point group for the lattice.
+        symprec:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Symmetry Finding Precision
+          description: The precision provided to spglib to determine the symmetry of this structure.
+        angle_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Angle Tolerance
+          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: spglib version
+      type: object
+      title: SymmetryData
+      description: Defines a symmetry data set for materials documents
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    BulkModulus:
+      properties:
+        voigt:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Voigt
+          description: Bulk modulus Voigt average (GPa)
+        reuss:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Reuss
+          description: Bulk modulus Reuss average (GPa)
+        vrh:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Vrh
+          description: Bulk modulus Voigt-Reuss-Hill average (GPa)
+      type: object
+      title: BulkModulus
+    TypedStructureDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
         charge:
           anyOf:
           - type: number
           - type: 'null'
           title: Charge
-        velocities:
+        lattice:
+          $ref: '#/components/schemas/TypedLatticeDict'
+        sites:
+          items:
+            $ref: '#/components/schemas/TypedSiteDict'
+          type: array
+          title: Sites
+        properties:
           anyOf:
-          - prefixItems:
-            - type: number
-            - type: number
-            - type: number
-            type: array
-            maxItems: 3
-            minItems: 3
+          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
           - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Selective Dynamics
-        coordination_no:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Coordination No
-        forces:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Forces
       type: object
-      title: TypedSiteProperitesDict
+      required:
+      - '@module'
+      - '@class'
+      - lattice
+      - sites
+      title: TypedStructureDict
+    EmmetMeta:
+      properties:
+        emmet_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Emmet Version
+          description: The version of emmet this document was built with.
+          default: 0.86.4rc4
+        pymatgen_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pymatgen Version
+          description: The version of pymatgen this document was built with.
+          default: 2026.4.16
+        run_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Run Id
+          description: The run id associated with this data build.
+        batch_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Batch Id
+          description: Identifier corresponding to the origin of this document's blessed task.
+        database_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Database Version
+          description: The database version for the built data.
+        build_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Build Date
+          description: The build date for this document.
+        license:
+          anyOf:
+          - type: string
+            enum:
+            - BY-C
+            - BY-NC
+          - type: 'null'
+          title: License
+          description: License for the data entry.
+      type: object
+      title: EmmetMeta
+      description: Default emmet metadata.
     HTTPValidationError:
       properties:
         detail:
@@ -1550,6 +1040,37 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    PropertyOrigin:
+      properties:
+        name:
+          type: string
+          title: Name
+          description: The property name
+        task_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          title: Task Id
+          description: The calculation ID this property comes from.
+        last_updated:
+          type: string
+          format: date-time
+          title: Last Updated
+          description: The timestamp when this calculation was last updated
+      type: object
+      required:
+      - name
+      - task_id
+      title: PropertyOrigin
+      description: Provenance document for the origin of properties in a material document
     Error:
       properties:
         code:
@@ -1566,6 +1087,485 @@ components:
       - message
       title: Error
       description: Base Error model for General API.
+    ElasticityDoc:
+      properties:
+        builder_meta:
+          anyOf:
+          - $ref: '#/components/schemas/EmmetMeta'
+          - type: 'null'
+          description: Builder metadata.
+        nsites:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Nsites
+          description: Total number of sites in the structure.
+        elements:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Elements
+          description: List of elements in the material.
+        nelements:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Nelements
+          description: Number of elements.
+        composition:
+          anyOf:
+          - additionalProperties:
+              type: number
+            type: object
+          - type: 'null'
+          title: Composition
+          description: Full composition for the material.
+        composition_reduced:
+          anyOf:
+          - additionalProperties:
+              type: number
+            type: object
+          - type: 'null'
+          title: Reduced Composition
+          description: Simplified representation of the composition.
+        formula_pretty:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pretty Formula
+          description: Cleaned representation of the formula.
+        formula_anonymous:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Anonymous Formula
+          description: Anonymized representation of the formula.
+        chemsys:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Chemical System
+          description: Dash-separated string of elements in the material.
+        volume:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Volume
+          description: Total volume for this structure in Å³.
+        density:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Density
+          description: Density in g/cm³.
+        density_atomic:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Packing Density
+          description: The atomic packing density in Å³/atom.
+        symmetry:
+          anyOf:
+          - $ref: '#/components/schemas/SymmetryData'
+          - type: 'null'
+          description: Symmetry data for this material.
+        material_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          - type: 'null'
+          title: Material Id
+          description: 'The Materials Project ID of the material, used as a universal reference across property documents.This comes in the form: mp-******.'
+        deprecated:
+          type: boolean
+          title: Deprecated
+          description: Whether this property document is deprecated.
+          default: true
+        deprecation_reasons:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Deprecation Reasons
+          description: List of deprecation tags detailing why this document isn't valid.
+        last_updated:
+          type: string
+          format: date-time
+          title: Last Updated
+          description: Timestamp for the most recent calculation update for this property.
+        origins:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/PropertyOrigin'
+            type: array
+          - type: 'null'
+          title: Origins
+          description: Dictionary for tracking the provenance of properties.
+        warnings:
+          items:
+            type: string
+          type: array
+          title: Warnings
+          description: Any warnings related to this property.
+          default: []
+        structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Structure
+          description: Structure to compute the elasticity
+        property_name:
+          type: string
+          title: Property Name
+          default: elasticity
+        order:
+          type: integer
+          title: Order
+          description: Order of the expansion of the elastic tensor
+          default: 2
+        elastic_tensor:
+          anyOf:
+          - $ref: '#/components/schemas/ElasticTensorDoc'
+          - type: 'null'
+          description: Elastic tensor
+        compliance_tensor:
+          anyOf:
+          - $ref: '#/components/schemas/ComplianceTensorDoc'
+          - type: 'null'
+          description: Compliance tensor
+        bulk_modulus:
+          anyOf:
+          - $ref: '#/components/schemas/BulkModulus'
+          - type: 'null'
+          description: Bulk modulus
+        shear_modulus:
+          anyOf:
+          - $ref: '#/components/schemas/ShearModulus'
+          - type: 'null'
+          description: Shear modulus
+        sound_velocity:
+          anyOf:
+          - $ref: '#/components/schemas/SoundVelocity'
+          - type: 'null'
+          description: Sound velocity
+        thermal_conductivity:
+          anyOf:
+          - $ref: '#/components/schemas/ThermalConductivity'
+          - type: 'null'
+          description: Thermal conductivity
+        youngs_modulus:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Youngs Modulus
+          description: Young's modulus (SI units)
+        universal_anisotropy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Universal Anisotropy
+          description: Universal elastic anisotropy
+        homogeneous_poisson:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Homogeneous Poisson
+          description: Homogeneous Poisson ratio
+        debye_temperature:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Debye Temperature
+          description: Debye temperature (SI units)
+        fitting_data:
+          anyOf:
+          - $ref: '#/components/schemas/FittingData'
+          - type: 'null'
+          description: Data used to fit the elastic tensor
+        fitting_method:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Fitting Method
+          description: Method used to fit the elastic tensor
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+          description: 'State of the fitting/analysis: `successful` or `failed`'
+      type: object
+      title: ElasticityDoc
+    Response_ElasticityDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ElasticityDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[ElasticityDoc]
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ComplianceTensorDoc:
+      properties:
+        raw:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Raw
+          description: Compliance tensor corresponding to structure orientation (TPa^-1)
+        ieee_format:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            type: array
+            maxItems: 6
+            minItems: 6
+          - type: 'null'
+          title: Ieee Format
+          description: Compliance tensor corresponding to IEEE orientation (TPa^-1)
+      type: object
+      title: ComplianceTensorDoc
+    ShearModulus:
+      properties:
+        voigt:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Voigt
+          description: Shear modulus Voigt average (GPa)
+        reuss:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Reuss
+          description: Shear modulus Reuss average (GPa)
+        vrh:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Vrh
+          description: Shear modulus Voigt-Reuss-Hill average (GPa)
+      type: object
+      title: ShearModulus
+    TypedAggregateProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Selective Dynamics
+      type: object
+      title: TypedAggregateProperitesDict
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

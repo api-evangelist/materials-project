@@ -447,23 +447,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    SumRuleChecks:
-      properties:
-        asr:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Asr
-          description: The violation of the acoustic sum rule.
-        cnsr:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Cnsr
-          description: The violation of the charge neutral sum rule.
-      type: object
-      title: SumRuleChecks
-      description: Container class for defining sum rule checks.
     PhononBS:
       properties:
         identifier:
@@ -583,132 +566,54 @@ components:
       - frequencies
       title: PhononBS
       description: Define schema of pymatgen phonon band structure.
-    TypedSiteDict:
+    TypedSiteProperitesDict:
       properties:
-        label:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Label
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedSiteProperitesDict'
-          - type: 'null'
-        species:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TypedSpeciesDict'
-            type: array
-          - type: 'null'
-          title: Species
-        abc:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Abc
-        xyz:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Xyz
-      type: object
-      title: TypedSiteDict
-    ThermalDisplacementData:
-      properties:
-        freq_min_thermal_displacements:
+        magmom:
           anyOf:
           - type: number
           - type: 'null'
-          title: Freq Min Thermal Displacements
-          description: cutoff frequency in THz to avoid numerical issues in the computation of the thermal displacement parameters
-        thermal_displacement_matrix_cif:
+          title: Magmom
+        charge:
           anyOf:
-          - items:
-              items:
-                prefixItems:
-                - prefixItems:
-                  - type: number
-                  - type: number
-                  - type: number
-                  type: array
-                  maxItems: 3
-                  minItems: 3
-                - prefixItems:
-                  - type: number
-                  - type: number
-                  - type: number
-                  type: array
-                  maxItems: 3
-                  minItems: 3
-                - prefixItems:
-                  - type: number
-                  - type: number
-                  - type: number
-                  type: array
-                  maxItems: 3
-                  minItems: 3
-                type: array
-                maxItems: 3
-                minItems: 3
-              type: array
-            type: array
+          - type: number
           - type: 'null'
-          title: Thermal Displacement Matrix Cif
-          description: field including thermal displacement matrices in CIF format
-        thermal_displacement_matrix:
+          title: Charge
+        velocities:
           anyOf:
-          - items:
-              items:
-                prefixItems:
-                - prefixItems:
-                  - type: number
-                  - type: number
-                  - type: number
-                  type: array
-                  maxItems: 3
-                  minItems: 3
-                - prefixItems:
-                  - type: number
-                  - type: number
-                  - type: number
-                  type: array
-                  maxItems: 3
-                  minItems: 3
-                - prefixItems:
-                  - type: number
-                  - type: number
-                  - type: number
-                  type: array
-                  maxItems: 3
-                  minItems: 3
-                type: array
-                maxItems: 3
-                minItems: 3
-              type: array
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
             type: array
+            maxItems: 3
+            minItems: 3
           - type: 'null'
-          title: Thermal Displacement Matrix
-          description: field including thermal displacement matrices in Cartesian coordinate system
-        temperatures_thermal_displacements:
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Selective Dynamics
+        coordination_no:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Coordination No
+        forces:
           anyOf:
           - items:
               type: number
             type: array
           - type: 'null'
-          title: Temperatures Thermal Displacements
-          description: temperatures at which the thermal displacement matriceshave been computed
+          title: Forces
       type: object
-      title: ThermalDisplacementData
-      description: Collection to store information on the thermal displacement matrices.
+      title: TypedSiteProperitesDict
     TypedLatticeDict:
       properties:
         matrix:
@@ -761,6 +666,68 @@ components:
       - gamma
       - volume
       title: TypedLatticeDict
+    PhononComputationalSettings:
+      properties:
+        npoints_band:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Npoints Band
+          description: number of points for band structure computation
+        kpath_scheme:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Kpath Scheme
+          description: indicates the kpath scheme
+        kpoint_density_dos:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Kpoint Density Dos
+          description: number of points for computation of free energies and densities of states
+      type: object
+      title: PhononComputationalSettings
+      description: Collection to store computational settings for the phonon computation.
+    TypedSiteDict:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
+      type: object
+      title: TypedSiteDict
     TypedSpeciesDict:
       properties:
         element:
@@ -837,157 +804,6 @@ components:
       type: object
       title: SymmetryData
       description: Defines a symmetry data set for materials documents
-    TypedAggregateProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: boolean
-              - type: boolean
-              - type: boolean
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Selective Dynamics
-      type: object
-      title: TypedAggregateProperitesDict
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    TypedStructureDict:
-      properties:
-        '@module':
-          type: string
-          title: '@Module'
-        '@class':
-          type: string
-          title: '@Class'
-        charge:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Charge
-        lattice:
-          $ref: '#/components/schemas/TypedLatticeDict'
-        sites:
-          items:
-            $ref: '#/components/schemas/TypedSiteDict'
-          type: array
-          title: Sites
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
-          - type: 'null'
-      type: object
-      required:
-      - '@module'
-      - '@class'
-      - lattice
-      - sites
-      title: TypedStructureDict
-    PhononMethod:
-      type: string
-      enum:
-      - dfpt
-      - phonopy
-      - pheasy
-      title: PhononMethod
-      description: Define common methods for computed phonon properties.
-    PhononDOS:
-      properties:
-        identifier:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Identifier
-          description: The identifier of this object.
-        structure:
-          anyOf:
-          - $ref: '#/components/schemas/TypedStructureDict'
-          - type: 'null'
-          title: Structure
-          description: The structure associated with this calculation.
-        frequencies:
-          items:
-            type: number
-          type: array
-          title: Frequencies
-          description: The phonon frequencies in THz.
-        densities:
-          items:
-            type: number
-          type: array
-          title: Densities
-          description: The phonon density of states.
-        projected_densities:
-          anyOf:
-          - items:
-              items:
-                type: number
-              type: array
-            type: array
-          - type: 'null'
-          title: Projected Densities
-          description: The projected phonon density of states.
-      type: object
-      required:
-      - frequencies
-      - densities
-      title: PhononDOS
-      description: Define schema of pymatgen phonon density of states.
     Meta:
       properties:
         api_version:
@@ -1018,31 +834,6 @@ components:
       type: object
       title: Meta
       description: Meta information for the MAPI Response.
-    Response_PhononBSDOSDoc_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/PhononBSDOSDoc'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[PhononBSDOSDoc]
     PhononBSDOSDoc:
       properties:
         nsites:
@@ -1490,79 +1281,45 @@ components:
       - check_sum_rule_deviations
       title: PhononBSDOSDoc
       description: Built data version of PhononBSDOSTask.
-    TypedSiteProperitesDict:
+    TypedStructureDict:
       properties:
-        magmom:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Magmom
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
         charge:
           anyOf:
           - type: number
           - type: 'null'
           title: Charge
-        velocities:
-          anyOf:
-          - prefixItems:
-            - type: number
-            - type: number
-            - type: number
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Selective Dynamics
-        coordination_no:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Coordination No
-        forces:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Forces
-      type: object
-      title: TypedSiteProperitesDict
-    HTTPValidationError:
-      properties:
-        detail:
+        lattice:
+          $ref: '#/components/schemas/TypedLatticeDict'
+        sites:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            $ref: '#/components/schemas/TypedSiteDict'
           type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
+          title: Sites
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
+          - type: 'null'
       type: object
       required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
+      - '@module'
+      - '@class'
+      - lattice
+      - sites
+      title: TypedStructureDict
+    PhononMethod:
+      type: string
+      enum:
+      - dfpt
+      - phonopy
+      - pheasy
+      title: PhononMethod
+      description: Define common methods for computed phonon properties.
     CalcMeta:
       properties:
         identifier:
@@ -1594,29 +1351,272 @@ components:
       type: object
       title: CalcMeta
       description: Lightweight representation for storing jobflow-style job info.
-    PhononComputationalSettings:
+    HTTPValidationError:
       properties:
-        npoints_band:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    Response_PhononBSDOSDoc_:
+      properties:
+        data:
           anyOf:
-          - type: integer
+          - items:
+              $ref: '#/components/schemas/PhononBSDOSDoc'
+            type: array
           - type: 'null'
-          title: Npoints Band
-          description: number of points for band structure computation
-        kpath_scheme:
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[PhononBSDOSDoc]
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    PhononDOS:
+      properties:
+        identifier:
           anyOf:
           - type: string
           - type: 'null'
-          title: Kpath Scheme
-          description: indicates the kpath scheme
-        kpoint_density_dos:
+          title: Identifier
+          description: The identifier of this object.
+        structure:
           anyOf:
-          - type: integer
+          - $ref: '#/components/schemas/TypedStructureDict'
           - type: 'null'
-          title: Kpoint Density Dos
-          description: number of points for computation of free energies and densities of states
+          title: Structure
+          description: The structure associated with this calculation.
+        frequencies:
+          items:
+            type: number
+          type: array
+          title: Frequencies
+          description: The phonon frequencies in THz.
+        densities:
+          items:
+            type: number
+          type: array
+          title: Densities
+          description: The phonon density of states.
+        projected_densities:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Projected Densities
+          description: The projected phonon density of states.
       type: object
-      title: PhononComputationalSettings
-      description: Collection to store computational settings for the phonon computation.
+      required:
+      - frequencies
+      - densities
+      title: PhononDOS
+      description: Define schema of pymatgen phonon density of states.
+    SumRuleChecks:
+      properties:
+        asr:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Asr
+          description: The violation of the acoustic sum rule.
+        cnsr:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Cnsr
+          description: The violation of the charge neutral sum rule.
+      type: object
+      title: SumRuleChecks
+      description: Container class for defining sum rule checks.
+    ThermalDisplacementData:
+      properties:
+        freq_min_thermal_displacements:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Freq Min Thermal Displacements
+          description: cutoff frequency in THz to avoid numerical issues in the computation of the thermal displacement parameters
+        thermal_displacement_matrix_cif:
+          anyOf:
+          - items:
+              items:
+                prefixItems:
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                type: array
+                maxItems: 3
+                minItems: 3
+              type: array
+            type: array
+          - type: 'null'
+          title: Thermal Displacement Matrix Cif
+          description: field including thermal displacement matrices in CIF format
+        thermal_displacement_matrix:
+          anyOf:
+          - items:
+              items:
+                prefixItems:
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                - prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                type: array
+                maxItems: 3
+                minItems: 3
+              type: array
+            type: array
+          - type: 'null'
+          title: Thermal Displacement Matrix
+          description: field including thermal displacement matrices in Cartesian coordinate system
+        temperatures_thermal_displacements:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Temperatures Thermal Displacements
+          description: temperatures at which the thermal displacement matriceshave been computed
+      type: object
+      title: ThermalDisplacementData
+      description: Collection to store information on the thermal displacement matrices.
+    TypedAggregateProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Selective Dynamics
+      type: object
+      title: TypedAggregateProperitesDict
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

@@ -34,9 +34,7 @@
     "materials-project-materials-xas-api-openapi.yml",
     "materials-project-molecules-summary-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -45,12 +43,11 @@
     "materials-project-openapi.yml: declared missing tag: Defect Tasks",
     "materials-project-openapi.yml: declared missing tag: Materials Absorption",
     "materials-project-openapi.yml: declared missing tag: Materials Chemical Environment",
-    "superseded outputs removed: materials-project-do-is-api-openapi.yml",
-    "apis.yml register: written (+1 apis, 29 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "materials-project-defect-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "materials-project-do-is-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "materials-project-dois-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "materials-project-jcesr-electrolyte-genome-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "materials-project-materials-absorption-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "materials-project-materials-alloys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
