@@ -380,62 +380,367 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ElectronicStep:
+    RelaxTrajectory:
       properties:
-        alphaZ:
+        elements:
+          items:
+            type: integer
+          type: array
+          title: Elements
+          description: The proton number Z of the elements in the sites
+        cart_coords:
+          items:
+            anyOf:
+            - items:
+                prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              type: array
+            - type: 'null'
+          type: array
+          title: Cart Coords
+          description: The Cartesian coordinates (Å) of the sites at each ionic step
+        num_ionic_steps:
+          type: integer
+          title: Num Ionic Steps
+          description: The number of ionic steps.
+        lattice:
           anyOf:
-          - type: number
+          - items:
+              prefixItems:
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
           - type: 'null'
-          title: Alphaz
-          description: The alpha Z term.
-        ewald:
+          title: Lattice
+          description: If a list containing only one 3x3 matrix, it is assumed that the lattice was held constant through the simulation. If a list of (multiple) 3x3 matrices, this should be the lattice at each ionic step in the calculation. If None, a non-periodic system is assumed.
+        energy:
           anyOf:
-          - type: number
+          - items:
+              type: number
+            type: array
           - type: 'null'
-          title: Ewald
-          description: The ewald energy.
-        hartreedc:
+          title: Energy
+          description: The total energy at each ionic step.
+        forces:
           anyOf:
-          - type: number
+          - items:
+              items:
+                prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              type: array
+            type: array
           - type: 'null'
-          title: Hartreedc
-          description: Negative Hartree energy.
-        XCdc:
+          title: Forces
+          description: The interatomic forces.
+        stress:
           anyOf:
-          - type: number
+          - items:
+              prefixItems:
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
           - type: 'null'
-          title: Xcdc
-          description: Negative exchange energy.
-        pawpsdc:
+          title: Stress
+          description: The 3x3 stress tensor.
+        electronic_steps:
           anyOf:
-          - type: number
+          - items:
+              items:
+                $ref: '#/components/schemas/ElectronicStep'
+              type: array
+            type: array
           - type: 'null'
-          title: Pawpsdc
-          description: Negative potential energy with exchange-correlation energy.
-        pawaedc:
+          title: Electronic Steps
+          description: The electronic steps within a given ionic step.
+        num_electronic_steps:
           anyOf:
-          - type: number
+          - items:
+              type: integer
+            type: array
           - type: 'null'
-          title: Pawaedc
-          description: The PAW double counting term.
-        eentropy:
+          title: Num Electronic Steps
+          description: The number of electronic steps within each ionic step.
+        e_wo_entrp:
           anyOf:
-          - type: number
+          - items:
+              type: number
+            type: array
           - type: 'null'
-          title: Eentropy
-          description: The entropy (T * S).
-        bandstr:
+          title: E Wo Entrp
+          description: The total energy in eV without electronic pseudoentropy from smearing of the Fermi surface.
+        e_fr_energy:
           anyOf:
-          - type: number
+          - items:
+              type: number
+            type: array
           - type: 'null'
-          title: Bandstr
-          description: The band energy (from eigenvalues).
-        atom:
+          title: E Fr Energy
+          description: The total electronic free energy in eV.
+        identifier:
           anyOf:
-          - type: number
+          - type: string
           - type: 'null'
-          title: Atom
-          description: The atomic energy.
+          title: Identifier
+          description: Identifier of this trajectory, e.g., task ID.
+        task_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Type
+          description: The TaskType of the calculation used to generate this trajectory.
+        run_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Run Type
+          description: The RunType of the calculation used to generate this trajectory.
+      type: object
+      required:
+      - elements
+      - cart_coords
+      - num_ionic_steps
+      title: RelaxTrajectory
+      description: 'Low memory schema for relaxation trajectories that can interface with parquet, pymatgen, and ASE.
+
+
+        This schema is intended primarily for VASP relaxation trajectories, but could be adapted to
+
+        generic electronic structure trajectories.
+
+
+        Note that for VASP calculations, energies are in eV, forces in eV/Å, and stress tensors in kilobar.'
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TypedAggregateProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Selective Dynamics
+      type: object
+      title: TypedAggregateProperitesDict
+    TypedPotcarSummaryStatsDict:
+      properties:
+        keywords:
+          anyOf:
+          - $ref: '#/components/schemas/TypedPotcarKeywordsDict'
+          - type: 'null'
+        stats:
+          anyOf:
+          - $ref: '#/components/schemas/TypedPotcarStatsDict'
+          - type: 'null'
+      type: object
+      title: TypedPotcarSummaryStatsDict
+    Calculation:
+      properties:
+        dir_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Dir Name
+          description: The directory for this VASP calculation
+        vasp_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Vasp Version
+          description: VASP version used to perform the calculation
+        has_vasp_completed:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Has Vasp Completed
+          description: Whether VASP completed the calculation successfully
+        input:
+          anyOf:
+          - $ref: '#/components/schemas/CalculationInput'
+          - type: 'null'
+          description: VASP input settings for the calculation
+        output:
+          anyOf:
+          - $ref: '#/components/schemas/CalculationOutput'
+          - type: 'null'
+          description: The VASP calculation output
+        completed_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Completed At
+          description: Timestamp for when the calculation was completed
+        task_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Name
+          description: Name of task given by custodian (e.g., relax1, relax2)
+        output_file_paths:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Output File Paths
+          description: Paths of the VASP output files associated with this calculation
+        bader:
+          anyOf:
+          - $ref: '#/components/schemas/BaderAnalysis'
+          - type: 'null'
+          description: Output from bader charge analysis
+        ddec6:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Ddec6
+          description: Output from DDEC6 charge analysis
+        run_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Run Type
+          description: Calculation run type (e.g., HF, HSE06, PBE)
+        task_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Type
+          description: Calculation task type (e.g., Structure Optimization).
+        calc_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Calc Type
+          description: Return calculation type (run type + task_type).
+      type: object
+      title: Calculation
+      description: Full VASP calculation inputs and outputs.
+    TypedPotcarStatsDict:
+      properties:
+        header:
+          $ref: '#/components/schemas/TypedStatisticsDict'
+        data:
+          $ref: '#/components/schemas/TypedStatisticsDict'
+      type: object
+      required:
+      - header
+      - data
+      title: TypedPotcarStatsDict
+    IonicStep:
+      properties:
         e_fr_energy:
           anyOf:
           - type: number
@@ -454,24 +759,184 @@ components:
           - type: 'null'
           title: E 0 Energy
           description: The internal energy.
+        forces:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Forces
+          description: The forces on each atom.
+        stress:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Stress
+          description: The stress on the lattice.
+        electronic_steps:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ElectronicStep'
+            type: array
+          - type: 'null'
+          title: Electronic Steps
+          description: The electronic convergence steps.
+        num_electronic_steps:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Electronic Steps
+          description: The number of electronic steps needed to reach convergence.
+        structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Structure
+          description: The structure at this step.
+      additionalProperties: true
       type: object
-      title: ElectronicStep
-      description: 'Document defining the information at each electronic step.
-
-
-        Note, not all the information will be available at every step.'
-    TypedPotcarSummaryStatsDict:
+      title: IonicStep
+      description: Document defining the information at each ionic step.
+    ElectronPhononDisplacedStructures:
       properties:
-        keywords:
+        temperatures:
           anyOf:
-          - $ref: '#/components/schemas/TypedPotcarKeywordsDict'
+          - items:
+              type: number
+            type: array
           - type: 'null'
-        stats:
+          title: Temperatures
+          description: The temperatures at which the electron phonon displacements were generated.
+        structures:
           anyOf:
-          - $ref: '#/components/schemas/TypedPotcarStatsDict'
+          - items:
+              $ref: '#/components/schemas/TypedStructureDict'
+            type: array
           - type: 'null'
+          title: Structures
+          description: The displaced structures corresponding to each temperature.
       type: object
-      title: TypedPotcarSummaryStatsDict
+      title: ElectronPhononDisplacedStructures
+      description: Document defining electron phonon displaced structures.
+    Response_DeprecationDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DeprecationDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[DeprecationDoc]
+    CustodianDoc:
+      properties:
+        corrections:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Custodian Corrections
+          description: List of custodian correction data for calculation.
+        job:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Custodian Job Data
+          description: Job data logged by custodian.
+      type: object
+      title: CustodianDoc
+    PotcarSpec:
+      properties:
+        titel:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Titel
+          description: TITEL field from POTCAR header
+        hash:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hash
+          description: md5 hash of POTCAR file
+        summary_stats:
+          anyOf:
+          - $ref: '#/components/schemas/TypedPotcarSummaryStatsDict'
+          - type: 'null'
+          description: summary statistics used to ID POTCARs without hashing
+      type: object
+      title: PotcarSpec
+      description: Document defining a VASP POTCAR specification.
+    TypedSpeciesDict:
+      properties:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation State
+        spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin
+        occu:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
     TypedSiteProperitesDict:
       properties:
         magmom:
@@ -520,24 +985,6 @@ components:
           title: Forces
       type: object
       title: TypedSiteProperitesDict
-    CustodianDoc:
-      properties:
-        corrections:
-          anyOf:
-          - items: {}
-            type: array
-          - type: 'null'
-          title: Custodian Corrections
-          description: List of custodian correction data for calculation.
-        job:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Custodian Job Data
-          description: Job data logged by custodian.
-      type: object
-      title: CustodianDoc
     TaskDoc:
       properties:
         nsites:
@@ -803,58 +1250,162 @@ components:
       type: object
       title: TaskDoc
       description: Flexible wrapper around CoreTaskDoc
-    TypedLatticeDict:
+    Response_TaskDoc_:
       properties:
-        matrix:
-          items:
-            items:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TaskDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[TaskDoc]
+    RunStatistics:
+      properties:
+        average_memory:
+          type: number
+          title: Average Memory
+          description: The average memory used in kb
+          default: 0
+        max_memory:
+          type: number
+          title: Max Memory
+          description: The maximum memory used in kb
+          default: 0
+        elapsed_time:
+          type: number
+          title: Elapsed Time
+          description: The real time elapsed in seconds
+          default: 0
+        system_time:
+          type: number
+          title: System Time
+          description: The system CPU time in seconds
+          default: 0
+        user_time:
+          type: number
+          title: User Time
+          description: The user CPU time spent by VASP in seconds
+          default: 0
+        total_time:
+          type: number
+          title: Total Time
+          description: The total CPU time for this calculation
+          default: 0
+        cores:
+          type: integer
+          title: Cores
+          description: The number of cores used by VASP
+          default: 0
+      type: object
+      title: RunStatistics
+      description: Summary of the run statistics for a VASP calculation.
+    TypedSiteDict:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
               type: number
             type: array
-          type: array
-          title: Matrix
-        pbc:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
           - type: 'null'
-          title: Pbc
-        a:
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
+      type: object
+      title: TypedSiteDict
+    EntryDoc:
+      properties:
+        task_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Id
+          description: 'The (task) ID of this calculation, used as a universal reference across property documents.This comes in the form: mp-******.'
+        entry:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Entry
+          description: Computed structure entry for the calculation associated with the task doc.
+      type: object
+      title: EntryDoc
+      description: Model for task entry data.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    TypedStatisticsDict:
+      properties:
+        MEAN:
           type: number
-          title: A
-        b:
+          title: Mean
+        ABSMEAN:
           type: number
-          title: B
-        c:
+          title: Absmean
+        VAR:
           type: number
-          title: C
-        alpha:
+          title: Var
+        MIN:
           type: number
-          title: Alpha
-        beta:
+          title: Min
+        MAX:
           type: number
-          title: Beta
-        gamma:
-          type: number
-          title: Gamma
-        volume:
-          type: number
-          title: Volume
+          title: Max
       type: object
       required:
-      - matrix
-      - a
-      - b
-      - c
-      - alpha
-      - beta
-      - gamma
-      - volume
-      title: TypedLatticeDict
+      - MEAN
+      - ABSMEAN
+      - VAR
+      - MIN
+      - MAX
+      title: TypedStatisticsDict
     FrequencyDependentDielectric:
       properties:
         real:
@@ -888,145 +1439,6 @@ components:
       type: object
       title: FrequencyDependentDielectric
       description: Frequency-dependent dielectric data.
-    TypedPotcarKeywordsDict:
-      properties:
-        header:
-          items:
-            type: string
-          type: array
-          title: Header
-        data:
-          items:
-            type: string
-          type: array
-          title: Data
-      type: object
-      required:
-      - header
-      - data
-      title: TypedPotcarKeywordsDict
-    TypedPerIonProps:
-      properties:
-        s:
-          type: number
-          title: S
-        p:
-          type: number
-          title: P
-        d:
-          type: number
-          title: D
-        tot:
-          type: number
-          title: Tot
-      type: object
-      required:
-      - s
-      - p
-      - d
-      - tot
-      title: TypedPerIonProps
-    PotcarSpec:
-      properties:
-        titel:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Titel
-          description: TITEL field from POTCAR header
-        hash:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Hash
-          description: md5 hash of POTCAR file
-        summary_stats:
-          anyOf:
-          - $ref: '#/components/schemas/TypedPotcarSummaryStatsDict'
-          - type: 'null'
-          description: summary statistics used to ID POTCARs without hashing
-      type: object
-      title: PotcarSpec
-      description: Document defining a VASP POTCAR specification.
-    Response_TrajectoryDoc_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TrajectoryDoc'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[TrajectoryDoc]
-    OutputDoc:
-      properties:
-        structure:
-          anyOf:
-          - $ref: '#/components/schemas/TypedStructureDict'
-          - type: 'null'
-          title: Output Structure
-          description: Output Structure from the VASP calculation.
-        density:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Density
-          description: Density of in units of g/cc.
-        energy:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Energy
-          description: Total Energy in units of eV.
-        forces:
-          anyOf:
-          - items:
-              items:
-                type: number
-              type: array
-            type: array
-          - type: 'null'
-          title: Forces
-          description: The force on each atom in units of eV/A.
-        stress:
-          anyOf:
-          - items:
-              items:
-                type: number
-              type: array
-            type: array
-          - type: 'null'
-          title: Stress
-          description: The stress on the cell in units of kB.
-        energy_per_atom:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Energy Per Atom
-          description: The final DFT energy per atom for the last calculation
-        bandgap:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Bandgap
-          description: The DFT bandgap for the last calculation
-      type: object
-      title: OutputDoc
     TypedOutcarDict:
       properties:
         '@module':
@@ -1153,185 +1565,23 @@ components:
       - '@module'
       - '@class'
       title: TypedOutcarDict
-    TrajectoryDoc:
+    TypedPotcarKeywordsDict:
       properties:
-        task_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Task Id
-          description: 'The (task) ID of this calculation, used as a universal reference across property documents.This comes in the form: mp-******.'
-        trajectories:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/RelaxTrajectory'
-            type: array
-          - type: 'null'
-          title: Trajectories
-          description: Trajectory data for calculations associated with a task doc.
-      type: object
-      title: TrajectoryDoc
-      description: Model for task trajectory data.
-    BaderAnalysis:
-      properties:
-        min_dist:
+        header:
           items:
-            type: number
+            type: string
           type: array
-          title: Min Dist
-        charge:
+          title: Header
+        data:
           items:
-            type: number
+            type: string
           type: array
-          title: Charge
-        atomic_volume:
-          items:
-            type: number
-          type: array
-          title: Atomic Volume
-        vacuum_charge:
-          type: number
-          title: Vacuum Charge
-        vacuum_volume:
-          type: number
-          title: Vacuum Volume
-        reference_used:
-          type: boolean
-          title: Reference Used
-        bader_version:
-          type: number
-          title: Bader Version
-        charge_transfer:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Charge Transfer
-        magmom:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Magmom
+          title: Data
       type: object
       required:
-      - min_dist
-      - charge
-      - atomic_volume
-      - vacuum_charge
-      - vacuum_volume
-      - reference_used
-      - bader_version
-      title: BaderAnalysis
-      description: 'Output of pymatgen.command_line.bader_caller.bader_analysis_from_objects
-
-
-        We omit the `charge_densities` field, since these are too large
-
-        to justify storing in the document model.
-
-
-        Charge densities can already be stored in TaskDoc.vasp_objects'
-    MSONableTypedLatticeDict:
-      properties:
-        '@module':
-          type: string
-          title: '@Module'
-        '@class':
-          type: string
-          title: '@Class'
-        matrix:
-          items:
-            items:
-              type: number
-            type: array
-          type: array
-          title: Matrix
-        pbc:
-          prefixItems:
-          - type: boolean
-          - type: boolean
-          - type: boolean
-          type: array
-          maxItems: 3
-          minItems: 3
-          title: Pbc
-        a:
-          type: number
-          title: A
-        b:
-          type: number
-          title: B
-        c:
-          type: number
-          title: C
-        alpha:
-          type: number
-          title: Alpha
-        beta:
-          type: number
-          title: Beta
-        gamma:
-          type: number
-          title: Gamma
-        volume:
-          type: number
-          title: Volume
-      type: object
-      required:
-      - '@module'
-      - '@class'
-      - matrix
-      - pbc
-      - a
-      - b
-      - c
-      - alpha
-      - beta
-      - gamma
-      - volume
-      title: MSONableTypedLatticeDict
-    TypedSiteDict:
-      properties:
-        label:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Label
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedSiteProperitesDict'
-          - type: 'null'
-        species:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TypedSpeciesDict'
-            type: array
-          - type: 'null'
-          title: Species
-        abc:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Abc
-        xyz:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Xyz
-      type: object
-      title: TypedSiteDict
+      - header
+      - data
+      title: TypedPotcarKeywordsDict
     CalculationInput:
       properties:
         incar:
@@ -1413,32 +1663,168 @@ components:
       type: object
       title: CalculationInput
       description: "Document defining VASP calculation inputs.\n\nNote that the following fields were formerly top-level fields on InputDoc,\nbut are now properties of `CalculationInput`:\n    pseudo_potentials (Potcar) : summary of the POTCARs used in the calculation\n    xc_override (str) : the exchange-correlation functional used if not\n        the one specified by POTCAR\n    is_lasph (bool) : how the calculation set LASPH (aspherical corrections)\n    magnetic_moments (list of floats) : on-site magnetic moments"
-    TypedSpeciesDict:
+    TrajectoryDoc:
       properties:
-        element:
+        task_id:
           anyOf:
           - type: string
           - type: 'null'
-          title: Element
-        oxidation_state:
+          title: Task Id
+          description: 'The (task) ID of this calculation, used as a universal reference across property documents.This comes in the form: mp-******.'
+        trajectories:
           anyOf:
-          - type: number
+          - items:
+              $ref: '#/components/schemas/RelaxTrajectory'
+            type: array
           - type: 'null'
-          title: Oxidation State
-        spin:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Spin
-        occu:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Occu
+          title: Trajectories
+          description: Trajectory data for calculations associated with a task doc.
       type: object
-      title: TypedSpeciesDict
-    IonicStep:
+      title: TrajectoryDoc
+      description: Model for task trajectory data.
+    Response_TrajectoryDoc_:
       properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TrajectoryDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[TrajectoryDoc]
+    BaderAnalysis:
+      properties:
+        min_dist:
+          items:
+            type: number
+          type: array
+          title: Min Dist
+        charge:
+          items:
+            type: number
+          type: array
+          title: Charge
+        atomic_volume:
+          items:
+            type: number
+          type: array
+          title: Atomic Volume
+        vacuum_charge:
+          type: number
+          title: Vacuum Charge
+        vacuum_volume:
+          type: number
+          title: Vacuum Volume
+        reference_used:
+          type: boolean
+          title: Reference Used
+        bader_version:
+          type: number
+          title: Bader Version
+        charge_transfer:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Charge Transfer
+        magmom:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Magmom
+      type: object
+      required:
+      - min_dist
+      - charge
+      - atomic_volume
+      - vacuum_charge
+      - vacuum_volume
+      - reference_used
+      - bader_version
+      title: BaderAnalysis
+      description: 'Output of pymatgen.command_line.bader_caller.bader_analysis_from_objects
+
+
+        We omit the `charge_densities` field, since these are too large
+
+        to justify storing in the document model.
+
+
+        Charge densities can already be stored in TaskDoc.vasp_objects'
+    ElectronicStep:
+      properties:
+        alphaZ:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Alphaz
+          description: The alpha Z term.
+        ewald:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Ewald
+          description: The ewald energy.
+        hartreedc:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Hartreedc
+          description: Negative Hartree energy.
+        XCdc:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Xcdc
+          description: Negative exchange energy.
+        pawpsdc:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Pawpsdc
+          description: Negative potential energy with exchange-correlation energy.
+        pawaedc:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Pawaedc
+          description: The PAW double counting term.
+        eentropy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Eentropy
+          description: The entropy (T * S).
+        bandstr:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Bandstr
+          description: The band energy (from eigenvalues).
+        atom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Atom
+          description: The atomic energy.
         e_fr_energy:
           anyOf:
           - type: number
@@ -1457,74 +1843,12 @@ components:
           - type: 'null'
           title: E 0 Energy
           description: The internal energy.
-        forces:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Forces
-          description: The forces on each atom.
-        stress:
-          anyOf:
-          - prefixItems:
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Stress
-          description: The stress on the lattice.
-        electronic_steps:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ElectronicStep'
-            type: array
-          - type: 'null'
-          title: Electronic Steps
-          description: The electronic convergence steps.
-        num_electronic_steps:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Num Electronic Steps
-          description: The number of electronic steps needed to reach convergence.
-        structure:
-          anyOf:
-          - $ref: '#/components/schemas/TypedStructureDict'
-          - type: 'null'
-          title: Structure
-          description: The structure at this step.
-      additionalProperties: true
       type: object
-      title: IonicStep
-      description: Document defining the information at each ionic step.
+      title: ElectronicStep
+      description: 'Document defining the information at each electronic step.
+
+
+        Note, not all the information will be available at every step.'
     SymmetryData:
       properties:
         crystal_system:
@@ -1577,31 +1901,6 @@ components:
       type: object
       title: SymmetryData
       description: Defines a symmetry data set for materials documents
-    Response_DeprecationDoc_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/DeprecationDoc'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[DeprecationDoc]
     DeprecationDoc:
       properties:
         task_id:
@@ -1625,819 +1924,6 @@ components:
       type: object
       title: DeprecationDoc
       description: Model for task deprecation data.
-    Meta:
-      properties:
-        api_version:
-          type: string
-          title: Api Version
-          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
-          default: 0.86.4rc5.dev1+g77c2c1315
-        time_stamp:
-          type: string
-          format: date-time
-          title: Time Stamp
-          description: A string containing the date and time at which the query was executed
-        total_doc:
-          anyOf:
-          - type: integer
-            minimum: 0.0
-          - type: 'null'
-          title: Total Doc
-          description: The total number of documents available for this query
-        facet:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Facet
-          description: A dictionary containing the facets available for this query
-      additionalProperties: true
-      type: object
-      title: Meta
-      description: Meta information for the MAPI Response.
-    ElectronPhononDisplacedStructures:
-      properties:
-        temperatures:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Temperatures
-          description: The temperatures at which the electron phonon displacements were generated.
-        structures:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TypedStructureDict'
-            type: array
-          - type: 'null'
-          title: Structures
-          description: The displaced structures corresponding to each temperature.
-      type: object
-      title: ElectronPhononDisplacedStructures
-      description: Document defining electron phonon displaced structures.
-    Response_TaskDoc_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TaskDoc'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[TaskDoc]
-    TypedStatisticsDict:
-      properties:
-        MEAN:
-          type: number
-          title: Mean
-        ABSMEAN:
-          type: number
-          title: Absmean
-        VAR:
-          type: number
-          title: Var
-        MIN:
-          type: number
-          title: Min
-        MAX:
-          type: number
-          title: Max
-      type: object
-      required:
-      - MEAN
-      - ABSMEAN
-      - VAR
-      - MIN
-      - MAX
-      title: TypedStatisticsDict
-    TypedStructureDict:
-      properties:
-        '@module':
-          type: string
-          title: '@Module'
-        '@class':
-          type: string
-          title: '@Class'
-        charge:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Charge
-        lattice:
-          $ref: '#/components/schemas/TypedLatticeDict'
-        sites:
-          items:
-            $ref: '#/components/schemas/TypedSiteDict'
-          type: array
-          title: Sites
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
-          - type: 'null'
-      type: object
-      required:
-      - '@module'
-      - '@class'
-      - lattice
-      - sites
-      title: TypedStructureDict
-    DielectricProperties:
-      properties:
-        born_charges:
-          anyOf:
-          - items:
-              prefixItems:
-              - prefixItems:
-                - type: number
-                - type: number
-                - type: number
-                type: array
-                maxItems: 3
-                minItems: 3
-              - prefixItems:
-                - type: number
-                - type: number
-                - type: number
-                type: array
-                maxItems: 3
-                minItems: 3
-              - prefixItems:
-                - type: number
-                - type: number
-                - type: number
-                type: array
-                maxItems: 3
-                minItems: 3
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Born Charges
-          description: Born effective charges for each site in the structure (units of elementary charge e).
-        dielectric_ionic_tensor:
-          anyOf:
-          - prefixItems:
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Dielectric Ionic Tensor
-          description: Ionic contribution to the dielectric tensor (dimensionless).
-        dielectric_tensor:
-          anyOf:
-          - prefixItems:
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Dielectric Tensor
-          description: Overall dielectric tensor (dimensionless).
-        internal_strain_tensor:
-          anyOf:
-          - items:
-              prefixItems:
-              - prefixItems:
-                - type: number
-                - type: number
-                - type: number
-                - type: number
-                - type: number
-                - type: number
-                type: array
-                maxItems: 6
-                minItems: 6
-              - prefixItems:
-                - type: number
-                - type: number
-                - type: number
-                - type: number
-                - type: number
-                - type: number
-                type: array
-                maxItems: 6
-                minItems: 6
-              - prefixItems:
-                - type: number
-                - type: number
-                - type: number
-                - type: number
-                - type: number
-                - type: number
-                type: array
-                maxItems: 6
-                minItems: 6
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Internal Strain Tensor
-          description: The internal strain tensor (eV/Å).
-        piezo_ionic_tensor:
-          anyOf:
-          - prefixItems:
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Piezo Ionic Tensor
-          description: Ionic contribution to the piezoelectric tensor (C/m^2).
-        piezo_tensor:
-          anyOf:
-          - prefixItems:
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            - prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 6
-              minItems: 6
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Piezo Tensor
-          description: Overall piezoelectric tensor (C/m^2).
-      type: object
-      title: DielectricProperties
-      description: 'Store electronic response properties.
-
-
-        Note the units and tensor ranks:
-
-        - Dielectric tensors are dimensionless (no units apply), and are 3x3
-
-        - Piezoelectric tensors are in C(oulomb)/m^2, and are 3x6
-
-        - Strain tensors, for each atom, are in eV/Å, and are 3x6
-
-        - Born charges, for each atom, are in units of the elementary charge, and are 3x3
-
-
-        For both Born charges and strain, the tensors are listed for each site in the
-
-        structure. Thus one expects a list of 3x3 and 3x6 tensors, respectively.'
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
-      type: object
-      required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
-    Calculation:
-      properties:
-        dir_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Dir Name
-          description: The directory for this VASP calculation
-        vasp_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Vasp Version
-          description: VASP version used to perform the calculation
-        has_vasp_completed:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Has Vasp Completed
-          description: Whether VASP completed the calculation successfully
-        input:
-          anyOf:
-          - $ref: '#/components/schemas/CalculationInput'
-          - type: 'null'
-          description: VASP input settings for the calculation
-        output:
-          anyOf:
-          - $ref: '#/components/schemas/CalculationOutput'
-          - type: 'null'
-          description: The VASP calculation output
-        completed_at:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Completed At
-          description: Timestamp for when the calculation was completed
-        task_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Task Name
-          description: Name of task given by custodian (e.g., relax1, relax2)
-        output_file_paths:
-          anyOf:
-          - additionalProperties:
-              type: string
-            type: object
-          - type: 'null'
-          title: Output File Paths
-          description: Paths of the VASP output files associated with this calculation
-        bader:
-          anyOf:
-          - $ref: '#/components/schemas/BaderAnalysis'
-          - type: 'null'
-          description: Output from bader charge analysis
-        ddec6:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Ddec6
-          description: Output from DDEC6 charge analysis
-        run_type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Run Type
-          description: Calculation run type (e.g., HF, HSE06, PBE)
-        task_type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Task Type
-          description: Calculation task type (e.g., Structure Optimization).
-        calc_type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Calc Type
-          description: Return calculation type (run type + task_type).
-      type: object
-      title: Calculation
-      description: Full VASP calculation inputs and outputs.
-    RelaxTrajectory:
-      properties:
-        elements:
-          items:
-            type: integer
-          type: array
-          title: Elements
-          description: The proton number Z of the elements in the sites
-        cart_coords:
-          items:
-            anyOf:
-            - items:
-                prefixItems:
-                - type: number
-                - type: number
-                - type: number
-                type: array
-                maxItems: 3
-                minItems: 3
-              type: array
-            - type: 'null'
-          type: array
-          title: Cart Coords
-          description: The Cartesian coordinates (Å) of the sites at each ionic step
-        num_ionic_steps:
-          type: integer
-          title: Num Ionic Steps
-          description: The number of ionic steps.
-        lattice:
-          anyOf:
-          - items:
-              prefixItems:
-              - prefixItems:
-                - type: number
-                - type: number
-                - type: number
-                type: array
-                maxItems: 3
-                minItems: 3
-              - prefixItems:
-                - type: number
-                - type: number
-                - type: number
-                type: array
-                maxItems: 3
-                minItems: 3
-              - prefixItems:
-                - type: number
-                - type: number
-                - type: number
-                type: array
-                maxItems: 3
-                minItems: 3
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Lattice
-          description: If a list containing only one 3x3 matrix, it is assumed that the lattice was held constant through the simulation. If a list of (multiple) 3x3 matrices, this should be the lattice at each ionic step in the calculation. If None, a non-periodic system is assumed.
-        energy:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Energy
-          description: The total energy at each ionic step.
-        forces:
-          anyOf:
-          - items:
-              items:
-                prefixItems:
-                - type: number
-                - type: number
-                - type: number
-                type: array
-                maxItems: 3
-                minItems: 3
-              type: array
-            type: array
-          - type: 'null'
-          title: Forces
-          description: The interatomic forces.
-        stress:
-          anyOf:
-          - items:
-              prefixItems:
-              - prefixItems:
-                - type: number
-                - type: number
-                - type: number
-                type: array
-                maxItems: 3
-                minItems: 3
-              - prefixItems:
-                - type: number
-                - type: number
-                - type: number
-                type: array
-                maxItems: 3
-                minItems: 3
-              - prefixItems:
-                - type: number
-                - type: number
-                - type: number
-                type: array
-                maxItems: 3
-                minItems: 3
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Stress
-          description: The 3x3 stress tensor.
-        electronic_steps:
-          anyOf:
-          - items:
-              items:
-                $ref: '#/components/schemas/ElectronicStep'
-              type: array
-            type: array
-          - type: 'null'
-          title: Electronic Steps
-          description: The electronic steps within a given ionic step.
-        num_electronic_steps:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Num Electronic Steps
-          description: The number of electronic steps within each ionic step.
-        e_wo_entrp:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: E Wo Entrp
-          description: The total energy in eV without electronic pseudoentropy from smearing of the Fermi surface.
-        e_fr_energy:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: E Fr Energy
-          description: The total electronic free energy in eV.
-        identifier:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Identifier
-          description: Identifier of this trajectory, e.g., task ID.
-        task_type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Task Type
-          description: The TaskType of the calculation used to generate this trajectory.
-        run_type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Run Type
-          description: The RunType of the calculation used to generate this trajectory.
-      type: object
-      required:
-      - elements
-      - cart_coords
-      - num_ionic_steps
-      title: RelaxTrajectory
-      description: 'Low memory schema for relaxation trajectories that can interface with parquet, pymatgen, and ASE.
-
-
-        This schema is intended primarily for VASP relaxation trajectories, but could be adapted to
-
-        generic electronic structure trajectories.
-
-
-        Note that for VASP calculations, energies are in eV, forces in eV/Å, and stress tensors in kilobar.'
-    EntryDoc:
-      properties:
-        task_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Task Id
-          description: 'The (task) ID of this calculation, used as a universal reference across property documents.This comes in the form: mp-******.'
-        entry:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Entry
-          description: Computed structure entry for the calculation associated with the task doc.
-      type: object
-      title: EntryDoc
-      description: Model for task entry data.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    Response_EntryDoc_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/EntryDoc'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[EntryDoc]
-    AnalysisDoc:
-      properties:
-        delta_volume:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Volume Change
-          description: Volume change for the calculation.
-        delta_volume_percent:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Volume Change Percent
-          description: Percent volume change for the calculation.
-        max_force:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Max Force
-          description: Maximum force on any atom at the end of the calculation.
-        warnings:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Calculation Warnings
-          description: Warnings issued after analysis.
-        errors:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Calculation Errors
-          description: Errors issued after analysis.
-      type: object
-      title: AnalysisDoc
-    RunStatistics:
-      properties:
-        average_memory:
-          type: number
-          title: Average Memory
-          description: The average memory used in kb
-          default: 0
-        max_memory:
-          type: number
-          title: Max Memory
-          description: The maximum memory used in kb
-          default: 0
-        elapsed_time:
-          type: number
-          title: Elapsed Time
-          description: The real time elapsed in seconds
-          default: 0
-        system_time:
-          type: number
-          title: System Time
-          description: The system CPU time in seconds
-          default: 0
-        user_time:
-          type: number
-          title: User Time
-          description: The user CPU time spent by VASP in seconds
-          default: 0
-        total_time:
-          type: number
-          title: Total Time
-          description: The total CPU time for this calculation
-          default: 0
-        cores:
-          type: integer
-          title: Cores
-          description: The number of cores used by VASP
-          default: 0
-      type: object
-      title: RunStatistics
-      description: Summary of the run statistics for a VASP calculation.
-    TypedPotcarStatsDict:
-      properties:
-        header:
-          $ref: '#/components/schemas/TypedStatisticsDict'
-        data:
-          $ref: '#/components/schemas/TypedStatisticsDict'
-      type: object
-      required:
-      - header
-      - data
-      title: TypedPotcarStatsDict
     CalculationOutput:
       properties:
         bandgap:
@@ -2688,50 +2174,564 @@ components:
       type: object
       title: CalculationOutput
       description: Wrapper for CoreCalculationOutput for parsing and storing larger fields.
-    TypedAggregateProperitesDict:
+    Error:
       properties:
-        magmom:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    OutputDoc:
+      properties:
+        structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Output Structure
+          description: Output Structure from the VASP calculation.
+        density:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Density
+          description: Density of in units of g/cc.
+        energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Energy
+          description: Total Energy in units of eV.
+        forces:
           anyOf:
           - items:
-              type: number
+              items:
+                type: number
+              type: array
             type: array
           - type: 'null'
-          title: Magmom
+          title: Forces
+          description: The force on each atom in units of eV/A.
+        stress:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Stress
+          description: The stress on the cell in units of kB.
+        energy_per_atom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Energy Per Atom
+          description: The final DFT energy per atom for the last calculation
+        bandgap:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Bandgap
+          description: The DFT bandgap for the last calculation
+      type: object
+      title: OutputDoc
+    AnalysisDoc:
+      properties:
+        delta_volume:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Volume Change
+          description: Volume change for the calculation.
+        delta_volume_percent:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Volume Change Percent
+          description: Percent volume change for the calculation.
+        max_force:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max Force
+          description: Maximum force on any atom at the end of the calculation.
+        warnings:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Calculation Warnings
+          description: Warnings issued after analysis.
+        errors:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Calculation Errors
+          description: Errors issued after analysis.
+      type: object
+      title: AnalysisDoc
+    MSONableTypedLatticeDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          prefixItems:
+          - type: boolean
+          - type: boolean
+          - type: boolean
+          type: array
+          maxItems: 3
+          minItems: 3
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      - matrix
+      - pbc
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: MSONableTypedLatticeDict
+    TypedLatticeDict:
+      properties:
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - matrix
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: TypedLatticeDict
+    DielectricProperties:
+      properties:
+        born_charges:
+          anyOf:
+          - items:
+              prefixItems:
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 3
+                minItems: 3
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Born Charges
+          description: Born effective charges for each site in the structure (units of elementary charge e).
+        dielectric_ionic_tensor:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Dielectric Ionic Tensor
+          description: Ionic contribution to the dielectric tensor (dimensionless).
+        dielectric_tensor:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Dielectric Tensor
+          description: Overall dielectric tensor (dimensionless).
+        internal_strain_tensor:
+          anyOf:
+          - items:
+              prefixItems:
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 6
+                minItems: 6
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 6
+                minItems: 6
+              - prefixItems:
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                - type: number
+                type: array
+                maxItems: 6
+                minItems: 6
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Internal Strain Tensor
+          description: The internal strain tensor (eV/Å).
+        piezo_ionic_tensor:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Piezo Ionic Tensor
+          description: Ionic contribution to the piezoelectric tensor (C/m^2).
+        piezo_tensor:
+          anyOf:
+          - prefixItems:
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            - prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 6
+              minItems: 6
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Piezo Tensor
+          description: Overall piezoelectric tensor (C/m^2).
+      type: object
+      title: DielectricProperties
+      description: 'Store electronic response properties.
+
+
+        Note the units and tensor ranks:
+
+        - Dielectric tensors are dimensionless (no units apply), and are 3x3
+
+        - Piezoelectric tensors are in C(oulomb)/m^2, and are 3x6
+
+        - Strain tensors, for each atom, are in eV/Å, and are 3x6
+
+        - Born charges, for each atom, are in units of the elementary charge, and are 3x3
+
+
+        For both Born charges and strain, the tensors are listed for each site in the
+
+        structure. Thus one expects a list of 3x3 and 3x6 tensors, respectively.'
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    TypedPerIonProps:
+      properties:
+        s:
+          type: number
+          title: S
+        p:
+          type: number
+          title: P
+        d:
+          type: number
+          title: D
+        tot:
+          type: number
+          title: Tot
+      type: object
+      required:
+      - s
+      - p
+      - d
+      - tot
+      title: TypedPerIonProps
+    Response_EntryDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/EntryDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[EntryDoc]
+    TypedStructureDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
         charge:
           anyOf:
-          - items:
-              type: number
-            type: array
+          - type: number
           - type: 'null'
           title: Charge
-        velocities:
+        lattice:
+          $ref: '#/components/schemas/TypedLatticeDict'
+        sites:
+          items:
+            $ref: '#/components/schemas/TypedSiteDict'
+          type: array
+          title: Sites
+        properties:
           anyOf:
-          - items:
-              prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
+          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
           - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: boolean
-              - type: boolean
-              - type: boolean
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Selective Dynamics
       type: object
-      title: TypedAggregateProperitesDict
+      required:
+      - '@module'
+      - '@class'
+      - lattice
+      - sites
+      title: TypedStructureDict
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

@@ -867,106 +867,101 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    TypedSiteProperitesDict:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TypedAggregateProperitesDict:
       properties:
         magmom:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - prefixItems:
-            - type: number
-            - type: number
-            - type: number
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Selective Dynamics
-        coordination_no:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Coordination No
-        forces:
           anyOf:
           - items:
               type: number
             type: array
           - type: 'null'
-          title: Forces
-      type: object
-      title: TypedSiteProperitesDict
-    TypedLatticeDict:
-      properties:
-        matrix:
-          items:
-            items:
+          title: Magmom
+        charge:
+          anyOf:
+          - items:
               type: number
             type: array
-          type: array
-          title: Matrix
-        pbc:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
           - type: 'null'
-          title: Pbc
-        a:
-          type: number
-          title: A
-        b:
-          type: number
-          title: B
-        c:
-          type: number
-          title: C
-        alpha:
-          type: number
-          title: Alpha
-        beta:
-          type: number
-          title: Beta
-        gamma:
-          type: number
-          title: Gamma
-        volume:
-          type: number
-          title: Volume
+          title: Charge
+        velocities:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Selective Dynamics
       type: object
-      required:
-      - matrix
-      - a
-      - b
-      - c
-      - alpha
-      - beta
-      - gamma
-      - volume
-      title: TypedLatticeDict
+      title: TypedAggregateProperitesDict
+    Response_ConversionElectrodeDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ConversionElectrodeDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[ConversionElectrodeDoc]
     InsertionElectrodeDoc:
       properties:
         builder_meta:
@@ -1219,6 +1214,103 @@ components:
       type: object
       title: InsertionElectrodeDoc
       description: Insertion electrode
+    Response_InsertionElectrodeDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/InsertionElectrodeDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[InsertionElectrodeDoc]
+    TypedSpeciesDict:
+      properties:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation State
+        spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin
+        occu:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
+    TypedSiteProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Selective Dynamics
+        coordination_no:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Coordination No
+        forces:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Forces
+      type: object
+      title: TypedSiteProperitesDict
     TypedSiteDict:
       properties:
         label:
@@ -1258,30 +1350,108 @@ components:
           title: Xyz
       type: object
       title: TypedSiteDict
-    TypedSpeciesDict:
+    HTTPValidationError:
       properties:
-        element:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Element
-        oxidation_state:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Oxidation State
-        spin:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Spin
-        occu:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Occu
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      title: TypedSpeciesDict
+      title: HTTPValidationError
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    TypedBalancedReactionDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        reactants:
+          additionalProperties:
+            type: number
+          type: object
+          title: Reactants
+        products:
+          additionalProperties:
+            type: number
+          type: object
+          title: Products
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      - reactants
+      - products
+      title: TypedBalancedReactionDict
+    TypedLatticeDict:
+      properties:
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - matrix
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: TypedLatticeDict
     Meta:
       properties:
         api_version:
@@ -1312,37 +1482,86 @@ components:
       type: object
       title: Meta
       description: Meta information for the MAPI Response.
-    TypedStructureDict:
+    EntriesCompositionSummary:
       properties:
-        '@module':
-          type: string
-          title: '@Module'
-        '@class':
-          type: string
-          title: '@Class'
-        charge:
+        all_formulas:
           anyOf:
-          - type: number
+          - items:
+              type: string
+            type: array
           - type: 'null'
-          title: Charge
-        lattice:
-          $ref: '#/components/schemas/TypedLatticeDict'
-        sites:
-          items:
-            $ref: '#/components/schemas/TypedSiteDict'
-          type: array
-          title: Sites
-        properties:
+          title: All Formulas
+          description: Reduced formulas for material entries across all voltage pairs.
+        all_chemsys:
           anyOf:
-          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
+          - items:
+              type: string
+            type: array
           - type: 'null'
+          title: All Chemsys
+          description: Chemical systems for material entries across all voltage pairs.
+        all_formula_anonymous:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: All Formula Anonymous
+          description: Anonymous formulas for material entries across all voltage pairs.
+        all_elements:
+          anyOf:
+          - items:
+              anyOf:
+              - type: string
+              - properties:
+                  '@class':
+                    type: string
+                    enum:
+                    - Species
+                  '@module':
+                    type: string
+                    enum:
+                    - pymatgen.core.periodic_table
+                  '@version':
+                    type: string
+                type: object
+                required:
+                - '@class'
+                - '@module'
+              - properties:
+                  '@class':
+                    type: string
+                    enum:
+                    - DummySpecies
+                  '@module':
+                    type: string
+                    enum:
+                    - pymatgen.core.periodic_table
+                  '@version':
+                    type: string
+                type: object
+                required:
+                - '@class'
+                - '@module'
+            type: array
+          - type: 'null'
+          title: All Elements
+          description: Elements in material entries across all voltage pairs.
+        all_composition_reduced:
+          anyOf:
+          - additionalProperties:
+              items:
+                type: number
+              type: array
+            type: object
+          - type: 'null'
+          title: All Composition Reduced
+          description: Composition reduced data for entries across all voltage pairs.
       type: object
-      required:
-      - '@module'
-      - '@class'
-      - lattice
-      - sites
-      title: TypedStructureDict
+      title: EntriesCompositionSummary
+      description: 'Composition summary data for all material entries associated with this electrode.
+
+        Included to enable better searching via the API.'
     EmmetMeta:
       properties:
         emmet_version:
@@ -1505,187 +1724,77 @@ components:
       type: object
       title: InsertionVoltagePairDoc
       description: Features specific to insertion electrode
-    Response_InsertionElectrodeDoc_:
+    ConversionVoltagePairDoc:
       properties:
-        data:
+        formula_charge:
           anyOf:
-          - items:
-              $ref: '#/components/schemas/InsertionElectrodeDoc'
-            type: array
+          - type: string
           - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
+          title: Formula Charge
+          description: The chemical formula of the charged material.
+        formula_discharge:
           anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
+          - type: string
           - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
+          title: Formula Discharge
+          description: The chemical formula of the discharged material.
+        max_delta_volume:
           anyOf:
-          - $ref: '#/components/schemas/Meta'
+          - type: number
           - type: 'null'
-          description: Extra information for the query
+          title: Max Delta Volume
+          description: 'Volume changes in % for a particular voltage step using: max(charge, discharge) / min(charge, discharge) - 1.'
+        average_voltage:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Average Voltage
+          description: The average voltage in V for a particular voltage step.
+        capacity_grav:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Capacity Grav
+          description: Gravimetric capacity in mAh/g.
+        capacity_vol:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Capacity Vol
+          description: Volumetric capacity in mAh/cc.
+        energy_grav:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Energy Grav
+          description: Gravimetric energy (Specific energy) in Wh/kg.
+        energy_vol:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Energy Vol
+          description: Volumetric energy (Energy Density) in Wh/l.
+        fracA_charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Fraca Charge
+          description: Atomic fraction of the working ion in the charged state.
+        fracA_discharge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Fraca Discharge
+          description: Atomic fraction of the working ion in the discharged state.
+        reaction:
+          anyOf:
+          - $ref: '#/components/schemas/TypedBalancedReactionDict'
+          - type: 'null'
+          title: Reaction
+          description: The reaction that characterizes that particular voltage step.
       type: object
-      title: Response[InsertionElectrodeDoc]
-    EntriesCompositionSummary:
-      properties:
-        all_formulas:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: All Formulas
-          description: Reduced formulas for material entries across all voltage pairs.
-        all_chemsys:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: All Chemsys
-          description: Chemical systems for material entries across all voltage pairs.
-        all_formula_anonymous:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: All Formula Anonymous
-          description: Anonymous formulas for material entries across all voltage pairs.
-        all_elements:
-          anyOf:
-          - items:
-              anyOf:
-              - type: string
-              - properties:
-                  '@class':
-                    type: string
-                    enum:
-                    - Species
-                  '@module':
-                    type: string
-                    enum:
-                    - pymatgen.core.periodic_table
-                  '@version':
-                    type: string
-                type: object
-                required:
-                - '@class'
-                - '@module'
-              - properties:
-                  '@class':
-                    type: string
-                    enum:
-                    - DummySpecies
-                  '@module':
-                    type: string
-                    enum:
-                    - pymatgen.core.periodic_table
-                  '@version':
-                    type: string
-                type: object
-                required:
-                - '@class'
-                - '@module'
-            type: array
-          - type: 'null'
-          title: All Elements
-          description: Elements in material entries across all voltage pairs.
-        all_composition_reduced:
-          anyOf:
-          - additionalProperties:
-              items:
-                type: number
-              type: array
-            type: object
-          - type: 'null'
-          title: All Composition Reduced
-          description: Composition reduced data for entries across all voltage pairs.
-      type: object
-      title: EntriesCompositionSummary
-      description: 'Composition summary data for all material entries associated with this electrode.
-
-        Included to enable better searching via the API.'
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
-      type: object
-      required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
-    Response_ConversionElectrodeDoc_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ConversionElectrodeDoc'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[ConversionElectrodeDoc]
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      title: ConversionVoltagePairDoc
+      description: Features specific to conversion electrode
     ConversionElectrodeDoc:
       properties:
         builder_meta:
@@ -1877,78 +1986,7 @@ components:
       type: object
       title: ConversionElectrodeDoc
       description: Conversion electrode
-    ConversionVoltagePairDoc:
-      properties:
-        formula_charge:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Formula Charge
-          description: The chemical formula of the charged material.
-        formula_discharge:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Formula Discharge
-          description: The chemical formula of the discharged material.
-        max_delta_volume:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Max Delta Volume
-          description: 'Volume changes in % for a particular voltage step using: max(charge, discharge) / min(charge, discharge) - 1.'
-        average_voltage:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Average Voltage
-          description: The average voltage in V for a particular voltage step.
-        capacity_grav:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Capacity Grav
-          description: Gravimetric capacity in mAh/g.
-        capacity_vol:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Capacity Vol
-          description: Volumetric capacity in mAh/cc.
-        energy_grav:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Energy Grav
-          description: Gravimetric energy (Specific energy) in Wh/kg.
-        energy_vol:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Energy Vol
-          description: Volumetric energy (Energy Density) in Wh/l.
-        fracA_charge:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Fraca Charge
-          description: Atomic fraction of the working ion in the charged state.
-        fracA_discharge:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Fraca Discharge
-          description: Atomic fraction of the working ion in the discharged state.
-        reaction:
-          anyOf:
-          - $ref: '#/components/schemas/TypedBalancedReactionDict'
-          - type: 'null'
-          title: Reaction
-          description: The reaction that characterizes that particular voltage step.
-      type: object
-      title: ConversionVoltagePairDoc
-      description: Features specific to conversion electrode
-    TypedBalancedReactionDict:
+    TypedStructureDict:
       properties:
         '@module':
           type: string
@@ -1956,67 +1994,29 @@ components:
         '@class':
           type: string
           title: '@Class'
-        reactants:
-          additionalProperties:
-            type: number
-          type: object
-          title: Reactants
-        products:
-          additionalProperties:
-            type: number
-          type: object
-          title: Products
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        lattice:
+          $ref: '#/components/schemas/TypedLatticeDict'
+        sites:
+          items:
+            $ref: '#/components/schemas/TypedSiteDict'
+          type: array
+          title: Sites
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
+          - type: 'null'
       type: object
       required:
       - '@module'
       - '@class'
-      - reactants
-      - products
-      title: TypedBalancedReactionDict
-    TypedAggregateProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: boolean
-              - type: boolean
-              - type: boolean
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Selective Dynamics
-      type: object
-      title: TypedAggregateProperitesDict
+      - lattice
+      - sites
+      title: TypedStructureDict
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

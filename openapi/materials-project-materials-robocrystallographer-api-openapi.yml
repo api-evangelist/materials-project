@@ -193,31 +193,48 @@ components:
       type: object
       title: SymmetryData
       description: Defines a symmetry data set for materials documents
-    Response_RobocrystallogapherDoc_:
+    Error:
       properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/RobocrystallogapherDoc'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
       type: object
-      title: Response[RobocrystallogapherDoc]
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     Meta:
       properties:
         api_version:
@@ -248,32 +265,128 @@ components:
       type: object
       title: Meta
       description: Meta information for the MAPI Response.
-    ValidationError:
+    EmmetMeta:
       properties:
-        loc:
+        emmet_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Emmet Version
+          description: The version of emmet this document was built with.
+          default: 0.86.4rc4
+        pymatgen_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pymatgen Version
+          description: The version of pymatgen this document was built with.
+          default: 2026.4.16
+        run_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Run Id
+          description: The run id associated with this data build.
+        batch_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Batch Id
+          description: Identifier corresponding to the origin of this document's blessed task.
+        database_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Database Version
+          description: The database version for the built data.
+        build_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Build Date
+          description: The build date for this document.
+        license:
+          anyOf:
+          - type: string
+            enum:
+            - BY-C
+            - BY-NC
+          - type: 'null'
+          title: License
+          description: License for the data entry.
+      type: object
+      title: EmmetMeta
+      description: Default emmet metadata.
+    HTTPValidationError:
+      properties:
+        detail:
           items:
-            anyOf:
-            - type: string
-            - type: integer
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    CondensedStructureData:
+      properties:
+        mineral:
+          $ref: '#/components/schemas/MineralData'
+          description: Matched mineral data for the material.
+        dimensionality:
+          type: integer
+          title: Dimensionality
+          description: Dimensionality of the material.
+        formula:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Formula
+          description: Formula for the material.
+        spg_symbol:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Spg Symbol
+          description: Space group symbol of the material.
+        crystal_system:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Crystal System
+          description: Crystal system of the material.
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - mineral
+      - dimensionality
+      title: CondensedStructureData
+      description: 'Model for data in the condensed structure robocrystallographer field
+
+        More details: https://hackingmaterials.lbl.gov/robocrystallographer/format.html'
+    Response_RobocrystallogapherDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/RobocrystallogapherDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[RobocrystallogapherDoc]
     MineralData:
       properties:
         type:
@@ -291,6 +404,37 @@ components:
       type: object
       title: MineralData
       description: Model for mineral data in the condensed structure robocrystallographer field
+    PropertyOrigin:
+      properties:
+        name:
+          type: string
+          title: Name
+          description: The property name
+        task_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          title: Task Id
+          description: The calculation ID this property comes from.
+        last_updated:
+          type: string
+          format: date-time
+          title: Last Updated
+          description: The timestamp when this calculation was last updated
+      type: object
+      required:
+      - name
+      - task_id
+      title: PropertyOrigin
+      description: Provenance document for the origin of properties in a material document
     RobocrystallogapherDoc:
       properties:
         builder_meta:
@@ -445,150 +589,6 @@ components:
       - condensed_structure
       title: RobocrystallogapherDoc
       description: "This document contains the descriptive data from robocrystallographer\nfor a material:\n    Structural features, mineral prototypes, dimensionality, ..."
-    PropertyOrigin:
-      properties:
-        name:
-          type: string
-          title: Name
-          description: The property name
-        task_id:
-          anyOf:
-          - type: string
-            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
-            examples:
-            - mp-3534
-            - '3453'
-            - mp-834-Ag
-          - type: string
-            examples:
-            - mp-ft
-            - task:pqrs
-          title: Task Id
-          description: The calculation ID this property comes from.
-        last_updated:
-          type: string
-          format: date-time
-          title: Last Updated
-          description: The timestamp when this calculation was last updated
-      type: object
-      required:
-      - name
-      - task_id
-      title: PropertyOrigin
-      description: Provenance document for the origin of properties in a material document
-    CondensedStructureData:
-      properties:
-        mineral:
-          $ref: '#/components/schemas/MineralData'
-          description: Matched mineral data for the material.
-        dimensionality:
-          type: integer
-          title: Dimensionality
-          description: Dimensionality of the material.
-        formula:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Formula
-          description: Formula for the material.
-        spg_symbol:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Spg Symbol
-          description: Space group symbol of the material.
-        crystal_system:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Crystal System
-          description: Crystal system of the material.
-      type: object
-      required:
-      - mineral
-      - dimensionality
-      title: CondensedStructureData
-      description: 'Model for data in the condensed structure robocrystallographer field
-
-        More details: https://hackingmaterials.lbl.gov/robocrystallographer/format.html'
-    EmmetMeta:
-      properties:
-        emmet_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Emmet Version
-          description: The version of emmet this document was built with.
-          default: 0.86.4rc4
-        pymatgen_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Pymatgen Version
-          description: The version of pymatgen this document was built with.
-          default: 2026.4.16
-        run_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Run Id
-          description: The run id associated with this data build.
-        batch_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Batch Id
-          description: Identifier corresponding to the origin of this document's blessed task.
-        database_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Database Version
-          description: The database version for the built data.
-        build_date:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Build Date
-          description: The build date for this document.
-        license:
-          anyOf:
-          - type: string
-            enum:
-            - BY-C
-            - BY-NC
-          - type: 'null'
-          title: License
-          description: License for the data entry.
-      type: object
-      title: EmmetMeta
-      description: Default emmet metadata.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
-      type: object
-      required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

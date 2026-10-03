@@ -1246,6 +1246,160 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TypedAggregateProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Selective Dynamics
+      type: object
+      title: TypedAggregateProperitesDict
+    DosSummaryData:
+      properties:
+        task_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          title: Task Id
+          description: The source calculation (task) ID for the electronic structure data. This has the same form as a Materials Project ID.
+        band_gap:
+          type: number
+          title: Band Gap
+          description: Band gap energy in eV.
+        cbm:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Cbm
+          description: Conduction band minimum data.
+        vbm:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Vbm
+          description: Valence band maximum data.
+        efermi:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Efermi
+          description: Fermi energy in eV.
+        spin_polarization:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin Polarization
+          description: Spin polarization at the fermi level.
+      type: object
+      required:
+      - task_id
+      - band_gap
+      title: DosSummaryData
+      description: Schematize high-level DOS data for the API.
+    TypedSpeciesDict:
+      properties:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation State
+        spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin
+        occu:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
+    Ordering:
+      type: string
+      enum:
+      - FM
+      - AFM
+      - FiM
+      - NM
+      - Unknown
+      title: Ordering
+      description: Enumeration defining possible magnetic orderings.
     TypedSiteProperitesDict:
       properties:
         magmom:
@@ -1294,81 +1448,210 @@ components:
           title: Forces
       type: object
       title: TypedSiteProperitesDict
-    XASSearchData:
+    BandStructureSummaryData:
       properties:
-        edge:
+        task_id:
           anyOf:
           - type: string
-          - type: 'null'
-          title: Absorption Edge
-          description: The interaction edge for XAS
-        absorbing_element:
-          anyOf:
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
           - type: string
-          - type: 'null'
-          title: Absorbing Element
-          description: Absorbing element.
-        spectrum_type:
+            examples:
+            - mp-ft
+            - task:pqrs
+          title: Task Id
+          description: The source calculation (task) ID for the electronic structure data. This has the same form as a Materials Project ID.
+        band_gap:
+          type: number
+          title: Band Gap
+          description: Band gap energy in eV.
+        cbm:
           anyOf:
-          - type: string
+          - $ref: '#/components/schemas/TypedBandDict'
           - type: 'null'
-          title: Spectrum Type
-          description: Type of XAS spectrum.
-      type: object
-      title: XASSearchData
-      description: Fields in XAS sub docs in summary
-    TypedLatticeDict:
-      properties:
-        matrix:
-          items:
-            items:
-              type: number
-            type: array
-          type: array
-          title: Matrix
-        pbc:
+          description: Conduction band minimum data.
+        vbm:
           anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
+          - $ref: '#/components/schemas/TypedBandDict'
           - type: 'null'
-          title: Pbc
-        a:
+          description: Valence band maximum data.
+        efermi:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Efermi
+          description: Fermi energy in eV.
+        is_gap_direct:
+          type: boolean
+          title: Is Gap Direct
+          description: Whether the band gap is direct.
+        is_metal:
+          type: boolean
+          title: Is Metal
+          description: Whether the material is a metal.
+        magnetic_ordering:
+          type: string
+          description: Magnetic ordering of the calculation.
+        equivalent_labels:
+          additionalProperties:
+            additionalProperties:
+              additionalProperties:
+                type: string
+              type: object
+            type: object
+          type: object
+          title: Equivalent Labels
+          description: Equivalent k-point labels in other k-path conventions.
+        nbands:
           type: number
-          title: A
-        b:
+          title: Nbands
+          description: Number of bands.
+        direct_gap:
           type: number
-          title: B
-        c:
-          type: number
-          title: C
-        alpha:
-          type: number
-          title: Alpha
-        beta:
-          type: number
-          title: Beta
-        gamma:
-          type: number
-          title: Gamma
-        volume:
-          type: number
-          title: Volume
+          title: Direct Gap
+          description: Direct gap energy in eV.
       type: object
       required:
-      - matrix
-      - a
-      - b
-      - c
-      - alpha
-      - beta
-      - gamma
-      - volume
-      title: TypedLatticeDict
+      - task_id
+      - band_gap
+      - is_gap_direct
+      - is_metal
+      - magnetic_ordering
+      - equivalent_labels
+      - nbands
+      - direct_gap
+      title: BandStructureSummaryData
+      description: Schematize high-level band structure data for the API.
+    TypedSiteDict:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
+      type: object
+      title: TypedSiteDict
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    BandstructureData:
+      properties:
+        setyawan_curtarolo:
+          anyOf:
+          - $ref: '#/components/schemas/BandStructureSummaryData'
+          - type: 'null'
+          description: Band structure summary data using the Setyawan-Curtarolo path convention.
+        hinuma:
+          anyOf:
+          - $ref: '#/components/schemas/BandStructureSummaryData'
+          - type: 'null'
+          description: Band structure summary data using the Hinuma et al. path convention.
+        latimer_munro:
+          anyOf:
+          - $ref: '#/components/schemas/BandStructureSummaryData'
+          - type: 'null'
+          description: Band structure summary data using the Latimer-Munro path convention.
+      type: object
+      title: BandstructureData
+    GBSearchData:
+      properties:
+        sigma:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Sigma
+          description: Sigma value of the boundary.
+        type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Type
+          description: Grain boundary type.
+        gb_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Gb Energy
+          description: Grain boundary energy in J/m^2.
+        rotation_angle:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Rotation Angle
+          description: Rotation angle in degrees.
+      type: object
+      title: GBSearchData
+      description: Fields in grain boundary sub docs in summary
+    PropertyOrigin:
+      properties:
+        name:
+          type: string
+          title: Name
+          description: The property name
+        task_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          title: Task Id
+          description: The calculation ID this property comes from.
+        last_updated:
+          type: string
+          format: date-time
+          title: Last Updated
+          description: The timestamp when this calculation was last updated
+      type: object
+      required:
+      - name
+      - task_id
+      title: PropertyOrigin
+      description: Provenance document for the origin of properties in a material document
     TypedKpointDict:
       properties:
         '@module':
@@ -1401,84 +1684,81 @@ components:
       - ccoords
       - label
       title: TypedKpointDict
-    DosData:
+    XASSearchData:
       properties:
-        total:
-          anyOf:
-          - additionalProperties:
-              $ref: '#/components/schemas/DosSummaryData'
-            type: object
-          - type: 'null'
-          title: Total
-          description: Total DOS summary data.
-        elemental:
-          anyOf:
-          - additionalProperties:
-              additionalProperties:
-                additionalProperties:
-                  $ref: '#/components/schemas/DosSummaryData'
-                type: object
-              propertyNames:
-                enum:
-                - s
-                - p
-                - d
-                - f
-                - total
-              type: object
-            type: object
-          - type: 'null'
-          title: Elemental
-          description: Band structure summary data using the Hinuma et al. path convention.
-        orbital:
-          anyOf:
-          - additionalProperties:
-              additionalProperties:
-                $ref: '#/components/schemas/DosSummaryData'
-              type: object
-            propertyNames:
-              enum:
-              - s
-              - p
-              - d
-              - f
-              - total
-            type: object
-          - type: 'null'
-          title: Orbital
-          description: Band structure summary data using the Latimer-Munro path convention.
-        magnetic_ordering:
+        edge:
           anyOf:
           - type: string
           - type: 'null'
-          description: Magnetic ordering of the calculation.
+          title: Absorption Edge
+          description: The interaction edge for XAS
+        absorbing_element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Absorbing Element
+          description: Absorbing element.
+        spectrum_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Spectrum Type
+          description: Type of XAS spectrum.
       type: object
-      title: DosData
-    Response_SummaryDoc_:
+      title: XASSearchData
+      description: Fields in XAS sub docs in summary
+    SymmetryData:
       properties:
-        data:
+        crystal_system:
           anyOf:
-          - items:
-              $ref: '#/components/schemas/SummaryDoc'
-            type: array
+          - type: string
           - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
+          title: Crystal System
+          description: The crystal system for this lattice.
+        symbol:
           anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
+          - type: string
           - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
+          title: Space Group Symbol
+          description: The spacegroup symbol for the lattice.
+        hall:
           anyOf:
-          - $ref: '#/components/schemas/Meta'
+          - type: string
           - type: 'null'
-          description: Extra information for the query
+          title: Hall Symbol
+          description: Hall symbol for the lattice
+        number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Space Group Number
+          description: The spacegroup number for the lattice.
+        point_group:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Point Group Symbol
+          description: The point group for the lattice.
+        symprec:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Symmetry Finding Precision
+          description: The precision provided to spglib to determine the symmetry of this structure.
+        angle_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Angle Tolerance
+          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: spglib version
       type: object
-      title: Response[SummaryDoc]
+      title: SymmetryData
+      description: Defines a symmetry data set for materials documents
     SummaryDoc:
       properties:
         builder_meta:
@@ -1949,6 +2229,22 @@ components:
       description: 'Summary information about materials and their properties, useful for materials
 
         screening studies and searching.'
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
     MSONableTypedLatticeDict:
       properties:
         '@module':
@@ -2008,198 +2304,58 @@ components:
       - gamma
       - volume
       title: MSONableTypedLatticeDict
-    TypedSiteDict:
+    TypedLatticeDict:
       properties:
-        label:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Label
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedSiteProperitesDict'
-          - type: 'null'
-        species:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TypedSpeciesDict'
-            type: array
-          - type: 'null'
-          title: Species
-        abc:
-          anyOf:
-          - items:
+        matrix:
+          items:
+            items:
               type: number
             type: array
-          - type: 'null'
-          title: Abc
-        xyz:
+          type: array
+          title: Matrix
+        pbc:
           anyOf:
-          - items:
-              type: number
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
             type: array
+            maxItems: 3
+            minItems: 3
           - type: 'null'
-          title: Xyz
-      type: object
-      title: TypedSiteDict
-    TypedSpeciesDict:
-      properties:
-        element:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Element
-        oxidation_state:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Oxidation State
-        spin:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Spin
-        occu:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Occu
-      type: object
-      title: TypedSpeciesDict
-    BandStructureSummaryData:
-      properties:
-        task_id:
-          anyOf:
-          - type: string
-            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
-            examples:
-            - mp-3534
-            - '3453'
-            - mp-834-Ag
-          - type: string
-            examples:
-            - mp-ft
-            - task:pqrs
-          title: Task Id
-          description: The source calculation (task) ID for the electronic structure data. This has the same form as a Materials Project ID.
-        band_gap:
+          title: Pbc
+        a:
           type: number
-          title: Band Gap
-          description: Band gap energy in eV.
-        cbm:
-          anyOf:
-          - $ref: '#/components/schemas/TypedBandDict'
-          - type: 'null'
-          description: Conduction band minimum data.
-        vbm:
-          anyOf:
-          - $ref: '#/components/schemas/TypedBandDict'
-          - type: 'null'
-          description: Valence band maximum data.
-        efermi:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Efermi
-          description: Fermi energy in eV.
-        is_gap_direct:
-          type: boolean
-          title: Is Gap Direct
-          description: Whether the band gap is direct.
-        is_metal:
-          type: boolean
-          title: Is Metal
-          description: Whether the material is a metal.
-        magnetic_ordering:
-          type: string
-          description: Magnetic ordering of the calculation.
-        equivalent_labels:
-          additionalProperties:
-            additionalProperties:
-              additionalProperties:
-                type: string
-              type: object
-            type: object
-          type: object
-          title: Equivalent Labels
-          description: Equivalent k-point labels in other k-path conventions.
-        nbands:
+          title: A
+        b:
           type: number
-          title: Nbands
-          description: Number of bands.
-        direct_gap:
+          title: B
+        c:
           type: number
-          title: Direct Gap
-          description: Direct gap energy in eV.
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
       type: object
       required:
-      - task_id
-      - band_gap
-      - is_gap_direct
-      - is_metal
-      - magnetic_ordering
-      - equivalent_labels
-      - nbands
-      - direct_gap
-      title: BandStructureSummaryData
-      description: Schematize high-level band structure data for the API.
-    SymmetryData:
-      properties:
-        crystal_system:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Crystal System
-          description: The crystal system for this lattice.
-        symbol:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Space Group Symbol
-          description: The spacegroup symbol for the lattice.
-        hall:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Hall Symbol
-          description: Hall symbol for the lattice
-        number:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Space Group Number
-          description: The spacegroup number for the lattice.
-        point_group:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Point Group Symbol
-          description: The point group for the lattice.
-        symprec:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Symmetry Finding Precision
-          description: The precision provided to spglib to determine the symmetry of this structure.
-        angle_tolerance:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Angle Tolerance
-          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
-        version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: spglib version
-      type: object
-      title: SymmetryData
-      description: Defines a symmetry data set for materials documents
+      - matrix
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: TypedLatticeDict
     Meta:
       properties:
         api_version:
@@ -2230,69 +2386,6 @@ components:
       type: object
       title: Meta
       description: Meta information for the MAPI Response.
-    DecompositionProduct:
-      properties:
-        material_id:
-          anyOf:
-          - type: string
-            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
-            examples:
-            - mp-3534
-            - '3453'
-            - mp-834-Ag
-          - type: string
-            examples:
-            - mp-ft
-            - task:pqrs
-          - type: 'null'
-          title: Material Id
-          description: The Materials Project ID for the material this decomposition points to.
-        formula:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Formula
-          description: The formula of the decomposed material this material decomposes to.
-        amount:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Amount
-          description: The amount of the decomposed material by formula units this this material decomposes to.
-      type: object
-      title: DecompositionProduct
-      description: Entry metadata for a decomposition process
-    TypedStructureDict:
-      properties:
-        '@module':
-          type: string
-          title: '@Module'
-        '@class':
-          type: string
-          title: '@Class'
-        charge:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Charge
-        lattice:
-          $ref: '#/components/schemas/TypedLatticeDict'
-        sites:
-          items:
-            $ref: '#/components/schemas/TypedSiteDict'
-          type: array
-          title: Sites
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
-          - type: 'null'
-      type: object
-      required:
-      - '@module'
-      - '@class'
-      - lattice
-      - sites
-      title: TypedStructureDict
     EmmetMeta:
       properties:
         emmet_version:
@@ -2346,196 +2439,91 @@ components:
       type: object
       title: EmmetMeta
       description: Default emmet metadata.
-    DosSummaryData:
+    DosData:
       properties:
-        task_id:
+        total:
           anyOf:
-          - type: string
-            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
-            examples:
-            - mp-3534
-            - '3453'
-            - mp-834-Ag
-          - type: string
-            examples:
-            - mp-ft
-            - task:pqrs
-          title: Task Id
-          description: The source calculation (task) ID for the electronic structure data. This has the same form as a Materials Project ID.
-        band_gap:
-          type: number
-          title: Band Gap
-          description: Band gap energy in eV.
-        cbm:
-          anyOf:
-          - type: number
+          - additionalProperties:
+              $ref: '#/components/schemas/DosSummaryData'
+            type: object
           - type: 'null'
-          title: Cbm
-          description: Conduction band minimum data.
-        vbm:
+          title: Total
+          description: Total DOS summary data.
+        elemental:
           anyOf:
-          - type: number
+          - additionalProperties:
+              additionalProperties:
+                additionalProperties:
+                  $ref: '#/components/schemas/DosSummaryData'
+                type: object
+              propertyNames:
+                enum:
+                - s
+                - p
+                - d
+                - f
+                - total
+              type: object
+            type: object
           - type: 'null'
-          title: Vbm
-          description: Valence band maximum data.
-        efermi:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Efermi
-          description: Fermi energy in eV.
-        spin_polarization:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Spin Polarization
-          description: Spin polarization at the fermi level.
-      type: object
-      required:
-      - task_id
-      - band_gap
-      title: DosSummaryData
-      description: Schematize high-level DOS data for the API.
-    Ordering:
-      type: string
-      enum:
-      - FM
-      - AFM
-      - FiM
-      - NM
-      - Unknown
-      title: Ordering
-      description: Enumeration defining possible magnetic orderings.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    PropertyOrigin:
-      properties:
-        name:
-          type: string
-          title: Name
-          description: The property name
-        task_id:
-          anyOf:
-          - type: string
-            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
-            examples:
-            - mp-3534
-            - '3453'
-            - mp-834-Ag
-          - type: string
-            examples:
-            - mp-ft
-            - task:pqrs
-          title: Task Id
-          description: The calculation ID this property comes from.
-        last_updated:
-          type: string
-          format: date-time
-          title: Last Updated
-          description: The timestamp when this calculation was last updated
-      type: object
-      required:
-      - name
-      - task_id
-      title: PropertyOrigin
-      description: Provenance document for the origin of properties in a material document
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
-      type: object
-      required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
-    GBSearchData:
-      properties:
-        sigma:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Sigma
-          description: Sigma value of the boundary.
-        type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Type
-          description: Grain boundary type.
-        gb_energy:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Gb Energy
-          description: Grain boundary energy in J/m^2.
-        rotation_angle:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Rotation Angle
-          description: Rotation angle in degrees.
-      type: object
-      title: GBSearchData
-      description: Fields in grain boundary sub docs in summary
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    BandstructureData:
-      properties:
-        setyawan_curtarolo:
-          anyOf:
-          - $ref: '#/components/schemas/BandStructureSummaryData'
-          - type: 'null'
-          description: Band structure summary data using the Setyawan-Curtarolo path convention.
-        hinuma:
-          anyOf:
-          - $ref: '#/components/schemas/BandStructureSummaryData'
-          - type: 'null'
+          title: Elemental
           description: Band structure summary data using the Hinuma et al. path convention.
-        latimer_munro:
+        orbital:
           anyOf:
-          - $ref: '#/components/schemas/BandStructureSummaryData'
+          - additionalProperties:
+              additionalProperties:
+                $ref: '#/components/schemas/DosSummaryData'
+              type: object
+            propertyNames:
+              enum:
+              - s
+              - p
+              - d
+              - f
+              - total
+            type: object
           - type: 'null'
+          title: Orbital
           description: Band structure summary data using the Latimer-Munro path convention.
+        magnetic_ordering:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Magnetic ordering of the calculation.
       type: object
-      title: BandstructureData
+      title: DosData
+    DecompositionProduct:
+      properties:
+        material_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          - type: 'null'
+          title: Material Id
+          description: The Materials Project ID for the material this decomposition points to.
+        formula:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Formula
+          description: The formula of the decomposed material this material decomposes to.
+        amount:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Amount
+          description: The amount of the decomposed material by formula units this this material decomposes to.
+      type: object
+      title: DecompositionProduct
+      description: Entry metadata for a decomposition process
     TypedBandDict:
       properties:
         band_index:
@@ -2574,50 +2562,62 @@ components:
       - projections
       title: TypedBandDict
       description: Type def for data stored for cbms or vbms
-    TypedAggregateProperitesDict:
+    Response_SummaryDoc_:
       properties:
-        magmom:
+        data:
           anyOf:
           - items:
-              type: number
+              $ref: '#/components/schemas/SummaryDoc'
             type: array
           - type: 'null'
-          title: Magmom
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[SummaryDoc]
+    TypedStructureDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
         charge:
           anyOf:
-          - items:
-              type: number
-            type: array
+          - type: number
           - type: 'null'
           title: Charge
-        velocities:
+        lattice:
+          $ref: '#/components/schemas/TypedLatticeDict'
+        sites:
+          items:
+            $ref: '#/components/schemas/TypedSiteDict'
+          type: array
+          title: Sites
+        properties:
           anyOf:
-          - items:
-              prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
+          - $ref: '#/components/schemas/TypedAggregateProperitesDict'
           - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: boolean
-              - type: boolean
-              - type: boolean
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Selective Dynamics
       type: object
-      title: TypedAggregateProperitesDict
+      required:
+      - '@module'
+      - '@class'
+      - lattice
+      - sites
+      title: TypedStructureDict
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests
