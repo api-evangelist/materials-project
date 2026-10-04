@@ -181,48 +181,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    AtlasSearchText:
-      properties:
-        value:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Value
-        type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Type
-      type: object
-      title: AtlasSearchText
-      description: Schematize MongoDB Atlas search text match.
-    ReactionFormula:
-      properties:
-        left_side:
-          items:
-            $ref: '#/components/schemas/FormulaPart'
-          type: array
-          title: Left Side
-          description: List of materials and their amounts at the left side.
-        right_side:
-          items:
-            $ref: '#/components/schemas/FormulaPart'
-          type: array
-          title: Right Side
-          description: List of materials and their amounts at the right side.
-        element_substitution:
-          additionalProperties:
-            type: string
-          type: object
-          title: Element Substitution
-          description: Dictionary that contains elemental substitutions
-          default: {}
-      type: object
-      required:
-      - left_side
-      - right_side
-      title: ReactionFormula
-      description: Model for a balanced reaction
     SynthesisSearchResultModel:
       properties:
         doi:
@@ -315,70 +273,116 @@ components:
       description: 'Model for a document containing synthesis recipes
 
         data and additional keyword search results'
-    ValidationError:
+    Component:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        formula:
           type: string
-          title: Message
+          title: Formula
+          description: Formula of this component.
+        amount:
+          type: string
+          title: Amount
+          description: Amount of this component.
+        elements:
+          additionalProperties:
+            type: string
+          type: object
+          title: Elements
+          description: Amount of each chemical elements in this component.
+      type: object
+      required:
+      - formula
+      - amount
+      - elements
+      title: Component
+    Response_SynthesisSearchResultModel_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SynthesisSearchResultModel'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[SynthesisSearchResultModel]
+    FormulaPart:
+      properties:
+        amount:
+          type: string
+          title: Amount
+          description: Amount of the compound in a formula.
+          default: '1'
+        material:
+          type: string
+          title: Material
+          description: The compound that participates in a reaction.
+      type: object
+      required:
+      - material
+      title: FormulaPart
+    Operation:
+      properties:
         type:
           type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
+          title: Type
+          description: Type of the operation as classified by the pipeline.
+        token:
           type: string
-          title: Message
-          description: The description of the error
+          title: Token
+          description: Token (word) of the operation as written in paper.
+        conditions:
+          $ref: '#/components/schemas/Conditions'
+          description: The conditions linked to this operation.
       type: object
       required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
-    AtlasSearchHighlight:
+      - type
+      - token
+      - conditions
+      title: Operation
+    Value:
       properties:
-        score:
+        min_value:
           anyOf:
           - type: number
           - type: 'null'
-          title: Score
-        path:
+          title: Min Value
+          description: Minimal value.
+        max_value:
           anyOf:
-          - type: string
+          - type: number
           - type: 'null'
-          title: Path
-        texts:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/AtlasSearchText'
-            type: array
-          - type: 'null'
-          title: Texts
+          title: Max Value
+          description: Maximal value.
+        values:
+          items:
+            type: number
+          type: array
+          title: Values
+          description: Enumerated values in the literature.
+          default: []
+        units:
+          type: string
+          title: Units
+          description: Unit of this value.
       type: object
-      title: AtlasSearchHighlight
-      description: Schematize MongoDB Atlas search highlight match.
+      required:
+      - units
+      title: Value
     Meta:
       properties:
         api_version:
@@ -409,105 +413,22 @@ components:
       type: object
       title: Meta
       description: Meta information for the MAPI Response.
-    Component:
+    Error:
       properties:
-        formula:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
           type: string
-          title: Formula
-          description: Formula of this component.
-        amount:
-          type: string
-          title: Amount
-          description: Amount of this component.
-        elements:
-          additionalProperties:
-            type: string
-          type: object
-          title: Elements
-          description: Amount of each chemical elements in this component.
+          title: Message
+          description: The description of the error
       type: object
       required:
-      - formula
-      - amount
-      - elements
-      title: Component
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    FormulaPart:
-      properties:
-        amount:
-          type: string
-          title: Amount
-          description: Amount of the compound in a formula.
-          default: '1'
-        material:
-          type: string
-          title: Material
-          description: The compound that participates in a reaction.
-      type: object
-      required:
-      - material
-      title: FormulaPart
-    Values:
-      properties:
-        values:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Values
-          description: list of values.
-        min_value:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Min Value
-          description: Minimal value.
-        max_value:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Max Value
-          description: Maximal value.
-      type: object
-      title: Values
-    Value:
-      properties:
-        min_value:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Min Value
-          description: Minimal value.
-        max_value:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Max Value
-          description: Maximal value.
-        values:
-          items:
-            type: number
-          type: array
-          title: Values
-          description: Enumerated values in the literature.
-          default: []
-        units:
-          type: string
-          title: Units
-          description: Unit of this value.
-      type: object
-      required:
-      - units
-      title: Value
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
     Conditions:
       properties:
         heating_temperature:
@@ -548,31 +469,129 @@ components:
           description: Mixing media, if this operation is MIXING.
       type: object
       title: Conditions
-    Response_SynthesisSearchResultModel_:
+    ReactionFormula:
       properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/SynthesisSearchResultModel'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
+        left_side:
+          items:
+            $ref: '#/components/schemas/FormulaPart'
+          type: array
+          title: Left Side
+          description: List of materials and their amounts at the left side.
+        right_side:
+          items:
+            $ref: '#/components/schemas/FormulaPart'
+          type: array
+          title: Right Side
+          description: List of materials and their amounts at the right side.
+        element_substitution:
+          additionalProperties:
+            type: string
+          type: object
+          title: Element Substitution
+          description: Dictionary that contains elemental substitutions
+          default: {}
       type: object
-      title: Response[SynthesisSearchResultModel]
+      required:
+      - left_side
+      - right_side
+      title: ReactionFormula
+      description: Model for a balanced reaction
+    Values:
+      properties:
+        values:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Values
+          description: list of values.
+        min_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min Value
+          description: Minimal value.
+        max_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max Value
+          description: Maximal value.
+      type: object
+      title: Values
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    AtlasSearchHighlight:
+      properties:
+        score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Score
+        path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Path
+        texts:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/AtlasSearchText'
+            type: array
+          - type: 'null'
+          title: Texts
+      type: object
+      title: AtlasSearchHighlight
+      description: Schematize MongoDB Atlas search highlight match.
+    AtlasSearchText:
+      properties:
+        value:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Value
+        type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Type
+      type: object
+      title: AtlasSearchText
+      description: Schematize MongoDB Atlas search text match.
     ExtractedMaterial:
       properties:
         material_string:
@@ -643,25 +662,6 @@ components:
       - composition
       title: ExtractedMaterial
       description: Model for a material extracted from the literature
-    Operation:
-      properties:
-        type:
-          type: string
-          title: Type
-          description: Type of the operation as classified by the pipeline.
-        token:
-          type: string
-          title: Token
-          description: Token (word) of the operation as written in paper.
-        conditions:
-          $ref: '#/components/schemas/Conditions'
-          description: The conditions linked to this operation.
-      type: object
-      required:
-      - type
-      - token
-      - conditions
-      title: Operation
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

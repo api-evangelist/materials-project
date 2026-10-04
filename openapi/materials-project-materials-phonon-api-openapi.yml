@@ -447,6 +447,121 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    PhononMethod:
+      type: string
+      enum:
+      - dfpt
+      - phonopy
+      - pheasy
+      title: PhononMethod
+      description: Define common methods for computed phonon properties.
+    TypedSiteProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Selective Dynamics
+        coordination_no:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Coordination No
+        forces:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Forces
+      type: object
+      title: TypedSiteProperitesDict
+    SumRuleChecks:
+      properties:
+        asr:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Asr
+          description: The violation of the acoustic sum rule.
+        cnsr:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Cnsr
+          description: The violation of the charge neutral sum rule.
+      type: object
+      title: SumRuleChecks
+      description: Container class for defining sum rule checks.
+    PhononDOS:
+      properties:
+        identifier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Identifier
+          description: The identifier of this object.
+        structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Structure
+          description: The structure associated with this calculation.
+        frequencies:
+          items:
+            type: number
+          type: array
+          title: Frequencies
+          description: The phonon frequencies in THz.
+        densities:
+          items:
+            type: number
+          type: array
+          title: Densities
+          description: The phonon density of states.
+        projected_densities:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Projected Densities
+          description: The projected phonon density of states.
+      type: object
+      required:
+      - frequencies
+      - densities
+      title: PhononDOS
+      description: Define schema of pymatgen phonon density of states.
     ThermalDisplacementData:
       properties:
         freq_min_thermal_displacements:
@@ -565,32 +680,6 @@ components:
       - lattice
       - sites
       title: TypedStructureDict
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     TypedAggregateProperitesDict:
       properties:
         magmom:
@@ -635,6 +724,405 @@ components:
           title: Selective Dynamics
       type: object
       title: TypedAggregateProperitesDict
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    SymmetryData:
+      properties:
+        crystal_system:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Crystal System
+          description: The crystal system for this lattice.
+        symbol:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Space Group Symbol
+          description: The spacegroup symbol for the lattice.
+        hall:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hall Symbol
+          description: Hall symbol for the lattice
+        number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Space Group Number
+          description: The spacegroup number for the lattice.
+        point_group:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Point Group Symbol
+          description: The point group for the lattice.
+        symprec:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Symmetry Finding Precision
+          description: The precision provided to spglib to determine the symmetry of this structure.
+        angle_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Angle Tolerance
+          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: spglib version
+      type: object
+      title: SymmetryData
+      description: Defines a symmetry data set for materials documents
+    CalcMeta:
+      properties:
+        identifier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Identifier
+          description: The identifier (UUID, ULID, etc.) of the calculation.
+        dir_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Dir Name
+          description: The file-systm-like path where a job was run.
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+          description: The job name or a convenient label for it.
+        parents:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Parents
+          description: A list of all UUIDs which fed into this job.
+      type: object
+      title: CalcMeta
+      description: Lightweight representation for storing jobflow-style job info.
+    TypedSiteDict:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
+      type: object
+      title: TypedSiteDict
+    PhononBS:
+      properties:
+        identifier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Identifier
+          description: The identifier of this object.
+        structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Structure
+          description: The structure associated with this calculation.
+        path_convention:
+          type: string
+          title: Path Convention
+          description: High symmetry path convention of the band structure
+          default: unknown
+        kpath:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Kpath
+        labels_dict:
+          additionalProperties:
+            prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          type: object
+          title: Labels Dict
+          description: The high-symmetry labels of specific q-points.
+          default: {}
+        qpoints:
+          items:
+            prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          type: array
+          title: Qpoints
+          description: The wave vectors (q-points) at which the band structure was sampled, in direct coordinates.
+        reciprocal_lattice:
+          prefixItems:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          type: array
+          maxItems: 3
+          minItems: 3
+          title: Reciprocal Lattice
+          description: The reciprocal lattice.
+        has_nac:
+          type: boolean
+          title: Has Nac
+          description: Whether the calculation includes non-analytical corrections at Gamma.
+          default: false
+        frequencies:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Frequencies
+          description: The eigen-frequencies, with the first index representing the band, and the second the k-point.
+        eigendisplacements:
+          additionalProperties:
+            items:
+              items:
+                items:
+                  prefixItems:
+                  - type: number
+                  - type: number
+                  - type: number
+                  type: array
+                  maxItems: 3
+                  minItems: 3
+                type: array
+              type: array
+            type: array
+          type: object
+          title: Eigendisplacements
+          description: Phonon eigendisplacements in Cartesian coordinates.
+          default:
+            imag: 0
+      type: object
+      required:
+      - qpoints
+      - reciprocal_lattice
+      - frequencies
+      title: PhononBS
+      description: Define schema of pymatgen phonon band structure.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    TypedLatticeDict:
+      properties:
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - matrix
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: TypedLatticeDict
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    Response_PhononBSDOSDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/PhononBSDOSDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[PhononBSDOSDoc]
     PhononComputationalSettings:
       properties:
         npoints_band:
@@ -658,48 +1146,6 @@ components:
       type: object
       title: PhononComputationalSettings
       description: Collection to store computational settings for the phonon computation.
-    PhononDOS:
-      properties:
-        identifier:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Identifier
-          description: The identifier of this object.
-        structure:
-          anyOf:
-          - $ref: '#/components/schemas/TypedStructureDict'
-          - type: 'null'
-          title: Structure
-          description: The structure associated with this calculation.
-        frequencies:
-          items:
-            type: number
-          type: array
-          title: Frequencies
-          description: The phonon frequencies in THz.
-        densities:
-          items:
-            type: number
-          type: array
-          title: Densities
-          description: The phonon density of states.
-        projected_densities:
-          anyOf:
-          - items:
-              items:
-                type: number
-              type: array
-            type: array
-          - type: 'null'
-          title: Projected Densities
-          description: The projected phonon density of states.
-      type: object
-      required:
-      - frequencies
-      - densities
-      title: PhononDOS
-      description: Define schema of pymatgen phonon density of states.
     TypedSpeciesDict:
       properties:
         element:
@@ -724,54 +1170,6 @@ components:
           title: Occu
       type: object
       title: TypedSpeciesDict
-    TypedSiteProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - prefixItems:
-            - type: number
-            - type: number
-            - type: number
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Selective Dynamics
-        coordination_no:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Coordination No
-        forces:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Forces
-      type: object
-      title: TypedSiteProperitesDict
     PhononBSDOSDoc:
       properties:
         nsites:
@@ -1219,404 +1617,6 @@ components:
       - check_sum_rule_deviations
       title: PhononBSDOSDoc
       description: Built data version of PhononBSDOSTask.
-    TypedSiteDict:
-      properties:
-        label:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Label
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedSiteProperitesDict'
-          - type: 'null'
-        species:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TypedSpeciesDict'
-            type: array
-          - type: 'null'
-          title: Species
-        abc:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Abc
-        xyz:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Xyz
-      type: object
-      title: TypedSiteDict
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    SymmetryData:
-      properties:
-        crystal_system:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Crystal System
-          description: The crystal system for this lattice.
-        symbol:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Space Group Symbol
-          description: The spacegroup symbol for the lattice.
-        hall:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Hall Symbol
-          description: Hall symbol for the lattice
-        number:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Space Group Number
-          description: The spacegroup number for the lattice.
-        point_group:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Point Group Symbol
-          description: The point group for the lattice.
-        symprec:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Symmetry Finding Precision
-          description: The precision provided to spglib to determine the symmetry of this structure.
-        angle_tolerance:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Angle Tolerance
-          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
-        version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: spglib version
-      type: object
-      title: SymmetryData
-      description: Defines a symmetry data set for materials documents
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
-      type: object
-      required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
-    PhononMethod:
-      type: string
-      enum:
-      - dfpt
-      - phonopy
-      - pheasy
-      title: PhononMethod
-      description: Define common methods for computed phonon properties.
-    TypedLatticeDict:
-      properties:
-        matrix:
-          items:
-            items:
-              type: number
-            type: array
-          type: array
-          title: Matrix
-        pbc:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Pbc
-        a:
-          type: number
-          title: A
-        b:
-          type: number
-          title: B
-        c:
-          type: number
-          title: C
-        alpha:
-          type: number
-          title: Alpha
-        beta:
-          type: number
-          title: Beta
-        gamma:
-          type: number
-          title: Gamma
-        volume:
-          type: number
-          title: Volume
-      type: object
-      required:
-      - matrix
-      - a
-      - b
-      - c
-      - alpha
-      - beta
-      - gamma
-      - volume
-      title: TypedLatticeDict
-    Response_PhononBSDOSDoc_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/PhononBSDOSDoc'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[PhononBSDOSDoc]
-    PhononBS:
-      properties:
-        identifier:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Identifier
-          description: The identifier of this object.
-        structure:
-          anyOf:
-          - $ref: '#/components/schemas/TypedStructureDict'
-          - type: 'null'
-          title: Structure
-          description: The structure associated with this calculation.
-        path_convention:
-          type: string
-          title: Path Convention
-          description: High symmetry path convention of the band structure
-          default: unknown
-        kpath:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Kpath
-        labels_dict:
-          additionalProperties:
-            prefixItems:
-            - type: number
-            - type: number
-            - type: number
-            type: array
-            maxItems: 3
-            minItems: 3
-          type: object
-          title: Labels Dict
-          description: The high-symmetry labels of specific q-points.
-          default: {}
-        qpoints:
-          items:
-            prefixItems:
-            - type: number
-            - type: number
-            - type: number
-            type: array
-            maxItems: 3
-            minItems: 3
-          type: array
-          title: Qpoints
-          description: The wave vectors (q-points) at which the band structure was sampled, in direct coordinates.
-        reciprocal_lattice:
-          prefixItems:
-          - prefixItems:
-            - type: number
-            - type: number
-            - type: number
-            type: array
-            maxItems: 3
-            minItems: 3
-          - prefixItems:
-            - type: number
-            - type: number
-            - type: number
-            type: array
-            maxItems: 3
-            minItems: 3
-          - prefixItems:
-            - type: number
-            - type: number
-            - type: number
-            type: array
-            maxItems: 3
-            minItems: 3
-          type: array
-          maxItems: 3
-          minItems: 3
-          title: Reciprocal Lattice
-          description: The reciprocal lattice.
-        has_nac:
-          type: boolean
-          title: Has Nac
-          description: Whether the calculation includes non-analytical corrections at Gamma.
-          default: false
-        frequencies:
-          items:
-            items:
-              type: number
-            type: array
-          type: array
-          title: Frequencies
-          description: The eigen-frequencies, with the first index representing the band, and the second the k-point.
-        eigendisplacements:
-          additionalProperties:
-            items:
-              items:
-                items:
-                  prefixItems:
-                  - type: number
-                  - type: number
-                  - type: number
-                  type: array
-                  maxItems: 3
-                  minItems: 3
-                type: array
-              type: array
-            type: array
-          type: object
-          title: Eigendisplacements
-          description: Phonon eigendisplacements in Cartesian coordinates.
-          default:
-            imag: 0
-      type: object
-      required:
-      - qpoints
-      - reciprocal_lattice
-      - frequencies
-      title: PhononBS
-      description: Define schema of pymatgen phonon band structure.
-    Meta:
-      properties:
-        api_version:
-          type: string
-          title: Api Version
-          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
-          default: 0.86.4rc5.dev1+g77c2c1315
-        time_stamp:
-          type: string
-          format: date-time
-          title: Time Stamp
-          description: A string containing the date and time at which the query was executed
-        total_doc:
-          anyOf:
-          - type: integer
-            minimum: 0.0
-          - type: 'null'
-          title: Total Doc
-          description: The total number of documents available for this query
-        facet:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Facet
-          description: A dictionary containing the facets available for this query
-      additionalProperties: true
-      type: object
-      title: Meta
-      description: Meta information for the MAPI Response.
-    CalcMeta:
-      properties:
-        identifier:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Identifier
-          description: The identifier (UUID, ULID, etc.) of the calculation.
-        dir_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Dir Name
-          description: The file-systm-like path where a job was run.
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-          description: The job name or a convenient label for it.
-        parents:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Parents
-          description: A list of all UUIDs which fed into this job.
-      type: object
-      title: CalcMeta
-      description: Lightweight representation for storing jobflow-style job info.
-    SumRuleChecks:
-      properties:
-        asr:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Asr
-          description: The violation of the acoustic sum rule.
-        cnsr:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Cnsr
-          description: The violation of the charge neutral sum rule.
-      type: object
-      title: SumRuleChecks
-      description: Container class for defining sum rule checks.
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

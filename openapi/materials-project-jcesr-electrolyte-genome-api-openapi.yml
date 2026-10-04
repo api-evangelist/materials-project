@@ -225,291 +225,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    MoleculesDoc:
-      properties:
-        elements:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Element'
-            type: array
-          - type: 'null'
-          title: Elements
-          description: List of elements in the molecule.
-        nelements:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Nelements
-          description: Number of elements in the molecule.
-        EA:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Ea
-          description: Electron affinity of the molecule in eV.
-        IE:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Ie
-          description: Ionization energy of the molecule in eV.
-        charge:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Charge
-          description: Charge of the molecule in +e.
-        pointgroup:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Pointgroup
-          description: Point group of the molecule in Schoenflies notation.
-        smiles:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Smiles
-          description: The simplified molecular input line-entry system (SMILES)             representation of the molecule.
-        task_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Task Id
-          description: Materials Project molecule ID. This takes the form mol-*****.
-        molecule:
-          anyOf:
-          - $ref: '#/components/schemas/TypedMoleculeDict'
-          - type: 'null'
-          title: Molecule
-          description: Pymatgen molecule object.
-        formula_pretty:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Formula Pretty
-          description: Chemical formula of the molecule.
-        svg:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Svg
-          description: String representation of the SVG image of the molecule.
-      type: object
-      title: MoleculesDoc
-      description: Molecules relevant to battery electrolytes.
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
-      type: object
-      required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    TypedSiteProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - prefixItems:
-            - type: number
-            - type: number
-            - type: number
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Selective Dynamics
-        coordination_no:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Coordination No
-        forces:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Forces
-      type: object
-      title: TypedSiteProperitesDict
-    TypedAggregateProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: boolean
-              - type: boolean
-              - type: boolean
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Selective Dynamics
-      type: object
-      title: TypedAggregateProperitesDict
-    Meta:
-      properties:
-        api_version:
-          type: string
-          title: Api Version
-          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
-          default: 0.86.4rc5.dev1+g77c2c1315
-        time_stamp:
-          type: string
-          format: date-time
-          title: Time Stamp
-          description: A string containing the date and time at which the query was executed
-        total_doc:
-          anyOf:
-          - type: integer
-            minimum: 0.0
-          - type: 'null'
-          title: Total Doc
-          description: The total number of documents available for this query
-        facet:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Facet
-          description: A dictionary containing the facets available for this query
-      additionalProperties: true
-      type: object
-      title: Meta
-      description: Meta information for the MAPI Response.
-    TypedSiteDict:
-      properties:
-        label:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Label
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedSiteProperitesDict'
-          - type: 'null'
-        species:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TypedSpeciesDict'
-            type: array
-          - type: 'null'
-          title: Species
-        abc:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Abc
-        xyz:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Xyz
-      type: object
-      title: TypedSiteDict
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     Element:
       type: string
       enum:
@@ -665,30 +380,89 @@ components:
       - sites
       - properties
       title: TypedMoleculeDict
-    TypedSpeciesDict:
+    TypedAggregateProperitesDict:
       properties:
-        element:
+        magmom:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Selective Dynamics
+      type: object
+      title: TypedAggregateProperitesDict
+    TypedSiteDict:
+      properties:
+        label:
           anyOf:
           - type: string
           - type: 'null'
-          title: Element
-        oxidation_state:
+          title: Label
+        name:
           anyOf:
-          - type: number
+          - type: string
           - type: 'null'
-          title: Oxidation State
-        spin:
+          title: Name
+        properties:
           anyOf:
-          - type: number
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
           - type: 'null'
-          title: Spin
-        occu:
+        species:
           anyOf:
-          - type: number
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
           - type: 'null'
-          title: Occu
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
       type: object
-      title: TypedSpeciesDict
+      title: TypedSiteDict
     Response_MoleculesDoc_:
       properties:
         data:
@@ -714,6 +488,232 @@ components:
           description: Extra information for the query
       type: object
       title: Response[MoleculesDoc]
+    TypedSiteProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Selective Dynamics
+        coordination_no:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Coordination No
+        forces:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Forces
+      type: object
+      title: TypedSiteProperitesDict
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    MoleculesDoc:
+      properties:
+        elements:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Element'
+            type: array
+          - type: 'null'
+          title: Elements
+          description: List of elements in the molecule.
+        nelements:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Nelements
+          description: Number of elements in the molecule.
+        EA:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Ea
+          description: Electron affinity of the molecule in eV.
+        IE:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Ie
+          description: Ionization energy of the molecule in eV.
+        charge:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Charge
+          description: Charge of the molecule in +e.
+        pointgroup:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pointgroup
+          description: Point group of the molecule in Schoenflies notation.
+        smiles:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Smiles
+          description: The simplified molecular input line-entry system (SMILES)             representation of the molecule.
+        task_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Id
+          description: Materials Project molecule ID. This takes the form mol-*****.
+        molecule:
+          anyOf:
+          - $ref: '#/components/schemas/TypedMoleculeDict'
+          - type: 'null'
+          title: Molecule
+          description: Pymatgen molecule object.
+        formula_pretty:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Formula Pretty
+          description: Chemical formula of the molecule.
+        svg:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Svg
+          description: String representation of the SVG image of the molecule.
+      type: object
+      title: MoleculesDoc
+      description: Molecules relevant to battery electrolytes.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    TypedSpeciesDict:
+      properties:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation State
+        spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin
+        occu:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests
