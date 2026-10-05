@@ -1,0 +1,12 @@
+{
+ "url": "https://api.materialsproject.org/openapi.json",
+ "requested_url": "https://api.materialsproject.org/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 555740,
+ "sha256": "66ff8da722c58fd1bcdd31aa96b582a6f9f1c538d28719d6028235eb7d236e27",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.902), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
