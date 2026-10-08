@@ -558,6 +558,12 @@ apis:
   - type: GettingStarted
     url: https://docs.materialsproject.org/downloading-data/using-the-api
 common:
+- type: Plans
+  url: plans/materials-project-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/materials-project-rate-limits.yml
+- type: FinOps
+  url: finops/materials-project-finops.yml
 - type: Website
   url: https://materialsproject.org
 - type: AgenticAccess
