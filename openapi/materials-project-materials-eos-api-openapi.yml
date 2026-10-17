@@ -98,133 +98,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    TypedAggregateProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: boolean
-              - type: boolean
-              - type: boolean
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Selective Dynamics
-      type: object
-      title: TypedAggregateProperitesDict
-    PropertyOrigin:
-      properties:
-        name:
-          type: string
-          title: Name
-          description: The property name
-        task_id:
-          anyOf:
-          - type: string
-            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
-            examples:
-            - mp-3534
-            - '3453'
-            - mp-834-Ag
-          - type: string
-            examples:
-            - mp-ft
-            - task:pqrs
-          title: Task Id
-          description: The calculation ID this property comes from.
-        last_updated:
-          type: string
-          format: date-time
-          title: Last Updated
-          description: The timestamp when this calculation was last updated
-      type: object
-      required:
-      - name
-      - task_id
-      title: PropertyOrigin
-      description: Provenance document for the origin of properties in a material document
-    TypedLatticeDict:
-      properties:
-        matrix:
-          items:
-            items:
-              type: number
-            type: array
-          type: array
-          title: Matrix
-        pbc:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Pbc
-        a:
-          type: number
-          title: A
-        b:
-          type: number
-          title: B
-        c:
-          type: number
-          title: C
-        alpha:
-          type: number
-          title: Alpha
-        beta:
-          type: number
-          title: Beta
-        gamma:
-          type: number
-          title: Gamma
-        volume:
-          type: number
-          title: Volume
-      type: object
-      required:
-      - matrix
-      - a
-      - b
-      - c
-      - alpha
-      - beta
-      - gamma
-      - volume
-      title: TypedLatticeDict
     TypedSiteDict:
       properties:
         label:
@@ -264,201 +137,107 @@ components:
           title: Xyz
       type: object
       title: TypedSiteDict
-    TypedSiteProperitesDict:
+    TypedSpeciesDict:
       properties:
-        magmom:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
           anyOf:
           - type: number
           - type: 'null'
-          title: Magmom
-        charge:
+          title: Oxidation State
+        spin:
           anyOf:
           - type: number
           - type: 'null'
-          title: Charge
-        velocities:
+          title: Spin
+        occu:
           anyOf:
-          - prefixItems:
-            - type: number
-            - type: number
-            - type: number
-            type: array
-            maxItems: 3
-            minItems: 3
+          - type: number
           - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Selective Dynamics
-        coordination_no:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Coordination No
-        forces:
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
+    Response_EOSDoc_:
+      properties:
+        data:
           anyOf:
           - items:
-              type: number
+              $ref: '#/components/schemas/EOSDoc'
             type: array
           - type: 'null'
-          title: Forces
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
       type: object
-      title: TypedSiteProperitesDict
-    Meta:
+      title: Response[EOSDoc]
+    SymmetryData:
       properties:
-        api_version:
-          type: string
-          title: Api Version
-          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
-          default: 0.86.4rc5.dev1+g77c2c1315
-        time_stamp:
-          type: string
-          format: date-time
-          title: Time Stamp
-          description: A string containing the date and time at which the query was executed
-        total_doc:
+        crystal_system:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Crystal System
+          description: The crystal system for this lattice.
+        symbol:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Space Group Symbol
+          description: The spacegroup symbol for the lattice.
+        hall:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hall Symbol
+          description: Hall symbol for the lattice
+        number:
           anyOf:
           - type: integer
-            minimum: 0.0
           - type: 'null'
-          title: Total Doc
-          description: The total number of documents available for this query
-        facet:
+          title: Space Group Number
+          description: The spacegroup number for the lattice.
+        point_group:
           anyOf:
-          - additionalProperties: true
-            type: object
+          - type: string
           - type: 'null'
-          title: Facet
-          description: A dictionary containing the facets available for this query
-      additionalProperties: true
+          title: Point Group Symbol
+          description: The point group for the lattice.
+        symprec:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Symmetry Finding Precision
+          description: The precision provided to spglib to determine the symmetry of this structure.
+        angle_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Angle Tolerance
+          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: spglib version
       type: object
-      title: Meta
-      description: Meta information for the MAPI Response.
-    EmmetMeta:
-      properties:
-        emmet_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Emmet Version
-          description: The version of emmet this document was built with.
-          default: 0.86.4rc4
-        pymatgen_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Pymatgen Version
-          description: The version of pymatgen this document was built with.
-          default: 2026.4.16
-        run_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Run Id
-          description: The run id associated with this data build.
-        batch_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Batch Id
-          description: Identifier corresponding to the origin of this document's blessed task.
-        database_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Database Version
-          description: The database version for the built data.
-        build_date:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Build Date
-          description: The build date for this document.
-        license:
-          anyOf:
-          - type: string
-            enum:
-            - BY-C
-            - BY-NC
-          - type: 'null'
-          title: License
-          description: License for the data entry.
-      type: object
-      title: EmmetMeta
-      description: Default emmet metadata.
-    EOSFit:
-      properties:
-        model:
-          type: string
-          title: Model
-          description: The EOS model used to fit the data.
-        V0:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: V0
-          description: The equilibrium volume in Å³.
-        B0:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: B0
-          description: The equilibrium bulk modulus, in GPa.
-        B1:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: B1
-          description: The pressure derivative of the bulk modulus at V0, dimensionless.
-        E0:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: E0
-          description: The equilibrium energy, in eV.
-        R2:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: R2
-          description: The fit R2 (coefficient of determination), dimensionless.
-      type: object
-      required:
-      - model
-      title: EOSFit
-      description: 'Schematize fitted EOS data.
-
-
-        The only required field is `model`.
-
-        If no other fields are instantiated, it is assumed
-
-        that the fit failed.'
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
-      type: object
-      required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
+      title: SymmetryData
+      description: Defines a symmetry data set for materials documents
     EOSDoc:
       properties:
         builder_meta:
@@ -626,6 +405,105 @@ components:
       - structure
       title: EOSDoc
       description: Fitted equations of state, and energy-volume fit data.
+    TypedLatticeDict:
+      properties:
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - matrix
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: TypedLatticeDict
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    PropertyOrigin:
+      properties:
+        name:
+          type: string
+          title: Name
+          description: The property name
+        task_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            examples:
+            - mp-ft
+            - task:pqrs
+          title: Task Id
+          description: The calculation ID this property comes from.
+        last_updated:
+          type: string
+          format: date-time
+          title: Last Updated
+          description: The timestamp when this calculation was last updated
+      type: object
+      required:
+      - name
+      - task_id
+      title: PropertyOrigin
+      description: Provenance document for the origin of properties in a material document
     ValidationError:
       properties:
         loc:
@@ -652,92 +530,54 @@ components:
       - msg
       - type
       title: ValidationError
-    HTTPValidationError:
+    TypedSiteProperitesDict:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    Response_EOSDoc_:
-      properties:
-        data:
+        magmom:
           anyOf:
-          - items:
-              $ref: '#/components/schemas/EOSDoc'
+          - type: number
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
             type: array
+            maxItems: 3
+            minItems: 3
           - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
+          title: Velocities
+        selective_dynamics:
           anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
             type: array
+            maxItems: 3
+            minItems: 3
           - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[EOSDoc]
-    SymmetryData:
-      properties:
-        crystal_system:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Crystal System
-          description: The crystal system for this lattice.
-        symbol:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Space Group Symbol
-          description: The spacegroup symbol for the lattice.
-        hall:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Hall Symbol
-          description: Hall symbol for the lattice
-        number:
+          title: Selective Dynamics
+        coordination_no:
           anyOf:
           - type: integer
           - type: 'null'
-          title: Space Group Number
-          description: The spacegroup number for the lattice.
-        point_group:
+          title: Coordination No
+        forces:
           anyOf:
-          - type: string
+          - items:
+              type: number
+            type: array
           - type: 'null'
-          title: Point Group Symbol
-          description: The point group for the lattice.
-        symprec:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Symmetry Finding Precision
-          description: The precision provided to spglib to determine the symmetry of this structure.
-        angle_tolerance:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Angle Tolerance
-          description: Angle tolerance provided to spglib to determine the symmetry of this structure.
-        version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: spglib version
+          title: Forces
       type: object
-      title: SymmetryData
-      description: Defines a symmetry data set for materials documents
+      title: TypedSiteProperitesDict
     TypedStructureDict:
       properties:
         '@module':
@@ -769,30 +609,190 @@ components:
       - lattice
       - sites
       title: TypedStructureDict
-    TypedSpeciesDict:
+    EOSFit:
       properties:
-        element:
+        model:
+          type: string
+          title: Model
+          description: The EOS model used to fit the data.
+        V0:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: V0
+          description: The equilibrium volume in Å³.
+        B0:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: B0
+          description: The equilibrium bulk modulus, in GPa.
+        B1:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: B1
+          description: The pressure derivative of the bulk modulus at V0, dimensionless.
+        E0:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: E0
+          description: The equilibrium energy, in eV.
+        R2:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: R2
+          description: The fit R2 (coefficient of determination), dimensionless.
+      type: object
+      required:
+      - model
+      title: EOSFit
+      description: 'Schematize fitted EOS data.
+
+
+        The only required field is `model`.
+
+        If no other fields are instantiated, it is assumed
+
+        that the fit failed.'
+    TypedAggregateProperitesDict:
+      properties:
+        magmom:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Selective Dynamics
+      type: object
+      title: TypedAggregateProperitesDict
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    EmmetMeta:
+      properties:
+        emmet_version:
           anyOf:
           - type: string
           - type: 'null'
-          title: Element
-        oxidation_state:
+          title: Emmet Version
+          description: The version of emmet this document was built with.
+          default: 0.86.4rc4
+        pymatgen_version:
           anyOf:
-          - type: number
+          - type: string
           - type: 'null'
-          title: Oxidation State
-        spin:
+          title: Pymatgen Version
+          description: The version of pymatgen this document was built with.
+          default: 2026.4.16
+        run_id:
           anyOf:
-          - type: number
+          - type: string
           - type: 'null'
-          title: Spin
-        occu:
+          title: Run Id
+          description: The run id associated with this data build.
+        batch_id:
           anyOf:
-          - type: number
+          - type: string
           - type: 'null'
-          title: Occu
+          title: Batch Id
+          description: Identifier corresponding to the origin of this document's blessed task.
+        database_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Database Version
+          description: The database version for the built data.
+        build_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Build Date
+          description: The build date for this document.
+        license:
+          anyOf:
+          - type: string
+            enum:
+            - BY-C
+            - BY-NC
+          - type: 'null'
+          title: License
+          description: License for the data entry.
       type: object
-      title: TypedSpeciesDict
+      title: EmmetMeta
+      description: Default emmet metadata.
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

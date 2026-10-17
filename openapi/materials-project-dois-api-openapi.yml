@@ -95,6 +95,29 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    DOIDoc:
+      properties:
+        doi:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Doi
+          description: DOI of the material.
+        bibtex:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bibtex
+          description: Bibtex reference of the material.
+        material_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Material Id
+          description: 'The Materials Project ID of the material. This comes in the form: mp-******.'
+      type: object
+      title: DOIDoc
+      description: DOIs to reference specific materials on Materials Project.
     Response_DOIDoc_:
       properties:
         data:
@@ -120,6 +143,48 @@ components:
           description: Extra information for the query
       type: object
       title: Response[DOIDoc]
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
     Meta:
       properties:
         api_version:
@@ -150,71 +215,6 @@ components:
       type: object
       title: Meta
       description: Meta information for the MAPI Response.
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
-      type: object
-      required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    DOIDoc:
-      properties:
-        doi:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Doi
-          description: DOI of the material.
-        bibtex:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Bibtex
-          description: Bibtex reference of the material.
-        material_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Material Id
-          description: 'The Materials Project ID of the material. This comes in the form: mp-******.'
-      type: object
-      title: DOIDoc
-      description: DOIs to reference specific materials on Materials Project.
     HTTPValidationError:
       properties:
         detail:

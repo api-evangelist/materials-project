@@ -105,6 +105,272 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    TypedSiteDict:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
+      type: object
+      title: TypedSiteDict
+    TypedSpeciesDict:
+      properties:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation State
+        spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin
+        occu:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
+    TypedAlloyMemberDict:
+      properties:
+        id_:
+          type: string
+          title: Id
+        db:
+          type: string
+          title: Db
+        composition:
+          additionalProperties:
+            type: number
+          propertyNames:
+            $ref: '#/components/schemas/Element'
+          type: object
+          title: Composition
+        x:
+          type: number
+          title: X
+        is_ordered:
+          type: boolean
+          title: Is Ordered
+      type: object
+      required:
+      - id_
+      - db
+      - composition
+      - x
+      - is_ordered
+      title: TypedAlloyMemberDict
+    TypedSupportedPropertiesDict:
+      properties:
+        energy_above_hull:
+          type: number
+          title: Energy Above Hull
+        formation_energy_per_atom:
+          type: number
+          title: Formation Energy Per Atom
+        band_gap:
+          type: number
+          title: Band Gap
+        is_gap_direct:
+          type: boolean
+          title: Is Gap Direct
+        m_n:
+          type: number
+          title: M N
+        m_p:
+          type: number
+          title: M P
+        theoretical:
+          type: boolean
+          title: Theoretical
+        is_metal:
+          type: boolean
+          title: Is Metal
+      type: object
+      required:
+      - energy_above_hull
+      - formation_energy_per_atom
+      - band_gap
+      - is_gap_direct
+      - m_n
+      - m_p
+      - theoretical
+      - is_metal
+      title: TypedSupportedPropertiesDict
+    TypedLatticeDict:
+      properties:
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - matrix
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: TypedLatticeDict
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    AlloyPairDoc:
+      properties:
+        builder_meta:
+          anyOf:
+          - $ref: '#/components/schemas/EmmetMeta'
+          - type: 'null'
+          description: Builder metadata.
+        alloy_pair:
+          $ref: '#/components/schemas/TypedAlloyPairDict'
+          title: Alloy Pair
+        pair_id:
+          type: string
+          title: Pair Id
+      type: object
+      required:
+      - alloy_pair
+      - pair_id
+      title: AlloyPairDoc
+    Response_AlloyPairDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/AlloyPairDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[AlloyPairDoc]
     Element:
       type: string
       enum:
@@ -230,381 +496,6 @@ components:
       - Og
       title: Element
       description: Enum representing an element in the periodic table.
-    TypedAggregateProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: boolean
-              - type: boolean
-              - type: boolean
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Selective Dynamics
-      type: object
-      title: TypedAggregateProperitesDict
-    TypedLatticeDict:
-      properties:
-        matrix:
-          items:
-            items:
-              type: number
-            type: array
-          type: array
-          title: Matrix
-        pbc:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Pbc
-        a:
-          type: number
-          title: A
-        b:
-          type: number
-          title: B
-        c:
-          type: number
-          title: C
-        alpha:
-          type: number
-          title: Alpha
-        beta:
-          type: number
-          title: Beta
-        gamma:
-          type: number
-          title: Gamma
-        volume:
-          type: number
-          title: Volume
-      type: object
-      required:
-      - matrix
-      - a
-      - b
-      - c
-      - alpha
-      - beta
-      - gamma
-      - volume
-      title: TypedLatticeDict
-    TypedSiteDict:
-      properties:
-        label:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Label
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedSiteProperitesDict'
-          - type: 'null'
-        species:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TypedSpeciesDict'
-            type: array
-          - type: 'null'
-          title: Species
-        abc:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Abc
-        xyz:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Xyz
-      type: object
-      title: TypedSiteDict
-    Response_AlloyPairDoc_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/AlloyPairDoc'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[AlloyPairDoc]
-    AlloyPairDoc:
-      properties:
-        builder_meta:
-          anyOf:
-          - $ref: '#/components/schemas/EmmetMeta'
-          - type: 'null'
-          description: Builder metadata.
-        alloy_pair:
-          $ref: '#/components/schemas/TypedAlloyPairDict'
-          title: Alloy Pair
-        pair_id:
-          type: string
-          title: Pair Id
-      type: object
-      required:
-      - alloy_pair
-      - pair_id
-      title: AlloyPairDoc
-    TypedSupportedPropertiesDict:
-      properties:
-        energy_above_hull:
-          type: number
-          title: Energy Above Hull
-        formation_energy_per_atom:
-          type: number
-          title: Formation Energy Per Atom
-        band_gap:
-          type: number
-          title: Band Gap
-        is_gap_direct:
-          type: boolean
-          title: Is Gap Direct
-        m_n:
-          type: number
-          title: M N
-        m_p:
-          type: number
-          title: M P
-        theoretical:
-          type: boolean
-          title: Theoretical
-        is_metal:
-          type: boolean
-          title: Is Metal
-      type: object
-      required:
-      - energy_above_hull
-      - formation_energy_per_atom
-      - band_gap
-      - is_gap_direct
-      - m_n
-      - m_p
-      - theoretical
-      - is_metal
-      title: TypedSupportedPropertiesDict
-    TypedAlloyMemberDict:
-      properties:
-        id_:
-          type: string
-          title: Id
-        db:
-          type: string
-          title: Db
-        composition:
-          additionalProperties:
-            type: number
-          propertyNames:
-            $ref: '#/components/schemas/Element'
-          type: object
-          title: Composition
-        x:
-          type: number
-          title: X
-        is_ordered:
-          type: boolean
-          title: Is Ordered
-      type: object
-      required:
-      - id_
-      - db
-      - composition
-      - x
-      - is_ordered
-      title: TypedAlloyMemberDict
-    Meta:
-      properties:
-        api_version:
-          type: string
-          title: Api Version
-          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
-          default: 0.86.4rc5.dev1+g77c2c1315
-        time_stamp:
-          type: string
-          format: date-time
-          title: Time Stamp
-          description: A string containing the date and time at which the query was executed
-        total_doc:
-          anyOf:
-          - type: integer
-            minimum: 0.0
-          - type: 'null'
-          title: Total Doc
-          description: The total number of documents available for this query
-        facet:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Facet
-          description: A dictionary containing the facets available for this query
-      additionalProperties: true
-      type: object
-      title: Meta
-      description: Meta information for the MAPI Response.
-    TypedSiteProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - prefixItems:
-            - type: number
-            - type: number
-            - type: number
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Selective Dynamics
-        coordination_no:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Coordination No
-        forces:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Forces
-      type: object
-      title: TypedSiteProperitesDict
-    EmmetMeta:
-      properties:
-        emmet_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Emmet Version
-          description: The version of emmet this document was built with.
-          default: 0.86.4rc4
-        pymatgen_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Pymatgen Version
-          description: The version of pymatgen this document was built with.
-          default: 2026.4.16
-        run_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Run Id
-          description: The run id associated with this data build.
-        batch_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Batch Id
-          description: Identifier corresponding to the origin of this document's blessed task.
-        database_version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Database Version
-          description: The database version for the built data.
-        build_date:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Build Date
-          description: The build date for this document.
-        license:
-          anyOf:
-          - type: string
-            enum:
-            - BY-C
-            - BY-NC
-          - type: 'null'
-          title: License
-          description: License for the data entry.
-      type: object
-      title: EmmetMeta
-      description: Default emmet metadata.
     TypedAlloyPairDict:
       properties:
         '@module':
@@ -768,57 +659,54 @@ components:
       - nelements
       - members
       title: TypedAlloyPairDict
-    Error:
+    TypedSiteProperitesDict:
       properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
+        magmom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - prefixItems:
+            - type: number
+            - type: number
+            - type: number
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Selective Dynamics
+        coordination_no:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Coordination No
+        forces:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Forces
       type: object
-      required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+      title: TypedSiteProperitesDict
     TypedStructureDict:
       properties:
         '@module':
@@ -850,30 +738,142 @@ components:
       - lattice
       - sites
       title: TypedStructureDict
-    TypedSpeciesDict:
+    TypedAggregateProperitesDict:
       properties:
-        element:
+        magmom:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Magmom
+        charge:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Charge
+        velocities:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Velocities
+        selective_dynamics:
+          anyOf:
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
+          - type: 'null'
+          title: Selective Dynamics
+      type: object
+      title: TypedAggregateProperitesDict
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    EmmetMeta:
+      properties:
+        emmet_version:
           anyOf:
           - type: string
           - type: 'null'
-          title: Element
-        oxidation_state:
+          title: Emmet Version
+          description: The version of emmet this document was built with.
+          default: 0.86.4rc4
+        pymatgen_version:
           anyOf:
-          - type: number
+          - type: string
           - type: 'null'
-          title: Oxidation State
-        spin:
+          title: Pymatgen Version
+          description: The version of pymatgen this document was built with.
+          default: 2026.4.16
+        run_id:
           anyOf:
-          - type: number
+          - type: string
           - type: 'null'
-          title: Spin
-        occu:
+          title: Run Id
+          description: The run id associated with this data build.
+        batch_id:
           anyOf:
-          - type: number
+          - type: string
           - type: 'null'
-          title: Occu
+          title: Batch Id
+          description: Identifier corresponding to the origin of this document's blessed task.
+        database_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Database Version
+          description: The database version for the built data.
+        build_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Build Date
+          description: The build date for this document.
+        license:
+          anyOf:
+          - type: string
+            enum:
+            - BY-C
+            - BY-NC
+          - type: 'null'
+          title: License
+          description: License for the data entry.
       type: object
-      title: TypedSpeciesDict
+      title: EmmetMeta
+      description: Default emmet metadata.
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

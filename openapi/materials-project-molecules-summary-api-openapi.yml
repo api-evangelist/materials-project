@@ -271,6 +271,270 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    PartialChargesComposite:
+      properties:
+        property_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Property Id
+          description: Property ID for this PartialChargesDoc.
+        level_of_theory:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Level Of Theory
+          description: Level of theory for this PartialChargesDoc.
+        partial_charges:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Partial Charges
+          description: Atomic partial charges for the molecule
+      type: object
+      title: PartialChargesComposite
+      description: Summary information obtained from PartialChargesDocs
+    MetalBindingData:
+      properties:
+        metal_molecule_id:
+          type: string
+          pattern: ^^([A-Za-z]+-)?([A-Fa-f0-9]+)-([A-Za-z0-9]+)-(m?[0-9]+)-([0-9]+)$
+          title: Metal Molecule Id
+          description: The MPculeID of the metal atom or ion being bound
+          examples:
+          - 1a525231bdac3f13e2fac0962fe8d053-Mg1-0-1
+          - 22b40b99719ac570fc7e6225e855ec6e-F5Li1P1-m1-2
+          - mpcule-b9ba54febc77d2a9177accf4605767db-C1H41-2
+        nometal_molecule_id:
+          type: string
+          pattern: ^^([A-Za-z]+-)?([A-Fa-f0-9]+)-([A-Za-z0-9]+)-(m?[0-9]+)-([0-9]+)$
+          title: Nometal Molecule Id
+          description: The MPculeID of the molecule with the metal atom/ion removed
+          examples:
+          - 1a525231bdac3f13e2fac0962fe8d053-Mg1-0-1
+          - 22b40b99719ac570fc7e6225e855ec6e-F5Li1P1-m1-2
+          - mpcule-b9ba54febc77d2a9177accf4605767db-C1H41-2
+        metal_index:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Metal Index
+          description: Index of the metal in this Molecule (in case of a molecule with multiple identical metal atoms/ions)
+        metal_element:
+          anyOf:
+          - type: string
+          - properties:
+              '@class':
+                type: string
+                enum:
+                - Species
+              '@module':
+                type: string
+                enum:
+                - pymatgen.core.periodic_table
+              '@version':
+                type: string
+            type: object
+            required:
+            - '@class'
+            - '@module'
+          - $ref: '#/components/schemas/Element'
+          - type: 'null'
+          title: Metal Element
+          description: The metal bound to the molecule
+        metal_partial_charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Metal Partial Charge
+          description: The exact calculated partial charge of the metal
+        metal_partial_spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Metal Partial Spin
+          description: The exact calculated partial spin on the metal
+        metal_assigned_charge:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Metal Assigned Charge
+          description: The integral charge assigned to this metal based on partial charge/spin data
+        metal_assigned_spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Metal Assigned Spin
+          description: The integral spin multiplicity assigned to this metal based on partial spin data
+        number_coordinate_bonds:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Number Coordinate Bonds
+          description: The number of atoms neighboring the metal atom or ion of interest
+        coordinating_atoms:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Coordinating Atoms
+          description: The elements/species coordinating the metal.
+        coordinate_bond_lengths:
+          anyOf:
+          - additionalProperties:
+              additionalProperties:
+                anyOf:
+                - type: number
+                - items:
+                    type: number
+                  type: array
+              type: object
+            type: object
+          - type: 'null'
+          title: Coordinate Bond Lengths
+          description: Bond lengths and statistics broken down by the coordinating atoms
+        binding_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Binding Energy
+          description: 'The electronic energy change (∆E) of binding (units: eV)'
+        binding_enthalpy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Binding Enthalpy
+          description: 'The enthalpy change (∆H) of binding (units: eV)'
+        binding_entropy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Binding Entropy
+          description: 'The entropy change (∆S) of binding (units: eV/K)'
+        binding_free_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Binding Free Energy
+          description: 'The free energy change (∆G) of binding (units: eV)'
+        metal_thermo_property_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Metal Thermo Property Id
+          description: ID of MoleculeThermoDoc used to obtain the thermochemistry of the metal atom/ion
+        nometal_thermo_property_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Nometal Thermo Property Id
+          description: ID of MoleculeThermoDoc used to obtain the thermochemistry of of the molecule with the metal atom/ion removed
+      type: object
+      required:
+      - metal_molecule_id
+      - nometal_molecule_id
+      title: MetalBindingData
+      description: Metal binding information for one metal or ion in a molecule
+    RedoxComposite:
+      properties:
+        property_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Property Id
+          description: Property ID for this RedoxDoc.
+        level_of_theory:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Level Of Theory
+          description: Level of theory for this RedoxDoc.
+        electron_affinity:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Electron Affinity
+          description: Vertical electron affinity in eV
+        ea_task_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: 'null'
+          title: Ea Task Id
+          description: Molecule ID for electron affinity
+        ionization_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Ionization Energy
+          description: Vertical ionization energy in eV
+        ie_task_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: 'null'
+          title: Ie Task Id
+          description: Molecule ID for ionization energy
+        reduction_free_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Reduction Free Energy
+          description: Adiabatic free energy of reduction
+        red_molecule_id:
+          anyOf:
+          - type: string
+            pattern: ^^([A-Za-z]+-)?([A-Fa-f0-9]+)-([A-Za-z0-9]+)-(m?[0-9]+)-([0-9]+)$
+            examples:
+            - 1a525231bdac3f13e2fac0962fe8d053-Mg1-0-1
+            - 22b40b99719ac570fc7e6225e855ec6e-F5Li1P1-m1-2
+            - mpcule-b9ba54febc77d2a9177accf4605767db-C1H41-2
+          - type: 'null'
+          title: Red Molecule Id
+          description: Molecule ID for adiabatic reduction
+        oxidation_free_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation Free Energy
+          description: Adiabatic free energy of oxidation
+        ox_molecule_id:
+          anyOf:
+          - type: string
+            pattern: ^^([A-Za-z]+-)?([A-Fa-f0-9]+)-([A-Za-z0-9]+)-(m?[0-9]+)-([0-9]+)$
+            examples:
+            - 1a525231bdac3f13e2fac0962fe8d053-Mg1-0-1
+            - 22b40b99719ac570fc7e6225e855ec6e-F5Li1P1-m1-2
+            - mpcule-b9ba54febc77d2a9177accf4605767db-C1H41-2
+          - type: 'null'
+          title: Ox Molecule Id
+          description: Molecule ID for adiabatic oxidation
+        reduction_potential:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Reduction Potential
+          description: 'Reduction potential referenced to the standard hydrogen electrode (SHE) (units: V)'
+        oxidation_potential:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation Potential
+          description: 'Oxidation potential referenced to the standard hydrogen electrode (SHE) (units: V)'
+      type: object
+      title: RedoxComposite
+      description: Summary information obtained from RedoxDocs
     MetalBindingComposite:
       properties:
         property_id:
@@ -416,178 +680,256 @@ components:
           title: Forces
       type: object
       title: TypedSiteProperitesDict
-    VibrationComposite:
+    TypedAggregateProperitesDict:
       properties:
-        property_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Property Id
-          description: Property ID for this VibrationDoc.
-        level_of_theory:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Level Of Theory
-          description: Level of theory for this VibrationDoc.
-        frequencies:
+        magmom:
           anyOf:
           - items:
               type: number
             type: array
           - type: 'null'
-          title: Frequencies
-          description: List of molecular vibrational frequencies
-      type: object
-      title: VibrationComposite
-      description: Summary information obtained from VibrationDocs
-    PartialSpinsComposite:
-      properties:
-        property_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Property Id
-          description: Property ID for this PartialSpinsDoc.
-        level_of_theory:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Level Of Theory
-          description: Level of theory for this PartialSpinsDoc.
-        partial_spins:
+          title: Magmom
+        charge:
           anyOf:
           - items:
               type: number
             type: array
           - type: 'null'
-          title: Partial Spins
-          description: Atomic partial spins for the molecule
-      type: object
-      title: PartialSpinsComposite
-      description: Summary information obtained from PartialSpinsDocs
-    Response_MoleculeSummaryDoc_:
-      properties:
-        data:
+          title: Charge
+        velocities:
           anyOf:
           - items:
-              $ref: '#/components/schemas/MoleculeSummaryDoc'
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
             type: array
           - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
+          title: Velocities
+        selective_dynamics:
           anyOf:
           - items:
-              $ref: '#/components/schemas/Error'
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
             type: array
           - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
+          title: Selective Dynamics
       type: object
-      title: Response[MoleculeSummaryDoc]
-    RedoxComposite:
+      title: TypedAggregateProperitesDict
+    MultipolesComposite:
       properties:
         property_id:
           anyOf:
           - type: string
           - type: 'null'
           title: Property Id
-          description: Property ID for this RedoxDoc.
+          description: Property ID for this ElectricMultipoleDoc.
         level_of_theory:
           anyOf:
           - type: string
           - type: 'null'
           title: Level Of Theory
-          description: Level of theory for this RedoxDoc.
-        electron_affinity:
+          description: Level of theory for this ElectricMultipoleDoc.
+        total_dipole:
           anyOf:
           - type: number
           - type: 'null'
-          title: Electron Affinity
-          description: Vertical electron affinity in eV
-        ea_task_id:
-          anyOf:
-          - type: string
-            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
-            examples:
-            - mp-3534
-            - '3453'
-            - mp-834-Ag
-          - type: 'null'
-          title: Ea Task Id
-          description: Molecule ID for electron affinity
-        ionization_energy:
+          title: Total Dipole
+          description: Total molecular dipole moment (Debye)
+        resp_total_dipole:
           anyOf:
           - type: number
           - type: 'null'
-          title: Ionization Energy
-          description: Vertical ionization energy in eV
-        ie_task_id:
-          anyOf:
-          - type: string
-            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
-            examples:
-            - mp-3534
-            - '3453'
-            - mp-834-Ag
-          - type: 'null'
-          title: Ie Task Id
-          description: Molecule ID for ionization energy
-        reduction_free_energy:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Reduction Free Energy
-          description: Adiabatic free energy of reduction
-        red_molecule_id:
-          anyOf:
-          - type: string
-            pattern: ^^([A-Za-z]+-)?([A-Fa-f0-9]+)-([A-Za-z0-9]+)-(m?[0-9]+)-([0-9]+)$
-            examples:
-            - 1a525231bdac3f13e2fac0962fe8d053-Mg1-0-1
-            - 22b40b99719ac570fc7e6225e855ec6e-F5Li1P1-m1-2
-            - mpcule-b9ba54febc77d2a9177accf4605767db-C1H41-2
-          - type: 'null'
-          title: Red Molecule Id
-          description: Molecule ID for adiabatic reduction
-        oxidation_free_energy:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Oxidation Free Energy
-          description: Adiabatic free energy of oxidation
-        ox_molecule_id:
-          anyOf:
-          - type: string
-            pattern: ^^([A-Za-z]+-)?([A-Fa-f0-9]+)-([A-Za-z0-9]+)-(m?[0-9]+)-([0-9]+)$
-            examples:
-            - 1a525231bdac3f13e2fac0962fe8d053-Mg1-0-1
-            - 22b40b99719ac570fc7e6225e855ec6e-F5Li1P1-m1-2
-            - mpcule-b9ba54febc77d2a9177accf4605767db-C1H41-2
-          - type: 'null'
-          title: Ox Molecule Id
-          description: Molecule ID for adiabatic oxidation
-        reduction_potential:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Reduction Potential
-          description: 'Reduction potential referenced to the standard hydrogen electrode (SHE) (units: V)'
-        oxidation_potential:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Oxidation Potential
-          description: 'Oxidation potential referenced to the standard hydrogen electrode (SHE) (units: V)'
+          title: Resp Total Dipole
+          description: Total dipole moment, calculated via restrained electrostatic potential (RESP) (Debye)
       type: object
-      title: RedoxComposite
-      description: Summary information obtained from RedoxDocs
+      title: MultipolesComposite
+      description: Summary information obtained from ElectricMultipoleDocs
+    ThermoComposite:
+      properties:
+        property_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Property Id
+          description: Property ID map for this MoleculeThermoDoc
+        level_of_theory:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Level Of Theory
+          description: Level of theory for this MoleculeThermoDoc.
+        electronic_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Electronic Energy
+          description: 'Electronic energy of the molecule (units: eV)'
+        zero_point_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Zero Point Energy
+          description: 'Zero-point energy of the molecule (units: eV)'
+        total_enthalpy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Total Enthalpy
+          description: 'Total enthalpy of the molecule at 298.15K (units: eV)'
+        total_entropy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Total Entropy
+          description: 'Total entropy of the molecule at 298.15K (units: eV/K)'
+        free_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Free Energy
+          description: 'Gibbs free energy of the molecule at 298.15K (units: eV)'
+      type: object
+      title: ThermoComposite
+      description: Summary information obtained from MoleculeThermoDocs
+    TypedSiteDict:
+      properties:
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        properties:
+          anyOf:
+          - $ref: '#/components/schemas/TypedSiteProperitesDict'
+          - type: 'null'
+        species:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TypedSpeciesDict'
+            type: array
+          - type: 'null'
+          title: Species
+        abc:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Abc
+        xyz:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Xyz
+      type: object
+      title: TypedSiteDict
+    TypedSpeciesDict:
+      properties:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation State
+        spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin
+        occu:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    PointGroupData:
+      properties:
+        point_group:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Point Group Symbol
+          description: The point group for the lattice
+        rotation_number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Rotational Symmetry Number
+          description: Rotational symmetry number for the molecule
+        linear:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Molecule Linearity
+          description: Is the molecule linear?
+        tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Point Group Analyzer Tolerance
+          description: Distance tolerance to consider sites as symmetrically equivalent.
+        eigen_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Interia Tensor Eigenvalue Tolerance
+          description: Tolerance to compare eigen values of the inertia tensor.
+        matrix_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Symmetry Operation Matrix Element Tolerance
+          description: Tolerance used to generate the full set of symmetry operations of the point group.
+      type: object
+      title: PointGroupData
+      description: Defines symmetry for a molecule document
     BondingComposite:
       properties:
         property_id:
@@ -641,478 +983,6 @@ components:
       type: object
       title: BondingComposite
       description: Summary information obtained from MoleculeBondingDocs
-    MolPropertyOrigin:
-      properties:
-        name:
-          type: string
-          title: Name
-          description: The property name
-        task_id:
-          anyOf:
-          - type: string
-            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
-            examples:
-            - mp-3534
-            - '3453'
-            - mp-834-Ag
-          - type: string
-            pattern: ^^([A-Za-z]+-)?([A-Fa-f0-9]+)-([A-Za-z0-9]+)-(m?[0-9]+)-([0-9]+)$
-            examples:
-            - 1a525231bdac3f13e2fac0962fe8d053-Mg1-0-1
-            - 22b40b99719ac570fc7e6225e855ec6e-F5Li1P1-m1-2
-            - mpcule-b9ba54febc77d2a9177accf4605767db-C1H41-2
-          title: Task Id
-          description: The calculation ID this property comes from.
-        last_updated:
-          type: string
-          format: date-time
-          title: Last Updated
-          description: The timestamp when this calculation was last updated
-      type: object
-      required:
-      - name
-      - task_id
-      title: MolPropertyOrigin
-      description: Provenance for molecular properties, uses legacy MPID.
-    ThermoComposite:
-      properties:
-        property_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Property Id
-          description: Property ID map for this MoleculeThermoDoc
-        level_of_theory:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Level Of Theory
-          description: Level of theory for this MoleculeThermoDoc.
-        electronic_energy:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Electronic Energy
-          description: 'Electronic energy of the molecule (units: eV)'
-        zero_point_energy:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Zero Point Energy
-          description: 'Zero-point energy of the molecule (units: eV)'
-        total_enthalpy:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Total Enthalpy
-          description: 'Total enthalpy of the molecule at 298.15K (units: eV)'
-        total_entropy:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Total Entropy
-          description: 'Total entropy of the molecule at 298.15K (units: eV/K)'
-        free_energy:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Free Energy
-          description: 'Gibbs free energy of the molecule at 298.15K (units: eV)'
-      type: object
-      title: ThermoComposite
-      description: Summary information obtained from MoleculeThermoDocs
-    TypedAggregateProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: boolean
-              - type: boolean
-              - type: boolean
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Selective Dynamics
-      type: object
-      title: TypedAggregateProperitesDict
-    Meta:
-      properties:
-        api_version:
-          type: string
-          title: Api Version
-          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
-          default: 0.86.4rc5.dev1+g77c2c1315
-        time_stamp:
-          type: string
-          format: date-time
-          title: Time Stamp
-          description: A string containing the date and time at which the query was executed
-        total_doc:
-          anyOf:
-          - type: integer
-            minimum: 0.0
-          - type: 'null'
-          title: Total Doc
-          description: The total number of documents available for this query
-        facet:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Facet
-          description: A dictionary containing the facets available for this query
-      additionalProperties: true
-      type: object
-      title: Meta
-      description: Meta information for the MAPI Response.
-    PartialChargesComposite:
-      properties:
-        property_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Property Id
-          description: Property ID for this PartialChargesDoc.
-        level_of_theory:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Level Of Theory
-          description: Level of theory for this PartialChargesDoc.
-        partial_charges:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Partial Charges
-          description: Atomic partial charges for the molecule
-      type: object
-      title: PartialChargesComposite
-      description: Summary information obtained from PartialChargesDocs
-    TypedSiteDict:
-      properties:
-        label:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Label
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        properties:
-          anyOf:
-          - $ref: '#/components/schemas/TypedSiteProperitesDict'
-          - type: 'null'
-        species:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TypedSpeciesDict'
-            type: array
-          - type: 'null'
-          title: Species
-        abc:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Abc
-        xyz:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Xyz
-      type: object
-      title: TypedSiteDict
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    PointGroupData:
-      properties:
-        point_group:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Point Group Symbol
-          description: The point group for the lattice
-        rotation_number:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Rotational Symmetry Number
-          description: Rotational symmetry number for the molecule
-        linear:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Molecule Linearity
-          description: Is the molecule linear?
-        tolerance:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Point Group Analyzer Tolerance
-          description: Distance tolerance to consider sites as symmetrically equivalent.
-        eigen_tolerance:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Interia Tensor Eigenvalue Tolerance
-          description: Tolerance to compare eigen values of the inertia tensor.
-        matrix_tolerance:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Symmetry Operation Matrix Element Tolerance
-          description: Tolerance used to generate the full set of symmetry operations of the point group.
-      type: object
-      title: PointGroupData
-      description: Defines symmetry for a molecule document
-    Element:
-      type: string
-      enum:
-      - H
-      - D
-      - T
-      - He
-      - Li
-      - Be
-      - B
-      - C
-      - N
-      - O
-      - F
-      - Ne
-      - Na
-      - Mg
-      - Al
-      - Si
-      - P
-      - S
-      - Cl
-      - Ar
-      - K
-      - Ca
-      - Sc
-      - Ti
-      - V
-      - Cr
-      - Mn
-      - Fe
-      - Co
-      - Ni
-      - Cu
-      - Zn
-      - Ga
-      - Ge
-      - As
-      - Se
-      - Br
-      - Kr
-      - Rb
-      - Sr
-      - Y
-      - Zr
-      - Nb
-      - Mo
-      - Tc
-      - Ru
-      - Rh
-      - Pd
-      - Ag
-      - Cd
-      - In
-      - Sn
-      - Sb
-      - Te
-      - I
-      - Xe
-      - Cs
-      - Ba
-      - La
-      - Ce
-      - Pr
-      - Nd
-      - Pm
-      - Sm
-      - Eu
-      - Gd
-      - Tb
-      - Dy
-      - Ho
-      - Er
-      - Tm
-      - Yb
-      - Lu
-      - Hf
-      - Ta
-      - W
-      - Re
-      - Os
-      - Ir
-      - Pt
-      - Au
-      - Hg
-      - Tl
-      - Pb
-      - Bi
-      - Po
-      - At
-      - Rn
-      - Fr
-      - Ra
-      - Ac
-      - Th
-      - Pa
-      - U
-      - Np
-      - Pu
-      - Am
-      - Cm
-      - Bk
-      - Cf
-      - Es
-      - Fm
-      - Md
-      - 'No'
-      - Lr
-      - Rf
-      - Db
-      - Sg
-      - Bh
-      - Hs
-      - Mt
-      - Ds
-      - Rg
-      - Cn
-      - Nh
-      - Fl
-      - Mc
-      - Lv
-      - Ts
-      - Og
-      title: Element
-      description: Enum representing an element in the periodic table.
-    TypedMoleculeDict:
-      properties:
-        '@module':
-          type: string
-          title: '@Module'
-        '@class':
-          type: string
-          title: '@Class'
-        charge:
-          type: number
-          title: Charge
-        spin_multiplicity:
-          type: integer
-          title: Spin Multiplicity
-        sites:
-          items:
-            $ref: '#/components/schemas/TypedSiteDict'
-          type: array
-          title: Sites
-        properties:
-          $ref: '#/components/schemas/TypedAggregateProperitesDict'
-      type: object
-      required:
-      - '@module'
-      - '@class'
-      - charge
-      - spin_multiplicity
-      - sites
-      - properties
-      title: TypedMoleculeDict
-    OrbitalComposite:
-      properties:
-        property_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Property Id
-          description: Property ID for this OrbitalDoc.
-        level_of_theory:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Level Of Theory
-          description: Level of theory for this OrbitalDoc.
-        open_shell:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Open Shell
-          description: Is this molecule open-shell (spin multiplicity != 1)?
-      type: object
-      title: OrbitalComposite
-      description: Summary information obtained from OrbitalDocs
     MoleculeSummaryDoc:
       properties:
         charge:
@@ -1473,35 +1343,306 @@ components:
       - molecules
       title: MoleculeSummaryDoc
       description: Summary information about molecules and their properties, useful for searching.
-    MultipolesComposite:
+    TypedMoleculeDict:
+      properties:
+        '@module':
+          type: string
+          title: '@Module'
+        '@class':
+          type: string
+          title: '@Class'
+        charge:
+          type: number
+          title: Charge
+        spin_multiplicity:
+          type: integer
+          title: Spin Multiplicity
+        sites:
+          items:
+            $ref: '#/components/schemas/TypedSiteDict'
+          type: array
+          title: Sites
+        properties:
+          $ref: '#/components/schemas/TypedAggregateProperitesDict'
+      type: object
+      required:
+      - '@module'
+      - '@class'
+      - charge
+      - spin_multiplicity
+      - sites
+      - properties
+      title: TypedMoleculeDict
+    Element:
+      type: string
+      enum:
+      - H
+      - D
+      - T
+      - He
+      - Li
+      - Be
+      - B
+      - C
+      - N
+      - O
+      - F
+      - Ne
+      - Na
+      - Mg
+      - Al
+      - Si
+      - P
+      - S
+      - Cl
+      - Ar
+      - K
+      - Ca
+      - Sc
+      - Ti
+      - V
+      - Cr
+      - Mn
+      - Fe
+      - Co
+      - Ni
+      - Cu
+      - Zn
+      - Ga
+      - Ge
+      - As
+      - Se
+      - Br
+      - Kr
+      - Rb
+      - Sr
+      - Y
+      - Zr
+      - Nb
+      - Mo
+      - Tc
+      - Ru
+      - Rh
+      - Pd
+      - Ag
+      - Cd
+      - In
+      - Sn
+      - Sb
+      - Te
+      - I
+      - Xe
+      - Cs
+      - Ba
+      - La
+      - Ce
+      - Pr
+      - Nd
+      - Pm
+      - Sm
+      - Eu
+      - Gd
+      - Tb
+      - Dy
+      - Ho
+      - Er
+      - Tm
+      - Yb
+      - Lu
+      - Hf
+      - Ta
+      - W
+      - Re
+      - Os
+      - Ir
+      - Pt
+      - Au
+      - Hg
+      - Tl
+      - Pb
+      - Bi
+      - Po
+      - At
+      - Rn
+      - Fr
+      - Ra
+      - Ac
+      - Th
+      - Pa
+      - U
+      - Np
+      - Pu
+      - Am
+      - Cm
+      - Bk
+      - Cf
+      - Es
+      - Fm
+      - Md
+      - 'No'
+      - Lr
+      - Rf
+      - Db
+      - Sg
+      - Bh
+      - Hs
+      - Mt
+      - Ds
+      - Rg
+      - Cn
+      - Nh
+      - Fl
+      - Mc
+      - Lv
+      - Ts
+      - Og
+      title: Element
+      description: Enum representing an element in the periodic table.
+    OrbitalComposite:
       properties:
         property_id:
           anyOf:
           - type: string
           - type: 'null'
           title: Property Id
-          description: Property ID for this ElectricMultipoleDoc.
+          description: Property ID for this OrbitalDoc.
         level_of_theory:
           anyOf:
           - type: string
           - type: 'null'
           title: Level Of Theory
-          description: Level of theory for this ElectricMultipoleDoc.
-        total_dipole:
+          description: Level of theory for this OrbitalDoc.
+        open_shell:
           anyOf:
-          - type: number
+          - type: boolean
           - type: 'null'
-          title: Total Dipole
-          description: Total molecular dipole moment (Debye)
-        resp_total_dipole:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Resp Total Dipole
-          description: Total dipole moment, calculated via restrained electrostatic potential (RESP) (Debye)
+          title: Open Shell
+          description: Is this molecule open-shell (spin multiplicity != 1)?
       type: object
-      title: MultipolesComposite
-      description: Summary information obtained from ElectricMultipoleDocs
+      title: OrbitalComposite
+      description: Summary information obtained from OrbitalDocs
+    MolPropertyOrigin:
+      properties:
+        name:
+          type: string
+          title: Name
+          description: The property name
+        task_id:
+          anyOf:
+          - type: string
+            pattern: ^([A-Za-z]+-)?(\d+)(-[A-Za-z0-9]+)*$
+            examples:
+            - mp-3534
+            - '3453'
+            - mp-834-Ag
+          - type: string
+            pattern: ^^([A-Za-z]+-)?([A-Fa-f0-9]+)-([A-Za-z0-9]+)-(m?[0-9]+)-([0-9]+)$
+            examples:
+            - 1a525231bdac3f13e2fac0962fe8d053-Mg1-0-1
+            - 22b40b99719ac570fc7e6225e855ec6e-F5Li1P1-m1-2
+            - mpcule-b9ba54febc77d2a9177accf4605767db-C1H41-2
+          title: Task Id
+          description: The calculation ID this property comes from.
+        last_updated:
+          type: string
+          format: date-time
+          title: Last Updated
+          description: The timestamp when this calculation was last updated
+      type: object
+      required:
+      - name
+      - task_id
+      title: MolPropertyOrigin
+      description: Provenance for molecular properties, uses legacy MPID.
+    PartialSpinsComposite:
+      properties:
+        property_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Property Id
+          description: Property ID for this PartialSpinsDoc.
+        level_of_theory:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Level Of Theory
+          description: Level of theory for this PartialSpinsDoc.
+        partial_spins:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Partial Spins
+          description: Atomic partial spins for the molecule
+      type: object
+      title: PartialSpinsComposite
+      description: Summary information obtained from PartialSpinsDocs
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Response_MoleculeSummaryDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/MoleculeSummaryDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[MoleculeSummaryDoc]
     Error:
       properties:
         code:
@@ -1518,172 +1659,31 @@ components:
       - message
       title: Error
       description: Base Error model for General API.
-    MetalBindingData:
+    VibrationComposite:
       properties:
-        metal_molecule_id:
-          type: string
-          pattern: ^^([A-Za-z]+-)?([A-Fa-f0-9]+)-([A-Za-z0-9]+)-(m?[0-9]+)-([0-9]+)$
-          title: Metal Molecule Id
-          description: The MPculeID of the metal atom or ion being bound
-          examples:
-          - 1a525231bdac3f13e2fac0962fe8d053-Mg1-0-1
-          - 22b40b99719ac570fc7e6225e855ec6e-F5Li1P1-m1-2
-          - mpcule-b9ba54febc77d2a9177accf4605767db-C1H41-2
-        nometal_molecule_id:
-          type: string
-          pattern: ^^([A-Za-z]+-)?([A-Fa-f0-9]+)-([A-Za-z0-9]+)-(m?[0-9]+)-([0-9]+)$
-          title: Nometal Molecule Id
-          description: The MPculeID of the molecule with the metal atom/ion removed
-          examples:
-          - 1a525231bdac3f13e2fac0962fe8d053-Mg1-0-1
-          - 22b40b99719ac570fc7e6225e855ec6e-F5Li1P1-m1-2
-          - mpcule-b9ba54febc77d2a9177accf4605767db-C1H41-2
-        metal_index:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Metal Index
-          description: Index of the metal in this Molecule (in case of a molecule with multiple identical metal atoms/ions)
-        metal_element:
+        property_id:
           anyOf:
           - type: string
-          - properties:
-              '@class':
-                type: string
-                enum:
-                - Species
-              '@module':
-                type: string
-                enum:
-                - pymatgen.core.periodic_table
-              '@version':
-                type: string
-            type: object
-            required:
-            - '@class'
-            - '@module'
-          - $ref: '#/components/schemas/Element'
           - type: 'null'
-          title: Metal Element
-          description: The metal bound to the molecule
-        metal_partial_charge:
+          title: Property Id
+          description: Property ID for this VibrationDoc.
+        level_of_theory:
           anyOf:
-          - type: number
+          - type: string
           - type: 'null'
-          title: Metal Partial Charge
-          description: The exact calculated partial charge of the metal
-        metal_partial_spin:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Metal Partial Spin
-          description: The exact calculated partial spin on the metal
-        metal_assigned_charge:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Metal Assigned Charge
-          description: The integral charge assigned to this metal based on partial charge/spin data
-        metal_assigned_spin:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Metal Assigned Spin
-          description: The integral spin multiplicity assigned to this metal based on partial spin data
-        number_coordinate_bonds:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Number Coordinate Bonds
-          description: The number of atoms neighboring the metal atom or ion of interest
-        coordinating_atoms:
+          title: Level Of Theory
+          description: Level of theory for this VibrationDoc.
+        frequencies:
           anyOf:
           - items:
-              type: string
+              type: number
             type: array
           - type: 'null'
-          title: Coordinating Atoms
-          description: The elements/species coordinating the metal.
-        coordinate_bond_lengths:
-          anyOf:
-          - additionalProperties:
-              additionalProperties:
-                anyOf:
-                - type: number
-                - items:
-                    type: number
-                  type: array
-              type: object
-            type: object
-          - type: 'null'
-          title: Coordinate Bond Lengths
-          description: Bond lengths and statistics broken down by the coordinating atoms
-        binding_energy:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Binding Energy
-          description: 'The electronic energy change (∆E) of binding (units: eV)'
-        binding_enthalpy:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Binding Enthalpy
-          description: 'The enthalpy change (∆H) of binding (units: eV)'
-        binding_entropy:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Binding Entropy
-          description: 'The entropy change (∆S) of binding (units: eV/K)'
-        binding_free_energy:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Binding Free Energy
-          description: 'The free energy change (∆G) of binding (units: eV)'
-        metal_thermo_property_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Metal Thermo Property Id
-          description: ID of MoleculeThermoDoc used to obtain the thermochemistry of the metal atom/ion
-        nometal_thermo_property_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Nometal Thermo Property Id
-          description: ID of MoleculeThermoDoc used to obtain the thermochemistry of of the molecule with the metal atom/ion removed
+          title: Frequencies
+          description: List of molecular vibrational frequencies
       type: object
-      required:
-      - metal_molecule_id
-      - nometal_molecule_id
-      title: MetalBindingData
-      description: Metal binding information for one metal or ion in a molecule
-    TypedSpeciesDict:
-      properties:
-        element:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Element
-        oxidation_state:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Oxidation State
-        spin:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Spin
-        occu:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Occu
-      type: object
-      title: TypedSpeciesDict
+      title: VibrationComposite
+      description: Summary information obtained from VibrationDocs
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests

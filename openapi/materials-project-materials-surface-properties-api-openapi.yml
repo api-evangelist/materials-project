@@ -205,163 +205,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    TypedAggregateProperitesDict:
-      properties:
-        magmom:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Magmom
-        charge:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Charge
-        velocities:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: number
-              - type: number
-              - type: number
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Velocities
-        selective_dynamics:
-          anyOf:
-          - items:
-              prefixItems:
-              - type: boolean
-              - type: boolean
-              - type: boolean
-              type: array
-              maxItems: 3
-              minItems: 3
-            type: array
-          - type: 'null'
-          title: Selective Dynamics
-      type: object
-      title: TypedAggregateProperitesDict
-    TypedLatticeDict:
-      properties:
-        matrix:
-          items:
-            items:
-              type: number
-            type: array
-          type: array
-          title: Matrix
-        pbc:
-          anyOf:
-          - prefixItems:
-            - type: boolean
-            - type: boolean
-            - type: boolean
-            type: array
-            maxItems: 3
-            minItems: 3
-          - type: 'null'
-          title: Pbc
-        a:
-          type: number
-          title: A
-        b:
-          type: number
-          title: B
-        c:
-          type: number
-          title: C
-        alpha:
-          type: number
-          title: Alpha
-        beta:
-          type: number
-          title: Beta
-        gamma:
-          type: number
-          title: Gamma
-        volume:
-          type: number
-          title: Volume
-      type: object
-      required:
-      - matrix
-      - a
-      - b
-      - c
-      - alpha
-      - beta
-      - gamma
-      - volume
-      title: TypedLatticeDict
-    SurfaceEntry:
-      properties:
-        miller_index:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Miller Index
-          description: Miller index of surface.
-        surface_energy_EV_PER_ANG2:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Surface Energy Ev Per Ang2
-          description: Surface energy in eV/Å².
-        surface_energy:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Surface Energy
-          description: Surface energy in J/m².
-        is_reconstructed:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Is Reconstructed
-          description: Whether it is a reconstructed surface.
-        structure:
-          anyOf:
-          - $ref: '#/components/schemas/TypedStructureDict'
-          - type: 'null'
-          title: Structure
-          description: Slab structure.
-        work_function:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Work Function
-          description: Work function in eV.
-        efermi:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Efermi
-          description: Fermi energy in eV.
-        area_fraction:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Area Fraction
-          description: Area fraction.
-        has_wulff:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Has Wulff
-          description: Whether the surface has wulff entry.
-      type: object
-      title: SurfaceEntry
-      description: Surface energies, miller indicies, ...
     TypedSiteDict:
       properties:
         label:
@@ -401,6 +244,30 @@ components:
           title: Xyz
       type: object
       title: TypedSiteDict
+    TypedSpeciesDict:
+      properties:
+        element:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Element
+        oxidation_state:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Oxidation State
+        spin:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Spin
+        occu:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Occu
+      type: object
+      title: TypedSpeciesDict
     SurfacePropDoc:
       properties:
         surfaces:
@@ -468,6 +335,186 @@ components:
       type: object
       title: SurfacePropDoc
       description: Model for a document containing surface properties data
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    Error:
+      properties:
+        code:
+          type: integer
+          title: Code
+          description: The error code
+        message:
+          type: string
+          title: Message
+          description: The description of the error
+      type: object
+      required:
+      - code
+      - message
+      title: Error
+      description: Base Error model for General API.
+    TypedLatticeDict:
+      properties:
+        matrix:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+          title: Matrix
+        pbc:
+          anyOf:
+          - prefixItems:
+            - type: boolean
+            - type: boolean
+            - type: boolean
+            type: array
+            maxItems: 3
+            minItems: 3
+          - type: 'null'
+          title: Pbc
+        a:
+          type: number
+          title: A
+        b:
+          type: number
+          title: B
+        c:
+          type: number
+          title: C
+        alpha:
+          type: number
+          title: Alpha
+        beta:
+          type: number
+          title: Beta
+        gamma:
+          type: number
+          title: Gamma
+        volume:
+          type: number
+          title: Volume
+      type: object
+      required:
+      - matrix
+      - a
+      - b
+      - c
+      - alpha
+      - beta
+      - gamma
+      - volume
+      title: TypedLatticeDict
+    Response_SurfacePropDoc_:
+      properties:
+        data:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SurfacePropDoc'
+            type: array
+          - type: 'null'
+          title: Data
+          description: List of returned data
+        errors:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Error'
+            type: array
+          - type: 'null'
+          title: Errors
+          description: Any errors on processing this query
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/Meta'
+          - type: 'null'
+          description: Extra information for the query
+      type: object
+      title: Response[SurfacePropDoc]
+    SurfaceEntry:
+      properties:
+        miller_index:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Miller Index
+          description: Miller index of surface.
+        surface_energy_EV_PER_ANG2:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Surface Energy Ev Per Ang2
+          description: Surface energy in eV/Å².
+        surface_energy:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Surface Energy
+          description: Surface energy in J/m².
+        is_reconstructed:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Reconstructed
+          description: Whether it is a reconstructed surface.
+        structure:
+          anyOf:
+          - $ref: '#/components/schemas/TypedStructureDict'
+          - type: 'null'
+          title: Structure
+          description: Slab structure.
+        work_function:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Work Function
+          description: Work function in eV.
+        efermi:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Efermi
+          description: Fermi energy in eV.
+        area_fraction:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Area Fraction
+          description: Area fraction.
+        has_wulff:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Has Wulff
+          description: Whether the surface has wulff entry.
+      type: object
+      title: SurfaceEntry
+      description: Surface energies, miller indicies, ...
     TypedSiteProperitesDict:
       properties:
         magmom:
@@ -516,112 +563,6 @@ components:
           title: Forces
       type: object
       title: TypedSiteProperitesDict
-    Meta:
-      properties:
-        api_version:
-          type: string
-          title: Api Version
-          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
-          default: 0.86.4rc5.dev1+g77c2c1315
-        time_stamp:
-          type: string
-          format: date-time
-          title: Time Stamp
-          description: A string containing the date and time at which the query was executed
-        total_doc:
-          anyOf:
-          - type: integer
-            minimum: 0.0
-          - type: 'null'
-          title: Total Doc
-          description: The total number of documents available for this query
-        facet:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Facet
-          description: A dictionary containing the facets available for this query
-      additionalProperties: true
-      type: object
-      title: Meta
-      description: Meta information for the MAPI Response.
-    Error:
-      properties:
-        code:
-          type: integer
-          title: Code
-          description: The error code
-        message:
-          type: string
-          title: Message
-          description: The description of the error
-      type: object
-      required:
-      - code
-      - message
-      title: Error
-      description: Base Error model for General API.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    Response_SurfacePropDoc_:
-      properties:
-        data:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/SurfacePropDoc'
-            type: array
-          - type: 'null'
-          title: Data
-          description: List of returned data
-        errors:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Error'
-            type: array
-          - type: 'null'
-          title: Errors
-          description: Any errors on processing this query
-        meta:
-          anyOf:
-          - $ref: '#/components/schemas/Meta'
-          - type: 'null'
-          description: Extra information for the query
-      type: object
-      title: Response[SurfacePropDoc]
     TypedStructureDict:
       properties:
         '@module':
@@ -653,30 +594,89 @@ components:
       - lattice
       - sites
       title: TypedStructureDict
-    TypedSpeciesDict:
+    TypedAggregateProperitesDict:
       properties:
-        element:
+        magmom:
           anyOf:
-          - type: string
+          - items:
+              type: number
+            type: array
           - type: 'null'
-          title: Element
-        oxidation_state:
+          title: Magmom
+        charge:
           anyOf:
-          - type: number
+          - items:
+              type: number
+            type: array
           - type: 'null'
-          title: Oxidation State
-        spin:
+          title: Charge
+        velocities:
           anyOf:
-          - type: number
+          - items:
+              prefixItems:
+              - type: number
+              - type: number
+              - type: number
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
           - type: 'null'
-          title: Spin
-        occu:
+          title: Velocities
+        selective_dynamics:
           anyOf:
-          - type: number
+          - items:
+              prefixItems:
+              - type: boolean
+              - type: boolean
+              - type: boolean
+              type: array
+              maxItems: 3
+              minItems: 3
+            type: array
           - type: 'null'
-          title: Occu
+          title: Selective Dynamics
       type: object
-      title: TypedSpeciesDict
+      title: TypedAggregateProperitesDict
+    Meta:
+      properties:
+        api_version:
+          type: string
+          title: Api Version
+          description: A string containing the version of the Materials API implementation, e.g. v0.9.5
+          default: 0.86.4rc5.dev1+g77c2c1315
+        time_stamp:
+          type: string
+          format: date-time
+          title: Time Stamp
+          description: A string containing the date and time at which the query was executed
+        total_doc:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total Doc
+          description: The total number of documents available for this query
+        facet:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Facet
+          description: A dictionary containing the facets available for this query
+      additionalProperties: true
+      type: object
+      title: Meta
+      description: Meta information for the MAPI Response.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     ApiKeyAuth:
       descriptions: MP API key to authorize requests
