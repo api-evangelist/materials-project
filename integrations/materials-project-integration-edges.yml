@@ -1,0 +1,39 @@
+edges:
+- partner_name: OPTIMADE providers registry
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://providers.optimade.org/providers.json
+  category: OPTIMADE materials-data API implementer
+  chemistry_materials:
+    register: optimade
+    listings:
+    - provider_id: mp
+      name: The Materials Project
+      base_url: https://providers.optimade.org/index-metadbs/mp
+  contract_reference:
+    register: OPTIMADE providers registry (providers.optimade.org)
+    standard: OPTIMADE
+    spec_file: null
+    role: optimade-provider
+    registered_name: The Materials Project
+    register_id: mp
+    matched_domain: materialsproject.org
+    matched_by: domain
+    signal_note: 'participation only: the registry lists implementers, it certifies nothing; the `optimade` shape
+      (compatible) is report-only'
+    detected_by: sweep-chemistry-materials.py
+    detected: '2026-10-19'
+  detected_by: sweep-chemistry-materials.py
+  first_seen: '2026-10-19'
+generated: '2026-10-19'
+method: searched
+source:
+- https://pubchem.ncbi.nlm.nih.gov/rest/pug/sourcetable/all/JSON
+- https://providers.optimade.org/providers.json
+checked:
+- https://providers.optimade.org/providers.json
+- https://pubchem.ncbi.nlm.nih.gov/rest/pug/sourcetable/all/JSON
